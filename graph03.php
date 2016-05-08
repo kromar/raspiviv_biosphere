@@ -29,7 +29,7 @@ function drawChart() {
 		title: 'Temperature - Humidity',
 		curveType: 'function',
 		backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1}
-		legend: { position: 'bottom' },
+		legend: 'bottom',
 		series: {
 			0: {color: 'red', targetAxisIndex: 0},
 			1: {color: 'blue', targetAxisIndex: 1}
