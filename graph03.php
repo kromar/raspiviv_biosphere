@@ -83,7 +83,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 	
 	<div class="container">
-	    <div id="chart_div" style="width: auot; height: auto;"></div>
+	    <div id="chart_div" style="width: auot; height: 600px;"></div>
 	    <hr>
 	    <?php include 'footer.php';?>
 	</div>
