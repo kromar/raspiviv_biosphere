@@ -34,7 +34,7 @@ if(!$fgmembersite->CheckLogin())
 			$q = "select * from datalogger ";
 			$q = $q . "where sensor = 8 ";
 			$q = $q . "order by date_time desc ";
-			$q = $q . "limit 240";
+			$q = $q . "limit 120";
 			$ds = mysql_query ( $q );
 			
 			while ( $r = mysql_fetch_object ( $ds ) ) {
@@ -47,7 +47,7 @@ if(!$fgmembersite->CheckLogin())
 	
 		var options = {
 			title: 'Temperature - Humidity',
-			curveType: 'function',
+			curveType: 'none',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'bottom' },
 			series: {
@@ -57,14 +57,16 @@ if(!$fgmembersite->CheckLogin())
 		
 		vAxes: {
 			// Adds titles to each axis.
-			0: {title: 'TEMP (Celsius)'},
-			1: {title: 'HUMIDITY (%)'},
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
 		},
 		
-		hAxis: { textPosition: 'none', direction: '-1' },
+		hAxis: { 
+			textPosition: 'none', 
+			direction: '-1' },
 		};
 		
-		var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 		
 		chart.draw(data, options);
 		}
