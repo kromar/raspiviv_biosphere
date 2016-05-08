@@ -64,7 +64,7 @@ if(!$fgmembersite->CheckLogin())
 		hAxis: { textPosition: 'none', direction: '-1' },
 		};
 		
-		var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart2_div'));
+		var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
 		
 		chart.draw(data, options);
 		}
@@ -74,31 +74,18 @@ if(!$fgmembersite->CheckLogin())
 
 </head>
 <body>
-<div class="jumbotron">
-<div class="container">
-<?php include 'menu.php';?>
-<h2>2</h2>
-
-
-<?php include 'time.php';?>
-</div>
-</div>
-<div class="container">
-<h3>CURRENT CONDITIONS</h3>
-  <div class="row">
-    <div class="col-sm-3">
-    <div id="charttemp_div" style="width: 200px; height: 200px;"></div>
-    </div>
-    <div class="col-sm-3">
-    <div id="charthum_div" style="width: 200px; height: 200px;"></div>
-    </div>
-    </div>
-<hr>
-    </div>
-<div class="container">
-    <div id="chart2_div" style="width: auto; height: 500px;"></div>
-    <div id="chart_div" style="width: auot; height: 500px;"></div><hr>
-    <?php include 'footer.php';?>
-</div>
+	<div class="jumbotron">
+		<div class="container">
+			<?php include 'menu.php';?>
+			<h2>Sensor 3</h2>			
+			<?php include 'time.php';?>
+		</div>
+	</div>
+	
+	<div class="container">
+	    <div id="chart_div" style="width: auot; height: auto;"></div>
+	    <hr>
+	    <?php include 'footer.php';?>
+	</div>
 </body>
 </html>
