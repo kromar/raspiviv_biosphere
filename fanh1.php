@@ -32,7 +32,7 @@ $humidityNight = 95.0;
 $humidityDay = 80.0;
 
 $curentTime = date('H:i')
-$morningTime = ('08:40');;
+$morningTime = ('08:40');
 $eveningTime = ('22:00');
 
 if (($curentTime < $morningTime) or ($curentTime > $eveningTime))
