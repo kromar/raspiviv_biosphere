@@ -34,7 +34,7 @@ if(!$fgmembersite->CheckLogin())
 			$q = "select * from datalogger ";
 			$q = $q . "where sensor = 8 ";
 			$q = $q . "order by date_time desc ";
-			$q = $q . "limit 120";
+			$q = $q . "limit 360";
 			$ds = mysql_query ( $q );
 			
 			while ( $r = mysql_fetch_object ( $ds ) ) {
