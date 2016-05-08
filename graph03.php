@@ -25,8 +25,8 @@ if(!$fgmembersite->CheckLogin())
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
 	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-		                                              	
+		var data = google.visualization.arrayToDataTable([        
+	  	['TIME', 'TEMP', 'HUMIDITY' ],
 		<?php
 			$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
 			mysql_select_db ( "datalogger" );
