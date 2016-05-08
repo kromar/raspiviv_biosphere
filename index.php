@@ -522,6 +522,41 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 		
 		<hr>
+		
+		
+		<!--  combined graph -->
+		<div class="container">		
+			<a href="/graph03.php" title="VIV 1" alt="VIV 1">
+				<span class="fa-stack fa-2x">
+				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
+				</span>
+			</a>
+			
+			<div class="row">
+				<div class="col-sm-3">
+					<div id="viv1temp_div" style="width: auto; height: auto;"></div>
+				</div>
+				<div class="col-sm-9">
+					<div id="tank1tempgraph_div" style="width: auto; height: auto;"></div>
+				</div>
+			</div>	
+				
+				
+			<div class="row">
+				<div class="col-sm-3">
+					<div id="viv1hum_div" style="width: auto; height: auto;"></div>
+				</div>
+				<div class="col-sm-9">
+					 <div id="tank1humgraph_div" style="width: auto; height: auto;"></div>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		<hr>
+		
+		
 		<div class="container">	
 			<?php include 'footer.php';?>
 		</div>

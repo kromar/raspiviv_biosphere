@@ -13,6 +13,13 @@ echo '
   <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
 </span>
 </a>
+		
+<a href="/graph03.php" title="VIV 3" alt="VIV 3">
+<span class="fa-stack fa-2x">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <strong class="fa-stack-1x fa-stack-text fa-inverse">3</strong>
+</span>
+</a>
 
 <a href="javascript:history.go(0);" title="RELOAD" alt="RELOAD">
 <span class="fa-stack fa-2x">
