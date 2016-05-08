@@ -1,20 +1,56 @@
 <?php 
-$humthreshold = 90.0; 
-
 
 $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
 mysql_select_db("datalogger"); 
 
 $q = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1"; 
 $ds = mysql_query($q); 
-$hum=(int)mysql_fetch_object($ds)->humidity; 
+$humiditySensor=(int)mysql_fetch_object($ds)->humidity; 
 
 
-if ($hum>$humthreshold) 
+/* used to execute a python script
+ * $command = escapeshellcmd(' /usr/custom/test.py');
+* $output = shell_exec($command);
+* echo $output
+*/
+
+// grap weather information from openweathermap.org
+$city = "Chepo";
+$country = "PA"; // two digit country code
+$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=7&lang=en";
+$json = file_get_contents($url);
+$data = json_decode($json,true);
+//get rmep in celcius
+echo $data['main']['temp']."<br>";
+//get humidity
+echo $data['main']['humidity']."<br>";
+
+
+//change threshold depening on time of day
+$humidityThreshold;
+$humidityNight = 95.0;
+$humidityDay = 80.0;
+
+$curentTime = date('H:i')
+$morningTime = ('08:40');;
+$eveningTime = ('22:00');
+
+if (($curentTime < $morningTime) or ($curentTime > $eveningTime))
+{
+	$humidityThreshold = $humidityNight;
+}	
+else
+{
+	$humidityThreshold = $humidityDay;
+} 
+
+
+//change power state of fan depending on current humidity
+if ($humiditySensor > $humidityThreshold) 
 { 
 	$pwmNew=1; 
 } 
-if ($hum<=$humthreshold) 
+if ($humiditySensor <= $humidityThreshold) 
 { 
 	$pwmNew=0; 
 } 
