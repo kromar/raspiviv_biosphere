@@ -7,7 +7,7 @@ echo '
 </span>
 </a>
 
-<a href="/1.php" title="VIV 1" alt="VIV 1">
+<a href="/graph01.php" title="VIV 1" alt="VIV 1">
 <span class="fa-stack fa-2x">
   <i class="fa fa-circle fa-stack-2x"></i>
   <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
