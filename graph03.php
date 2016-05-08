@@ -26,14 +26,13 @@ function drawChart() {
 	]);
 
 	var options = {
-		title: 'Temp/hum',
+		title: 'Temperature - Humidity',
 		curveType: 'function',
-		backgroundColor: 'lightgreen',
-		colors: {'#ff0000', '#0000ff'},
+		backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1}
 		legend: { position: 'bottum' },
 		series: {
-		0: {targetAxisIndex: 0},
-		1: {targetAxisIndex: 1}
+			0: {color: 'red', targetAxisIndex: 0},
+			1: {color: 'blue', targetAxisIndex: 1}
 	},
 	vAxes: {
 		// Adds titles to each axis.
