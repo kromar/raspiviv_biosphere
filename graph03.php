@@ -85,7 +85,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 	
 	<div class="container">
-	    <div id="chart_div" style="width: 800px; height: 800px;"></div>
+	    <div id="chart_div" style="width: 1200px; height: 800px;"></div>
 	    <hr>
 	    <?php include 'footer.php';?>
 	</div>
