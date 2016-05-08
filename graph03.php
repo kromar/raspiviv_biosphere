@@ -29,7 +29,7 @@ function drawChart() {
 		title: 'Temp/hum',
 		curveType: 'function',
 		backgroundColor: 'lightgreen',
-		colors: 
+		colors: {'#ff0000', '#0000ff'},
 		legend: { position: 'bottum' },
 		series: {
 		0: {targetAxisIndex: 0},
