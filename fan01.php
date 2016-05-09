@@ -21,15 +21,13 @@ $country = "PA"; // two digit country code
 $url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=7&lang=en";
 $json = file_get_contents($url);
 $data = json_decode($json,true);
-//get rmep in celcius
-echo $data['main']['temp']."<br>";
 //get humidity
 echo $data['main']['humidity']."<br>";
 
 
 //change threshold depening on time of day
 $humidityThreshold;
-$humidityNight = 95.0;
+$humidityNight = 80.0;
 $humidityDay = 90.0;
 
 $t = time();
@@ -58,7 +56,7 @@ if ($humiditySensor <= $humidityThreshold)
 } 
 
 
-$s="/usr/local/bin/gpio write 5 $pwmNew "; 
+$s="/usr/local/bin/gpio write 2 $pwmNew "; 
 exec($s); 
 
 mysql_query($q); 
