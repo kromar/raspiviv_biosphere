@@ -59,7 +59,7 @@ if(!$fgmembersite->CheckLogin())
 			
 			var options = {
 				width: 200, height: 200,
-				greenFrom:20, greenTo: 26,
+				greenFrom:20.0, greenTo: 28.5,
 				minorTicks: 5
 			};
 			
@@ -158,7 +158,7 @@ if(!$fgmembersite->CheckLogin())
 
 			var options = {
 				width: 200, height: 200,
-				greenFrom:70, greenTo: 90,
+				greenFrom:75, greenTo: 100,
 				minorTicks: 5
 			};
 

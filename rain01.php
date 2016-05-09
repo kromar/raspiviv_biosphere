@@ -27,8 +27,8 @@ echo $data['main']['temp']."<br>";
 
 //change threshold depening on time of day
 $tempThreshold;
-$tempNight = 24.0;
-$tempDay = 24.0;
+$tempNight = 24.5;
+$tempDay = 28.5;
 
 $t = time();
 $curentTime = date('H:i');

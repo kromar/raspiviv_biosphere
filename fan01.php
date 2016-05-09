@@ -28,7 +28,7 @@ echo $data['main']['humidity']."<br>";
 //change threshold depening on time of day
 $humidityThreshold;
 $humidityNight = 85.0;
-$humidityDay = 90.0;
+$humidityDay = 95.0;
 
 $t = time();
 $curentTime = date('H:i');
