@@ -1,5 +1,5 @@
 <?php 
-exec('/usr/local/bin/gpio mode 2 out'); 
-exec('/usr/local/bin/gpio write 2 0'); 
+exec('/usr/local/bin/gpio mode 3 out'); 
+exec('/usr/local/bin/gpio write 3 0'); 
 ?> 
 
