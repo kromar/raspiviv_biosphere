@@ -49,11 +49,11 @@ else
 //change power state of fan depending on current temperature
 if ($tempSensor > $tempThreshold)
 {
-	$pwmNew=1;
+	$pwmNew=0;
 }
 if ($tempSensor <= $tempThreshold)
 {
-	$pwmNew=0;
+	$pwmNew=1;
 }
 
 
