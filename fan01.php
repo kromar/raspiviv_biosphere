@@ -56,7 +56,7 @@ if ($humiditySensor <= $humidityThreshold)
 } 
 
 
-$s="/usr/local/bin/gpio write 2 $pwmNew "; 
+$s="/usr/local/bin/gpio write 5 $pwmNew "; 
 exec($s); 
 
 mysql_query($q); 

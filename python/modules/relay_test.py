@@ -7,7 +7,7 @@ import time
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-pin_list = (38, 40)
+pin_list = (13, 15)
 chan_state = 1
 
 while True:
