@@ -56,7 +56,7 @@ if ($tempSensor > $tempThreshold)
 	exec('/usr/local/bin/gpio write 2 1');
 
 	//time till rain stops
-	sleep ($sleepTime);
+	sleep ($rainTime);
 	exec('/usr/local/bin/gpio mode 2 out');
 	exec('/usr/local/bin/gpio write 2 0');
 }
