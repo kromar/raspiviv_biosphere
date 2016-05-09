@@ -48,7 +48,7 @@
 
 
 	//change power state of fan depending on current humidity
-	if ($humiditySensor <= $humidityThreshold)
+	if ($humiditySensor > $humidityThreshold)
 		{
 			//let it wind
 			exec('/usr/local/bin/gpio mode 5 out');
