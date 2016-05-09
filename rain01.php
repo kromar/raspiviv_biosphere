@@ -27,7 +27,7 @@
 
 	//change threshold depening on time of day
 	$tempThreshold;
-	$tempNight = 24.5;
+	$tempNight = 28.5;  //24.5;
 	$tempDay = 28.5;
 
 	$rainTime = 10; //time in seconds to rain
