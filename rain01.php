@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+mysql_select_db("datalogger");
 
-$q = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1"; 
-$ds = mysql_query($q); 
-$tempSensor=(int)mysql_fetch_object($ds)->temperature; 
+$q = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+$ds = mysql_query($q);
+$tempSensor=(int)mysql_fetch_object($ds)->temperature;
 
 
 /* used to execute a python script
@@ -30,6 +30,8 @@ $tempThreshold;
 $tempNight = 24.5;
 $tempDay = 28.5;
 
+$rainTime = 1; //time in seconds to rain
+
 $t = time();
 $curentTime = date('H:i');
 $morningTime = ('08:00');
@@ -46,19 +48,24 @@ else
 
 
 
-//change power state of fan depending on current temperature
 if ($tempSensor > $tempThreshold)
 {
-	$pwmNew=0;
-}
-if ($tempSensor <= $tempThreshold)
-{
-	$pwmNew=1;
+	//$pwmNew=1;
+	//let it rain
+	exec('/usr/local/bin/gpio mode 2 out');
+	exec('/usr/local/bin/gpio write 2 1');
+
+	//time till rain stops
+	sleep ($sleepTime);
+	exec('/usr/local/bin/gpio mode 2 out');
+	exec('/usr/local/bin/gpio write 2 0');
 }
 
 
-$s="/usr/local/bin/gpio write 2 $pwmNew ";
-exec($s);
+
+
+//$s="/usr/local/bin/gpio write 2 $pwmNew ";
+//exec($s);
 
 mysql_query($q);
 mysql_close($db);
