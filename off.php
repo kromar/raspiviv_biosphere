@@ -1,9 +1,9 @@
 <?php
-     system ( "gpio mode 0 out" );
-     system ( "gpio write 0 1" );
+     system ( "gpio mode 3 out" );
+     system ( "gpio write 3 1" );
 
-     system ( "gpio mode 1 out" );
-     system ( "gpio write 1 1" );
+     system ( "gpio mode 3 out" );
+     system ( "gpio write 3 1" );
 ?>
 
 <!-- led on -->
