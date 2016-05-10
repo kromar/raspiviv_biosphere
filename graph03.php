@@ -19,7 +19,117 @@ if(!$fgmembersite->CheckLogin())
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 	
-	<!-- temp-hum graph-->	
+	<!-- ============================ -->
+	<!-- VIV 1 TEMP GAUGE -->
+	<!-- ============================ -->
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				['TEMP C', 
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
+								
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
+
+						$sql = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
+
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["temperature"];
+							}
+						} else {
+							echo "0 results";
+						}
+
+						mysqli_close($conn);
+					?> 
+				],
+			]);
+			
+			var options = {
+				width: 200, height: 200,
+				greenFrom:20.0, greenTo: 28.5,
+				minorTicks: 5
+			};
+			
+			var chart = new google.visualization.Gauge(document.getElementById('temp_gauge_div'));
+			
+			chart.draw(data, options);
+		}
+	</script>
+	
+	
+	<!-- ============================ -->
+	<!-- VIV 1 HUM GAUGE -->
+	<!-- ============================ -->
+	<script type="text/javascript">
+		  google.load("visualization", "1", {packages:["gauge"]});
+		  google.setOnLoadCallback(drawChart);
+		  function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+			  ['Label', 'Value'],
+			  ['HUM %', 
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
+
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
+
+						$sql = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
+
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["humidity"];
+							}
+						} else {
+							echo "0 results";
+						}
+
+						mysqli_close($conn);
+					?> 
+				],
+
+			]);
+
+			var options = {
+				width: 200, height: 200,
+				greenFrom:75, greenTo: 100,
+				minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('hum_gauge_div'));
+			
+			chart.draw(data, options);
+		  }
+	</script>
+	
+	
+	<!-- ============================ -->
+	<!-- TEMP-HUM GRAPH-->	
+	<!-- ============================ -->
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
@@ -70,24 +180,26 @@ if(!$fgmembersite->CheckLogin())
 		chart.draw(data, options);
 		}
 	</script>
-	
-
-
 </head>
+
+
+<!-- ============================ -->
+<!-- DRAW PAGE BODY -->
+<!-- ============================ -->
 <body>
 	<div class="jumbotron">
 		<div class="container">
 			<?php include 'menu.php';?>
-			<h2>Sensor 3</h2>			
+			<h2>Sensor 1</h2>			
 			<?php include 'time.php';?>
 		</div>
 	</div>
 	
 	<div class="container">		
 		<div class="row">			
-			<?php include 'tempGauge.php';?>
-			
-		    <div id="chart_div" style="width: auto; height: auto;"/>
+			<div id="temp_gauge_div" style="width: auto; height: auto;"></div>
+		    <div id="hum_gauge_div" style="width: auto; height: auto;"></div>
+			<div id="chart_div" style="width: auto; height: auto;"/>
 	    <hr>
 	    <?php include 'footer.php';?>
 	</div>
