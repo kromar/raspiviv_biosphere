@@ -19,35 +19,34 @@ if(!$fgmembersite->CheckLogin())
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 	
-	<!-- temp-hum graph-->
-	
+	<!-- temp-hum graph-->	
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([        
-	  	['TIME', 'TEMP', 'HUMIDITY' ],
-		<?php
-			$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-			mysql_select_db ( "datalogger" );
-			
-			$q = "select * from datalogger ";
-			$q = $q . "where sensor = 8 ";
-			$q = $q . "order by date_time desc ";
-			$q = $q . "limit 360";
-			$ds = mysql_query ( $q );
-			
-			while ( $r = mysql_fetch_object ( $ds ) ) {
-				echo "['" . $r->date_time . "', ";
-				echo " " . $r->temperature . " ,";
-				echo " " . $r->humidity . " ],";
-				}
-		?>
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysql_select_db ( "datalogger" );
+				
+				$q = "select * from datalogger ";
+				$q = $q . "where sensor = 8 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 3600";
+				$ds = mysql_query ( $q );
+				
+				while ( $r = mysql_fetch_object ( $ds ) ) {
+					echo "['" . $r->date_time . "', ";
+					echo " " . $r->temperature . " ,";
+					echo " " . $r->humidity . " ],";
+					}
+			?>
 		]);
 	
 		var options = {
 			title: 'Temperature - Humidity',
-			curveType: 'none',
+			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'bottom' },
 			series: {
@@ -84,8 +83,11 @@ if(!$fgmembersite->CheckLogin())
 		</div>
 	</div>
 	
-	<div class="container">
-	    <div id="chart_div" style="width: auto; height: 600;"></div>
+	<div class="container">		
+		<div class="row">			
+			<?php include 'tempGauge.php';?>
+			
+		    <div id="chart_div" style="width: auto; height: auto;"/>
 	    <hr>
 	    <?php include 'footer.php';?>
 	</div>
