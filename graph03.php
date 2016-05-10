@@ -160,7 +160,7 @@ if(!$fgmembersite->CheckLogin())
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'none' },
 			width: 'auto',
-	        height: 400,
+	        height: 500,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
