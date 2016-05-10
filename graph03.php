@@ -118,11 +118,12 @@ if(!$fgmembersite->CheckLogin())
 			]);
 
 			var options = {
-				width: 200, 
-				height: 200,
-				greenFrom:75, 
-				greenTo: 100,
-				minorTicks: 5
+				width: 200, height: 200,
+	          	yellowFrom:95, yellowTo: 100,
+				greenFrom:75, greenTo: 95,
+	          	redFrom: 65, redTo: 75,
+				minorTicks: 5,
+				min: 50, max: 100,
 			};
 
 			var chart = new google.visualization.Gauge(document.getElementById('hum_gauge_div'));
@@ -162,7 +163,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
-			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+			backgroundColor: {stroke: 'black', fill: 'grey', strokeSize: 1},
 	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
@@ -202,11 +203,11 @@ if(!$fgmembersite->CheckLogin())
 	
 	<div class="container">		
 		<div class="row">
-			<div class="col-xs-2">
+			<div class="col-xs-3">
 				<div id="temp_gauge_div"></div>
 			    <div id="hum_gauge_div"></div>
 			</div>
-			<div class="col-xs-10">
+			<div class="col-xs-9">
     			<div id="chart_div"></div>
 			</div>
 		</div>		
