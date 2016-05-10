@@ -143,7 +143,7 @@ if(!$fgmembersite->CheckLogin())
 				$q = "select * from datalogger ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 360";
+				$q = $q . "limit 60";
 				$ds = mysql_query ( $q );
 				
 				while ( $r = mysql_fetch_object ( $ds ) ) {
@@ -155,10 +155,12 @@ if(!$fgmembersite->CheckLogin())
 		]);
 	
 		var options = {
-			title: 'none',
+			title: 'Temperature - Humidity',
 			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'none' },
+			width: 'auto',
+	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -198,11 +200,11 @@ if(!$fgmembersite->CheckLogin())
 	<div class="container">		
 		<div class="row">
 			<div class="col-sm-3">
-				<div id="temp_gauge_div" style="width: 200px; height: 200px;"></div>
-			    <div id="hum_gauge_div" style="width: 200px; height: 200px;"></div>
+				<div id="temp_gauge_div"></div>
+			    <div id="hum_gauge_div"></div>
 			</div>
 			<div class="col-sm-9">
-    			<div id="chart_div" style="width: auto; height: 600px;"></div>
+    			<div id="chart_div"></div>
 			</div>
 		</div>		
 		
