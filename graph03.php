@@ -61,12 +61,18 @@ if(!$fgmembersite->CheckLogin())
 			]);
 			
 			var options = {
-				width: 200, height: 200,
-	          	yellowFrom:20.0, yellowTo: 24.0,
-				greenFrom:24.0, greenTo: 28.5,
-	          	redFrom: 28.5, redTo: 30.0,
+				width: 200, 
+				height: 200,
+	          	yellowFrom:20.0, 
+	          	yellowTo: 24.0,
+				greenFrom:24.0, 
+				greenTo: 28.5,
+	          	redFrom: 28.5, 
+	          	redTo: 30.0,
+		        redColor: '#FF9900',
 				minorTicks: 5,
-				min: 15, max: 35,
+				min: 15, 
+				max: 35,
 			};
 			
 			var chart = new google.visualization.Gauge(document.getElementById('temp_gauge_div'));
@@ -118,12 +124,18 @@ if(!$fgmembersite->CheckLogin())
 			]);
 
 			var options = {
-				width: 200, height: 200,
-	          	yellowFrom:95, yellowTo: 100,
-				greenFrom:75, greenTo: 95,
-				yellowFrom: 65, yellowTo: 75,
+				width: 200, 
+				height: 200,
+				yellowFrom: 65, 
+				yellowTo: 75,
+				greenFrom:75, 
+				greenTo: 95,
+	          	redFrom:95, 
+	          	reedTo: 100,
+		        redColor: '#FF9900',
 				minorTicks: 5,
-				min: 50, max: 100,
+				min: 50, 
+				max: 100,
 			};
 
 			var chart = new google.visualization.Gauge(document.getElementById('hum_gauge_div'));
