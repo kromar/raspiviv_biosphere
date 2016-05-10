@@ -160,7 +160,7 @@ if(!$fgmembersite->CheckLogin())
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'none' },
 			width: 'auto',
-	        height: 500,
+	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -199,11 +199,11 @@ if(!$fgmembersite->CheckLogin())
 	
 	<div class="container">		
 		<div class="row">
-			<div class="col-sm-3">
+			<div class="col-md-9 col-md-push-3>
 				<div id="temp_gauge_div"></div>
 			    <div id="hum_gauge_div"></div>
 			</div>
-			<div class="col-sm-9">
+			<div class="col-md-3 col-md-pull-9">
     			<div id="chart_div"></div>
 			</div>
 		</div>		
