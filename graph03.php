@@ -61,8 +61,10 @@ if(!$fgmembersite->CheckLogin())
 			]);
 			
 			var options = {
-				width: 200, height: 200,
-				greenFrom:20.0, greenTo: 28.5,
+				width: 200, 
+				height: 200,
+				greenFrom:20.0, 
+				greenTo: 28.5,
 				minorTicks: 5
 			};
 			
@@ -115,8 +117,10 @@ if(!$fgmembersite->CheckLogin())
 			]);
 
 			var options = {
-				width: 200, height: 200,
-				greenFrom:75, greenTo: 100,
+				width: 200, 
+				height: 200,
+				greenFrom:75, 
+				greenTo: 100,
 				minorTicks: 5
 			};
 
@@ -157,9 +161,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
-			legend: { position: 'none' },
-			//width: 'auto',
-	        height: 500,
+	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -172,7 +174,7 @@ if(!$fgmembersite->CheckLogin())
 		},
 		
 		hAxis: { 
-			textPosition: 'none', 
+			textPosition: 'bottom', 
 			direction: '-1' },
 		};
 		
