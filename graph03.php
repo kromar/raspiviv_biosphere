@@ -202,7 +202,7 @@ if(!$fgmembersite->CheckLogin())
 			    <div id="hum_gauge_div" style="width: 200px; height: 200px;"></div>
 			</div>
 			<div class="col-sm-9">
-    			<div id="chart_div" style="width: auto; height: 800px;"></div>
+    			<div id="chart_div" style="width: auto; height: 400px;"></div>
 			</div>
 		</div>		
 		
