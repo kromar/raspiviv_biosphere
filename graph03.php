@@ -64,7 +64,7 @@ if(!$fgmembersite->CheckLogin())
 				width: 200, 
 				height: 200,
 				minorTicks: 2,
-				min = 15.0,	max = 35.0;
+				min = 15.0,	max = 35.0,
 	          	yellowFrom:20.0, yellowTo: 24.0,
 				greenFrom:24.0, greenTo: 28.5,
 	          	redFrom: 28.5, redTo: 30.0,
