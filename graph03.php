@@ -155,12 +155,11 @@ if(!$fgmembersite->CheckLogin())
 		]);
 	
 		var options = {
-			//title: 'Temperature - Humidity',
 			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 			legend: { position: 'none' },
-			width: 'auto',
-	        height: 440,
+			//width: 'auto',
+	        height: 500,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
