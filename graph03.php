@@ -121,7 +121,7 @@ if(!$fgmembersite->CheckLogin())
 				width: 200, height: 200,
 	          	yellowFrom:95, yellowTo: 100,
 				greenFrom:75, greenTo: 95,
-	          	redFrom: 65, redTo: 75,
+				yellowFrom: 65, yellowTo: 75,
 				minorTicks: 5,
 				min: 50, max: 100,
 			};
@@ -163,7 +163,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
-			backgroundColor: {stroke: 'black', fill: 'grey', strokeSize: 1},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
