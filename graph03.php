@@ -198,11 +198,11 @@ if(!$fgmembersite->CheckLogin())
 	<div class="container">		
 		<div class="row">
 			<div class="col-sm-3">
-				<div id="temp_gauge_div" style="width: auto; height: auto;"/>
-			    <div id="hum_gauge_div" style="width: auto; height: auto;"/>
+				<div id="temp_gauge_div" style="width: auto; height: auto;"></div>
+			    <div id="hum_gauge_div" style="width: auto; height: auto;"></div>
 			</div>
 			<div class="col-sm-9">
-    			<div id="chart_div" style="width: auto; height: auto;"/>
+    			<div id="chart_div" style="width: auto; height: auto;"></div>
 			</div>
 		</div>		
 		
