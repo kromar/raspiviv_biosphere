@@ -131,7 +131,7 @@ if(!$fgmembersite->CheckLogin())
 				greenFrom:75, 
 				greenTo: 95,
 	          	redFrom:95, 
-	          	reedTo: 100,
+	          	redTo: 100,
 		        redColor: '#FF9900',
 				minorTicks: 5,
 				min: 50, 
