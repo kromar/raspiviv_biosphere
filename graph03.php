@@ -29,7 +29,7 @@ if(!$fgmembersite->CheckLogin())
 
 			var data = google.visualization.arrayToDataTable([
 				['Label', 'Value'],
-				['TEMP C', 
+				['C', 
 					<?php
 						$servername = "localhost";
 						$username = "datalogger";
@@ -63,9 +63,11 @@ if(!$fgmembersite->CheckLogin())
 			var options = {
 				width: 200, 
 				height: 200,
-				greenFrom:20.0, 
-				greenTo: 28.5,
-				minorTicks: 5
+				minorTicks: 2,
+				min = 15.0,	max = 35.0;
+	          	yellowFrom:20.0, yellowTo: 24.0,
+				greenFrom:24.0, greenTo: 28.5,
+	          	redFrom: 28.5, redTo: 30.0,
 			};
 			
 			var chart = new google.visualization.Gauge(document.getElementById('temp_gauge_div'));
@@ -84,7 +86,7 @@ if(!$fgmembersite->CheckLogin())
 		  function drawChart() {
 			var data = google.visualization.arrayToDataTable([
 			  ['Label', 'Value'],
-			  ['HUM %', 
+			  ['%', 
 					<?php
 						$servername = "localhost";
 						$username = "datalogger";
@@ -159,6 +161,7 @@ if(!$fgmembersite->CheckLogin())
 		]);
 	
 		var options = {
+			legend: { position: 'top' },
 			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
@@ -174,7 +177,7 @@ if(!$fgmembersite->CheckLogin())
 		},
 		
 		hAxis: { 
-			textPosition: 'bottom', 
+			textPosition: 'none', 
 			direction: '-1' },
 		};
 		
