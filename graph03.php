@@ -61,12 +61,12 @@ if(!$fgmembersite->CheckLogin())
 			]);
 			
 			var options = {
-				width: 200, 
-				height: 200,
-				minorTicks: 2,
+				width: 200, height: 200,
 	          	yellowFrom:20.0, yellowTo: 24.0,
 				greenFrom:24.0, greenTo: 28.5,
 	          	redFrom: 28.5, redTo: 30.0,
+				minorTicks: 5,
+				min: 15, max: 35,
 			};
 			
 			var chart = new google.visualization.Gauge(document.getElementById('temp_gauge_div'));
