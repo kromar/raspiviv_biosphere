@@ -35,34 +35,37 @@
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
+	$rainShedule = array('12:00', '23:40');
+
 
 	//set day or nighttime temp
-	if (($curentTime < $morningTime) or ($curentTime > $eveningTime))
-		{
+	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
+	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
+		letItRain(10, 0);
+	} else {
+		$tempThreshold = $tempDay;
+		//react to sensor temperatures
+		if ($tempSensor > $tempThreshold) {
+			//adjust rain time depending how high the temp is above our limit
+			$tempDelta = ($tempSensor - $tempThreshold);
+
+			letItRain($rainTime, $tempDelta);
 		}
-		else
-		{
-			$tempThreshold = $tempDay;
-
-			//react to sensor temperatures
-			if ($tempSensor > $tempThreshold)
-			{
-				//adjust rain time depending how high the temp is above our limit
-				$tempDelta = $tempSensor - $tempThreshold;
-				//let it rain
-				exec('/usr/local/bin/gpio mode 2 out');
-				exec('/usr/local/bin/gpio write 2 0');
-
-				//time till rain stops
-				sleep ($rainTime+$tempDelta);
-				exec('/usr/local/bin/gpio mode 2 out');
-				exec('/usr/local/bin/gpio write 2 1');
-			}
-
-		}
+	}
 
 
+	//rain function
+	function letItRain($rainTime, $tempDelta) {
+		//let it rain
+		exec('/usr/local/bin/gpio mode 2 out');
+		exec('/usr/local/bin/gpio write 2 0');
+
+		//time till rain stops
+		sleep ($rainTime + $tempDelta);
+		exec('/usr/local/bin/gpio mode 2 out');
+		exec('/usr/local/bin/gpio write 2 1');
+	}
 
 
 	mysql_query($q);
