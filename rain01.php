@@ -28,21 +28,22 @@
 	//change threshold depening on time of day
 	$tempThreshold;
 	$tempNight = 24.5;  //24.5;
-	$tempDay = 26.5;
+	$tempDay = 20.5;
 	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
-	$eveningTime = ('22:00');
-	$rainShedule = array('12:00', '23:40');
+	$eveningTime = ('24:00');
+	$rainShedule = array('12:00:00', '23:50:00');
+	$raintimeShedule = 10;
 
 
 	//set day or nighttime temp
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
 	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
-		letItRain(10, 0);
+		letItRain($raintimeShedule, 0);
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
