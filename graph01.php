@@ -230,7 +230,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'none' },
 			curveType: 'function',
-			crosshair: { orientation: 'vertical'},
+			crosshair: {trigger: 'selection' , orientation: 'vertical', color: 'black'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
