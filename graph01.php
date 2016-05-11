@@ -161,7 +161,7 @@ if(!$fgmembersite->CheckLogin())
 				$q = "select * from datalogger ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 60";
+				$q = $q . "limit 10";
 				$ds = mysql_query ( $q );
 
 				while ( $r = mysql_fetch_object ( $ds ) ) {
@@ -174,7 +174,7 @@ if(!$fgmembersite->CheckLogin())
 
 		var options = {
 			legend: { position: 'top' },
-			curveType: 'function',
+			curveType: 'none',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
@@ -193,7 +193,61 @@ if(!$fgmembersite->CheckLogin())
 			direction: '-1' },
 		};
 
-		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
+
+		chart.draw(data, options);
+		}
+	</script>
+
+	<!-- ============================ -->
+	<!-- TEMP-HUM GRAPH LONG-->
+	<!-- ============================ -->
+	<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysql_select_db ( "datalogger" );
+
+				$q = "select * from datalogger ";
+				$q = $q . "where sensor = 8 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 60";
+				$ds = mysql_query ( $q );
+
+				while ( $r = mysql_fetch_object ( $ds ) ) {
+					echo "['" . $r->date_time . "', ";
+					echo " " . $r->temperature . " ,";
+					echo " " . $r->humidity . " ],";
+					}
+			?>
+		]);
+
+		var options = {
+			legend: { position: 'top' },
+			curveType: 'none',
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
+
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
+
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
+
+		var chart = new google.visualization.LineChart(document.getElementById('chart_long_div'));
 
 		chart.draw(data, options);
 		}
@@ -220,7 +274,8 @@ if(!$fgmembersite->CheckLogin())
 			    <div id="hum_gauge_div"></div>
 			</div>
 			<div class="col-xs-9">
-    			<div id="chart_div"></div>
+    			<div id="chart_short_div"></div>
+    			<div id="chart_long_div"></div>
 			</div>
 		</div>
 
