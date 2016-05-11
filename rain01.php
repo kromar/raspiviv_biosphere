@@ -29,7 +29,6 @@
 	$tempThreshold;
 	$tempNight = 30.0;  //24.5;
 	$tempDay = 26.5;
-
 	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
@@ -45,21 +44,23 @@
 		else
 		{
 			$tempThreshold = $tempDay;
+
+			//react to sensor temperatures
+			if ($tempSensor > $tempThreshold)
+			{
+				//let it rain
+				exec('/usr/local/bin/gpio mode 2 out');
+				exec('/usr/local/bin/gpio write 2 0');
+
+				//time till rain stops
+				sleep ($rainTime);
+				exec('/usr/local/bin/gpio mode 2 out');
+				exec('/usr/local/bin/gpio write 2 1');
+			}
+
 		}
 
 
-	//react to sensor temperatures
-	if ($tempSensor > $tempThreshold)
-		{
-			//let it rain
-			exec('/usr/local/bin/gpio mode 2 out');
-			exec('/usr/local/bin/gpio write 2 0');
-
-			//time till rain stops
-			sleep ($rainTime);
-			exec('/usr/local/bin/gpio mode 2 out');
-			exec('/usr/local/bin/gpio write 2 1');
-		}
 
 
 	mysql_query($q);
