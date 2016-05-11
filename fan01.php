@@ -27,13 +27,13 @@
 
 	//change threshold depening on time of day
 	$humidityThreshold;
-	$humidityNight = 85.0;
+	$humidityNight = 80.0;
 	$humidityDay = 95.0;
-	$windTime = 30;
+	$windTime;
 
 	$t = time();
 	$curentTime = date('H:i');
-	$morningTime = ('08:00');
+	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
 
 	//set day or nighttime humidity
@@ -50,6 +50,8 @@
 	//change power state of fan depending on current humidity
 	if ($humiditySensor > $humidityThreshold)
 		{
+			//wind depending on how much humidity is over our limit
+			$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
 			//let it wind
 			exec('/usr/local/bin/gpio mode 5 out');
 			exec('/usr/local/bin/gpio write 5 1');
@@ -59,10 +61,6 @@
 			exec('/usr/local/bin/gpio mode 5 out');
 			exec('/usr/local/bin/gpio write 5 0');
 		}
-
-
-	//$s="/usr/local/bin/gpio write 5 $pwmNew ";
-	//exec($s);
 
 	mysql_query($q);
 	mysql_close($db);
