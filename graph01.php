@@ -227,8 +227,8 @@ if(!$fgmembersite->CheckLogin())
 		]);
 
 		var options = {
-			legend: { position: 'top' },
-			curveType: 'none',
+			legend: { position: 'none' },
+			curveType: 'function',
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
