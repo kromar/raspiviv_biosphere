@@ -18,7 +18,7 @@ if(!$fgmembersite->CheckLogin())
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-	
+
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
 	<!-- ============================ -->
@@ -29,13 +29,13 @@ if(!$fgmembersite->CheckLogin())
 
 			var data = google.visualization.arrayToDataTable([
 				['Label', 'Value'],
-				['C', 
+				['C',
 					<?php
 						$servername = "localhost";
 						$username = "datalogger";
 						$password = "datalogger";
 						$dbname = "datalogger";
-								
+
 						// Create connection
 						$conn = mysqli_connect($servername, $username, $password, $dbname);
 						// Check connection
@@ -56,32 +56,32 @@ if(!$fgmembersite->CheckLogin())
 						}
 
 						mysqli_close($conn);
-					?> 
+					?>
 				],
 			]);
-			
+
 			var options = {
-				width: 200, 
+				width: 200,
 				height: 200,
-	          	yellowFrom:20.0, 
+	          	yellowFrom:20.0,
 	          	yellowTo: 24.0,
-				greenFrom:24.0, 
+				greenFrom:24.0,
 				greenTo: 28.5,
-	          	redFrom: 28.5, 
+	          	redFrom: 28.5,
 	          	redTo: 30.0,
 		        redColor: '#FF9900',
 				minorTicks: 5,
-				min: 15, 
+				min: 15,
 				max: 35,
 			};
-			
+
 			var chart = new google.visualization.Gauge(document.getElementById('temp_gauge_div'));
-			
+
 			chart.draw(data, options);
 		}
 	</script>
-	
-	
+
+
 	<!-- ============================ -->
 	<!-- VIV 1 HUM GAUGE -->
 	<!-- ============================ -->
@@ -91,7 +91,7 @@ if(!$fgmembersite->CheckLogin())
 		  function drawChart() {
 			var data = google.visualization.arrayToDataTable([
 			  ['Label', 'Value'],
-			  ['%', 
+			  ['%',
 					<?php
 						$servername = "localhost";
 						$username = "datalogger";
@@ -118,52 +118,52 @@ if(!$fgmembersite->CheckLogin())
 						}
 
 						mysqli_close($conn);
-					?> 
+					?>
 				],
 
 			]);
 
 			var options = {
-				width: 200, 
+				width: 200,
 				height: 200,
-				yellowFrom: 65, 
+				yellowFrom: 65,
 				yellowTo: 75,
-				greenFrom:75, 
+				greenFrom:75,
 				greenTo: 95,
-	          	redFrom:95, 
+	          	redFrom:95,
 	          	redTo: 100,
 		        redColor: '#FF9900',
 				minorTicks: 5,
-				min: 50, 
+				min: 50,
 				max: 100,
 			};
 
 			var chart = new google.visualization.Gauge(document.getElementById('hum_gauge_div'));
-			
+
 			chart.draw(data, options);
 		  }
 	</script>
-	
-	
+
+
 	<!-- ============================ -->
-	<!-- TEMP-HUM GRAPH-->	
+	<!-- TEMP-HUM GRAPH-->
 	<!-- ============================ -->
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
 	function drawChart() {
-		var data = google.visualization.arrayToDataTable([        
+		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
 				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
 				mysql_select_db ( "datalogger" );
-				
+
 				$q = "select * from datalogger ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 240";
+				$q = $q . "limit 60";
 				$ds = mysql_query ( $q );
-				
+
 				while ( $r = mysql_fetch_object ( $ds ) ) {
 					echo "['" . $r->date_time . "', ";
 					echo " " . $r->temperature . " ,";
@@ -171,7 +171,7 @@ if(!$fgmembersite->CheckLogin())
 					}
 			?>
 		]);
-	
+
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
@@ -181,20 +181,20 @@ if(!$fgmembersite->CheckLogin())
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
 		},
-		
+
 		vAxes: {
 			// Adds titles to each axis.
 			0: {title: 'Temperature (C)'},
 			1: {title: 'Humidity (%)'},
 		},
-		
-		hAxis: { 
-			textPosition: 'none', 
+
+		hAxis: {
+			textPosition: 'none',
 			direction: '-1' },
 		};
-		
+
 		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-		
+
 		chart.draw(data, options);
 		}
 	</script>
@@ -208,12 +208,12 @@ if(!$fgmembersite->CheckLogin())
 	<div class="jumbotron">
 		<div class="container">
 			<?php include 'menu.php';?>
-			<h2>Sensor 1</h2>			
+			<h2>Sensor 1</h2>
 			<?php include 'time.php';?>
 		</div>
 	</div>
-	
-	<div class="container">		
+
+	<div class="container">
 		<div class="row">
 			<div class="col-xs-3">
 				<div id="temp_gauge_div"></div>
@@ -222,8 +222,8 @@ if(!$fgmembersite->CheckLogin())
 			<div class="col-xs-9">
     			<div id="chart_div"></div>
 			</div>
-		</div>		
-		
+		</div>
+
 	    <hr>
 	    <?php include 'footer.php';?>
 	</div>
