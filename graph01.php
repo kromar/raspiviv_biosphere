@@ -175,6 +175,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
+			crosshair: { orientation: 'vertical'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
@@ -229,6 +230,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'none' },
 			curveType: 'function',
+			crosshair: { orientation: 'vertical'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
