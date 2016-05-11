@@ -48,12 +48,14 @@
 			//react to sensor temperatures
 			if ($tempSensor > $tempThreshold)
 			{
+				//adjust rain time depending how high the temp is above our limit
+				$tempDelta = $tempSensor - $tempThreshold;
 				//let it rain
 				exec('/usr/local/bin/gpio mode 2 out');
 				exec('/usr/local/bin/gpio write 2 0');
 
 				//time till rain stops
-				sleep ($rainTime);
+				sleep ($rainTime+$tempDelta);
 				exec('/usr/local/bin/gpio mode 2 out');
 				exec('/usr/local/bin/gpio write 2 1');
 			}
