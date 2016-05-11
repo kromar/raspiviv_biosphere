@@ -175,7 +175,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
-			crosshair: {trigger: 'selection' , orientation: 'vertical', color: 'grey'},
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
@@ -230,7 +230,7 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'none' },
 			curveType: 'function',
-			crosshair: {trigger: 'selection' , orientation: 'vertical', color: 'grey'},
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
