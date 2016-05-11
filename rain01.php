@@ -27,13 +27,13 @@
 
 	//change threshold depening on time of day
 	$tempThreshold;
-	$tempNight = 30.0;  //24.5;
+	$tempNight = 24.5;  //24.5;
 	$tempDay = 26.5;
 	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
 	$curentTime = date('H:i');
-	$morningTime = ('08:00');
+	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
 
 	//set day or nighttime temp
