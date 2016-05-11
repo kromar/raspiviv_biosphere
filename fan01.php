@@ -28,8 +28,8 @@
 	//change threshold depening on time of day
 	$humidityThreshold;
 	$humidityNight = 85.0;
-	$humidityDay = 90.0;
-	$windTime = 60;
+	$humidityDay = 95.0;
+	$windTime = 30;
 
 	$t = time();
 	$curentTime = date('H:i');
