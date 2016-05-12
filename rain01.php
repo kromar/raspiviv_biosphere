@@ -30,7 +30,7 @@
 	$tempNight = 24.5;  //24.5
 	$tempDay = 26.5;	//26.5
 	$tempOverride = true;
-	$rainTime = 1; //time in seconds to rain
+	$rainTime = 2; //time in seconds to rain
 
 	$t = time();
 	$curentTime = date('H:i');
@@ -59,6 +59,12 @@
 
 	//rain function
 	function letItRain($rainTime) {
+
+		//time till rain stops
+		exec('/usr/local/bin/gpio mode 2 out');
+		exec('/usr/local/bin/gpio write 2 1');
+
+		sleep ($rainTime);
 		//let it rain
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
@@ -68,11 +74,10 @@
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 1');
 		
-		sleep ($rainTime);
-		mysql_query($q);
-		mysql_close($db);
 	}
 
+	mysql_query($q);
+	mysql_close($db);
 
 ?>
 
