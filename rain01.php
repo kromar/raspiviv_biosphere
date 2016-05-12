@@ -30,7 +30,7 @@
 	$tempNight = 24.5;  //24.5
 	$tempDay = 26.5;	//26.5
 	$tempOverride = true;
-	$rainTime = 10; //time in seconds to rain
+	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
 	$curentTime = date('H:i');
