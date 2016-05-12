@@ -51,19 +51,18 @@
 		if (($tempSensor > $tempThreshold) or ($tempOverride == true)) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
-			$rainTime = ($rainTime + $tempDelta);
-			letItRain($rainTime);
+			
+			letItRain($tempDelta);
 		}
 	}
 
 	//rain function
-	function letItRain($rainTime) {
-		//exec('/usr/local/bin/gpio mode 2 out');
-		//sleep(1);	
+	function letItRain($tempDelta) {
+		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 1');
-		sleep($rainTime);	
+		$t = 1+$tempDelta;
+		sleep(1);	
 		exec('/usr/local/bin/gpio write 2 0');
-		//exec('/usr/local/bin/gpio mode 2 none');	
 	}
 
 	mysql_query($q);
