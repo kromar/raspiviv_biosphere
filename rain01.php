@@ -71,12 +71,12 @@
 		
 		//*
 		$i = 0;
-		while($i < 10) {
+		while($i < 20) {
 		exec('/usr/local/bin/gpio write 2 1');
 		sleep($delta);	
 		exec('/usr/local/bin/gpio write 2 0');	
 		$i++;		
-		sleep(0.5);	
+		sleep(1);	
 		}
 		//*/
 			
