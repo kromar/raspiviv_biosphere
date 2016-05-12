@@ -35,13 +35,13 @@
 	$t = time();
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
-	$eveningTime = ('22:00');
+	$eveningTime = ('24:00');
 	$rainShedule = array('12:00', '23:40');
 	$raintimeShedule = 10;
 
 
 	//set day or nighttime temp
-	if (($curentTime < $morningTime) or ($curentTime > $eveningTime) or ($override == true)) {
+	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
 	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
 		letItRain($raintimeShedule, 0);
