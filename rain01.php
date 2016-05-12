@@ -52,8 +52,8 @@
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
 
-			$delta = 1;
-			letItRain($delta);
+			
+			letItRain($rainTime);
 		}
 	}
 
