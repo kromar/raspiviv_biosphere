@@ -60,8 +60,28 @@
 	function letItRain($tempDelta) {
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 1');
-		$t = 1+$tempDelta;
 		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 0');
+		
+		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep(1);
+		exec('/usr/local/bin/gpio write 2 0');
+		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep(1);
+		exec('/usr/local/bin/gpio write 2 0');
+		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep(1);
+		exec('/usr/local/bin/gpio write 2 0');
+		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep(1);
+		exec('/usr/local/bin/gpio write 2 0');
+		sleep(1);	
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep(1);
 		exec('/usr/local/bin/gpio write 2 0');
 	}
 
