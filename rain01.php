@@ -27,8 +27,9 @@
 
 	//change threshold depening on time of day
 	$tempThreshold;
-	$tempNight = 24.5;  //24.5;
-	$tempDay = 26.5;
+	$tempNight = 24.5;  //24.5
+	$tempDay = 26.5;	//26.5
+	$tempOverride = true;
 	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
@@ -47,7 +48,7 @@
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if ($tempSensor > $tempThreshold) {
+		if (($tempSensor > $tempThreshold) or ($tempOverride == true)) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
 
