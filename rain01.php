@@ -57,8 +57,8 @@
 	}
 
 	//rain function
-	function letItRain($tempDelta) {
-		$delta = 1;
+	$delta = 1;
+	function letItRain($delta) {
 		exec('/usr/local/bin/gpio mode 2 out');
 		
 		$i = 0;
