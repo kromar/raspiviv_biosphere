@@ -76,6 +76,7 @@
 		sleep($delta);	
 		exec('/usr/local/bin/gpio write 2 0');	
 		$i++;		
+		sleep(0.5);	
 		}
 		//*/
 			
