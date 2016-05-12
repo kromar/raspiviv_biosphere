@@ -56,31 +56,31 @@
 				letItRain($tempDelta);
 			} else {
 				letItRain($rainTime);
-			}				
+			}
 		}
 	}
 
 	//rain function
 	function letItRain($delta) {
 		exec('/usr/local/bin/gpio mode 2 out');
-		/*
-		exec('/usr/local/bin/gpio write 2 1');
-		sleep($delta);	
-		exec('/usr/local/bin/gpio write 2 0');
-		sleep($delta);	
-		//*/
-		
 		//*
+		exec('/usr/local/bin/gpio write 2 1');
+		sleep($delta);
+		exec('/usr/local/bin/gpio write 2 0');
+		//sleep($delta);
+		//*/
+
+		/*
 		$i = 0;
 		while($i < 6) {
 		exec('/usr/local/bin/gpio write 2 1');
-		sleep($delta);	
-		exec('/usr/local/bin/gpio write 2 0');	
-		$i++;		
-		sleep(1);	
+		sleep($delta);
+		exec('/usr/local/bin/gpio write 2 0');
+		$i++;
+		sleep(1);
 		}
 		//*/
-			
+
 	}
 
 	mysql_query($q);
