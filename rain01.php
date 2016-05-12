@@ -59,10 +59,10 @@
 	//rain function
 	function letItRain($rainTime) {
 		//let it rain
-		exec('/usr/local/bin/gpio mode 2 out');
+		//exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 1');	
 		//time till rain stops		
-		sleep ($rainTime);	
+		sleep(2);	
 		exec('/usr/local/bin/gpio write 2 0');	
 	
 		//system("gpio mode 2 out");
