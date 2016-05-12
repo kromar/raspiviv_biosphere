@@ -60,21 +60,16 @@
 	function letItRain($rainTime) {
 		//let it rain
 		//exec('/usr/local/bin/gpio mode 2 out');
-		//exec('/usr/local/bin/gpio write 2 1');
-		
-		exec ("gpio read 2", $status, $return);
-		//if off
-		if ($status == 0) {
-			system("gpio mode 2 out");
-			exec ("gpio write 2 1");			
-			sleep ($rainTime);	
-			exec ("gpio write 2 0");		
-		}
-		
-		//time till rain stops
-		//exec('/usr/local/bin/gpio mode 2 out');
-		//exec('/usr/local/bin/gpio write 2 0');
-		
+		//exec('/usr/local/bin/gpio write 2 1');	
+		//time till rain stops		
+		//sleep ($rainTime);	
+		//exec('/usr/local/bin/gpio write 2 0');	
+	
+		system("gpio mode 2 out");
+		exec ("gpio write 2 1");			
+		sleep ($rainTime);	
+		//system("gpio mode 2 out");
+		exec ("gpio write 2 0");		
 	}
 
 	mysql_query($q);
