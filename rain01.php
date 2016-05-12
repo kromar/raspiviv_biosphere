@@ -65,7 +65,7 @@
 		exec('/usr/local/bin/gpio mode 2 out');
 		
 		$i = 0;
-		while($i < 20) {
+		while($i < 10) {
 		exec('/usr/local/bin/gpio write 2 1');
 		sleep($delta);	
 		exec('/usr/local/bin/gpio write 2 0');	
