@@ -66,12 +66,13 @@
 		/*
 		exec('/usr/local/bin/gpio write 2 1');
 		sleep($delta);	
-		exec('/usr/local/bin/gpio write 2 0');	
+		exec('/usr/local/bin/gpio write 2 0');
+		sleep($delta);	
 		//*/
 		
 		//*
 		$i = 0;
-		while($i < 20) {
+		while($i < 6) {
 		exec('/usr/local/bin/gpio write 2 1');
 		sleep($delta);	
 		exec('/usr/local/bin/gpio write 2 0');	
