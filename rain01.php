@@ -52,6 +52,11 @@
 			$tempDelta = ($tempSensor - $tempThreshold);
 
 			letItRain($rainTime, $tempDelta);
+			letItRain($rainTime, $tempDelta);
+			letItRain($rainTime, $tempDelta);
+			letItRain($rainTime, $tempDelta);
+			letItRain($rainTime, $tempDelta);
+			letItRain($rainTime, $tempDelta);
 		}
 	}
 
