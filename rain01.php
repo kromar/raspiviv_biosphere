@@ -29,7 +29,7 @@
 	$tempThreshold;
 	$tempNight = 24.5;  //24.5
 	$tempDay = 26.5;	//26.5
-	$tempOverride = true;
+	$override = true;
 	$rainTime = 2; //time in seconds to rain
 
 	$t = time();
@@ -41,33 +41,34 @@
 
 
 	//set day or nighttime temp
-	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
+	if (($curentTime < $morningTime) or ($curentTime > $eveningTime) or ($override == true)) {
 			$tempThreshold = $tempNight;
 	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
 		letItRain($raintimeShedule, 0);
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if (($tempSensor > $tempThreshold) or ($tempOverride == true)) {
+		if (($tempSensor > $tempThreshold) or ($override == true)) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
 			
-			letItRain($tempDelta);
+			letItRain();
 		}
 	}
 
 	//rain function
-	$delta = 1;
-	function letItRain($delta) {
+	//$delta = 1;
+	function letItRain() {
+		$delta = 1;
 		exec('/usr/local/bin/gpio mode 2 out');
 		
 		$i = 0;
 		while($i < 20) {
 		exec('/usr/local/bin/gpio write 2 1');
-		sleep(1);	
+		sleep($delta);	
 		exec('/usr/local/bin/gpio write 2 0');	
 		$i++;		
-		sleep(1);	
+		sleep($delta);	
 		}
 			
 	}
