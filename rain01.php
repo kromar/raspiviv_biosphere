@@ -59,14 +59,15 @@
 	//rain function
 	function letItRain($tempDelta) {
 		$delta = 1;
+		exec('/usr/local/bin/gpio mode 2 out');
 		
 		$i = 0;
 		while($i < 20) {
-		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 1');
 		sleep(1);	
 		exec('/usr/local/bin/gpio write 2 0');	
 		$i++;		
+		sleep(1);	
 		}
 			
 	}
