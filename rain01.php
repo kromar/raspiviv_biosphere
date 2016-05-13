@@ -6,6 +6,7 @@
 	$q = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$ds = mysql_query($q);
 	$tempSensor=(int)mysql_fetch_object($ds)->temperature;
+	$humSensor=(int)mysql_fetch_object($ds)->humidity;
 
 
 	/* used to execute a python script
@@ -28,8 +29,9 @@
 	//change threshold depening on time of day
 	$tempThreshold;
 	$tempNight = 24.5;  //24.5
-	$tempDay = 26.5;	//26.5
-	$override = false;
+	$tempDay = 28.5;	//26.5
+	$humMin = 70.0;
+	$override = true;
 	$rainTime = 1; //time in seconds to rain
 
 	$t = time();
@@ -48,38 +50,29 @@
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if (($tempSensor > $tempThreshold) or ($override == true)) {
+		if (($tempSensor > $tempThreshold) or ($humSensor < $humMin) or ($override == true)) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
+			$humDelta = ($humMin - $humSensor);
 			if ($tempDelta > 0) {
 				$tempDelta = $tempDelta + $rainTime;
 				letItRain($tempDelta);
+			} elseif ($humDelta>0) {
+				$humDelta = $humDelta + $rainTime;
+				letItRain($humDelta);
 			} else {
 				letItRain($rainTime);
 			}
 		}
+
 	}
 
 	//rain function
 	function letItRain($delta) {
 		exec('/usr/local/bin/gpio mode 2 out');
-		//*
-		exec('/usr/local/bin/gpio write 2 1');
-		sleep($delta);
 		exec('/usr/local/bin/gpio write 2 0');
-		//sleep($delta);
-		//*/
-
-		/*
-		$i = 0;
-		while($i < 6) {
-		exec('/usr/local/bin/gpio write 2 1');
 		sleep($delta);
-		exec('/usr/local/bin/gpio write 2 0');
-		$i++;
-		sleep(1);
-		}
-		//*/
+		exec('/usr/local/bin/gpio write 2 1');
 
 	}
 
