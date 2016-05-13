@@ -3,7 +3,7 @@
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
 
-	$q = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$q = "SELECT temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$ds = mysql_query($q);
 	$tempSensor=(int)mysql_fetch_object($ds)->temperature;
 	$humSensor=(int)mysql_fetch_object($ds)->humidity;
@@ -38,7 +38,7 @@
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
-	$rainShedule = array('12:00', '23:40');
+	$rainShedule = array('12:00', '18:00');
 	$raintimeShedule = 10;
 
 
@@ -46,7 +46,7 @@
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
 	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
-		letItRain($raintimeShedule, 0);
+		letItRain($raintimeShedule);
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures

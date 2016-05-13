@@ -271,11 +271,11 @@ if(!$fgmembersite->CheckLogin())
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-3">
+			<div class="col-xs-4">
 				<div id="temp_gauge_div"></div>
 			    <div id="hum_gauge_div"></div>
 			</div>
-			<div class="col-xs-9">
+			<div class="col-xs-8">
     			<div id="chart_short_div"></div>
     			<div id="chart_long_div"></div>
 			</div>
