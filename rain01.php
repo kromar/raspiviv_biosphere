@@ -37,7 +37,7 @@
 	$t = time();
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
-	$eveningTime = ('24:00');
+	$eveningTime = ('22:00');
 	$rainShedule = array('12:00', '23:40');
 	$raintimeShedule = 10;
 
@@ -50,21 +50,26 @@
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if (($tempSensor > $tempThreshold) or ($override == true)) {		//or ($humSensor < $humMin)
+		if (($tempSensor > $tempThreshold) or ($override == true)) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
-			$humDelta = ($humMin - $humSensor);
 			if ($tempDelta > 0) {
 				$tempDelta = $tempDelta + $rainTime;
-				letItRain($tempDelta);
-			//} elseif ($humDelta>0) {
-			//	$humDelta = $humDelta + $rainTime;
-			//	letItRain($humDelta);
+				letItRain($tempDelta);;
 			} else {
 				letItRain($rainTime);
 			}
 		}
-
+		/*if (($humSensor < $humMin) or ($override == true)) {
+			$humDelta = ($humMin - $humSensor);
+				if ($humDelta>0) {
+					$humDelta = $humDelta + $rainTime;
+					letItRain($humDelta);
+			} else {
+				letItRain($rainTime);
+			}
+		}
+		*/
 	}
 
 	//rain function
