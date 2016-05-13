@@ -50,7 +50,7 @@
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if (($tempSensor > $tempThreshold) or ($humSensor < $humMin) or ($override == true)) {
+		if (($tempSensor > $tempThreshold) or ($override == true)) {		//or ($humSensor < $humMin)
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
 			$humDelta = ($humMin - $humSensor);
