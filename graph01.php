@@ -25,7 +25,7 @@ if(!$fgmembersite->CheckLogin())
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
 	    var gaugeOptions = {
-				width: 4*100,
+				width: 4*150,
 				height: 150,
 				min: 0,
 				max: 280,
