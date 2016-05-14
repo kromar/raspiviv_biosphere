@@ -177,8 +177,8 @@ if(!$fgmembersite->CheckLogin())
 		var options = {
 			legend: { position: 'top' },
 			curveType: 'function',
-			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'white'},
-			backgroundColor: {stroke: 'white', fill: 'black', strokeSize: 1},
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'black'},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
