@@ -31,11 +31,9 @@
 			$json = file_get_contents($url);
 			$data = json_decode($json,true);
 			//get humidity
-			$humidityOWM =  $data['main']['humidity']."<br>";
-			echo ($url);
-			//echo("<script>console.log('test');</script>");
-			echo("<script>console.log($humidityOWM);  </script>");
+			echo ($data['main']['humidity']."<br>");
 		?>
+
 	<script type="text/javascript">
 		//*
 		google.load('visualization',  "1", {'packages':['gauge']});
@@ -75,8 +73,6 @@
 	      gaugeData.setValue(0, 3, gaugeData.getValue(0, 1) + dir * 20);
 	      gauge.draw(gaugeData, gaugeOptions);
 	      console.log("test debug");
-
-	      console.log($data);
 	    }
 
 
