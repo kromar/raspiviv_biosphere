@@ -24,26 +24,14 @@ if(!$fgmembersite->CheckLogin())
 		//*
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
-	    var gaugeOptions = {
-				width: 100,
-				height: 100,
-	          	yellowFrom:18.0,
-	          	yellowTo: 21.0,
-				greenFrom:21.0,
-				greenTo: 26.5,
-	          	redFrom: 26.5,
-	          	redTo: 30.0,
-		        redColor: '#FF9900',
-				minorTicks: 5,
-				min: 15,
-				max: 35,
-	    };
+	    var gaugeOptions = {min: 0, max: 280, yellowFrom: 200, yellowTo: 250,
+	    	      redFrom: 250, redTo: 280, minorTicks: 5};
 	    var gauge;
 
 	    function drawGauge() {
 	      gaugeData = new google.visualization.DataTable();
-	      gaugeData.addRow('number', 'Engine');
-	      gaugeData.addRow('number', 'Torpedo');
+	      gaugeData.addColumn('number', 'Engine');
+	      gaugeData.addColumn('number', 'Torpedo');
 	      gaugeData.addRows(2);
 	      gaugeData.setCell(0, 0, 120);
 	      gaugeData.setCell(0, 1, 80);
