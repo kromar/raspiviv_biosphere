@@ -21,18 +21,7 @@
    	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
-		<?php
-	      // grap weather information from openweathermap.org
-			$city = "Chepo";
-			$country = "PA"; // two digit country code
-			$lat =-79.1;
-			$lon = 9.17;
-			$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=6&lang=en";
-			$json = file_get_contents($url);
-			$data = json_decode($json,true);
-			//get humidity
-			echo ($data['main']['humidity']."<br>");
-		?>
+
 
 	<script type="text/javascript">
 		//*
@@ -358,6 +347,18 @@
 	    <hr>
 
 	     <?php echo("<script>console.log('debug');</script>"); ?>
+	     <?php
+	      // grap weather information from openweathermap.org
+			$city = "Chepo";
+			$country = "PA"; // two digit country code
+			$lat =-79.1;
+			$lon = 9.17;
+			$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=6&lang=en";
+			$json = file_get_contents($url);
+			$data = json_decode($json,true);
+			//get humidity
+			echo ($data['main']['humidity']."<br>");
+		?>
 
 	    <?php include 'footer.php';?>
 	</div>
