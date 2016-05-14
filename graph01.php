@@ -21,6 +21,36 @@ if(!$fgmembersite->CheckLogin())
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
 
+	<script type="text/javascript">
+		//*
+		 google.charts.load('current', {'packages':['gauge']});
+	    google.charts.setOnLoadCallback(drawGauge);
+	    var gaugeOptions = {min: 0, max: 280, yellowFrom: 200, yellowTo: 250,
+	      redFrom: 250, redTo: 280, minorTicks: 5};
+	    var gauge;
+
+	    function drawGauge() {
+	      gaugeData = new google.visualization.DataTable();
+	      gaugeData.addRow('number', 'Engine');
+	      gaugeData.addRow('number', 'Torpedo');
+	      gaugeData.addRows(2);
+	      gaugeData.setCell(0, 0, 120);
+	      gaugeData.setCell(0, 1, 80);
+
+	      gauge = new google.visualization.Gauge(document.getElementById('test_gauge_div'));
+	      gauge.draw(gaugeData, gaugeOptions);
+	    }
+
+	    function changeTemp(dir) {
+	      gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 25);
+	      gaugeData.setValue(0, 1, gaugeData.getValue(0, 1) + dir * 20);
+	      gauge.draw(gaugeData, gaugeOptions);
+	    }
+
+	    //*/
+
+	</script>
+
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
 	<!-- ============================ -->
@@ -281,6 +311,9 @@ if(!$fgmembersite->CheckLogin())
     			<div id="chart_short_div"></div>
     			<div id="chart_long_div"></div>
 			</div>
+
+    		<div id="test_gauge_div"></div>
+
 		</div>
 
 	    <hr>
