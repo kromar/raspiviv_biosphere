@@ -357,7 +357,8 @@
 			$json = file_get_contents($url);
 			$data = json_decode($json,true);
 			//get humidity
-			$wd = ($data['main']['humidity']."<br>");
+			//$wd = ($data['main']['humidity']."<br>");
+			$wd = $city;
 			echo("<script>console.log($wd);</script>");
 		?>
 
