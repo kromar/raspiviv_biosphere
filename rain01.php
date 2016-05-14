@@ -49,6 +49,8 @@
 	echo("tempSensor: $tempSensor");
 	echo("humSensor: $humSensor");
 	echo $tempSensor;
+	print "am i printing somewhere?";
+
 
 	//set day or nighttime temp
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
