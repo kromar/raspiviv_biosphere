@@ -7,6 +7,17 @@
 	    exit;
 	}
 
+	// grap weather information from openweathermap.org
+	$city = "Chepo";
+	$country = "PA"; // two digit country code
+	$lat =-79.1;
+	$lon = 9.17;
+	$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=6&lang=en";
+	$json = file_get_contents($url);
+	$data = json_decode($json,true);
+	//get humidity
+	echo $data['main']['humidity']."<br>";
+
 
 ?>
 
