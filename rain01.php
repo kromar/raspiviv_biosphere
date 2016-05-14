@@ -91,7 +91,7 @@
 
 	//rain function
 	function letItRain($delta) {
-		if ($debugMode) {
+		if ($debugMode==true) {
 			debug_to_console(["let it rain: ", $delta]);
 		}
 		exec('/usr/local/bin/gpio mode 2 out');
