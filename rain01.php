@@ -114,4 +114,7 @@
 
 ?>
 
+<html>
+	 <?php echo("<script>console.log('test2');</script>"); ?>
 
+</html>

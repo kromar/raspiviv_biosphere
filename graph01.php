@@ -346,7 +346,7 @@
 
 	    <hr>
 
-	     <?php echo("<script>console.log('test debug');</script>"); ?>
+	     <?php echo("<script>console.log('debug');</script>"); ?>
 
 	    <?php include 'footer.php';?>
 	</div>
