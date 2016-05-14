@@ -12,11 +12,13 @@ if(!$fgmembersite->CheckLogin())
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
 <title>RasPiViv.com - Home</title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="scripts/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+   	<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
 	<!-- ROOM TEMP GAUGE -->
 	<script type="text/javascript">
@@ -55,7 +57,7 @@ if(!$fgmembersite->CheckLogin())
 						mysqli_close($conn);
 					?>
 				],
-				
+
 				['BASE HUM',
 					<?php
 						$servername = "localhost";
@@ -95,7 +97,7 @@ if(!$fgmembersite->CheckLogin())
 			};
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomtemp_div'));
-			
+
 			chart.draw(data, options);
 		}
 	</script>
@@ -105,7 +107,7 @@ if(!$fgmembersite->CheckLogin())
 		google.load("visualization", "1", {packages:["gauge"]});
 		google.setOnLoadCallback(drawChart);
 		function drawChart() {
-			
+
 			var data = google.visualization.arrayToDataTable([
 				['Label', 'Value'],
 				['BASE HUM',
@@ -145,7 +147,7 @@ if(!$fgmembersite->CheckLogin())
 			};
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomhum_div'));
-			
+
 			chart.draw(data, options);
 		}
     </script>
@@ -202,7 +204,7 @@ if(!$fgmembersite->CheckLogin())
 		}
     </script>
 
-	
+
 	<!-- VIV 1 HUM GAUGE -->
     <script type="text/javascript">
 		google.load("visualization", "1", {packages:["gauge"]});
@@ -301,7 +303,7 @@ if(!$fgmembersite->CheckLogin())
 			chart.draw(data, options);
 		}
 	</script>
-	
+
 
 	<!-- TANK 1 HISTORY HUM GRAPH -->
 	<script type="text/javascript"
@@ -352,8 +354,8 @@ if(!$fgmembersite->CheckLogin())
     </script>
 
 
-	
-	
+
+
 	<!-- BASE HISTORY TEMP GRAPH -->
 	<script type="text/javascript"
 		src="https://www.google.com/jsapi?autoload={
@@ -400,7 +402,7 @@ if(!$fgmembersite->CheckLogin())
 			chart.draw(data, options);
 		}
 	</script>
-	
+
 
 	<!-- BASE HISTORY HUM GRAPH -->
 	<script type="text/javascript"
@@ -448,7 +450,7 @@ if(!$fgmembersite->CheckLogin())
 			chart.draw(data, options);
 			options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsConfiguration'] = 'auto';
 		}
-		
+
 	</script>
 
 
@@ -461,7 +463,7 @@ if(!$fgmembersite->CheckLogin())
 				<?php include 'time.php';?>
 			</div>
 		</div>
-		
+
 		<div class="container">
 					<a href="/" title="BASE" alt="BASE">
 						<span class="fa-stack fa-2x">
@@ -476,9 +478,9 @@ if(!$fgmembersite->CheckLogin())
 				<div class="col-sm-9">
 					<div id="roomtempgraph_div" style="width: auto; height: auto;"></div>
 				</div>
-			</div>	
-				
-				
+			</div>
+
+
 			<div class="row">
 				<div class="col-sm-3">
 					<div id="roomhum_div" style="width: auto; height: auto;"></div>
@@ -489,17 +491,17 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 			</div>
 		</div>
-				
-		<hr>	
-		
-		<div class="container">		
+
+		<hr>
+
+		<div class="container">
 			<a href="/graph01.php" title="VIV 1" alt="VIV 1">
 				<span class="fa-stack fa-2x">
 				  <i class="fa fa-circle fa-stack-2x"></i>
 				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
 				</span>
 			</a>
-			
+
 			<div class="row">
 				<div class="col-sm-3">
 					<div id="viv1temp_div" style="width: auto; height: auto;"></div>
@@ -507,9 +509,9 @@ if(!$fgmembersite->CheckLogin())
 				<div class="col-sm-9">
 					<div id="tank1tempgraph_div" style="width: auto; height: auto;"></div>
 				</div>
-			</div>	
-				
-				
+			</div>
+
+
 			<div class="row">
 				<div class="col-sm-3">
 					<div id="viv1hum_div" style="width: auto; height: auto;"></div>
@@ -520,19 +522,19 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 			</div>
 		</div>
-		
+
 		<hr>
-		
-		
+
+
 		<!--  combined graph -->
-		<div class="container">		
+		<div class="container">
 			<a href="/graph03.php" title="VIV 1" alt="VIV 1">
 				<span class="fa-stack fa-2x">
 				  <i class="fa fa-circle fa-stack-2x"></i>
 				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
 				</span>
 			</a>
-			
+
 			<div class="row">
 				<div class="col-sm-3">
 					<div id="viv1temp_div" style="width: auto; height: auto;"></div>
@@ -540,9 +542,9 @@ if(!$fgmembersite->CheckLogin())
 				<div class="col-sm-9">
 					<div id="tank1tempgraph_div" style="width: auto; height: auto;"></div>
 				</div>
-			</div>	
-				
-				
+			</div>
+
+
 			<div class="row">
 				<div class="col-sm-3">
 					<div id="viv1hum_div" style="width: auto; height: auto;"></div>
@@ -553,11 +555,11 @@ if(!$fgmembersite->CheckLogin())
 			</div>
 			</div>
 		</div>
-		
+
 		<hr>
-		
-		
-		<div class="container">	
+
+
+		<div class="container">
 			<?php include 'footer.php';?>
 		</div>
 	</BODY>
