@@ -31,8 +31,8 @@
 	$tempNight = 24.5;  //24.5
 	$tempDay = 28.5;	//26.5
 	$humMin = 70.0;
-	$override = false;
 	$rainTime = 1; //time in seconds to rain
+	$override = true;
 	$pumpPrimer = true; //set this to true to build up rain system pressure
 
 	$t = time();
@@ -51,7 +51,7 @@
 	} else {
 		$tempThreshold = $tempDay;
 		//react to sensor temperatures
-		if (($tempSensor > $tempThreshold) or ($override == true)) {
+		if (($tempSensor > $tempThreshold) or $override) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if ($tempDelta > 0) {
@@ -71,7 +71,7 @@
 			}
 		}
 		*/
-		if ($pumpPrimer) { 
+		if ($pumpPrimer and $override) { 
 			$i = 0; 
 			while($i < 30) { 
 				letItRain($delta) 
