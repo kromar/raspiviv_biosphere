@@ -61,14 +61,16 @@ if(!$fgmembersite->CheckLogin())
 	      debug_to_console("test debug");
 	    }
 
-		 // Send debug code to the Javascript console
-		function debug_to_console($data) {
-			echo("<script>console.log($data);</script>");
-		}
+
 
 	    //*/
 
 	</script>
+
+	 // Send debug code to the Javascript console
+		function debug_to_console($data) {
+			echo("<script>console.log('PHP: ".$data."');</script>");
+		}
 
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
