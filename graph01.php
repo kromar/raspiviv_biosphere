@@ -20,8 +20,7 @@ if(!$fgmembersite->CheckLogin())
    	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
-
-	<script type="text/javascript">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 		//*
 		 google.charts.load('current', {'packages':['gauge']});
 	    google.charts.setOnLoadCallback(drawGauge);
