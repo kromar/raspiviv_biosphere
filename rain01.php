@@ -34,6 +34,7 @@
 	$rainTime = 1; 			// time in seconds to rain
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
+	$debugMode = true;
 
 	$t = time();
 	$curentTime = date('H:i');
@@ -82,7 +83,7 @@
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
 			while($i < 30) {
-				letItRain($delta)
+				letItRain($delta);
 				$i++;
 			}
 		}
@@ -90,8 +91,9 @@
 
 	//rain function
 	function letItRain($delta) {
-
-		debug_to_console(["let it rain: ", $delta]);
+		if ($debugMode) {
+			debug_to_console(["let it rain: ", $delta]);
+		}
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($delta);
