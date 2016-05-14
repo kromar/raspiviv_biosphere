@@ -42,7 +42,7 @@ if(!$fgmembersite->CheckLogin())
 	      gaugeData.addColumn('number', 'Torpedo');
 	      gaugeData.addColumn('number', 'test1');
 	      gaugeData.addColumn('number', 'test2');
-	      gaugeData.addRows(0);
+	      gaugeData.addRows(1);
 	      gaugeData.setCell(0, 0, 120);
 	      gaugeData.setCell(0, 0, 80);
 	      gaugeData.setCell(0, 0, 80);
