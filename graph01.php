@@ -22,12 +22,7 @@
    	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 
-	<?php
-		// Send debug code to the Javascript console
-		function (debug_to_console($data)) {
-			echo("<script>console.log('PHP: ".$data."');</script>");
-		}
-	?>
+
 	<script type="text/javascript">
 		//*
 		google.load('visualization',  "1", {'packages':['gauge']});
