@@ -313,6 +313,7 @@ if(!$fgmembersite->CheckLogin())
 	</div>
 
 	<div class="container">
+    	<div id="test_gauge_div"></div>
 		<div class="row">
 			<div class="col-xs-4">
 				<div id="temp_gauge_div"></div>
@@ -323,7 +324,6 @@ if(!$fgmembersite->CheckLogin())
     			<div id="chart_long_div"></div>
 			</div>
 
-    		<div id="test_gauge_div"></div>
 
 		</div>
 
