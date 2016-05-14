@@ -46,14 +46,18 @@
 	//set day or nighttime temp
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
+			echo "tempthreshold night: ", $tempThreshold;
 	} else {
 		$tempThreshold = $tempDay;
-		
+			echo "tempthreshold day: ", $tempThreshold;
+
 		//trigger rain shedules
 		if (in_array($curentTime, $rainShedule)) {
 			letItRain($raintimeShedule);
 		}
-		
+
+		echo "tempSensor: ", $tempSensor;
+		echo "humSensor: ", $humSensor;
 		//react to sensor temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
@@ -75,17 +79,18 @@
 			}
 		}
 		*/
-		if ($pumpPrimer==true and $override==true) { 
-			$i = 0; 
-			while($i < 30) { 
-				letItRain($delta) 
-				$i++; 
+		if ($pumpPrimer==true and $override==true) {
+			$i = 0;
+			while($i < 30) {
+				letItRain($delta)
+				$i++;
 			}
 		}
 	}
 
 	//rain function
 	function letItRain($delta) {
+		echo "letitrain: ", $delta;
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($delta);
