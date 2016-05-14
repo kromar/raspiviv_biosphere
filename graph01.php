@@ -25,8 +25,8 @@ if(!$fgmembersite->CheckLogin())
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
 	    var gaugeOptions = {
-				width: 4*150,
-				height: 150,
+				width: 4*180,
+				height: 1*180,
 				min: 0,
 				max: 280,
 				yellowFrom: 200,
@@ -316,6 +316,9 @@ if(!$fgmembersite->CheckLogin())
 
 	<div class="container">
     	<div id="test_gauge_div"></div>
+    	<input type="button" value="Go Faster" onclick="changeTemp(1)" />
+  		<input type="button" value="Slow down" onclick="changeTemp(-1)" />
+
 		<div class="row">
 			<div class="col-xs-4">
 				<div id="temp_gauge_div"></div>
