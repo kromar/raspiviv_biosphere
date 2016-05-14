@@ -22,10 +22,22 @@ if(!$fgmembersite->CheckLogin())
 
 	<script type="text/javascript">
 		//*
-		google.load('current', {'packages':['gauge']});
+		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
-	    var gaugeOptions = {min: 0, max: 280, yellowFrom: 200, yellowTo: 250,
-	      redFrom: 250, redTo: 280, minorTicks: 5};
+	    var gaugeOptions = {
+				width: 100,
+				height: 100,
+	          	yellowFrom:18.0,
+	          	yellowTo: 21.0,
+				greenFrom:21.0,
+				greenTo: 26.5,
+	          	redFrom: 26.5,
+	          	redTo: 30.0,
+		        redColor: '#FF9900',
+				minorTicks: 5,
+				min: 15,
+				max: 35,
+	    };
 	    var gauge;
 
 	    function drawGauge() {
