@@ -8,7 +8,7 @@
 	}
 
 	// Send debug code to the Javascript console
-	function debug_to_console($data) {
+	function (debug_to_console($data)) {
 		echo("<script>console.log('PHP: ".$data."');</script>");
 	}
 
