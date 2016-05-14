@@ -357,7 +357,8 @@
 			$json = file_get_contents($url);
 			$data = json_decode($json,true);
 			//get humidity
-			echo ($data['main']['humidity']."<br>");
+			$wd = ($data['main']['humidity']."<br>");
+			echo("<script>console.log($wd);</script>");
 		?>
 
 	    <?php include 'footer.php';?>
