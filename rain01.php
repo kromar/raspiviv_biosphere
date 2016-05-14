@@ -90,12 +90,24 @@
 
 	//rain function
 	function letItRain($delta) {
-		echo "letitrain: ", $delta;
+
+		debug_to_console(["let it rain: ", $delta]);
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($delta);
 		exec('/usr/local/bin/gpio write 2 1');
 
+	}
+
+
+	// Send debug code to the Javascript console
+	function debug_to_console( $data ) {
+	    if ( is_array( $data ) )
+	        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+	    else
+	        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+	    echo $output;
 	}
 
 	mysql_query($q);
