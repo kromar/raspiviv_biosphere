@@ -114,7 +114,12 @@
 
 ?>
 
-<html>
-	 <?php echo("<script>console.log('test2');</script>"); ?>
-
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+<title></title>
+<script src="scripts/jquery-1.12.3.min.js"></script>
+</head>
+<body>
+	<?php echo("<script>console.log('test');</script>"); ?>
+</body>
 </html>
