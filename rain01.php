@@ -23,7 +23,7 @@
 	$json = file_get_contents($url);
 	$data = json_decode($json,true);
 	//get rmep in celcius
-	echo $data['main']['temp']."<br>";
+	echo($data['main']['temp']."<br>");
 
 
 	//change threshold depening on time of day
@@ -44,21 +44,22 @@
 	$raintimeShedule = 10;
 
 
+	echo("<script>console.log('PHP: ".$tempSensor."');</script>");
+	echo("tempSensor: $tempSensor");
+	echo("humSensor: $humSensor");
+	echo $tempSensor;
+
 	//set day or nighttime temp
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
-			echo "tempthreshold night: ", $tempThreshold;
 	} else {
 		$tempThreshold = $tempDay;
-			echo "tempthreshold day: ", $tempThreshold;
 
 		//trigger rain shedules
 		if (in_array($curentTime, $rainShedule)) {
 			letItRain($raintimeShedule);
 		}
 
-		echo "tempSensor: ", $tempSensor;
-		echo "humSensor: ", $humSensor;
 		//react to sensor temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
