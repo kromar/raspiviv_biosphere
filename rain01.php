@@ -28,12 +28,12 @@
 
 	//change threshold depening on time of day
 	$tempThreshold;
-	$tempNight = 24.5;  //24.5
-	$tempDay = 28.5;	//26.5
+	$tempNight = 24.5;  	// 24.5
+	$tempDay = 28.5;		// 26.5
 	$humMin = 70.0;
-	$rainTime = 1; //time in seconds to rain
-	$override = true;
-	$pumpPrimer = true; //set this to true to build up rain system pressure
+	$rainTime = 1; 			// time in seconds to rain
+	$override = false;		// override temperature and rain every minute
+	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 
 	$t = time();
 	$curentTime = date('H:i');
@@ -46,10 +46,14 @@
 	//set day or nighttime temp
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
-	} elseif (($curentTime == $rainShedule[0]) or ($curentTime == $rainShedule[1])) {
-		letItRain($raintimeShedule);
 	} else {
 		$tempThreshold = $tempDay;
+		
+		//trigger rain shedules
+		if (in_array($curentTime, $rainShedule)) {
+			letItRain($raintimeShedule);
+		}
+		
 		//react to sensor temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
