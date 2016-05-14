@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
