@@ -1,11 +1,17 @@
 <?PHP
-require_once("./include/membersite_config.php");
+	require_once("./include/membersite_config.php");
 
-if(!$fgmembersite->CheckLogin())
-{
-    $fgmembersite->RedirectToURL("login.php");
-    exit;
-}
+	if(!$fgmembersite->CheckLogin())
+	{
+	    $fgmembersite->RedirectToURL("login.php");
+	    exit;
+	}
+
+	// Send debug code to the Javascript console
+	function debug_to_console($data) {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -67,10 +73,7 @@ if(!$fgmembersite->CheckLogin())
 
 	</script>
 
-	 // Send debug code to the Javascript console
-		function debug_to_console($data) {
-			echo("<script>console.log('PHP: ".$data."');</script>");
-		}
+
 
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
