@@ -42,11 +42,11 @@ if(!$fgmembersite->CheckLogin())
 	      gaugeData.addColumn('number', 'Torpedo');
 	      gaugeData.addColumn('number', 'test1');
 	      gaugeData.addColumn('number', 'test2');
-	      gaugeData.addRows(1);
+	      gaugeData.addRows(0);
 	      gaugeData.setCell(0, 0, 120);
-	      gaugeData.setCell(0, 1, 80);
-	      gaugeData.setCell(0, 2, 80);
-	      gaugeData.setCell(0, 3, 80);
+	      gaugeData.setCell(0, 0, 80);
+	      gaugeData.setCell(0, 0, 80);
+	      gaugeData.setCell(0, 0, 80);
 
 	      gauge = new google.visualization.Gauge(document.getElementById('test_gauge_div'));
 	      gauge.draw(gaugeData, gaugeOptions);
