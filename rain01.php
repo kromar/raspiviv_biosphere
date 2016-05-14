@@ -33,6 +33,7 @@
 	$humMin = 70.0;
 	$override = false;
 	$rainTime = 1; //time in seconds to rain
+	$pumpPrimer = true; //set this to true to build up rain system pressure
 
 	$t = time();
 	$curentTime = date('H:i');
@@ -70,6 +71,13 @@
 			}
 		}
 		*/
+		if ($pumpPrimer) { 
+			$i = 0; 
+			while($i < 30) { 
+				letItRain($delta) 
+				$i++; 
+			}
+		}
 	}
 
 	//rain function
