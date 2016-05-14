@@ -359,7 +359,7 @@
 			//get humidity
 			//$wd = ($data['main']['humidity']."<br>");
 			$wd = $city;
-			echo("<script>console.log('$wd');</script>");
+			echo("<script>console.log('$url');</script>");
 		?>
 
 	    <?php include 'footer.php';?>
