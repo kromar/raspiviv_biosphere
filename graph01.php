@@ -25,8 +25,8 @@ if(!$fgmembersite->CheckLogin())
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
 	    var gaugeOptions = {
-				width: 50,
-				height: 50,
+				width: 200,
+				height: 200,
 				min: 0,
 				max: 280,
 				yellowFrom: 200,
@@ -42,7 +42,7 @@ if(!$fgmembersite->CheckLogin())
 	      gaugeData.addColumn('number', 'Torpedo');
 	      gaugeData.addColumn('number', 'test1');
 	      gaugeData.addColumn('number', 'test2');
-	      gaugeData.addRows(4);
+	      gaugeData.addRows(1);
 	      gaugeData.setCell(0, 0, 120);
 	      gaugeData.setCell(0, 1, 80);
 	      gaugeData.setCell(0, 2, 80);
