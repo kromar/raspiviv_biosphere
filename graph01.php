@@ -63,12 +63,7 @@ if(!$fgmembersite->CheckLogin())
 
 		 // Send debug code to the Javascript console
 		function debug_to_console($data) {
-		    if (is_array( $data) )
-		        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-		    else
-		        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-		    echo $output;
+			echo("<script>console.log($data);</script>");
 		}
 
 	    //*/
