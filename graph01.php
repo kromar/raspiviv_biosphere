@@ -73,6 +73,7 @@
 	      gaugeData.setValue(0, 3, gaugeData.getValue(0, 1) + dir * 20);
 	      gauge.draw(gaugeData, gaugeOptions);
 	      console.log("test debug");
+	      console.log($data);
 	    }
 
 
