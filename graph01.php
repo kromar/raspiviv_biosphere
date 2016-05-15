@@ -354,14 +354,14 @@
 			$country = "PA"; // two digit country code
 			$lat =-79.1;
 			$lon = 9.17;
-	      	$apikey = '2383e44c43c21e8c8d2c1537b54db3b0';
+	      	$apikey = "2383e44c43c21e8c8d2c1537b54db3b0";
 			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
 			$response = file_get_contents($url);
 			$data = json_decode($response,true);
 			//get humidity
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
-			echo("<script>console.log('$data');</script>");
+			echo("<script>console.log('$request');</script>");
 		?>
 
 	    <?php include 'footer.php';?>
