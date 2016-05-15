@@ -362,8 +362,19 @@
 			//$wd = $city;
 			print_r("hello world");
 			$daytime = 1463300886;
-			$remoteTime = date("H:i", $daytime);
-			echo("<script>console.log('$remoteTime');</script>");
+			$sunrise = 1463309782;
+			$sunset = 1463354956;
+
+			function convertTime($time, $mode) {
+				if ($mode == 'unix') {
+					$time = date("H:i", $daytime);
+					return $time;
+				}
+			}
+			$remoteTime = convertTime($daytime, 'unix');
+			$rSR = convertTime($sunrise, 'unix');
+			$rSS = convertTime($sunset, 'unix');
+			echo("<script>console.log('$remoteTime , $rSR, $rSS');</script>");
 
 
 			/*
