@@ -353,7 +353,7 @@
 			$remoteWinnd = $response['wind']['speed'];
 			
 
-			var_dump("<script>console.log('$data');</script>", true);
+			var_dump("<script>console.log('$response');</script>", true);
 			
 			$curentTime = date('H:i');
 			$morningTime = '10:00';
