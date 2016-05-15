@@ -341,24 +341,33 @@
 	      	// grap weather information from openweathermap.org
 			$city = "Chepo";
 			$country = "PA"; // two digit country code
-			$lat =-79.1;
-			$lon = 9.17;
+			
 	      	$apikey = "2383e44c43c21e8c8d2c1537b54db3b0";
 			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
-			$response = file_get_contents($url);
-			$data = json_decode($response,true);
+			$data = file_get_contents($url);
+			$response = json_decode(file_get_contents($url),true);
 
 			//get humidity
-			$wd = ($data['main']['temp']);
-			//$wd = $city;
-			print_r("hello world");
+			$remoteTemperature = $response['main']['temp'];
+			$remoteHumidity = $response['main']['humidity '];
+			$remoteWinnd = $response['wind']['speed'];
+			
+
+			var_dump("<script>console.log('$data');</script>", true);
+			
 			$curentTime = date('H:i');
 			$morningTime = '10:00';
 			$eveningTime = '22:00';
 
-			$daytime = 1463300886;
-			$sunrise = 1463309782;
-			$sunset = 1463354956;
+			$remoteTime = $response['dt']['sunrise'];
+			$remoteSunrise = $response['sys']['sunrise'];
+			$remoteSunset = $response['sys']['sunset'];
+			$sun = 1463354956;
+
+
+			$remoteTime = convertTime($remoteTime, 'unix');
+			$remoteSunrise = convertTime($remoteSunrise, 'unix');
+			$remoteSunset = convertTime($remoteSunset, 'unix');
 
 			function convertTime($time, $mode) {
 				if ($mode == 'unix') {
@@ -370,18 +379,13 @@
 					return $unixtime;
 				}
 			}
-
-			$remoteTime = convertTime($daytime, 'unix');
-			$remoteSunrise = convertTime($sunrise, 'unix');
-			$remoteSunset = convertTime($sunset, 'unix');
-
+			
 			if ($remoteSunset < $remoteSunrise) {
 				$remoteSunset = $remoteSunset + 24;
 			}
+			$remoteDayLenght = $remoteSunset - $remoteSunrise;
 
-			$remoteDaylenght = $remoteSunset - $remoteSunrise;
-
-			var_dump("<script>console.log('$remoteDaylenght');</script>", true);
+			var_dump("<script>console.log('$remoteDayLenght');</script>", true);
 
 
 			/*
