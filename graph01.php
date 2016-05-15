@@ -345,8 +345,6 @@
 		</div>
 
 	    <hr>
-
-	     <?php echo("<script>console.log('debug');</script>"); ?>
 	     <?php
 	   	  	//http://99webtools.com/blog/get-weather-information-using-php/
 	      	// grap weather information from openweathermap.org
@@ -363,9 +361,10 @@
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
 			print_r("hello world");
-			print_r("<script>console.log('$data');</script>");
-
 			$daytime = 1463300886;
+			$remoteTime = date("H:i", $daytime);
+			print_r("<script>console.log('$remoteTime');</script>", true);
+
 
 			/*
 			 {"coord":{"lon":-79.1,"lat":9.17},
