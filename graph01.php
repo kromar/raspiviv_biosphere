@@ -361,30 +361,21 @@
 			//get humidity
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
-			echo("<script>console.log('$wd');</script>");
+			echo("<script>console.log('$data['main']['temp']');</script>");
 
 			$daytime = 1463300886;
 
-			/*{"coord":{"lon":-79.1,"lat":9.17},
+			/*
+			 {"coord":{"lon":-79.1,"lat":9.17},
 			"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],
 			"base":"cmc stations",
-			"main":{"temp":25.55,
-			"pressure":1012.67,
-			"humidity":100,
-			"temp_min":25.55,
-			"temp_max":25.55,
-			"sea_level":1021.67,
-			"grnd_level":1012.67},
-			"wind":{"speed":1.71,
-			"deg":339.004},
+			"main":{"temp":25.55, "pressure":1012.67,"humidity":100,
+					"temp_min":25.55, "temp_max":25.55,	"sea_level":1021.67, "grnd_level":1012.67},
+			"wind":{"speed":1.71, "deg":339.004},
 			"rain":{"3h":0.97},
 			"clouds":{"all":92},
-			"dt":1463300886,
-			"sys":{"message":0.0086,"country":"PA",
-			"sunrise":1463309782,
-			"sunset":1463354956},
-			"id":3712505,
-			"name":"Chepo","cod":200}
+			"dt":1463300886, "sys":{"message":0.0086, "country":"PA", "sunrise":1463309782, "sunset":1463354956},
+			"id":3712505, "name":"Chepo","cod":200}
 			//*/
 		?>
 
