@@ -358,10 +358,12 @@
 			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
 			$response = file_get_contents($url);
 			$data = json_decode($response,true);
+
 			//get humidity
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
-			echo("<script>console.log('$data['main']['temp']');</script>");
+			print_r("hello world");
+			print_r("<script>console.log('$data');</script>");
 
 			$daytime = 1463300886;
 
