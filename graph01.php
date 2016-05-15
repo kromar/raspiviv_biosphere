@@ -24,7 +24,6 @@
 
 
 	<script type="text/javascript">
-		//*
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
 	    var gaugeOptions = {
@@ -41,15 +40,17 @@
 
 	    function drawGauge() {
 	      gaugeData = new google.visualization.DataTable();
+	      gaugeData.addColumn('string', 'remote');
 	      gaugeData.addColumn('number', 'Engine');
 	      gaugeData.addColumn('number', 'Torpedo');
 	      gaugeData.addColumn('number', 'test1');
 	      gaugeData.addColumn('number', 'test2');
-	      gaugeData.addRows(1);
+	      gaugeData.addRows(2);
 	      gaugeData.setCell(0, 0, 120);
-	      gaugeData.setCell(0, 1, 80);
-	      gaugeData.setCell(0, 2, 80);
-	      gaugeData.setCell(0, 3, 80);
+	      gaugeData.setCell(1, 0, 120);
+	      gaugeData.setCell(1, 1, 80);
+	      gaugeData.setCell(1, 2, 80);
+	      gaugeData.setCell(1, 3, 80);
 
 	      gauge = new google.visualization.Gauge(document.getElementById('test_gauge_div'));
 	      gauge.draw(gaugeData, gaugeOptions);
@@ -57,16 +58,8 @@
 
 	    function changeTemp(dir) {
 	      gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 25);
-	      gaugeData.setValue(0, 1, gaugeData.getValue(0, 1) + dir * 20);
-	      gaugeData.setValue(0, 2, gaugeData.getValue(0, 1) + dir * 20);
-	      gaugeData.setValue(0, 3, gaugeData.getValue(0, 1) + dir * 20);
 	      gauge.draw(gaugeData, gaugeOptions);
-	      console.log("test debug");
 	    }
-
-
-
-	    //*/
 
 	</script>
 
