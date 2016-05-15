@@ -361,6 +361,10 @@
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
 			print_r("hello world");
+			$curentTime = date('H:i');
+			$morningTime = '10:00';
+			$eveningTime = '22:00';
+
 			$daytime = 1463300886;
 			$sunrise = 1463309782;
 			$sunset = 1463354956;
@@ -377,9 +381,16 @@
 			}
 
 			$remoteTime = convertTime($daytime, 'unix');
-			$rSR = convertTime($sunrise, 'unix');
-			$rSS = convertTime($sunset, 'unix');
-			echo("<script>console.log('$remoteTime , $rSR, $rSS');</script>");
+			$remoteSunrise = convertTime($sunrise, 'unix');
+			$remoteSunset = convertTime($sunset, 'unix');
+
+			if ($remoteSunset < $remoteSunrise) {
+				$remoteSunset = $remoteSunset + 24;
+			}
+
+			$remoteDaylenght = $remoteSunset - $remoteSunrise;
+
+			echo("<script>console.log('$remoteDaylenght');</script>");
 
 
 			/*
