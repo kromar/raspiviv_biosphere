@@ -348,19 +348,20 @@
 
 	     <?php echo("<script>console.log('debug');</script>"); ?>
 	     <?php
-	      // grap weather information from openweathermap.org
+	   	  	//http://99webtools.com/blog/get-weather-information-using-php/
+	      	// grap weather information from openweathermap.org
 			$city = "Chepo";
 			$country = "PA"; // two digit country code
 			$lat =-79.1;
 			$lon = 9.17;
-			$url="http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=7&lang=en";
-
-			$json = file_get_contents($url);
-			$data = json_decode($json,true);
+	      	$apikey = '2383e44c43c21e8c8d2c1537b54db3b0';
+			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
+			$response = file_get_contents($url);
+			$data = json_decode($response,true);
 			//get humidity
 			$wd = ($data['main']['temp']);
 			//$wd = $city;
-			echo("<script>console.log('$wd');</script>");
+			echo("<script>console.log('$data');</script>");
 		?>
 
 	    <?php include 'footer.php';?>
