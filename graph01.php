@@ -370,7 +370,12 @@
 					$gmtime = date("H:i", $time);
 					return $gmtime;
 				}
+				if ($mode == 'gmt') {
+					$unixtime = date("H:i", $time);
+					return $unixtime;
+				}
 			}
+
 			$remoteTime = convertTime($daytime, 'unix');
 			$rSR = convertTime($sunrise, 'unix');
 			$rSS = convertTime($sunset, 'unix');
