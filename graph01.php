@@ -390,7 +390,7 @@
 
 			$remoteDaylenght = $remoteSunset - $remoteSunrise;
 
-			echo("<script>console.log('$remoteDaylenght');</script>");
+			print_r("<script>console.log('$remoteDaylenght');</script>", true);
 
 
 			/*
