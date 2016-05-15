@@ -367,8 +367,8 @@
 
 			function convertTime($time, $mode) {
 				if ($mode == 'unix') {
-					$time = date("H:i", $daytime);
-					return $time;
+					$gmtime = date("H:i", $time);
+					return $gmtime;
 				}
 			}
 			$remoteTime = convertTime($daytime, 'unix');
