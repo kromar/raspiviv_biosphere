@@ -363,7 +363,7 @@
 			print_r("hello world");
 			$daytime = 1463300886;
 			$remoteTime = date("H:i", $daytime);
-			print_r("<script>console.log('$remoteTime');</script>", true);
+			echo("<script>console.log('$remoteTime');</script>");
 
 
 			/*
