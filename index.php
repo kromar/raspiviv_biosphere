@@ -42,7 +42,7 @@ if(!$fgmembersite->CheckLogin())
 							die("Connection failed: " . mysqli_connect_error());
 						}
 
-						$sql = "SELECT temperature FROM datalogger where sensor = 7 ORDER BY date_time DESC LIMIT 1";
+						$sql = "SELECT temperature FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
 						$result = mysqli_query($conn, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
@@ -72,7 +72,7 @@ if(!$fgmembersite->CheckLogin())
 							die("Connection failed: " . mysqli_connect_error());
 						}
 
-						$sql = "SELECT humidity FROM datalogger where sensor = 7 ORDER BY date_time DESC LIMIT 1";
+						$sql = "SELECT humidity FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
 						$result = mysqli_query($conn, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
@@ -124,7 +124,7 @@ if(!$fgmembersite->CheckLogin())
 							die("Connection failed: " . mysqli_connect_error());
 						}
 
-						$sql = "SELECT humidity FROM datalogger where sensor = 7 ORDER BY date_time DESC LIMIT 1";
+						$sql = "SELECT humidity FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
 						$result = mysqli_query($conn, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
