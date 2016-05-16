@@ -67,7 +67,7 @@
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
-			if ($tempDelta > 0) {
+			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$tempDelta = $tempDelta + $rainTime;
 				letItRain($tempDelta);;
 			} else {
