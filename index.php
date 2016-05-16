@@ -376,7 +376,7 @@ if(!$fgmembersite->CheckLogin())
 						mysql_select_db("datalogger");
 
 						$q=   "select * from history ";
-						$q=$q."where sensor = 8 ";
+						$q=$q."where sensor = 9 ";
 						$q=$q."order by date_time desc ";
 						$q=$q."limit 24";
 						$ds=mysql_query($q);
@@ -405,53 +405,59 @@ if(!$fgmembersite->CheckLogin())
 
 
 	<!-- BASE HISTORY HUM GRAPH -->
-	<script type="text/javascript"
-		src="https://www.google.com/jsapi?autoload={
-			'modules':[{
-			'name':'visualization',
-			'version':'1',
-			'packages':['corechart']
-		}]
-	}"></script>
 
 	<script type="text/javascript">
-		google.setOnLoadCallback(drawChart);
-		function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-				['TIME', 'HUMIDITY', ],
-				<?php
-					$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-					mysql_select_db("datalogger");
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysql_select_db ( "datalogger" );
 
-					$q=   "select * from history ";
-					$q=$q."where sensor = 8 ";
-					$q=$q."order by date_time desc ";
-					$q=$q."limit 24";
-					$ds=mysql_query($q);
+				$q = "select * from history ";
+				$q = $q . "where sensor = 9 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 24";
+				$ds = mysql_query ( $q );
 
-					while($r = mysql_fetch_object($ds))
-					{
-						echo "['".$r->date_time."', ";
-						echo " ".$r->humidity." ],";
-
+				while ( $r = mysql_fetch_object ( $ds ) ) {
+					echo "['" . $r->date_time . "', ";
+					echo " " . $r->temperature . " ,";
+					echo " " . $r->humidity . " ],";
 					}
-				?>
-			]);
+			?>
+		]);
 
-			var options = {
-				title: 'HUMIDITY (%) 24 HR',
-				curveType: 'function',
-				legend: { position: 'none' },
-				hAxis: { textPosition: 'none', direction: '-1' },
-			};
+		var options = {
+			legend: { position: 'none' },
+			curveType: 'function',
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
 
-			var chart = new google.visualization.LineChart(document.getElementById('roomhumgraph_div'));
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
 
-			chart.draw(data, options);
-			options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsConfiguration'] = 'auto';
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
+
+		var chart = new google.visualization.LineChart(document.getElementById('graph_room_history_div'));
+
+		chart.draw(data, options);
 		}
-
 	</script>
+
 
 
 </head>
@@ -486,7 +492,7 @@ if(!$fgmembersite->CheckLogin())
 					<div id="roomhum_div" style="width: auto; height: auto;"></div>
 				</div>
 				<div class="col-sm-9">
-					 <div id="roomhumgraph_div" style="width: auto; height: auto;"></div>
+					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
 				</div>
 			</div>
 			</div>
