@@ -257,154 +257,7 @@ if(!$fgmembersite->CheckLogin())
     </script>
 
 
-	<!-- TANK 1 HISTORY TEMP GRAPH -->
-	<script type="text/javascript"
-		src="https://www.google.com/jsapi?autoload={
-			'modules':[{
-			'name':'visualization',
-			'version':'1',
-			'packages':['corechart']
-		}]
-	}"></script>
-
-	<script type="text/javascript">
-		google.setOnLoadCallback(drawChart);
-		function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-			['TIME', 'TEMP', ],
-				<?php
-					$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-					mysql_select_db("datalogger");
-
-					$q=   "select * from history ";
-					$q=$q."where sensor = 8 ";
-					$q=$q."order by date_time desc ";
-					$q=$q."limit 24";
-					$ds=mysql_query($q);
-
-					while($r = mysql_fetch_object($ds))
-					{
-						echo "['".$r->date_time."', ";
-						echo " ".$r->temperature." ],";
-
-					}
-				?>
-			]);
-
-			var options = {
-				title: 'TEMP (C) 24 HR',
-				curveType: 'function',
-				legend: { position: 'none' },
-				hAxis: { textPosition: 'none', direction: '-1' },
-			};
-
-			var chart = new google.visualization.LineChart(document.getElementById('tank1tempgraph_div'));
-
-			chart.draw(data, options);
-		}
-	</script>
-
-
-	<!-- TANK 1 HISTORY HUM GRAPH -->
-	<script type="text/javascript"
-		src="https://www.google.com/jsapi?autoload={
-			'modules':[{
-			'name':'visualization',
-			'version':'1',
-			'packages':['corechart']
-		}]
-	}"></script>
-
-	<script type="text/javascript">
-		google.setOnLoadCallback(drawChart);
-		function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-				['TIME', 'HUMIDITY', ],
-				<?php
-					$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-					mysql_select_db("datalogger");
-
-					$q=   "select * from history ";
-					$q=$q."where sensor = 8 ";
-					$q=$q."order by date_time desc ";
-					$q=$q."limit 24";
-					$ds=mysql_query($q);
-
-					while($r = mysql_fetch_object($ds))
-					{
-						echo "['".$r->date_time."', ";
-						echo " ".$r->humidity." ],";
-
-					}
-				?>
-			]);
-
-			var options = {
-				title: 'HUMIDITY (%) 24 HR',
-				curveType: 'function',
-				legend: { position: 'none' },
-				hAxis: { textPosition: 'none', direction: '-1' },
-			};
-
-			var chart = new google.visualization.LineChart(document.getElementById('tank1humgraph_div'));
-
-			chart.draw(data, options);
-			options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsConfiguration'] = 'auto';
-		}
-    </script>
-
-
-
-
-	<!-- BASE HISTORY TEMP GRAPH -->
-	<script type="text/javascript"
-		src="https://www.google.com/jsapi?autoload={
-			'modules':[{
-			'name':'visualization',
-			'version':'1',
-			'packages':['corechart']
-		}]
-	}"></script>
-
-	<script type="text/javascript">
-		google.setOnLoadCallback(drawChart);
-		function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-				['TIME', 'TEMP', ],
-					<?php
-						$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-						mysql_select_db("datalogger");
-
-						$q=   "select * from history ";
-						$q=$q."where sensor = 9 ";
-						$q=$q."order by date_time desc ";
-						$q=$q."limit 24";
-						$ds=mysql_query($q);
-
-						while($r = mysql_fetch_object($ds))
-						{
-							echo "['".$r->date_time."', ";
-							echo " ".$r->temperature." ],";
-
-						}
-					?>
-				]);
-
-			var options = {
-				title: 'TEMP (C) 24 HR',
-				curveType: 'function',
-				legend: { position: 'none' },
-				hAxis: { textPosition: 'none', direction: '-1' },
-			};
-
-			var chart = new google.visualization.LineChart(document.getElementById('roomtempgraph_div'));
-
-			chart.draw(data, options);
-		}
-	</script>
-
-
-	<!-- BASE HISTORY HUM GRAPH -->
+	<!-- BASE HISTORY GRAPH -->
 
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
@@ -458,7 +311,59 @@ if(!$fgmembersite->CheckLogin())
 		}
 	</script>
 
+<!-- TANK 1 HISTORY GRAPH -->
 
+	<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysql_select_db ( "datalogger" );
+
+				$q = "select * from history ";
+				$q = $q . "where sensor = 8 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 24";
+				$ds = mysql_query ( $q );
+
+				while ( $r = mysql_fetch_object ( $ds ) ) {
+					echo "['" . $r->date_time . "', ";
+					echo " " . $r->temperature . " ,";
+					echo " " . $r->humidity . " ],";
+					}
+			?>
+		]);
+
+		var options = {
+			legend: { position: 'none' },
+			curveType: 'function',
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
+
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
+
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
+
+		var chart = new google.visualization.LineChart(document.getElementById('graph_tank1_history_div'));
+
+		chart.draw(data, options);
+		}
+	</script>
 
 </head>
 	<body>
@@ -478,27 +383,19 @@ if(!$fgmembersite->CheckLogin())
 						</span>
 					</a>
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-xs-4">
 					<div id="roomtemp_div" style="width: auto; height: auto;"></div>
-				</div>
-				<div class="col-sm-9">
-					<div id="roomtempgraph_div" style="width: auto; height: auto;"></div>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-sm-3">
 					<div id="roomhum_div" style="width: auto; height: auto;"></div>
 				</div>
-				<div class="col-sm-9">
+				<div class="col-xs-8"">
 					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
 				</div>
 			</div>
-			</div>
+
 		</div>
 
 		<hr>
+
 
 		<div class="container">
 			<a href="/graph01.php" title="VIV 1" alt="VIV 1">
@@ -509,60 +406,18 @@ if(!$fgmembersite->CheckLogin())
 			</a>
 
 			<div class="row">
-				<div class="col-sm-3">
-					<div id="viv1temp_div" style="width: auto; height: auto;"></div>
+				<div class="col-xs-4">
+					<div id="viv1temp_div"></div>
+					<div id="viv1hum_div"></div>
 				</div>
-				<div class="col-sm-9">
-					<div id="tank1tempgraph_div" style="width: auto; height: auto;"></div>
+				<div class="col-xs-8"">
+					<div id="graph_tank1_history_div"></div>
 				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-sm-3">
-					<div id="viv1hum_div" style="width: auto; height: auto;"></div>
-				</div>
-				<div class="col-sm-9">
-					 <div id="tank1humgraph_div" style="width: auto; height: auto;"></div>
-				</div>
-			</div>
 			</div>
 		</div>
 
 		<hr>
 
-
-		<!--  combined graph -->
-		<div class="container">
-			<a href="/graph03.php" title="VIV 1" alt="VIV 1">
-				<span class="fa-stack fa-2x">
-				  <i class="fa fa-circle fa-stack-2x"></i>
-				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
-				</span>
-			</a>
-
-			<div class="row">
-				<div class="col-sm-3">
-					<div id="viv1temp_div" style="width: auto; height: auto;"></div>
-				</div>
-				<div class="col-sm-9">
-					<div id="tank1tempgraph_div" style="width: auto; height: auto;"></div>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-sm-3">
-					<div id="viv1hum_div" style="width: auto; height: auto;"></div>
-				</div>
-				<div class="col-sm-9">
-					 <div id="tank1humgraph_div" style="width: auto; height: auto;"></div>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<hr>
 
 
 		<div class="container">
