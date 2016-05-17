@@ -4,10 +4,13 @@
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
 
-	$q = "SELECT temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	$ds = mysql_query($q);
-	$tempSensor=(int)mysql_fetch_object($ds)->temperature;
-	$humSensor=(int)mysql_fetch_object($ds)->humidity;
+	$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$dt = mysql_query($qt);
+	$tempSensor=(float)mysql_fetch_object($dt)->temperature;
+
+	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$dh = mysql_query($qh);
+	$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
 
 	/* used to execute a python script
@@ -30,8 +33,8 @@
 	//change threshold depening on time of day
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
-	$tempDay = 28.5;		// 26.5
-	$humMin = 70.0;
+	$tempDay = 26.5;		// 26.5
+	$humidityMin = 70.0;
 	$rainTime = 1; 			// time in seconds to rain
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
@@ -63,7 +66,7 @@
 			letItRain($raintimeShedule);
 		}
 
-		//react to high sensor temperatures
+		//react to high temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -76,16 +79,17 @@
 		}
 
 		//react to low humidity
-		/*if (($humSensor < $humMin) or ($override == true)) {
-			$humDelta = ($humMin - $humSensor);
-				if ($humDelta>0) {
-					$humDelta = $humDelta + $rainTime;
-					letItRain($humDelta);
+		if (($humiditySensor < $humidityMin) or ($override == true)) {
+			$humidityDelta = ($humidityMin - $humiditySensor);
+				if (($humidityDelta > 0) and ($humidityDelta < 10)) {
+					$humidityDelta = $humidityDelta + $rainTime;
+					letItRain($humidityDelta);
 			} else {
 				letItRain($rainTime);
 			}
 		}
-		*/
+
+		//override to pressure pump
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
 			while($i < 30) {
