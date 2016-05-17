@@ -26,6 +26,7 @@ mysql_close($db);
 return 0; 
 } 
 hist(8); 
+hist(9);
 delOld();
 ?>
 
