@@ -82,7 +82,7 @@
 		elseif ($humiditySensor < $humidityMin) {
 			$humidityDelta = ($humidityMin - $humiditySensor);
 				if (($humidityDelta > 0) and ($humidityDelta < 10)) {
-					$humidityDelta = $humidityDelta + $rainTime;
+					$humidityDelta = $rainTime;
 					letItRain($humidityDelta);
 			} else {
 				letItRain($rainTime);
