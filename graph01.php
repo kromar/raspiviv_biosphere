@@ -341,7 +341,7 @@
 	      	// grap weather information from openweathermap.org
 			$city = "Chepo";
 			$country = "PA"; // two digit country code
-			
+
 	      	$apikey = "2383e44c43c21e8c8d2c1537b54db3b0";
 			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
 			$data = file_get_contents($url);
@@ -351,10 +351,10 @@
 			$remoteTemperature = $response['main']['temp'];
 			$remoteHumidity = $response['main']['humidity '];
 			$remoteWinnd = $response['wind']['speed'];
-			
+
 
 			var_dump("<script>console.log('$response');</script>", true);
-			
+
 			$curentTime = date('H:i');
 			$morningTime = '10:00';
 			$eveningTime = '22:00';
@@ -379,7 +379,7 @@
 					return $unixtime;
 				}
 			}
-			
+
 			if ($remoteSunset < $remoteSunrise) {
 				$remoteSunset = $remoteSunset + 24;
 			}
@@ -400,6 +400,21 @@
 			"dt":1463300886, "sys":{"message":0.0086, "country":"PA", "sunrise":1463309782, "sunset":1463354956},
 			"id":3712505, "name":"Chepo","cod":200}
 			//*/
+
+			$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+			mysql_select_db("datalogger");
+
+			$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+			$dt = mysql_query($qt);
+			$tempSensor=(float)mysql_fetch_object($dt)->temperature;
+
+			$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+			$dh = mysql_query($qh);
+			$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
+
+			var_dump("<script>console.log('$tempSensor');</script>", false);
+			var_dump("<script>console.log('$humiditySensor');</script>", false);
+
 		?>
 
 	    <?php include 'footer.php';?>
