@@ -79,7 +79,7 @@
 		}
 
 		//react to low humidity
-		if (($humiditySensor < $humidityMin) or ($override == true)) {
+		elseif (($humiditySensor < $humidityMin) or ($override == true)) {
 			$humidityDelta = ($humidityMin - $humiditySensor);
 				if (($humidityDelta > 0) and ($humidityDelta < 10)) {
 					$humidityDelta = $humidityDelta + $rainTime;
