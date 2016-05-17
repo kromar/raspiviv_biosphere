@@ -404,13 +404,10 @@
 			$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 			mysql_select_db("datalogger");
 
-			$qt = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-			$dt = mysql_query($qt);
-			$tempSensor=(float)mysql_fetch_object($dt)->temperature;
-
-			//$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-			//$dh = mysql_query($qh);
-			$humSensor=(float)mysql_fetch_object($dt)->humidity;
+			$q = "SELECT temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+			$qr = mysql_query($query);
+			$tempSensor=(float)mysql_fetch_array($qr[0])->temperature;
+			$humSensor=(float)mysql_fetch_array($qr[1])->humidity;
 
 			var_dump("<script>console.log('$tempSensor');</script>", false);
 			var_dump("<script>console.log('$humSensor');</script>", false);
