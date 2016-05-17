@@ -341,7 +341,7 @@
 	      	// grap weather information from openweathermap.org
 			$city = "Chepo";
 			$country = "PA"; // two digit country code
-
+			/*
 	      	$apikey = "2383e44c43c21e8c8d2c1537b54db3b0";
 			$request="http://api.openweathermap.org/data/2.5/weather?APPID=".$apikey."&q=".$city.",".$country."&units=metric&cnt=7&lang=en";
 			$data = file_get_contents($url);
@@ -386,7 +386,7 @@
 			$remoteDayLenght = $remoteSunset - $remoteSunrise;
 
 			var_dump("<script>console.log('$remoteDayLenght');</script>", true);
-
+			//*/
 
 			/*
 			 {"coord":{"lon":-79.1,"lat":9.17},
