@@ -58,19 +58,18 @@
 
 
 	//change power state of fan depending on current humidity
-	if (($humiditySensor > $humidityThreshold) or ($tempSensor > $tempThreshold))
-		{
-			//wind depending on how much humidity is over our limit
-			$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-			//let it wind
-			exec('/usr/local/bin/gpio mode 5 out');
-			exec('/usr/local/bin/gpio write 5 1');
+	if (($humiditySensor > $humidityThreshold) or ($tempSensor > 28.5)) {
+		//wind depending on how much humidity is over our limit
+		$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+		//let it wind
+		exec('/usr/local/bin/gpio mode 5 out');
+		exec('/usr/local/bin/gpio write 5 1');
 
-			//time till wind stops
-			sleep ($windTime);
-			exec('/usr/local/bin/gpio mode 5 out');
-			exec('/usr/local/bin/gpio write 5 0');
-		}
+		//time till wind stops
+		sleep ($windTime);
+		exec('/usr/local/bin/gpio mode 5 out');
+		exec('/usr/local/bin/gpio write 5 0');
+	}
 
 	mysql_query($q);
 	mysql_close($db);
