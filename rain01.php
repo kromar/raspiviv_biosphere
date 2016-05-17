@@ -33,7 +33,7 @@
 	//change threshold depening on time of day
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
-	$tempDay = 26.5;		// 26.5
+	$tempDay = 28.5;		// 26.5
 	$humidityMin = 70.0;
 	$rainTime = 1; 			// time in seconds to rain
 	$override = false;		// override temperature and rain every minute
