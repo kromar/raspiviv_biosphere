@@ -30,6 +30,10 @@
 
 
 	//change threshold depening on time of day
+	$tempThreshold;
+	$tempNight = 24.5;  	// 24.5
+	$tempDay = 26.5;		// 26.5
+
 	$humidityThreshold;
 	$humidityNight = 90.0;
 	$humidityDay = 95.0;
@@ -44,15 +48,17 @@
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime))
 		{
 			$humidityThreshold = $humidityNight;
+			$tempThreshold = $tempNight;
 		}
 		else
 		{
 			$humidityThreshold = $humidityDay;
+			$tempThreshold = $tempDay;
 		}
 
 
 	//change power state of fan depending on current humidity
-	if ($humiditySensor > $humidityThreshold)
+	if (($humiditySensor > $humidityThreshold) or ($tempSensor > $tempThreshold))
 		{
 			//wind depending on how much humidity is over our limit
 			$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
