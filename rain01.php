@@ -63,7 +63,7 @@
 			letItRain($raintimeShedule);
 		}
 
-		//react to sensor temperatures
+		//react to high sensor temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
 			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -74,6 +74,8 @@
 				letItRain($rainTime);
 			}
 		}
+
+		//react to low humidity
 		/*if (($humSensor < $humMin) or ($override == true)) {
 			$humDelta = ($humMin - $humSensor);
 				if ($humDelta>0) {
