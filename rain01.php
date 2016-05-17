@@ -105,6 +105,7 @@
 		if ($debugMode==true) {
 			debug_to_console(["let it rain: ", $delta]);
 		}
+		sleep($delta);
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($delta);
