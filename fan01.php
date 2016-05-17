@@ -12,22 +12,6 @@
 	$dh = mysql_query($qh);
 	$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
-	/* used to execute a python script
-	 * $command = escapeshellcmd(' /usr/custom/test.py');
-	* $output = shell_exec($command);
-	* echo $output
-	*/
-
-	// grap weather information from openweathermap.org
-	$city = "Chepo";
-	$country = "PA"; // two digit country code
-
-	$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=7&lang=en";
-	$json = file_get_contents($url);
-	$data = json_decode($json,true);
-	//get humidity
-	echo $data['main']['humidity']."<br>";
-
 
 	//change threshold depening on time of day
 	$tempThreshold;
@@ -37,7 +21,7 @@
 	$humidityThreshold;
 	$humidityNight = 90.0;
 	$humidityDay = 95.0;
-	$windTime;
+	$windTime = 10;
 
 	$t = time();
 	$curentTime = date('H:i');
@@ -54,23 +38,34 @@
 		{
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
+
+			if ($tempSensor > $tempDay) {
+				bringTheAir($windTime);
+			}
 		}
 
 
 	//change power state of fan depending on current humidity
-	if (($humiditySensor > $humidityThreshold) or ($tempSensor > $tempDay)) {
+	if ($humiditySensor > $humidityThreshold) {
 		//wind depending on how much humidity is over our limit
 		$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-		//let it wind
+		bringTheAir($windTime);
+	}
+
+
+	function bringTheAir($delta) {
+
 		exec('/usr/local/bin/gpio mode 5 out');
 		exec('/usr/local/bin/gpio write 5 1');
 
 		//time till wind stops
-		sleep ($windTime);
+		sleep ($delta);
 		exec('/usr/local/bin/gpio mode 5 out');
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
-	mysql_query($q);
+
+	mysql_query($qt);
+	mysql_query($qh);
 	mysql_close($db);
 ?>

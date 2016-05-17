@@ -13,23 +13,6 @@
 	$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
 
-	/* used to execute a python script
-	 * $command = escapeshellcmd(' /usr/custom/test.py');
-	 * $output = shell_exec($command);
-	 * echo $output
-	 */
-
-	// grab weather information from openweathermap.org
-	$city = "Chepo";
-	$country = "PA"; // two digit country code
-
-	$url = "http://api.openweathermap.org/data/2.5/weather?q=".$city.",".$country."&units=metric&cnt=7&lang=en";
-	$json = file_get_contents($url);
-	$data = json_decode($json,true);
-	//get rmep in celcius
-	echo($data['main']['temp']."<br>");
-
-
 	//change threshold depening on time of day
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
@@ -46,13 +29,6 @@
 	$eveningTime = ('22:00');
 	$rainShedule = array('12:00', '18:00');
 	$raintimeShedule = 10;
-
-
-	echo("<script>console.log('PHP: ".$tempSensor."');</script>");
-	echo("tempSensor: $tempSensor");
-	echo("humSensor: $humSensor");
-	echo $tempSensor;
-	print "am i printing somewhere?";
 
 
 	//set day or nighttime temp
@@ -101,35 +77,15 @@
 
 	//rain function
 	function letItRain($delta) {
-		debug_to_console("let it rain");
-		if ($debugMode==true) {
-			debug_to_console(["let it rain: ", $delta]);
-		}
-		sleep($delta);
+		//sleep(2);
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($delta);
 		exec('/usr/local/bin/gpio write 2 1');
-
 	}
 
-
-	// Send debug code to the Javascript console
-	function debug_to_console($data) {
-		echo("<script>console.log('PHP: ".$data."');</script>");
-	}
-
-	mysql_query($q);
+	mysql_query($qt);
+	mysql_query($qh);
 	mysql_close($db);
 
 ?>
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
-<head>
-<title></title>
-<script src="scripts/jquery-1.12.3.min.js"></script>
-</head>
-<body>
-	<?php echo("<script>console.log('test');</script>"); ?>
-</body>
-</html>
