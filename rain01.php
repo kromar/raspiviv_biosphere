@@ -48,7 +48,7 @@
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$tempDelta = $tempDelta + $rainTime;
-				letItRain($tempDelta);;
+				letItRain($tempDelta);
 			} else {
 				letItRain($rainTime);
 			}
