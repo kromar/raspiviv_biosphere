@@ -39,9 +39,18 @@
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
-			if ($tempSensor > $tempDay) {
-				bringTheAir($windTime);
+			//react to high temperatures
+			if ($tempSensor > $tempThreshold or $override==true) {
+				//adjust rain time depending how high the temp is above our limit
+				$tempDelta = ($tempSensor - $tempThreshold);
+				if (($tempDelta > 0) and ($tempDelta < 10)) {
+					$tempDelta = $tempDelta + $rainTime;
+					bringTheAir($windTime);
+				} else {
+					bringTheAir($windTime);
+				}
 			}
+
 		}
 
 
