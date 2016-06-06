@@ -19,7 +19,7 @@
 	$tempDay = 28.5;		// 26.5
 
 	$humidityThreshold;
-	$humidityNight = 90.0;
+	$humidityNight = 85.0;
 	$humidityDay = 95.0;
 	$windTime = 10;
 
