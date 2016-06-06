@@ -28,12 +28,21 @@
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
 
-	//set day or nighttime humidity
+	//what happens during night
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime))
 		{
 			$humidityThreshold = $humidityNight;
 			$tempThreshold = $tempNight;
+
+			//change power state of fan depending on current humidity
+			if ($humiditySensor > $humidityThreshold) {
+				//wind depending on how much humidity is over our limit
+				$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+				bringTheAir($windTime);
+			}
+
 		}
+		//and during day
 		else
 		{
 			$humidityThreshold = $humidityDay;
@@ -50,16 +59,17 @@
 					bringTheAir($windTime);
 				}
 			}
+			//change power state of fan depending on current humidity
+			if ($humiditySensor > $humidityThreshold) {
+				//wind depending on how much humidity is over our limit
+				$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+				bringTheAir($windTime);
+			}
 
 		}
 
 
-	//change power state of fan depending on current humidity
-	if ($humiditySensor > $humidityThreshold) {
-		//wind depending on how much humidity is over our limit
-		$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-		bringTheAir($windTime);
-	}
+
 
 
 	function bringTheAir($delta) {
