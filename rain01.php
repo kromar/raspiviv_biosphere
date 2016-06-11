@@ -28,7 +28,7 @@
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
 	$rainShedule = array('12:00', '18:00');
-	$raintimeShedule = 10;
+	$raintimeShedule = 5;
 
 
 	//set day or nighttime temp
