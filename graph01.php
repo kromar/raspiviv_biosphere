@@ -337,7 +337,7 @@
 
 	    <hr>
 	     <?php
-	   	  	//http://99webtools.com/blog/get-weather-information-using-php/
+	   	  	// http://99webtools.com/blog/get-weather-information-using-php/
 	      	// grap weather information from openweathermap.org
 			$city = "Chepo";
 			$country = "PA"; // two digit country code

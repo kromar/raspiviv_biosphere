@@ -45,7 +45,7 @@
 
 		//wind when humidity is high
 		if ($humiditySensor > $humidityThreshold) {
-			$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold)); 	//TODO: does this time breakdown make sense during night?
+			$windTime = $windTime + (60-$windTime/($humidityThreshold-$humidityMin)*($humiditySensor-$humidityThreshold));
 			bringTheAir($windTime);
 		}
 		//what to do when temps are high?
@@ -80,7 +80,7 @@
 
 		//wind depending on how much humidity is over our limit
 		if ($humiditySensor > $humidityThreshold) {
-			$windTime = (60 / (100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+			$windTime = $windTime + (60-$windTime/($humidityThreshold-$humidityMin)*($humiditySensor-$humidityThreshold));
 			bringTheAir($windTime);
 		}
 
