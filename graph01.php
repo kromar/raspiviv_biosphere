@@ -318,9 +318,6 @@
 	</div>
 
 	<div class="container">
-    	<div id="test_gauge_div"></div>
-    	<input type="button" value="Go Faster" onclick="changeTemp(1)" />
-  		<input type="button" value="Slow down" onclick="changeTemp(-1)" />
 
 		<div class="row">
 			<div class="col-xs-4">
@@ -332,6 +329,9 @@
     			<div id="chart_long_div"></div>
 			</div>
 
+    	<div id="test_gauge_div"></div>
+    	<input type="button" value="Go Faster" onclick="changeTemp(1)" />
+  		<input type="button" value="Slow down" onclick="changeTemp(-1)" />
 
 		</div>
 
