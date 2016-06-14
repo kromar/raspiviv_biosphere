@@ -45,7 +45,7 @@
 
 		//wind when humidity is high
 		if ($humiditySensor > $humidityThreshold) {
-			$windTime = $windTime + (60-$windTime/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
 			bringTheAir($windTime);
 		}
 		//TODO: what to do when temps are high?
@@ -65,12 +65,13 @@
 
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
-			//adjust rain time depending how high the temp is above our limit
 			$tempDelta = ($tempSensor - $tempThreshold);
+
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
-				$tempDelta = $tempDelta + $rainTime;
-				letItRain($tempDelta);
-				bringTheAir($windTime);
+				$rainTime = $tempDelta + $rainTime;
+				$windTime = $windTime + $tempDelta;
+				letItRain($rainTime);
+				bringTheAir($windTime);		//TODO: define windtime
 			} else {
 				letItRain($rainTime);
 				bringTheAir($windTime);
@@ -79,14 +80,15 @@
 
 
 		//wind depending on how much humidity is over our limit
-		if ($humiditySensor > $humidityThreshold) {
-			$windTime = $windTime + (60-$windTime/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+		elseif ($humiditySensor > $humidityThreshold) {
+			$humidityDelta = ($humiditySensor - $humidityThreshold);
+			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
 			bringTheAir($windTime);
 		}
 
 
 		//react to low humidity
-		if ($humiditySensor < $humidityMin) {
+		elseif ($humiditySensor < $humidityMin) {
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) {
 				$humidityDelta = $rainTime;
@@ -111,19 +113,19 @@
 
 
 	// functions
-	function letItRain($delta) {
+	function letItRain($time) {
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
-		sleep($delta);
+		sleep($time);
 		exec('/usr/local/bin/gpio write 2 1');
 	}
 
 
-	function bringTheAir($delta) {
+	function bringTheAir($time) {
 		exec('/usr/local/bin/gpio mode 5 out');
 		exec('/usr/local/bin/gpio write 5 1');
 		//time till wind stops
-		sleep ($delta);
+		sleep ($time);
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
