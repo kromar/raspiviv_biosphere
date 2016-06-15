@@ -31,9 +31,9 @@
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
+	//fixed rain trigger times (time => seconds)
 	$rainShedule = array('12:00'=>5,
-						'18:00'=> 5,
-						'22:00'=> 1);
+						'18:00'=> 5);
 
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
@@ -60,7 +60,7 @@
 		$tempThreshold = $tempDay;
 
 		//trigger rain shedules
-		if (isset($curentTime, $rainShedule)) {
+		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($curentTime);
 			letItRain($time);
 		}
