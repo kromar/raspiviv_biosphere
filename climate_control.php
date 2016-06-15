@@ -19,7 +19,7 @@
 	$tempDay = 30.0;		// 26.5
 
 	$humidityThreshold;
-	$humidityMin = 70.0;
+	$humidityMin = 65.0;
 	$humidityNight = 85.0;
 	$humidityDay = 95.0;
 
@@ -31,8 +31,10 @@
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
-	$rainShedule = array('12:00', '18:00'); //TODO: extend with timer per time
-	$rainTimeShedule = 5;
+	$rainShedule = array('12:00'=>5,
+						'18:00'=> 5,
+						'22:00'=> 1);
+
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 
@@ -58,8 +60,9 @@
 		$tempThreshold = $tempDay;
 
 		//trigger rain shedules
-		if (in_array($curentTime, $rainShedule)) {
-			letItRain($rainTimeShedule);
+		if (isset($curentTime, $rainShedule)) {
+			$time = current($curentTime);
+			letItRain($time);
 		}
 
 
