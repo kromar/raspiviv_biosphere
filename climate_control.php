@@ -1,6 +1,6 @@
 
 <?php
-	$mylogfile = fopen("debug.txt", "w") or die("Unable to open file!");
+	$mylogfile = fopen(__DIR__ . "/../debug.log", "w") or die("Unable to open file!");
 	$txt = "John Doe\n";
 	fwrite($mylogfile, $txt);
 	$txt = "Jane Doe\n";
