@@ -135,7 +135,8 @@
 
 	function logToFile($string, $value) {
 		$mylogfile = fopen(__DIR__ . "/../debug.log", "w") or die("Unable to open file!");
-		fwrite($mylogfile, $string . ":" . $value . "\n");
+		$curentTime = date('H:i:s');
+		fwrite($mylogfile, $curentTime . " : " . $string . " : " . $value . "\n");
 		fclose($mylogfile);
 	}
 
