@@ -1,5 +1,12 @@
 
 <?php
+	$mylogfile = fopen("debug.txt", "w") or die("Unable to open file!");
+	$txt = "John Doe\n";
+	fwrite($mylogfile, $txt);
+	$txt = "Jane Doe\n";
+	fwrite($mylogfile, $txt);
+	fclose($mylogfile);
+
 
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
