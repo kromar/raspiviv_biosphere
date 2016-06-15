@@ -1,12 +1,5 @@
 
 <?php
-	$mylogfile = fopen(__DIR__ . "/../debug.log", "w") or die("Unable to open file!");
-	$txt = "John Doe\n";
-	fwrite($mylogfile, $txt);
-	$txt = "Jane Doe\n";
-	fwrite($mylogfile, $txt);
-	fclose($mylogfile);
-
 
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
@@ -19,6 +12,7 @@
 	$dh = mysql_query($qh);
 	$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
+	logToFile("humiditySensor", $humiditySensor);
 
 	//change threshold depening on time of day
 	$tempThreshold;
@@ -139,6 +133,11 @@
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
+	function logToFile($string, $value) {
+		$mylogfile = fopen(__DIR__ . "/../debug.log", "w") or die("Unable to open file!");
+		fwrite($mylogfile, $string . ":" . $value . "\n");
+		fclose($mylogfile);
+	}
 
 	mysql_query($qt);
 	mysql_query($qh);
