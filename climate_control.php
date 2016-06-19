@@ -39,10 +39,10 @@
 
 	//trigger rain shedules
 	if (array_key_exists('18:00', $rainShedule)) {
-		$time = current('18:00');
+		$time = current($rainShedule);
 		//letItRain($time);
-		logToFile("curtime: ", $curentTime);
-		logToFile("time: ", $time);
+		logToFile("curtime: ", $time);
+		logToFile("array: ", $rainShedule['18:00']);
 	}
 
 	//night time climate
