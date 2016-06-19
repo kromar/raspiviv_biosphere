@@ -31,8 +31,8 @@
 	$morningTime = ('10:00');
 	$eveningTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
-	$rainShedule = array('12:50'=>7,
-						'18:00'=> 5);
+	$rainShedule = array('12:00' => 5,
+						 '18:00' => 5);
 
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
@@ -60,7 +60,6 @@
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
 			letItRain($time);
-			logToFile("time: ", $time);
 		}
 
 
@@ -118,6 +117,7 @@
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($time);
+		logToFile("let it rain (s)", $time."s");
 		exec('/usr/local/bin/gpio write 2 1');
 	}
 
@@ -127,6 +127,7 @@
 		exec('/usr/local/bin/gpio write 5 1');
 		//time till wind stops
 		sleep ($time);
+		logToFile("bring the air", $time."s");
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
