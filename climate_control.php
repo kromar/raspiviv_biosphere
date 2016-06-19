@@ -117,7 +117,7 @@
 		exec('/usr/local/bin/gpio mode 2 out');
 		exec('/usr/local/bin/gpio write 2 0');
 		sleep($time);
-		logToFile("let it rain (s)", $time."s");
+		logToFile("let it rain", $time."s");
 		exec('/usr/local/bin/gpio write 2 1');
 	}
 
@@ -134,7 +134,7 @@
 	function logToFile($string, $value) {
 		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
 		$curentTime = date('H:i:s');
-		fwrite($mylogfile, $curentTime . " : " . $string . " : " . $value . "\n");
+		fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 		fclose($mylogfile);
 	}
 
