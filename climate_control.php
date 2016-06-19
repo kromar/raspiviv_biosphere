@@ -32,12 +32,18 @@
 	$eveningTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	$rainShedule = array('12:00'=>5,
-						'18:10'=> 5);
+						'18:00'=> 5);
 
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 
-
+	//trigger rain shedules
+	if (array_key_exists('18:00', $rainShedule)) {
+		$time = current('18:00');
+		//letItRain($time);
+		logToFile("curtime: ", $curentTime);
+		logToFile("time: ", $time);
+	}
 
 	//night time climate
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
