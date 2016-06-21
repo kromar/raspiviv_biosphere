@@ -141,16 +141,15 @@
 	}
 
 	function logToFile($string, $value) {
+		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
+		$curentTime = date('H:i:s');
 		try {
-			$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
-			$curentTime = date('H:i:s');
 			fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 			fclose($mylogfile);
-		}
-		catch (Exception $e) {
-   	 		echo 'Caught exception: ',  $e->getMessage(), "\n";
-		}
-
+			}
+			catch (Exception $e) {
+	   	 		echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}
 	}
 
 	mysql_query($qt);
