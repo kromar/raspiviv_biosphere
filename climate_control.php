@@ -15,7 +15,7 @@
 
 	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	while ($row = mysql_fetch_obejct($test)) {
-		logToFile($row->name);
+		logToFile("fetch", $row->name);
 	}
 
 	//change threshold depening on time of day
@@ -147,5 +147,6 @@
 	mysql_query($qt);
 	mysql_query($qh);
 	mysql_close($db);
+	//mysql_free_result();
 
 ?>
