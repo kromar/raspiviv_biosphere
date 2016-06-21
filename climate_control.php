@@ -144,18 +144,24 @@
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
-	logToFile(0,0); //log time if nothing else happens
 	function logToFile($string, $value) {
-		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
-		$fileSize = fgets($mylogfile);
-		$curentTime = date('H:i:s');
-		try {
-			fwrite($mylogfile, $curentTime." filesize: ".$fileSize. "\n");
-			fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
-			fclose($mylogfile);
+		$file = "/../debug.log";
+		$fileSize = filesize($file);
+		if (fileSize < 1024) {
+			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
+			$curentTime = date('H:i:s');
+			try {
+				fwrite($mylogfile, $curentTime . " filesize: " . $fileSize . "bytes\n");
+				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
+				fclose($mylogfile);
 
-		} catch (Exception $e) {
-		    echo 'Caught exception: ',  $e->getMessage(), "\n";
+			} catch (Exception $e) {
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
+			}
+		} else {
+			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
+			fwrite($mylogfile, $curentTime . " reset file size \n");
+			fclose($mylogfile);
 		}
 	}
 
