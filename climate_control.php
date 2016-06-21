@@ -144,7 +144,7 @@
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
-	logToFile(); //log time if nothing else happens
+	logToFile(0,0); //log time if nothing else happens
 	function logToFile($string, $value) {
 		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
 		$fileSize = fgets($mylogfile);
