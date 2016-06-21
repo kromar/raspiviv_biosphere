@@ -6,18 +6,20 @@
 
 	$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dt = mysql_query($qt);
-	$tempSensor=mysql_fetch_object($dt)->round(temperature,2);
+	$tempSensor=(float)mysql_fetch_object($dt)->round(temperature,2);
 
 	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dh = mysql_query($qh);
 	$humiditySensor=mysql_fetch_object($dh)->humidity;
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
-	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	while ($row = mysql_fetch_obejct($test)) {
-		logToFile("fetch", ($row->humidity));
-		logToFile("fetch", ($row->temperature));
+	$test = "SELECT humidity,temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	while ($row = (float)mysql_fetch_obejct($test)) {
+		$h = $row->humidity;
+		$t = $row->temperature;
 	}
+	logToFile("hum, temp", ($h."-".$t));
+
 
 	//change threshold depening on time of day
 	$tempThreshold;
