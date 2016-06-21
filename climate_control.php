@@ -11,6 +11,7 @@
 	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dh = mysql_query($qh);
 	$humiditySensor=mysql_fetch_object($dh)->humidity;
+	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//change threshold depening on time of day
 	$tempThreshold;
