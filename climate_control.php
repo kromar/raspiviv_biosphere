@@ -1,5 +1,6 @@
 
 <?php
+	var_dump($argv); //variables from climate_core.php
 
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
@@ -146,12 +147,12 @@
 
 	function logToFile($string, $value) {
 		$file = "/../debug.log";
-		$fileSize = filesize($file);
+		$size = filesize($file);
 		if (fileSize < 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
-				fwrite($mylogfile, $curentTime . " filesize: " . $fileSize . "bytes\n");
+				fwrite($mylogfile, $curentTime . " size: " . $size . "bytes\n");
 				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 				fclose($mylogfile);
 
