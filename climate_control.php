@@ -6,19 +6,23 @@
 
 	$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dt = mysql_query($qt);
-	$tempSensor=(float)mysql_fetch_object($dt)->round(temperature,2);
+	$tempSensor=(float)mysql_fetch_object($dt)->temperature;
 
 	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dh = mysql_query($qh);
 	$humiditySensor=mysql_fetch_object($dh)->humidity;
+
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
+	/*
 	$test = "SELECT humidity,temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	while ($row = (float)mysql_fetch_obejct($test)) {
 		$h = $row->humidity;
 		$t = $row->temperature;
 	}
-	logToFile("hum, temp", ($h."-".$t));
+	*/
+
+	//logToFile("hum, temp", ($h."-".$t));
 
 
 	//change threshold depening on time of day
@@ -140,10 +144,12 @@
 		exec('/usr/local/bin/gpio write 5 0');
 	}
 
-	logToFile("", ""); //log time if nothing else happens
+	//logToFile("", ""); //log time if nothing else happens
 	function logToFile($string, $value) {
-		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
+		$mylogfile = fopen(__DIR__ . "/../debug.log", "w") or die("Unable to open file!");
+		$fileSize = fgets($mylogfile);
 		$curentTime = date('H:i:s');
+		fwrite($mylogfile, $curentTime." filesize: ".$fileSize. "\n");
 		fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 		fclose($mylogfile);
 	}
