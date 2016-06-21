@@ -6,7 +6,7 @@
 
 	$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dt = mysql_query($qt);
-	$tempSensor=mysql_fetch_object($dt)->temperature;
+	$tempSensor=mysql_fetch_object($dt)->round(temperature,2);
 
 	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$dh = mysql_query($qh);
@@ -15,8 +15,8 @@
 
 	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	while ($row = mysql_fetch_obejct($test)) {
-		logToFile("fetch", $row->humidity);
-		logToFile("fetch", $row->temperature);
+		logToFile("fetch", ($row->humidity));
+		logToFile("fetch", ($row->temperature));
 	}
 
 	//change threshold depening on time of day
@@ -139,10 +139,16 @@
 	}
 
 	function logToFile($string, $value) {
-		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
-		$curentTime = date('H:i:s');
-		fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
-		fclose($mylogfile);
+		try {
+			$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
+			$curentTime = date('H:i:s');
+			fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
+			fclose($mylogfile);
+		}
+		catch (Exception $e) {
+   	 		echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
+
 	}
 
 	mysql_query($qt);
