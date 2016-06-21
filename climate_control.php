@@ -149,9 +149,14 @@
 		$mylogfile = fopen(__DIR__ . "/../debug.log", "a") or die("Unable to open file!");
 		$fileSize = fgets($mylogfile);
 		$curentTime = date('H:i:s');
-		fwrite($mylogfile, $curentTime." filesize: ".$fileSize. "\n");
-		fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
-		fclose($mylogfile);
+		try {
+			fwrite($mylogfile, $curentTime." filesize: ".$fileSize. "\n");
+			fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
+			fclose($mylogfile);
+
+		} catch (Exception $e) {
+		    echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
 	}
 
 	mysql_query($qt);
