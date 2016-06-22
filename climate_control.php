@@ -149,7 +149,7 @@
 	}
 
 	function logToFile($string, $value) {
-		$file = "../debug.log";
+		$file = "./../debug.log";
 		$size = filesize($file);
 		if (filesize == 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
