@@ -149,10 +149,11 @@
 	}
 
 	function logToFile($string, $value) {
-		$file = "./../debug.log";
-		$size = filesize($file);
-		if (fileSize < 1024) {
-			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
+		$path = "../";
+		$file = "debug.log";
+		$size = filesize($path.$file);
+		if ($size < 1024) {
+			$mylogfile = fopen(__DIR__ . $path . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
 				fwrite($mylogfile, $curentTime . " size: " . $size . "bytes\n");
