@@ -23,7 +23,7 @@
 		// output data of each row
 		 $row = mysql_fetch_row($result);
 		 $t = $row->temperature;
-		 $h = $row['temperature'];
+		 $h = $row;
 		 $s = $row['humidity'];
 		 logToFile("rows", $h."::".$t."::".$s);
 
