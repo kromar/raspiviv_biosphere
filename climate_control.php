@@ -155,7 +155,7 @@
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
-				fwrite($mylogfile, $curentTime . " size: " . $size . "bytes\n " ."file: ". $file ."\ndir: ". getcwd() . "\n");
+				fwrite($mylogfile, $curentTime . " size: " . $size . "bytes\n " ."file: ". $file ."\ndir: ". dirname(__FILE__) . "\n");
 				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 				fclose($mylogfile);
 
