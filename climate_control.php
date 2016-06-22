@@ -21,7 +21,7 @@
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
-		 $row = mysql_fetch_row($result);
+		 $row = mysql_fetch_object($result);
 		 $s = $row[1]->humidity;
 		 logToFile("rows", $s);
 
