@@ -1,6 +1,6 @@
 
 <?php
-	var_dump($argv); //variables from climate_core.php
+	//var_dump($argv); //variables from climate_core.php
 
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
@@ -15,7 +15,7 @@
 
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
-	//*
+	/*
 	$test = "SELECT humidity,temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	while ($row = (float)mysql_fetch_obejct($test)) {
 		$h = $row->humidity;
