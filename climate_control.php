@@ -150,12 +150,12 @@
 
 	function logToFile($string, $value) {
 		$file = "../debug.log";
-		$size = filesize("./../" . "debug.log");
-		if (filesize < 1024) {
+		$size = filesize(__DIR__ . $file);
+		if (true) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
-				fwrite($mylogfile, $curentTime . "\n size: " . $size . "bytes\n " ."file: ". $file ."\n dir: " . "./../" . "\n");
+				fwrite($mylogfile, $curentTime . "\n size: " . $size . "bytes\n " ."file: ". $file ."\n dir: " . __DIR__ . $file . "\n");
 				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 				fclose($mylogfile);
 
