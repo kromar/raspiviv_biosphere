@@ -22,7 +22,7 @@
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
 		 $row = mysql_fetch_row($result);
-		 $s = $row[0];
+		 $s = $row[1];
 		 logToFile("rows", $s);
 
 	} else {
