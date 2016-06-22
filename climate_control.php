@@ -15,13 +15,15 @@
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//*
-	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC";
 	$result = mysql_query($test);
 	logToFile("rows in result", mysql_num_rows ($result));
 
+	$humid=(float)mysql_fetch_object($result)->humidity;
+
 	while ($row = (float)mysql_fetch_obejct($result)) {
-		$h = $row[0]->humidity;
-		$t = $row[1]->temperature;
+		$h = $row->humidity;
+		$t = $row->temperature;
 
 		logToFile("hum2, temp2", ($h."-".$t."==".$row));
 	}
@@ -149,7 +151,7 @@
 	}
 
 	function logToFile($string, $value) {
-		$file = "/../debug.log";
+		$file = "./../debug.log";
 		$size = filesize($file);
 		if (fileSize < 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
