@@ -164,7 +164,7 @@
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 			}
 		} else {
-			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
+			$mylogfile = fopen(__DIR__ . $path. $file, "w") or die("Unable to open file!");
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
 		}
