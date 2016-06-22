@@ -11,7 +11,6 @@
 
 	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	logToFile("rows in qh", mysql_num_rows ($qh));
-
 	$dh = mysql_query($qh);
 	logToFile("rows in dh", mysql_num_rows ($dh));
 
@@ -21,13 +20,12 @@
 
 	//*
 	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	logToFile("rows in mysql", mysql_num_rows ($test));
-
-	while ($row = (float)mysql_fetch_obejct($test)) {
+	$result = mysqli_query($conn, $test);
+	while ($row = (float)mysql_fetch_obejct($result)) {
 		$h = $row[0]->humidity;
 		$t = $row[1]->temperature;
 
-		logToFile("hum2, temp2", ($h."-".$t));
+		logToFile("hum2, temp2", ($h."-".$t."==".$row));
 	}
 	//*/
 
