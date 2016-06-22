@@ -151,11 +151,11 @@
 	function logToFile($string, $value) {
 		$file = "/../debug.log";
 		$size = filesize(__DIR__ . $file);
-		if (filesize < 1024) {
+		if ($size < 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
-				fwrite($mylogfile, $curentTime . " size: " . $size ."\n " . __DIR__ . $file ."\n ");
+				fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n ");
 				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
 				fclose($mylogfile);
 
