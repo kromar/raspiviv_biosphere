@@ -17,13 +17,13 @@
 	//*
 	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
 	$result = mysql_query($test);
-	logToFile("rows in result", mysql_num_rows ($result));
+
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
 		 $row = mysql_fetch_row($result);
-		 $t = $row[0];
-		 $h = $row[1];
+		 $t = $row[0]->humidity;
+		 $h = $row[1]->temperature;
 		 logToFile("rows", $h."::".$t);
 
 	} else {
