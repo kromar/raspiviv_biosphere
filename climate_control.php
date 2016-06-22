@@ -16,10 +16,12 @@
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//*
-	$test = "SELECT humidity,temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	logToFile("rows in mysql", mysql_num_rows ($test));
+
 	while ($row = (float)mysql_fetch_obejct($test)) {
-		$h = $row->humidity;
-		$t = $row->temperature;
+		$h = $row[0]->humidity;
+		$t = $row[1]->temperature;
 
 		logToFile("hum2, temp2", ($h."-".$t));
 	}
