@@ -150,7 +150,7 @@
 
 	function logToFile($string, $value) {
 		$file = "../debug.log";
-		$size = filesize(__DIR__ . $file);
+		$size = filesize($file);
 		if (1024 == 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
