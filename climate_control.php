@@ -19,7 +19,14 @@
 	$result = mysql_query($test);
 	logToFile("rows in result", mysql_num_rows ($result));
 	//now we need to get those 2 row values
-
+	if (mysql_num_rows($result) > 0) {
+		// output data of each row
+		while($row = mysqli_fetch_assoc($result)) {
+			logToFile("ht", "humid: " . $row["humidity"]. " - temp: " . $row["temperature"]);
+		}
+	} else {
+		logToFile("0 results");
+	}
 
 	//change threshold depening on time of day
 	$tempThreshold;
