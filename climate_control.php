@@ -15,20 +15,10 @@
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//*
-	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC";
+	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
 	$result = mysql_query($test);
 	logToFile("rows in result", mysql_num_rows ($result));
-
-	$humid=(float)mysql_fetch_object($result)->humidity;
-
-	while ($row = (float)mysql_fetch_obejct($result)) {
-		$h = $row->humidity;
-		$t = $row->temperature;
-
-		logToFile("hum2, temp2", ($h."-".$t."==".$row));
-	}
-	//*/
-
+	//now we need to get those 2 row values
 
 
 	//change threshold depening on time of day
