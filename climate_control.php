@@ -22,9 +22,9 @@
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
 		 $row = mysql_fetch_row($result);
+		 $h = $row->humidity;
 		 $t = $row->temperature;
-		 $h = $row;
-		 $s = $row['humidity'];
+		 $s = $row;
 		 logToFile("rows", $h."::".$t."::".$s);
 
 	} else {
