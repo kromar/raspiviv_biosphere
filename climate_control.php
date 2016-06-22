@@ -149,11 +149,10 @@
 	}
 
 	function logToFile($string, $value) {
-		$path = "../";
-		$file = "debug.log";
-		$size = filesize($path.$file);
+		$file = "../debug.log";
+		$size = filesize($file);
 		if ($size < 1024) {
-			$mylogfile = fopen(__DIR__ . $path . $file, "a") or die("Unable to open file!");
+			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
 				fwrite($mylogfile, $curentTime . " size: " . $size . "bytes\n");
@@ -164,7 +163,7 @@
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 			}
 		} else {
-			$mylogfile = fopen(__DIR__ . $path. $file, "w") or die("Unable to open file!");
+			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
 		}
