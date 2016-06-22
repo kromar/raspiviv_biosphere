@@ -21,9 +21,11 @@
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
-		 while($row = $result->fetch_assoc()) {
-			logToFile("ht", "humid: " . $row["humidity"]. " - temp: " . $row["temperature"]);
-		}
+		 $row = mysql_fetch_row($result);
+		 $t = $row[0];
+		 $h = $row[1];
+		 logToFile("rows", $h."::".$t);
+
 	} else {
 		logToFile("0 results");
 	}
