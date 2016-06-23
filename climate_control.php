@@ -15,18 +15,15 @@
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//*
-	$test = "SELECT date_time, sensor, temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
+	$test = "SELECT date_time, sensor, temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$result = mysql_query($test);
 
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
-		while($row = mysqli_fetch_assoc($result)) {
+		while($row = mysql_fetch_assoc($result)) {
 			logToFile("<b>". "humidity",  $row["humidity"]. "</b>");
 		}
-
-	} else {
-		logToFile("0 results");
 	}
 	//*/
 
@@ -66,9 +63,7 @@
 			bringTheAir($windTime);
 		}
 		//TODO: what to do when temps are high?
-
 	}
-
 	//day time climate
 	else {
 		$humidityThreshold = $humidityDay;
@@ -79,7 +74,6 @@
 			$time = current($rainShedule);
 			letItRain($time);
 		}
-
 
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold or $override==true) {
@@ -95,16 +89,12 @@
 				bringTheAir($windTime);
 			}
 		}
-
-
 		//wind depending on how much humidity is over our limit
 		elseif ($humiditySensor > $humidityThreshold) {
 			$humidityDelta = ($humiditySensor - $humidityThreshold);
 			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
 			bringTheAir($windTime);
 		}
-
-
 		//react to low humidity
 		elseif ($humiditySensor < $humidityMin) {
 			$humidityDelta = ($humidityMin - $humiditySensor);
@@ -115,8 +105,6 @@
 				letItRain($rainTime);
 			}
 		}
-
-
 
 		//override to pressure pump
 		if ($pumpPrimer==true and $override==true) {
@@ -148,6 +136,7 @@
 		logToFile("bring the air", $time."s");
 		exec('/usr/local/bin/gpio write 5 0');
 	}
+
 
 	function logToFile($string, $value) {
 		$file = "/../debug.log";
