@@ -34,22 +34,24 @@
 		while($row = mysql_fetch_assoc($result)) {
 			$tempSensor = $row["temperature"];
 			$humiditySensor = $row["humidity"];
-			logToFile("humidity",  $humiditySensor);
-			logToFile("temperature",  $tempSensor);
 		}
 	}
-
+	logToFile("humidity",  $humiditySensor);
+	logToFile("temperature",  $tempSensor);
 
 
 	//night time climate
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 		$tempThreshold = $tempNight;
 		$humidityThreshold = $humidityNight;
+		$humDelta = ($humiditySensor - $humidityThreshold);
 
 		//wind when humidity is high
 		if ($humiditySensor > $humidityThreshold) {
 			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
 			bringTheAir($windTime);
+		} else {
+			bringTheAir(0);
 		}
 		//TODO: what to do when temps are high?
 	}
@@ -109,21 +111,32 @@
 
 	// functions
 	function letItRain($time) {
-		exec('/usr/local/bin/gpio mode 2 out');
-		exec('/usr/local/bin/gpio write 2 0');
-		sleep($time);
-		logToFile("let it rain", $time."s");
-		exec('/usr/local/bin/gpio write 2 1');
+		if ($time > 0) {
+			exec('/usr/local/bin/gpio mode 2 out');
+			exec('/usr/local/bin/gpio write 2 0');
+			sleep($time);
+			logToFile("let it rain", $time."s");
+			exec('/usr/local/bin/gpio write 2 1');
+		} elseif ($time == 0) {
+			logToFile("let it rain", $time."s");
+			exec('/usr/local/bin/gpio write 2 1');
+		}
 	}
 
 
 	function bringTheAir($time) {
-		exec('/usr/local/bin/gpio mode 5 out');
-		exec('/usr/local/bin/gpio write 5 1');
-		//time till wind stops
-		sleep ($time);
-		logToFile("bring the air", $time."s");
-		exec('/usr/local/bin/gpio write 5 0');
+		if ($time > 0) {
+			exec('/usr/local/bin/gpio mode 5 out');
+			exec('/usr/local/bin/gpio write 5 1');
+			//time till wind stops
+			sleep ($time);
+			logToFile("bring the air", $time."s");
+			exec('/usr/local/bin/gpio write 5 0');
+		} elseif ($time == 0) {
+			logToFile("bring the air", $time."s");
+			exec('/usr/local/bin/gpio write 5 0');
+
+		}
 	}
 
 
