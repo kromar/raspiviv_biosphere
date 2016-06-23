@@ -5,24 +5,18 @@
 	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 	mysql_select_db("datalogger");
 
-	$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	$dt = mysql_query($qt);
-	$tempSensor=(float)mysql_fetch_object($dt)->temperature;
-
-	$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	$dh = mysql_query($qh);
-	$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
-	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
-
 	//*
-	$test = "SELECT date_time, sensor, temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$result = mysql_query($test);
 
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
 		while($row = mysql_fetch_assoc($result)) {
-			logToFile("<b>". "humidity",  $row["humidity"]. "</b>");
+			$tempSensor = $row["temperature"];
+			$humiditySensor = $row["humidity"];
+			logToFile("humidity",  $humiditySensor);
+			logToFile("temperature",  $tempSensor);
 		}
 	}
 	//*/
