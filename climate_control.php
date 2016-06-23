@@ -15,19 +15,20 @@
 	logToFile("hum, temp", ($humiditySensor."-".$tempSensor));
 
 	//*
-	$test = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
+	$test = "SELECT date_time, sensor, temperature, humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
 	$result = mysql_query($test);
 
 	//now we need to get those 2 row values
 	if (mysql_num_rows($result) > 0) {
 		// output data of each row
-		 $row = mysql_fetch_object($result);
-		 $s = $row[1]->humidity;
-		 logToFile("rows", $s);
+		while($row = mysqli_fetch_assoc($result)) {
+			logToFile("<b>". "humidity",  $row["humidity"]. "</b>");
+		}
 
 	} else {
 		logToFile("0 results");
 	}
+	//*/
 
 	//change threshold depening on time of day
 	$tempThreshold;
@@ -155,8 +156,8 @@
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			$curentTime = date('H:i:s');
 			try {
-				fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n ");
-				fwrite($mylogfile, $curentTime . "  " . $string . ": " . $value . "\n");
+				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
+				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value . "</b>" . "\n");
 				fclose($mylogfile);
 
 			} catch (Exception $e) {

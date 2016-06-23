@@ -12,7 +12,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-<title>RasPiViv.com - Vivarium 2</title>
+<title>RasPiViv.com - Vivarium 1</title>
 	<script src="scripts/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -400,20 +400,6 @@
 			"dt":1463300886, "sys":{"message":0.0086, "country":"PA", "sunrise":1463309782, "sunset":1463354956},
 			"id":3712505, "name":"Chepo","cod":200}
 			//*/
-
-			$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-			mysql_select_db("datalogger");
-
-			$qt = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-			$dt = mysql_query($qt);
-			$tempSensor=(float)mysql_fetch_object($dt)->temperature;
-
-			$qh = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-			$dh = mysql_query($qh);
-			$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
-
-			var_dump("<script>console.log('$tempSensor');</script>", false);
-			var_dump("<script>console.log('$humiditySensor');</script>", false);
 
 		?>
 
