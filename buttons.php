@@ -33,7 +33,7 @@
 		     <!-- On/Off button's picture -->
 			 <?php
 				 //this php script generate the first page in function of the gpio's status
-				 $status = array(0, 0, 1, 1, 0, 0, 0);
+				 $status = array(0, 0, 0, 0, 0, 0, 0);
 
 				 for ($i = 0; $i < count($status); $i++) {
 					//set the pin's mode to output and read them
