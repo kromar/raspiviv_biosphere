@@ -9,14 +9,15 @@
 
 			//set the gpio's mode to output
 			system("gpio mode ".$pin." out");
-			//set the gpio to high/low
+			//set the gpio to high/high
 			if ($pin == 2 or $pin == 3) {
-				if ($status == "0" ) {
-					$status = "0";
+				if ($status == "1" ) {
+					$status = "1";
 				} else if ($status == "1" ) {
 					$status = "1";
 				}
 			} else {
+			//set the gpio to high/low
 				if ($status == "0" ) {
 					$status = "1";
 				}
