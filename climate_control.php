@@ -121,30 +121,32 @@
 
 	// functions
 	function letItRain($time, $reason) {
+		$pin = 2;
 		if ($time > 0) {
-			exec('/usr/local/bin/gpio mode 2 out');
-			exec('/usr/local/bin/gpio write 2 1');
+			exec('/usr/local/bin/gpio mode $pin out');
+			exec('/usr/local/bin/gpio write $pin 0');
 			sleep($time);
 			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 2 0');
+			exec('/usr/local/bin/gpio write $pin 1');
 		} elseif ($time == 0) {
 			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 2 0');
+			exec('/usr/local/bin/gpio write $pin 1');
 		}
 	}
 
 
 	function bringTheAir($time, $reason) {
+		$pin = 5;
 		if ($time > 0) {
-			exec('/usr/local/bin/gpio mode 5 out');
-			exec('/usr/local/bin/gpio write 5 1');
+			exec('/usr/local/bin/gpio mode $pin out');
+			exec('/usr/local/bin/gpio write $pin 1');
 			//time till wind stops
 			sleep ($time);
 			logToFile("bring the air", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 5 0');
+			exec('/usr/local/bin/gpio write $pin 0');
 		} elseif ($time == 0) {
 			logToFile("bring the air", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 5 0');
+			exec('/usr/local/bin/gpio write $pin 0');
 
 		}
 	}
