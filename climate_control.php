@@ -54,10 +54,10 @@
 		//wind when humidity is high
 		if ($humiditySensor > $humidityThreshold) {
 			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-			$reason = "humiditySensor".$humiditySensor;
+			$reason = "humidity".$humiditySensor;
 			bringTheAir($windTime, $reason);
 		} else {
-			$reason = "humiditySensor".$humiditySensor;
+			$reason = "humidity".$humiditySensor;
 			bringTheAir(0, $reason);
 		}
 		//TODO: what to do when temps are high?
@@ -78,11 +78,11 @@
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
-				$reason = "tempSensor".$tempSensor;
+				$reason = "temperature".$tempSensor;
 				letItRain($rainTime, $reason);
 				bringTheAir($windTime, $reason);		//TODO: define windtime
 			} else {
-				$reason = "tempSensor".$tempSensor;
+				$reason = "temperature".$tempSensor;
 				letItRain($rainTime,  $reason);
 				bringTheAir($windTime, $reason);
 			}
@@ -90,7 +90,7 @@
 		//wind on high humidity
 			$humidityDelta = ($humiditySensor - $humidityThreshold);
 			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
-			$reason = "humiditySensor: ".$humiditySensor;
+			$reason = "humidity: ".$humiditySensor;
 			bringTheAir($windTime, $reason);
 
 		} elseif ($humiditySensor < $humidityMin) {
@@ -98,10 +98,10 @@
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) {
 				$humidityDelta = $rainTime;
-				$reason = "humiditySensor: ".$humiditySensor;
+				$reason = "humidity: ".$humiditySensor;
 				letItRain($humidityDelta, $reason);
 			} else {
-				$reason = "humiditySensor: ".$humiditySensor;;
+				$reason = "humidity: ".$humiditySensor;
 				letItRain($rainTime, $reason);
 			}
 		}
