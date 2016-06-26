@@ -70,7 +70,7 @@
 		}
 
 		//react to high temperatures
-		if (($tempSensor > $tempThreshold) or $override==true) {
+		if ($tempSensor > $tempThreshold or $override==true) {
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
@@ -144,8 +144,9 @@
 		$file = "/../debug.log";
 		$size = filesize(__DIR__ . $file);
 		$curentTime = date('H:i:s');
-		if ($size < 1024) {
+		if ($size < 4096) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
+			$curentTime = date('H:i:s');
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
 				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value . "</b>" . "\n");
@@ -155,6 +156,7 @@
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 			}
 		} else {
+			$curentTime = date('H:i:s');
 			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
