@@ -30,10 +30,16 @@
 	$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$result = mysql_query($sql);
 	if (mysql_num_rows($result) > 0) {
-		// output data of each row
 		while($row = mysql_fetch_assoc($result)) {
-			$tempSensor = $row["temperature"];
-			$humiditySensor = $row["humidity"];
+			if ($row["temperature"] <= 50) {
+				$tempSensor = $row["temperature"];
+			} else {
+				logToFile("high temperature reading", $row["temperature"] );
+			}
+			if ($row["humidity"] <= 100) {
+				$humiditySensor = $row["humidity"];
+			} else {
+				logToFile("high humidity reading", $row["humidity"] );
 		}
 	}
 	logToFile("humidity",  $humiditySensor);
@@ -64,7 +70,7 @@
 		}
 
 		//react to high temperatures
-		if (($tempSensor > $tempThreshold and $tempSensor <= 60) or $override==true) {
+		if (($tempSensor > $tempThreshold) or $override==true) {
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
@@ -75,7 +81,7 @@
 				letItRain($rainTime);
 				bringTheAir($windTime);
 			}
-		} elseif ($humiditySensor > $humidityThreshold and $humiditySensor <= 100) {
+		} elseif ($humiditySensor > $humidityThreshold) {
 		//wind depending on how much humidity is over our limit
 			$humidityDelta = ($humiditySensor - $humidityThreshold);
 			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
