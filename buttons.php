@@ -41,7 +41,7 @@
 					exec ("gpio read ".$i, $status[$i], $return );
 
 					//inverse pins 2 & 3 because they have pull high on boot
-					if ($status[2] or $status[3]) {
+					if ($status[$i] == 2 or $status[$i] == 3) {
 						// if off
 						if ($status[$i][0] == 1 ) {
 							echo ("<img id='button_".$i."' src='data/img/red/red_".$i.".png' alt='off'/><br>");
