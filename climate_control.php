@@ -4,7 +4,7 @@
 
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
-	$tempDay = 20.0;		// 26.5
+	$tempDay = 30.0;		// 26.5
 
 	$humidityThreshold;
 	$humidityMin = 70.0;
@@ -73,7 +73,7 @@
 		}
 
 		//react to high temperatures
-		if ($tempSensor > $tempThreshold or $override==true) {
+		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
@@ -111,8 +111,7 @@
 			$i = 0;
 			while($i < 30) {
 				$reason = "override function";
-				letItRain(2, $reason);
-				sleep(10)
+				letItRain($delta, $reason);
 				$i++;
 			}
 		}
