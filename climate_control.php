@@ -122,6 +122,7 @@
 	// functions
 	function letItRain($time, $reason) {
 		$pin = 2;
+		/*
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode $pin out');
 			exec('/usr/local/bin/gpio write $pin 0');
@@ -132,6 +133,7 @@
 			logToFile("let it rain", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin 1');
 		}
+		//*/
 	}
 
 

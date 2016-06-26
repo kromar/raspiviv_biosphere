@@ -43,11 +43,11 @@
 					//inverse pins 2 & 3 because they have pull high on boot
 					if ($status[$i] == 2 or $status[$i] == 3) {
 						// if off
-						if ($status[$i][0] == 0 ) {
+						if ($status[$i][0] == 1 ) {
 							echo ("<img id='button_".$i."' src='data/img/red/red_".$i.".png' alt='off'/><br>");
 						}
 						// if on
-						if ($status[$i][0] == 1 ) {
+						if ($status[$i][0] == 0 ) {
 							echo ("<img id='button_".$i."' src='data/img/green/green_".$i.".png' alt='on'/><br>");
 						}
 					} else {
