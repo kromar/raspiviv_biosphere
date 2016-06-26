@@ -123,13 +123,13 @@
 	function letItRain($time, $reason) {
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode 2 out');
-			exec('/usr/local/bin/gpio write 2 0');
+			exec('/usr/local/bin/gpio write 2 1');
 			sleep($time);
 			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 2 1');
+			exec('/usr/local/bin/gpio write 2 0');
 		} elseif ($time == 0) {
 			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write 2 1');
+			exec('/usr/local/bin/gpio write 2 0');
 		}
 	}
 
