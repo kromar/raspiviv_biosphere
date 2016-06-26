@@ -82,7 +82,7 @@ button_2.addEventListener("click", function () {
 	//if red
 	if ( button_2.alt === "off" ) {
 		//use the function
-		var new_status = change_pin ( 2, 1);
+		var new_status = change_pin ( 2, 0);
 		if (new_status !== "fail") { 
 			button_2.alt = "on"
 			button_2.src = "data/img/green/green_2.png"; 
@@ -92,7 +92,7 @@ button_2.addEventListener("click", function () {
 	//if green
 	if ( button_2.alt === "on" ) {
 		//use the function
-		var new_status = change_pin ( 2, 0);
+		var new_status = change_pin ( 2, 1);
 		if (new_status !== "fail") { 
 			button_2.alt = "off"
 			button_2.src = "data/img/red/red_2.png"; 
@@ -105,7 +105,7 @@ button_3.addEventListener("click", function () {
 	//if red
 	if ( button_3.alt === "off" ) {
 		//use the function
-		var new_status = change_pin ( 3, 1);
+		var new_status = change_pin ( 3, 0);
 		if (new_status !== "fail") { 
 			button_3.alt = "on"
 			button_3.src = "data/img/green/green_3.png"; 
@@ -115,7 +115,7 @@ button_3.addEventListener("click", function () {
 	//if green
 	if ( button_3.alt === "on" ) {
 		//use the function
-		var new_status = change_pin ( 3, 0);
+		var new_status = change_pin ( 3, 1);
 		if (new_status !== "fail") { 
 			button_3.alt = "off"
 			button_3.src = "data/img/red/red_3.png"; 
