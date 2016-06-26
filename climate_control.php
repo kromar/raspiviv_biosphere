@@ -54,12 +54,9 @@
 			bringTheAir(0);
 		}
 		//TODO: what to do when temps are high?
-	}
-	//day time climate
-	else {
+	} else { //day time climate
 		$humidityThreshold = $humidityDay;
 		$tempThreshold = $tempDay;
-
 		//trigger rain shedules
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
@@ -67,9 +64,8 @@
 		}
 
 		//react to high temperatures
-		if ($tempSensor > $tempThreshold or $override==true) {
+		if (($tempSensor > $tempThreshold and $tempSensor <= 60) or $override==true) {
 			$tempDelta = ($tempSensor - $tempThreshold);
-
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
@@ -79,15 +75,13 @@
 				letItRain($rainTime);
 				bringTheAir($windTime);
 			}
-		}
+		} elseif ($humiditySensor > $humidityThreshold and $humiditySensor <= 100) {
 		//wind depending on how much humidity is over our limit
-		elseif ($humiditySensor > $humidityThreshold) {
 			$humidityDelta = ($humiditySensor - $humidityThreshold);
 			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
 			bringTheAir($windTime);
-		}
+		} elseif ($humiditySensor < $humidityMin) {
 		//react to low humidity
-		elseif ($humiditySensor < $humidityMin) {
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) {
 				$humidityDelta = $rainTime;
@@ -143,9 +137,9 @@
 	function logToFile($string, $value) {
 		$file = "/../debug.log";
 		$size = filesize(__DIR__ . $file);
+		$curentTime = date('H:i:s');
 		if ($size < 1024) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
-			$curentTime = date('H:i:s');
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
 				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value . "</b>" . "\n");
