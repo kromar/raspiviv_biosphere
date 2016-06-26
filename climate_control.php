@@ -4,14 +4,14 @@
 
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
-	$tempDay = 30.0;		// 26.5
+	$tempDay = 20.0;		// 26.5
 
 	$humidityThreshold;
 	$humidityMin = 70.0;
 	$humidityNight = 85.0;
 	$humidityDay = 95.0;
 
-	$override = true;		// override temperature and rain every minute
+	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
 
