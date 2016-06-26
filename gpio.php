@@ -12,8 +12,8 @@
 			//set the gpio to high/high
 			if ($pin == 2 or $pin == 3) {
 				if ($status == "1" ) {
-					$status = "1";
-				} else if ($status == "1" ) {
+					$status = "0";
+				} else if ($status == "0" ) {
 					$status = "1";
 				}
 			} else {
