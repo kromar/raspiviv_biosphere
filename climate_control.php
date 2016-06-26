@@ -150,7 +150,7 @@
 	}
 
 
-	function logToFile($string, $value) {
+	function logToFile($string, $value, $reason) {
 		$file = "/../debug.log";
 		$size = filesize(__DIR__ . $file);
 		$curentTime = date('H:i:s');
@@ -158,7 +158,7 @@
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
-				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value . "</b>" . "\n");
+				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value ." ". $reason . "</b>" . "\n");
 				fclose($mylogfile);
 
 			} catch (Exception $e) {
