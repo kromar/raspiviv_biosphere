@@ -31,15 +31,14 @@
 	$result = mysql_query($sql);
 	if (mysql_num_rows($result) > 0) {
 		while($row = mysql_fetch_assoc($result)) {
-			if ($row["temperature"] <= 50) {
-				$tempSensor = $row["temperature"];
-			} else {
+			$tempSensor = $row["temperature"];
+			$humiditySensor = $row["humidity"];
+			if ($row["temperature"] > 50) {
 				logToFile("high temperature reading", $row["temperature"] );
 			}
-			if ($row["humidity"] <= 100) {
-				$humiditySensor = $row["humidity"];
-			} else {
+			if ($row["humidity"] > 100) {
 				logToFile("high humidity reading", $row["humidity"] );
+			}
 		}
 	}
 	logToFile("humidity",  $humiditySensor);
@@ -146,7 +145,6 @@
 		$curentTime = date('H:i:s');
 		if ($size < 4096) {
 			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
-			$curentTime = date('H:i:s');
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
 				fwrite($mylogfile, "<b>". $curentTime . "  " . $string . ": " . $value . "</b>" . "\n");
@@ -156,7 +154,6 @@
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 			}
 		} else {
-			$curentTime = date('H:i:s');
 			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
