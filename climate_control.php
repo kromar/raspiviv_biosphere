@@ -54,45 +54,55 @@
 		//wind when humidity is high
 		if ($humiditySensor > $humidityThreshold) {
 			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-			bringTheAir($windTime);
+			$reason = "humiditySensor".$humiditySensor;
+			bringTheAir($windTime, $reason);
 		} else {
-			bringTheAir(0);
+			$reason = "humiditySensor".$humiditySensor;
+			bringTheAir(0, $reason);
 		}
 		//TODO: what to do when temps are high?
+
 	} else { //day time climate
 		$humidityThreshold = $humidityDay;
 		$tempThreshold = $tempDay;
 		//trigger rain shedules
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
-			letItRain($time);
+			$reason = "rain shedule";
+			letItRain($time, $reason);
 		}
 
 		//react to high temperatures
-		if ($tempSensor > $tempThreshold or $override==true) {
+		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
-				letItRain($rainTime);
-				bringTheAir($windTime);		//TODO: define windtime
+				$reason = "tempSensor".$tempSensor;
+				letItRain($rainTime, $reason);
+				bringTheAir($windTime, $reason);		//TODO: define windtime
 			} else {
-				letItRain($rainTime);
-				bringTheAir($windTime);
+				$reason = "tempSensor".$tempSensor;
+				letItRain($rainTime,  $reason);
+				bringTheAir($windTime, $reason);
 			}
 		} elseif ($humiditySensor > $humidityThreshold) {
-		//wind depending on how much humidity is over our limit
+		//wind on high humidity
 			$humidityDelta = ($humiditySensor - $humidityThreshold);
 			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
-			bringTheAir($windTime);
+			$reason = "humiditySensor: ".$humiditySensor;
+			bringTheAir($windTime, $reason);
+
 		} elseif ($humiditySensor < $humidityMin) {
 		//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) {
 				$humidityDelta = $rainTime;
-				letItRain($humidityDelta);
+				$reason = "humiditySensor: ".$humiditySensor;
+				letItRain($humidityDelta, $reason);
 			} else {
-				letItRain($rainTime);
+				$reason = "humiditySensor: ".$humiditySensor;;
+				letItRain($rainTime, $reason);
 			}
 		}
 
@@ -100,7 +110,8 @@
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
 			while($i < 30) {
-				letItRain($delta);
+				$reason = "override function";
+				letItRain($delta, $reason);
 				$i++;
 			}
 		}
@@ -109,30 +120,30 @@
 
 
 	// functions
-	function letItRain($time) {
+	function letItRain($time, $reason) {
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode 2 out');
 			exec('/usr/local/bin/gpio write 2 0');
 			sleep($time);
-			logToFile("let it rain", $time."s");
+			logToFile("let it rain", $time."s", $reason);
 			exec('/usr/local/bin/gpio write 2 1');
 		} elseif ($time == 0) {
-			logToFile("let it rain", $time."s");
+			logToFile("let it rain", $time."s", $reason);
 			exec('/usr/local/bin/gpio write 2 1');
 		}
 	}
 
 
-	function bringTheAir($time) {
+	function bringTheAir($time, $reason) {
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode 5 out');
 			exec('/usr/local/bin/gpio write 5 1');
 			//time till wind stops
 			sleep ($time);
-			logToFile("bring the air", $time."s");
+			logToFile("bring the air", $time."s", $reason);
 			exec('/usr/local/bin/gpio write 5 0');
 		} elseif ($time == 0) {
-			logToFile("bring the air", $time."s");
+			logToFile("bring the air", $time."s", $reason);
 			exec('/usr/local/bin/gpio write 5 0');
 
 		}
