@@ -11,7 +11,7 @@
 	$humidityNight = 85.0;
 	$humidityDay = 95.0;
 
-	$override = false;		// override temperature and rain every minute
+	$override = true;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
 
@@ -73,7 +73,7 @@
 		}
 
 		//react to high temperatures
-		if ($tempSensor > $tempThreshold) {
+		if ($tempSensor > $tempThreshold or $override==true) {
 			$tempDelta = ($tempSensor - $tempThreshold);
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
@@ -111,7 +111,8 @@
 			$i = 0;
 			while($i < 30) {
 				$reason = "override function";
-				letItRain($delta, $reason);
+				letItRain(2, $reason);
+				sleep(10)
 				$i++;
 			}
 		}
