@@ -1,6 +1,7 @@
 ﻿<!-- This page is requested by the JavaScript, it updates the pin's status and then print it -->
 <?php
 	include('log.php');
+
 	//Getting and using values
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
 		$pin = strip_tags($_GET["pin"]);
@@ -14,11 +15,11 @@
 			//set the gpio to high/low
 			if ($status == "0" ) {
 				$status = "1";
-				logToFile("pin assignment", $pin, $status);
+				//logToFile("pin assignment", $pin, $status);
 			}
 			else if ($status == "1" ) {
 				$status = "0";
-				logToFile("pin assignment", $pin, $status);
+				//logToFile("pin assignment", $pin, $status);
 			}
 			system("gpio write ".$pin." ".$status );
 			//reading pin's status
