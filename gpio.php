@@ -21,7 +21,7 @@
 			//reading pin's status
 			exec ("gpio read ".$pin, $status, $return );
 			//printing it
-			logToFile( $status[0] );
+			logToFile( "status", $pin, $status[0] );
 		}
 		else { logToFile("fail"); }
 	} //print fail if cannot use values
