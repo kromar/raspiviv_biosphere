@@ -11,8 +11,8 @@
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	$phpdate = strtotime( $mysqldate );
-	$mysqldate = date( 'Y-m-d H:i:s', $phpdate );
+	//$phpdate = strtotime( $mysqldate );
+	//$mysqldate = date( 'Y-m-d H:i:s', $phpdate );
 
 	$sql = "SELECT date_time, sensor, temperature, humidity FROM datalogger ORDER BY date_time DESC LIMIT 1";
 	$result = mysqli_query($conn, $sql);
@@ -27,4 +27,4 @@
 	}
 
 	mysqli_close($conn);
-?> 
+?>
