@@ -6,20 +6,18 @@
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
 		$pin = strip_tags($_GET["pin"]);
 		$status = strip_tags($_GET["status"]);
+		logToFile("pin",  $pin, $status);
+
 		//Testing if values are numbers
 		if ( (is_numeric($pin)) && (is_numeric($status)) && ($pin <= 7) && ($pin >= 0) && ($status == "0") || ($status == "1") ) {
-
 			//set the gpio's mode to output
 			system("gpio mode ".$pin." out");
-
 			//set the gpio to high/low
 			if ($status == "0" ) {
 				$status = "1";
-				//logToFile("pin assignment", $pin, $status);
 			}
 			else if ($status == "1" ) {
 				$status = "0";
-				//logToFile("pin assignment", $pin, $status);
 			}
 			system("gpio write ".$pin." ".$status );
 			//reading pin's status
