@@ -11,6 +11,7 @@
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
+	//how is this supposed to work? chicken-egg
 	//$phpdate = strtotime( $mysqldate );
 	//$mysqldate = date( 'Y-m-d H:i:s', $phpdate );
 
