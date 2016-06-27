@@ -122,25 +122,13 @@
 
 
 	function letItRain($time, $reason) {
-		timerSensor(2, $time, true, $reason);
-
-		/*
-		$pin = 2;
-		if ($time > 0) {
-			exec('/usr/local/bin/gpio mode $pin out');
-			exec('/usr/local/bin/gpio write $pin 0');
-			sleep($time);
-			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write $pin 1');
-		} elseif ($time == 0) {
-			logToFile("let it rain", $time."s", $reason);
-			exec('/usr/local/bin/gpio write $pin 1');
-		}
-		//*/
+		timerSensor($pin = 2, $time, $inverted = true, $reason);
 	}
 
 
 	function bringTheAir($time, $reason) {
+		timerSensor($pin = 5, $time, $inverted = false, $reason);
+		/*
 		$pin = 5;
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode $pin out');
@@ -154,6 +142,7 @@
 			exec('/usr/local/bin/gpio write $pin 0');
 
 		}
+		//*/
 	}
 
 

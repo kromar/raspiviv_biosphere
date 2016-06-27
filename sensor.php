@@ -43,10 +43,10 @@
 			exec('/usr/local/bin/gpio mode $pin out');
 			exec('/usr/local/bin/gpio write $pin $low');
 			sleep($time);
-			logToFile("let it rain", $time."s", $reason);
+			logToFile("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
 		} elseif ($time == 0) {
-			logToFile("let it rain", $time."s", $reason);
+			logToFile("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
 		}
 	}
