@@ -6,7 +6,7 @@
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
 		$pin = strip_tags($_GET["pin"]);
 		$status = strip_tags($_GET["status"]);
-		logToFile("pin",  $pin, $status);
+		logToFile("pin");
 
 		//Testing if values are numbers
 		if ( (is_numeric($pin)) && (is_numeric($status)) && ($pin <= 7) && ($pin >= 0) && ($status == "0") || ($status == "1") ) {
