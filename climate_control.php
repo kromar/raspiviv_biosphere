@@ -1,7 +1,7 @@
 
 <?php
 	//var_dump($argv); //variables from climate_core.php
-	include('log.php');
+	include 'log.php';
 
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
