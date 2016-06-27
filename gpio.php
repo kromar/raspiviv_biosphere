@@ -1,6 +1,6 @@
 ﻿<!-- This page is requested by the JavaScript, it updates the pin's status and then print it -->
 <?php
-	include('log.php');
+	require_once('log.php');
 
 	//Getting and using values
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
