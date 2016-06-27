@@ -25,7 +25,7 @@
 
 
 	//change pull for a given amount of time and then switch back to previous pull state
-	include 'log.php';
+	include_once 'log.php';
 	function timerSensor($pin, $time, $inverted, $reason) {
 		$inverted;
 		$high;
