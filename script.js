@@ -193,26 +193,5 @@ button_6.addEventListener("click", function () {
 		}
 } );
 	
-button_7.addEventListener("click", function () { 
-	//if red
-	if ( button_7.alt === "off" ) {
-		//use the function
-		var new_status = change_pin ( 7, 0);
-		if (new_status !== "fail") { 
-			button_7.alt = "on"
-			button_7.src = "data/img/green/green_7.png"; 
-			return 0;
-			}
-		}
-	//if green
-	if ( button_7.alt === "on" ) {
-		//use the function
-		var new_status = change_pin ( 7, 1);
-		if (new_status !== "fail") { 
-			button_7.alt = "off"
-			button_7.src = "data/img/red/red_7.png"; 
-			return 0;
-			}
-		}
-} );
+
 	
