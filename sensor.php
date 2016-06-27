@@ -25,8 +25,9 @@
 
 
 	//change pull for a given amount of time and then switch back to previous pull state
-	include_once 'log.php';
+	/*
 	function timerSensor($pin, $time, $inverted, $reason) {
+		include_once 'log.php';
 		$inverted;
 		$high;
 		$low;
@@ -50,5 +51,6 @@
 			exec('/usr/local/bin/gpio write $pin $high');
 		}
 	}
+	//*/
 ?>
 

@@ -1,6 +1,6 @@
 ﻿<!-- This page is requested by the JavaScript, it updates the pin's status and then print it -->
 <?php
-	include_once 'log.php';
+	//include_once 'log.php';
 	//*
 	//Getting and using values
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
@@ -25,10 +25,10 @@
 			//reading pin's status
 			exec ("gpio read ".$pin, $status, $return );
 			//printing it
-			logToFile( "status", $pin, $status[0] );
+			//logToFile( "status", $pin, $status[0] );
 		}
-		else { logToFile("fail"); }
+		else { //logToFile("fail"); }
 	} //print fail if cannot use values
-	else { logToFile("fail"); }
+	else { //logToFile("fail"); }
 	//*/
 ?>

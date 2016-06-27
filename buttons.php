@@ -32,7 +32,7 @@
 		<div class="container">
 		     <!-- On/Off button's picture -->
 			 <?php
-		 	 	include_once 'log.php';
+		 	 	//include_once 'log.php';
 				 //this php script generate the first page in function of the gpio's status
 				 $status = array(0, 0, 0, 0, 0, 0, 0);
 

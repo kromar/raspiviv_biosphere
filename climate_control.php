@@ -2,7 +2,7 @@
 <?php
 	//var_dump($argv); //variables from climate_core.php
 	include_once 'log.php';
-	include_once 'sensor.php';
+	//include_once 'sensor.php';
 
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
@@ -123,7 +123,6 @@
 
 	function letItRain($time, $reason) {
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
-
 		$pin = 2;
 		if ($time > 0) {
 			exec('/usr/local/bin/gpio mode $pin out');
@@ -153,9 +152,6 @@
 
 		}
 	}
-
-
-
 
 	mysql_query($sql);
 	mysql_close($db);
