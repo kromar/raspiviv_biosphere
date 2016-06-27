@@ -10,14 +10,15 @@
 
 			//set the gpio's mode to output
 			system("gpio mode ".$pin." out");
-			logToFile("pin assignment", $pin);
 
 			//set the gpio to high/low
 			if ($status == "0" ) {
 				$status = "1";
+				logToFile("pin assignment", $pin, $status);
 			}
 			else if ($status == "1" ) {
 				$status = "0";
+				logToFile("pin assignment", $pin, $status);
 			}
 			system("gpio write ".$pin." ".$status );
 			//reading pin's status
