@@ -1,13 +1,11 @@
 ﻿<!-- This page is requested by the JavaScript, it updates the pin's status and then print it -->
 <?php
-	require_once('log.php');
+	include('log.php');
 
 	//Getting and using values
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
 		$pin = strip_tags($_GET["pin"]);
 		$status = strip_tags($_GET["status"]);
-		logToFile("pin");
-
 		//Testing if values are numbers
 		if ( (is_numeric($pin)) && (is_numeric($status)) && ($pin <= 7) && ($pin >= 0) && ($status == "0") || ($status == "1") ) {
 			//set the gpio's mode to output
@@ -23,9 +21,9 @@
 			//reading pin's status
 			exec ("gpio read ".$pin, $status, $return );
 			//printing it
-			echo ( $status[0] );
+			logToFile( $status[0] );
 		}
-		else { echo ("fail"); }
+		else { logToFile("fail"); }
 	} //print fail if cannot use values
-	else { echo ("fail"); }
+	else { logToFile("fail"); }
 ?>
