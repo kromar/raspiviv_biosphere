@@ -10,7 +10,7 @@
 		//Testing if values are numbers
 		if ( (is_numeric($pin)) && (is_numeric($status)) && ($pin <= 7) && ($pin >= 0) && ($status == "0") || ($status == "1") ) {
 
-			//logToFile("testing trigger", 1,1);
+			logToFile("testing trigger", 1,1);
 
 			//set the gpio's mode to output
 			system("gpio mode ".$pin." out");
