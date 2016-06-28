@@ -1,6 +1,6 @@
 <?php
 	function logToFile($string, $value, $reason) {
-		$file = "/../debug.log";
+		$file = "../debug.log";
 		$size = filesize(__DIR__ . $file);
 		$curentTime = date('H:i:s');
 		if ($size < 4096) {
