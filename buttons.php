@@ -32,15 +32,15 @@
 		<div class="container">
 		     <!-- On/Off button's picture -->
 			 <?php
-		 	 	//include_once 'log.php';
+		 	 	 include_once "log.php";
 				 //this php script generate the first page in function of the gpio's status
 				 $status = array(0, 0, 0, 0, 0, 0, 0);
 
 				 for ($pin = 0; $pin < count($status); $pin++) {
 					//set the pin's mode to output and read them
-					system("gpio mode ".$pin." out");
+					system("gpio mode $pin out");
 					exec ("gpio read ".$pin, $status[$pin], $return );
-					//logToFile("gpio read", $pin, $status);
+					logToFile("gpio read", $pin, $status);
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
