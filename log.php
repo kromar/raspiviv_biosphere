@@ -4,7 +4,7 @@
 		$size = filesize(__DIR__ ."/". $file);
 		$curentTime = date('H:i:s');
 		if ($size < 4096) {
-			$mylogfile = fopen(__DIR__ . $file, "a") or die("Unable to open file!");
+			$mylogfile = fopen($file, "a") or die("Unable to open file!");
 			try {
 				fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
 				fwrite($mylogfile, "<b> $curentTime $string : $value : $reason </b> \n");
