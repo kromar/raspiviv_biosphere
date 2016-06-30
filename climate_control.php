@@ -43,8 +43,9 @@
 			}
 		}
 	}
-	logToFile("humidity",  $humiditySensor);
-	logToFile("temperature",  $tempSensor);
+	echo $humiditySensor;
+	logToFile("humidity",  $humiditySensor, "");
+	logToFile("temperature",  $tempSensor, "");
 
 
 	//night time climate
