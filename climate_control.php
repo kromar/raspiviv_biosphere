@@ -31,18 +31,21 @@
 	mysql_select_db("datalogger");
 	$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$result = mysql_query($sql);
+
 	if (mysql_num_rows($result) > 0) {
 		while($row = mysql_fetch_assoc($result)) {
 			$tempSensor = $row["temperature"];
 			$humiditySensor = $row["humidity"];
-			if ($row["temperature"] > 50) {
-				logToFile("high temperature reading", $row["temperature"] );
+
+			if ($tempSensor > 50) {
+				logToFile("high temperature reading", $tempSensor, "" );
 			}
-			if ($row["humidity"] > 100) {
-				logToFile("high humidity reading", $row["humidity"] );
+			if ($humiditySensor > 100) {
+				logToFile("high humidity reading", $humiditySensor, "" );
 			}
 		}
 	}
+
 	echo $humiditySensor;
 	logToFile("humidity",  $humiditySensor, "");
 	logToFile("temperature",  $tempSensor, "");

@@ -213,6 +213,8 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+
+				mysqli_close($q);
 			?>
 		]);
 
@@ -268,6 +270,7 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+				mysqli_close($q);
 			?>
 		]);
 
