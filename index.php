@@ -305,7 +305,7 @@
 			direction: '-1' },
 		};
 
-		var chart = new google.visualization.LineChart(document.getElementById('graph_room_history_div'));
+		var chart = new google.charts.Line(document.getElementById('graph_room_history_div'));
 
 		chart.draw(data, options);
 		}
