@@ -18,7 +18,6 @@ if(isset($_POST['submitted']))
     <meta name="viewport" content="width=device-width, initial-scale=1"><meta>
     <meta name="description" content=""><meta>
     <meta name="author" content=""><meta>
-	<div w3-include-html="/include/favicon.html"></div>
 
     <title>RasPiViv - Sign in</title>
 	<script src="scripts/jquery-1.12.3.min.js"></script>

@@ -11,7 +11,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <html>
 	<head>
-		<div w3-include-html="./include/favicon.html"></div>
 		<title>RasPiViv.com - Buttons</title>
 		<script src="scripts/jquery-1.12.3.min.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
