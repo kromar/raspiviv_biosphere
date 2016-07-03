@@ -1,4 +1,3 @@
-<HTML>
 <?PHP
 	require_once("./include/membersite_config.php");
 
@@ -12,6 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
 	<title>RasPiViv.com - Home</title>
+
 	<script src="scripts/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
