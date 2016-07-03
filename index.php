@@ -11,7 +11,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-	<div w3-include-html="/include/favicon.html"></div>
 	<title>RasPiViv.com - Home</title>
 	<script src="scripts/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -99,7 +98,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomtemp_div'));
 
-			chart.draw(data, options);
+			chart.draw(data, google.charts.Line.convertOptions(options));
 		}
 	</script>
 
@@ -149,7 +148,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomhum_div'));
 
-			chart.draw(data, options);
+			chart.draw(data, google.charts.Line.convertOptions(options));
 		}
     </script>
 
@@ -201,7 +200,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('viv1temp_div'));
 
-			chart.draw(data, options);
+			chart.draw(data, google.charts.Line.convertOptions(options));
 		}
     </script>
 
@@ -253,7 +252,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('viv1hum_div'));
 
-			chart.draw(data, options);
+			chart.draw(data, google.charts.Line.convertOptions(options));
 		}
     </script>
 
@@ -308,7 +307,7 @@
 
 		var chart = new google.visualization.LineChart(document.getElementById('graph_room_history_div'));
 
-		chart.draw(data, options);
+		chart.draw(data, google.charts.Line.convertOptions(options));
 		}
 	</script>
 
@@ -362,7 +361,7 @@
 
 		var chart = new google.visualization.LineChart(document.getElementById('graph_tank1_history_div'));
 
-		chart.draw(data, options);
+		chart.draw(data, google.charts.Line.convertOptions(options));
 		}
 	</script>
 
