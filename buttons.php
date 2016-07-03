@@ -11,13 +11,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <html>
 	<head>
-	<title>RasPiViv.com - Buttons</title>
+		<div w3-include-html="/include/favicon.html"></div>
+		<title>RasPiViv.com - Buttons</title>
 		<script src="scripts/jquery-1.12.3.min.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	   	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></script>
+	   	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	</head>
 
