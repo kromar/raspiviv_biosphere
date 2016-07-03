@@ -20,10 +20,10 @@ if(isset($_POST['submitted']))
     <meta name="author" content=""/>
 
     <title>RasPiViv - Sign in</title>
-	<script src="scripts/jquery-1.12.3.min.js"</script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"</script>
-    <script type='text/javascript' src='scripts/gen_validatorv31.js'</script>
+	<script src="scripts/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
 
     <link href="/css/signin.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
