@@ -98,7 +98,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomtemp_div'));
 
-			chart.draw(data, google.charts.Line.convertOptions(options));
+			chart.draw(data, options);
 		}
 	</script>
 
@@ -148,7 +148,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('roomhum_div'));
 
-			chart.draw(data, google.charts.Line.convertOptions(options));
+			chart.draw(data, options);
 		}
     </script>
 
@@ -200,7 +200,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('viv1temp_div'));
 
-			chart.draw(data, google.charts.Line.convertOptions(options));
+			chart.draw(data, options);
 		}
     </script>
 
@@ -252,7 +252,7 @@
 
 			var chart = new google.visualization.Gauge(document.getElementById('viv1hum_div'));
 
-			chart.draw(data, google.charts.Line.convertOptions(options));
+			chart.draw(data, options);
 		}
     </script>
 
@@ -307,7 +307,7 @@
 
 		var chart = new google.visualization.LineChart(document.getElementById('graph_room_history_div'));
 
-		chart.draw(data, google.charts.Line.convertOptions(options));
+		chart.draw(data, options);
 		}
 	</script>
 
@@ -361,7 +361,7 @@
 
 		var chart = new google.visualization.LineChart(document.getElementById('graph_tank1_history_div'));
 
-		chart.draw(data, google.charts.Line.convertOptions(options));
+		chart.draw(data, options);
 		}
 	</script>
 
