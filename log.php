@@ -1,7 +1,7 @@
 <?php
-	echo __DIR__ . "./../../log/raspiviv.log";
+	echo __DIR__ . "/../../log/raspiviv.log";
 	function logToFile($string, $value, $reason) {
-		$file = "./../../log/raspiviv.log";
+		$file = "/../../log/raspiviv.log";
 		$size = filesize($file);
 		$curentTime = date('H:i:s');
 		if ($size < 10*1024*1000) {
