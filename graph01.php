@@ -1,4 +1,3 @@
-<HTML>
 <?PHP
 	require_once("./include/membersite_config.php");
 
