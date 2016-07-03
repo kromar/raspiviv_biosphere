@@ -8,7 +8,7 @@ $fgmembersite->LogOut();
 <head>
       <meta http-equiv='Content-Type' content='text/html; charset=utf-8'></meta>
       <title>Login</title>
-      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css"></link>
+      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
       <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
 </head>
 <body>
