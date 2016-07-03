@@ -336,6 +336,7 @@
   		<input type="button" value="Slow down" onclick="changeTemp(-1)" />
 
 		</div>
+	</div>
 
 	    <hr>
 	    <div class="container">
