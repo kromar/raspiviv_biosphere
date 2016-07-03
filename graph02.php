@@ -12,9 +12,9 @@ if(!$fgmembersite->CheckLogin())
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
 <title>RasPiViv.com - Vivarium 2</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
@@ -53,7 +53,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($conn);
-?> 
+?>
 
 ],
 
@@ -133,23 +133,23 @@ mysqli_close($conn);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['TIME', 'HUMIDITY', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+<?php
+$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+mysql_select_db("datalogger");
 
-$q=   "select * from datalogger "; 
-$q=$q."where sensor = 9 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 60"; 
-$ds=mysql_query($q);  
+$q=   "select * from datalogger ";
+$q=$q."where sensor = 9 ";
+$q=$q."order by date_time desc ";
+$q=$q."limit 60";
+$ds=mysql_query($q);
 
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->humidity." ],"; 
+while($r = mysql_fetch_object($ds))
+{
+	echo "['".$r->date_time."', ";
+	echo " ".$r->humidity." ],";
 
-} 
-?> 
+}
+?>
         ]);
 
 	var options = {
@@ -173,23 +173,23 @@ while($r = mysql_fetch_object($ds))
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['TIME', 'TEMP', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+<?php
+$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+mysql_select_db("datalogger");
 
-$q=   "select * from datalogger "; 
-$q=$q."where sensor = 9 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 60"; 
-$ds=mysql_query($q); 
+$q=   "select * from datalogger ";
+$q=$q."where sensor = 9 ";
+$q=$q."order by date_time desc ";
+$q=$q."limit 60";
+$ds=mysql_query($q);
 
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->temperature." ],"; 
+while($r = mysql_fetch_object($ds))
+{
+	echo "['".$r->date_time."', ";
+	echo " ".$r->temperature." ],";
 
-} 
-?> 
+}
+?>
         ]);
 
 	var options = {

@@ -15,18 +15,18 @@ if(!$fgmembersite->CheckLogin())
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	   	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
+	   	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"><link />
 	</head>
 	<body>
 		<div class="jumbotron">
-		<div class="container">
-		<?php include 'menu.php';?>
+			<div class="container">
+				<?php include 'menu.php';?>
+			</div>
 		</div>
-		</div>
 		<div class="container">
-		<h3>RasPiViv V 2.1</h3>
+			<h3>RasPiViv V 2.1</h3>
 
 		<p>This is a free application designed by <a href="www.raspiviv.com">www.raspiviv.com</a> licenced for general public use and is <strong>not licensed for resale</strong>.</p>
 		<p>If you were charged for this software please <a href="http://www.raspiviv.com/contact">contact us</a> and let us know!</p>
