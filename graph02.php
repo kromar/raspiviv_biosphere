@@ -13,9 +13,6 @@ if(!$fgmembersite->CheckLogin())
 <head>
 	<title>RasPiViv.com - Vivarium 2</title>
 
-    <link rel="shortcut icon" href="data/icon/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="data/icon/favicon.ico" type="image/x-icon">
-
 	<script src="scripts/jquery-1.12.3.min.js"/>
 	<script type="text/javascript" src="https://www.google.com/jsapi"/>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
