@@ -39,16 +39,16 @@
 					//set the pin's mode to output and read them
 					system("gpio mode $pin out");
 					exec ("gpio read ".$pin, $status[$pin], $return );
-					logToFile("gpio statuss", $pin, $status[$pin][0]);
+					//logToFile("gpio statuss", $pin, $status[$pin][0]);
 					// if off
 					if ($status[$pin][0] == 0 ) {
-						logToFile("gpio pin on", "", "");
-						echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
+						echo ("<img id='button_".$pin."' src='data/img/red/red_".$pin.".png' alt='off'/><br>");
+						//logToFile("gpio pin on", "", "");
 					}
 					//if on
 					if ($status[$pin][0] == 1 ) {
-						echo ("<img id='button_".$pin."' src='data/img/red/red_".$pin.".png' alt='off'/><br>");
-						logToFile("gpio pin off", "", "");
+						echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
+						//logToFile("gpio pin off", "", "");
 					}
 				 }
 			 ?>
