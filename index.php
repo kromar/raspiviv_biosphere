@@ -20,8 +20,7 @@
    	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></link>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
 
-</head>
-	<body>
+
 	<!-- ROOM TEMP GAUGE -->
 	<script type="text/javascript">
 		google.load("visualization", "1", {packages:["gauge"]});
@@ -366,7 +365,9 @@
 		chart.draw(data, options);
 		}
 	</script>
+</head>
 
+	<body>
 		<div class="jumbotron">
 			<div class="container">
 				<?php include 'menu.php';?>
