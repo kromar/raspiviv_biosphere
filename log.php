@@ -1,5 +1,4 @@
 <?php
-	echo __DIR__ . "/../../log/raspiviv.log";
 	function logToFile($string, $value, $reason) {
 		$file = "/../../log/raspiviv.log";
 		$size = filesize(__DIR__.$file);
