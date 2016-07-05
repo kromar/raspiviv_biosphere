@@ -42,12 +42,12 @@
 					logToFile("gpio statuss", $pin, $status[$pin][0]);
 					// if off
 					if ($status[$pin][0] == 0 ) {
-						echo ("<img id='button_".$pin."' src='data/img/red/red_".$pin.".png' alt='off'/><br>");
 						logToFile("gpio pin on", "", "");
+						echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
 					}
 					//if on
 					if ($status[$pin][0] == 1 ) {
-						echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
+						echo ("<img id='button_".$pin."' src='data/img/red/red_".$pin.".png' alt='off'/><br>");
 						logToFile("gpio pin off", "", "");
 					}
 				 }
