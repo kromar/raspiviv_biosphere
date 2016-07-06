@@ -21,8 +21,10 @@
 				$status = "0";
 			}
 			system("gpio write $pin $status");
+
 			//reading pin's status
 			exec ("gpio read ".$pin, $status, $return );
+
 			//printing it
 			logToFile( "status", $pin, $status[0] );
 		}

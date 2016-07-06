@@ -32,162 +32,139 @@ function change_pin (pin, status) {
 }
 
 //these are all the button's events, it just calls the change_pin function and updates the page in function of the return of it.
+//LIGHT
 button_0.addEventListener("click", function () { 
-	//if red
 	if ( button_0.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 0, 0);
 		if (new_status !== "fail") { 
 			button_0.alt = "on"
-			button_0.src = "data/img/green/green_0.png"; 
+			button_0.src = "data/img/green/light_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_0.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 0, 1);
 		if (new_status !== "fail") { 
 			button_0.alt = "off"
-			button_0.src = "data/img/red/red_0.png"; 
+			button_0.src = "data/img/red/light_off.png"; 
 			return 0;
 			}
 		}
 } );
 	
 button_1.addEventListener("click", function () { 
-	//if red
 	if ( button_1.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 1, 0);
 		if (new_status !== "fail") { 
 			button_1.alt = "on"
-			button_1.src = "data/img/green/green_1.png"; 
+			button_1.src = "data/img/green/light_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_1.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 1, 1);
 		if (new_status !== "fail") { 
 			button_1.alt = "off"
-			button_1.src = "data/img/red/red_1.png"; 
+			button_1.src = "data/img/red/light_off.png"; 
 			return 0;
 			}
 		}
 } );
 	
+
+//RAIN
 button_2.addEventListener("click", function () { 
-	//if red
 	if ( button_2.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 2, 0);
 		if (new_status !== "fail") { 
 			button_2.alt = "on"
-			button_2.src = "data/img/green/green_2.png"; 
+			button_2.src = "data/img/green/rain_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_2.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 2, 1);
 		if (new_status !== "fail") { 
 			button_2.alt = "off"
-			button_2.src = "data/img/red/red_2.png"; 
+			button_2.src = "data/img/red/rain_on.png"; 
 			return 0;
 			}
 		}
 } );
 	
 button_3.addEventListener("click", function () { 
-	//if red
 	if ( button_3.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 3, 0);
 		if (new_status !== "fail") { 
 			button_3.alt = "on"
-			button_3.src = "data/img/green/green_3.png"; 
+			button_3.src = "data/img/green/rain_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_3.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 3, 1);
 		if (new_status !== "fail") { 
 			button_3.alt = "off"
-			button_3.src = "data/img/red/red_3.png"; 
+			button_3.src = "data/img/red/rain_off.png"; 
 			return 0;
 			}
 		}
 } );
 	
+//MOON
 button_4.addEventListener("click", function () { 
-	//if red
 	if ( button_4.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 4, 0);
 		if (new_status !== "fail") { 
 			button_4.alt = "on"
-			button_4.src = "data/img/green/green_4.png"; 
+			button_4.src = "data/img/green/moon_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_4.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 4, 1);
 		if (new_status !== "fail") { 
 			button_4.alt = "off"
-			button_4.src = "data/img/red/red_4.png"; 
+			button_4.src = "data/img/red/moon_off.png"; 
 			return 0;
 			}
 		}
 } );
 	
+//AIR
 button_5.addEventListener("click", function () { 
-	//if red
 	if ( button_5.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 5, 0);
 		if (new_status !== "fail") { 
 			button_5.alt = "on"
-			button_5.src = "data/img/green/green_5.png"; 
+			button_5.src = "data/img/green/air_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_5.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 5, 1);
 		if (new_status !== "fail") { 
 			button_5.alt = "off"
-			button_5.src = "data/img/red/red_5.png"; 
+			button_5.src = "data/img/red/air_off.png"; 
 			return 0;
 			}
 		}
 } );
 	
 button_6.addEventListener("click", function () { 
-	//if red
 	if ( button_6.alt === "off" ) {
-		//use the function
 		var new_status = change_pin ( 6, 0);
 		if (new_status !== "fail") { 
 			button_6.alt = "on"
-			button_6.src = "data/img/green/green_6.png"; 
+			button_6.src = "data/img/green/air_on.png"; 
 			return 0;
 			}
 		}
-	//if green
 	if ( button_6.alt === "on" ) {
-		//use the function
 		var new_status = change_pin ( 6, 1);
 		if (new_status !== "fail") { 
 			button_6.alt = "off"
-			button_6.src = "data/img/red/red_6.png"; 
+			button_6.src = "data/img/red/air_off.png"; 
 			return 0;
 			}
 		}
