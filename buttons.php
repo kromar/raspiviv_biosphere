@@ -42,16 +42,16 @@
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
-						//echo ("<img id='button_".$pin."' src='data/img/red/red_".$pin.".png' alt='off'/><br>");
+						//echo ("<img id='button_".$pin."' src='data/img/off/off_".$pin.".png' alt='off'/><br>");
 						if ($pin == 0) {
-							echo ("<img id='button_".$pin."' src='data/img/red/light_off.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/off/light_off.png' alt='off'/><br>");
 						}
 					}
 					//if on
 					if ($status[$pin][0] == 1 ) {
-						//echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
+						//echo ("<img id='button_".$pin."' src='data/img/on/on_".$pin.".png' alt='on'/><br>");
 						if ($pin == 0) {
-							echo ("<img id='button_".$pin."' src='data/img/green/light_on.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/on/light_on.png' alt='off'/><br>");
 						}
 					}
 				 }

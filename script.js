@@ -38,7 +38,7 @@ button_0.addEventListener("click", function () {
 		var new_status = change_pin ( 0, 0);
 		if (new_status !== "fail") { 
 			button_0.alt = "on"
-			button_0.src = "data/img/green/light_on.png"; 
+			button_0.src = "data/img/on/light_on.png"; 
 			return 0;
 			}
 		}
@@ -46,7 +46,7 @@ button_0.addEventListener("click", function () {
 		var new_status = change_pin ( 0, 1);
 		if (new_status !== "fail") { 
 			button_0.alt = "off"
-			button_0.src = "data/img/red/light_off.png"; 
+			button_0.src = "data/img/off/light_off.png"; 
 			return 0;
 			}
 		}
@@ -57,7 +57,7 @@ button_1.addEventListener("click", function () {
 		var new_status = change_pin ( 1, 0);
 		if (new_status !== "fail") { 
 			button_1.alt = "on"
-			button_1.src = "data/img/green/light_on.png"; 
+			button_1.src = "data/img/on/light_on.png"; 
 			return 0;
 			}
 		}
@@ -65,7 +65,7 @@ button_1.addEventListener("click", function () {
 		var new_status = change_pin ( 1, 1);
 		if (new_status !== "fail") { 
 			button_1.alt = "off"
-			button_1.src = "data/img/red/light_off.png"; 
+			button_1.src = "data/img/off/light_off.png"; 
 			return 0;
 			}
 		}
@@ -78,7 +78,7 @@ button_2.addEventListener("click", function () {
 		var new_status = change_pin ( 2, 0);
 		if (new_status !== "fail") { 
 			button_2.alt = "on"
-			button_2.src = "data/img/green/rain_on.png"; 
+			button_2.src = "data/img/on/rain_on.png"; 
 			return 0;
 			}
 		}
@@ -86,7 +86,7 @@ button_2.addEventListener("click", function () {
 		var new_status = change_pin ( 2, 1);
 		if (new_status !== "fail") { 
 			button_2.alt = "off"
-			button_2.src = "data/img/red/rain_on.png"; 
+			button_2.src = "data/img/off/rain_on.png"; 
 			return 0;
 			}
 		}
@@ -97,7 +97,7 @@ button_3.addEventListener("click", function () {
 		var new_status = change_pin ( 3, 0);
 		if (new_status !== "fail") { 
 			button_3.alt = "on"
-			button_3.src = "data/img/green/rain_on.png"; 
+			button_3.src = "data/img/on/rain_on.png"; 
 			return 0;
 			}
 		}
@@ -105,7 +105,7 @@ button_3.addEventListener("click", function () {
 		var new_status = change_pin ( 3, 1);
 		if (new_status !== "fail") { 
 			button_3.alt = "off"
-			button_3.src = "data/img/red/rain_off.png"; 
+			button_3.src = "data/img/off/rain_off.png"; 
 			return 0;
 			}
 		}
@@ -117,7 +117,7 @@ button_4.addEventListener("click", function () {
 		var new_status = change_pin ( 4, 0);
 		if (new_status !== "fail") { 
 			button_4.alt = "on"
-			button_4.src = "data/img/green/moon_on.png"; 
+			button_4.src = "data/img/on/moon_on.png"; 
 			return 0;
 			}
 		}
@@ -125,7 +125,7 @@ button_4.addEventListener("click", function () {
 		var new_status = change_pin ( 4, 1);
 		if (new_status !== "fail") { 
 			button_4.alt = "off"
-			button_4.src = "data/img/red/moon_off.png"; 
+			button_4.src = "data/img/off/moon_off.png"; 
 			return 0;
 			}
 		}
@@ -137,7 +137,7 @@ button_5.addEventListener("click", function () {
 		var new_status = change_pin ( 5, 0);
 		if (new_status !== "fail") { 
 			button_5.alt = "on"
-			button_5.src = "data/img/green/air_on.png"; 
+			button_5.src = "data/img/on/air_on.png"; 
 			return 0;
 			}
 		}
@@ -145,7 +145,7 @@ button_5.addEventListener("click", function () {
 		var new_status = change_pin ( 5, 1);
 		if (new_status !== "fail") { 
 			button_5.alt = "off"
-			button_5.src = "data/img/red/air_off.png"; 
+			button_5.src = "data/img/off/air_off.png"; 
 			return 0;
 			}
 		}
@@ -156,7 +156,7 @@ button_6.addEventListener("click", function () {
 		var new_status = change_pin ( 6, 0);
 		if (new_status !== "fail") { 
 			button_6.alt = "on"
-			button_6.src = "data/img/green/air_on.png"; 
+			button_6.src = "data/img/on/air_on.png"; 
 			return 0;
 			}
 		}
@@ -164,7 +164,7 @@ button_6.addEventListener("click", function () {
 		var new_status = change_pin ( 6, 1);
 		if (new_status !== "fail") { 
 			button_6.alt = "off"
-			button_6.src = "data/img/red/air_off.png"; 
+			button_6.src = "data/img/off/air_off.png"; 
 			return 0;
 			}
 		}
