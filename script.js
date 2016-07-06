@@ -74,7 +74,7 @@ button_1.addEventListener("click", function () {
 //RAIN
 button_2.addEventListener("click", function () { 
 	if ( button_2.alt === "off" ) {
-		var new_status = change_pin ( 2, 0);
+		var new_status = change_pin ( 2, 1);
 		if (new_status !== "fail") { 
 			button_2.alt = "on"
 			button_2.src = "data/img/rain_on.png"; 
@@ -82,7 +82,7 @@ button_2.addEventListener("click", function () {
 			}
 		}
 	if ( button_2.alt === "on" ) {
-		var new_status = change_pin ( 2, 1);
+		var new_status = change_pin ( 2, 0);
 		if (new_status !== "fail") { 
 			button_2.alt = "off"
 			button_2.src = "data/img/rain_off.png"; 
@@ -93,7 +93,7 @@ button_2.addEventListener("click", function () {
 	
 button_3.addEventListener("click", function () { 
 	if ( button_3.alt === "off" ) {
-		var new_status = change_pin ( 3, 0);
+		var new_status = change_pin ( 3, 1);
 		if (new_status !== "fail") { 
 			button_3.alt = "on"
 			button_3.src = "data/img/rain_on.png"; 
@@ -101,7 +101,7 @@ button_3.addEventListener("click", function () {
 			}
 		}
 	if ( button_3.alt === "on" ) {
-		var new_status = change_pin ( 3, 1);
+		var new_status = change_pin ( 3, 0);
 		if (new_status !== "fail") { 
 			button_3.alt = "off"
 			button_3.src = "data/img/rain_off.png"; 

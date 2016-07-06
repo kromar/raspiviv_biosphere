@@ -47,7 +47,7 @@
 							echo ("<img id='button_".$pin."' src='data/img/light_off.png' alt='off'/><br>");
 						}
 						if ($pin == 2 or $pin == 3) {
-							echo ("<img id='button_".$pin."' src='data/img/rain_off.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/rain_on.png' alt='off'/><br>");
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_off.png' alt='off'/><br>");
@@ -63,7 +63,7 @@
 							echo ("<img id='button_".$pin."' src='data/img/light_on.png' alt='off'/><br>");
 						}
 						if ($pin == 2 or $pin == 3) {
-							echo ("<img id='button_".$pin."' src='data/img/rain_on.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/rain_off.png' alt='off'/><br>");
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_on.png' alt='off'/><br>");
