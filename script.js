@@ -7,7 +7,6 @@ var button_3 = document.getElementById("button_3");
 var button_4 = document.getElementById("button_4");
 var button_5 = document.getElementById("button_5");
 var button_6 = document.getElementById("button_6");
-var button_7 = document.getElementById("button_7");
 
 
 //this function sends and receives the pin's status

@@ -43,15 +43,33 @@
 					// if off
 					if ($status[$pin][0] == 0 ) {
 						//echo ("<img id='button_".$pin."' src='data/img/off/off_".$pin.".png' alt='off'/><br>");
-						if ($pin == 0) {
+						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/off/light_off.png' alt='off'/><br>");
+						}
+						if ($pin == 2 or $pin == 3) {
+							echo ("<img id='button_".$pin."' src='data/img/off/rain_off.png' alt='off'/><br>");
+						}
+						if ($pin == 4) {
+							echo ("<img id='button_".$pin."' src='data/img/off/moon_off.png' alt='off'/><br>");
+						}
+						if ($pin == 5 or $pin == 6) {
+							echo ("<img id='button_".$pin."' src='data/img/off/air_off.png' alt='off'/><br>");
 						}
 					}
 					//if on
 					if ($status[$pin][0] == 1 ) {
 						//echo ("<img id='button_".$pin."' src='data/img/on/on_".$pin.".png' alt='on'/><br>");
-						if ($pin == 0) {
+						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/on/light_on.png' alt='off'/><br>");
+						}
+						if ($pin == 2 or $pin == 3) {
+							echo ("<img id='button_".$pin."' src='data/img/on/rain_on.png' alt='off'/><br>");
+						}
+						if ($pin == 4) {
+							echo ("<img id='button_".$pin."' src='data/img/on/moon_on.png' alt='off'/><br>");
+						}
+						if ($pin == 5 or $pin == 6) {
+							echo ("<img id='button_".$pin."' src='data/img/on/air_on.png' alt='off'/><br>");
 						}
 					}
 				 }
