@@ -85,7 +85,7 @@ button_2.addEventListener("click", function () {
 		var new_status = change_pin ( 2, 1);
 		if (new_status !== "fail") { 
 			button_2.alt = "off"
-			button_2.src = "data/img/off/rain_on.png"; 
+			button_2.src = "data/img/off/rain_off.png"; 
 			return 0;
 			}
 		}
