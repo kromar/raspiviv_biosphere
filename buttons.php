@@ -51,7 +51,7 @@
 					if ($status[$pin][0] == 1 ) {
 						//echo ("<img id='button_".$pin."' src='data/img/green/green_".$pin.".png' alt='on'/><br>");
 						if ($pin == 0) {
-							echo ("<img id='button_".$pin."' src='data/img/red/light_on.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/green/light_on.png' alt='off'/><br>");
 						}
 					}
 				 }
