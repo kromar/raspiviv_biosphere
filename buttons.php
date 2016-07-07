@@ -37,9 +37,8 @@
 
 				 for ($pin = 0; $pin < count($status); $pin++) {
 					//set the pin's mode to output and read them
-
-				 	system("gpio mode $pin $status[$pin]");
-
+					system("gpio mode $pin out");
+					system("gpio write $pin $status[$pin]");
 					exec ("gpio read ".$pin, $status[$pin], $return );
 
 					// if off
@@ -80,7 +79,7 @@
 			 ?>
 		 </div>
 		 <!-- javascript -->
-		 <!-- <script src="buttons_script.js"></script> -->
+		 <script src="buttons_script.js"></script>
 		 <div class="container">
 			 <hr>
 			 <?php include 'footer.php';?>
