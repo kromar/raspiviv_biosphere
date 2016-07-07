@@ -38,8 +38,8 @@
 				 for ($pin = 0; $pin < count($status); $pin++) {
 					//set the pin's mode to output and read them
 					system("gpio mode $pin out");
-					system("gpio write $pin $status[$pin]");
-					exec ("gpio read ".$pin, $status[$pin], $return );
+					//system("gpio write $pin $status[$pin]");
+					//exec ("gpio read ".$pin, $status[$pin], $return );
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
@@ -47,19 +47,15 @@
 						//echo ("<img id='button_".$pin."' src='data/img/off/off_".$pin.".png' alt='off'/><br>");
 						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/light_off.png' alt='off'/><br>");
-							$status[$pin] = 0;
 						}
 						if ($pin == 2 or $pin == 3) {
 							echo ("<img id='button_".$pin."' src='data/img/rain_on.png' alt='on'/><br>");
-							$status[$pin] = 1;
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_off.png' alt='off'/><br>");
-							$status[$pin] = 0;
 						}
 						if ($pin == 5 or $pin == 6) {
 							echo ("<img id='button_".$pin."' src='data/img/air_off.png' alt='off'/><br>");
-							$status[$pin] = 0;
 						}
 					}
 					//if on
@@ -68,19 +64,15 @@
 						//echo ("<img id='button_".$pin."' src='data/img/on/on_".$pin.".png' alt='on'/><br>");
 						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/light_on.png' alt='on'/><br>");
-							$status[$pin] = 1;
 						}
 						if ($pin == 2 or $pin == 3) {
 							echo ("<img id='button_".$pin."' src='data/img/rain_off.png' alt='off'/><br>");
-							$status[$pin] = 0;
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_on.png' alt='on'/><br>");
-							$status[$pin] = 1;
 						}
 						if ($pin == 5 or $pin == 6) {
 							echo ("<img id='button_".$pin."' src='data/img/air_on.png' alt='on'/><br>");
-							$status[$pin] = 1;
 						}
 					}
 				 }
