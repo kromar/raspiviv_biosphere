@@ -39,7 +39,6 @@
 					//set the pin's mode to output and read them
 					system("gpio mode $pin out");
 					exec ("gpio read ".$pin, $status[$pin], $return );
-				 	logToFile("return",$pin, $return);
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
@@ -79,7 +78,7 @@
 			 ?>
 		 </div>
 		 <!-- javascript -->
-		 <script src="script.js"></script>
+		 <!-- <script src="script.js"></script> -->
 		 <div class="container">
 			 <hr>
 			 <?php include 'footer.php';?>
