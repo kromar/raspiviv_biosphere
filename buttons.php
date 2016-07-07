@@ -33,6 +33,7 @@
 			 <?php
 		 	 	 include_once "log.php";
 				 //this php script generate the first page in function of the gpio's status
+				 logToFile("first status",'','');
 				 $status = array(0, 0, 0, 0, 0, 0, 0);
 
 				 for ($pin = 0; $pin < count($status); $pin++) {
