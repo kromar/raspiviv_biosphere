@@ -33,11 +33,13 @@
 			 <?php
 		 	 	 include_once "log.php";
 				 //this php script generate the first page in function of the gpio's status
-				 $status = array(0, 0, 0, 0, 0, 0, 0);
+				 $status = array(0, 0, 1, 1, 0, 0, 0);
 
 				 for ($pin = 0; $pin < count($status); $pin++) {
 					//set the pin's mode to output and read them
-					system("gpio mode $pin out");
+
+				 	system("gpio mode $pin $status[$pin]");
+
 					exec ("gpio read ".$pin, $status[$pin], $return );
 
 					// if off
