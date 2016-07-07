@@ -78,7 +78,7 @@
 			 ?>
 		 </div>
 		 <!-- javascript -->
-		 <!-- <script src="script.js"></script> -->
+		 <!-- <script src="buttons_script.js"></script> -->
 		 <div class="container">
 			 <hr>
 			 <?php include 'footer.php';?>
