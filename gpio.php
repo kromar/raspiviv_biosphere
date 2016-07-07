@@ -28,7 +28,7 @@
 			//printing it
 			logToFile( "status", $pin, $status[0] );
 		}
-		else { logToFile("fail"); }
+		else { logToFile("fail",'',''); }
 	} //print fail if cannot use values
-	else { logToFile("fail"); }
+	else { logToFile("fail",'',''); }
 ?>
