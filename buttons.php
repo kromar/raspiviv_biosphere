@@ -33,13 +33,13 @@
 			 <?php
 		 	 	 include_once "log.php";
 				 //this php script generate the first page in function of the gpio's status
-				 logToFile("first status",'','');
 				 $status = array(0, 0, 0, 0, 0, 0, 0);
 
 				 for ($pin = 0; $pin < count($status); $pin++) {
 					//set the pin's mode to output and read them
 					system("gpio mode $pin out");
 					exec ("gpio read ".$pin, $status[$pin], $return );
+				 	logToFile("return",$pin, $return);
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
@@ -49,7 +49,7 @@
 							echo ("<img id='button_".$pin."' src='data/img/light_off.png' alt='off'/><br>");
 						}
 						if ($pin == 2 or $pin == 3) {
-							echo ("<img id='button_".$pin."' src='data/img/rain_off.png' alt='off'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/rain_on.png' alt='on'/><br>");
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_off.png' alt='off'/><br>");
@@ -66,7 +66,7 @@
 							echo ("<img id='button_".$pin."' src='data/img/light_on.png' alt='on'/><br>");
 						}
 						if ($pin == 2 or $pin == 3) {
-							echo ("<img id='button_".$pin."' src='data/img/rain_on.png' alt='on'/><br>");
+							echo ("<img id='button_".$pin."' src='data/img/rain_off.png' alt='off'/><br>");
 						}
 						if ($pin == 4) {
 							echo ("<img id='button_".$pin."' src='data/img/moon_on.png' alt='on'/><br>");
