@@ -1,11 +1,12 @@
 <?php
-
+	include_once 'log.php';
 	$interval = 10;
 	$somearg;
 	while (true) {
 		//for ($i = 0; $i < $max_clients; $i++)
-		exec("php sensor.php");
-		exec("php cliamte_control.php $somearg");	//use ajax so the user wont know the file is loaded
+		//exec("php sensor.php");
+		//exec("php cliamte_control.php $somearg");	//use ajax so the user wont know the file is loaded
+		logToFile("update interval", $interval, $somearg);
 		sleep($interval);
 	}
 
