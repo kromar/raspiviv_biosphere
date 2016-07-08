@@ -6,14 +6,13 @@
 
 	if ($coreActive == false) {
 		$coreActive = true;
-		logToFile("core activated", '', '');
-		continue;
+		logToFile("core activated", $interval, $coreActive);
 	} else {
-		while (true) {
+		while ($coreActive == true) {
 			//for ($i = 0; $i < $max_clients; $i++)
 			//exec("php sensor.php");
 			//exec("php cliamte_control.php $somearg");	//use ajax so the user wont know the file is loaded
-			logToFile("core interval", $interval, $somearg);
+			logToFile("core interval", $interval, $coreActive);
 			sleep($interval);
 		}
 
