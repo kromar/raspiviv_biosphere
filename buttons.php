@@ -33,13 +33,33 @@
 			 <?php
 		 	 	 include_once "log.php";
 				 //this php script generate the first page in function of the gpio's status
-				 $status = array(0, 0, 1, 1, 0, 0, 0);
+				 $status = array(0, 0, 0, 0, 0, 0, 0);
+				 $pinmode = array(0,1,2,3);
 
+				 $init = true;
+
+				 //here we switch the pins for the first time after a reboot.
+			 	 //since the pull state switches on mode change we need to do some special switching to avoid wrong states
 				 for ($pin = 0; $pin < count($status); $pin++) {
-					//set the pin's mode to output and read them
-					system("gpio mode $pin out");
-					//system("gpio write $pin $status[$pin]");
-					//exec ("gpio read ".$pin, $status[$pin], $return );
+				 	if ($init == true) {
+				 		//switch after reboot
+				 		logToFile("init", $init, '');
+						if (in_array($pin, $pinmode)) {
+							system("gpio mode $pin out");
+							system("gpio write $pin 1");
+						} else {
+							system("gpio mode $pin out");
+							system("gpio write $pin 0");
+						}
+				 		$init = false;
+				 	} else {
+				 		//do normal switching
+				 		logToFile("init", $init, '');
+						system("gpio mode $pin out");
+						system("gpio write $pin $status[$pin]");
+				 	}
+
+					exec ("gpio read ".$pin, $status[$pin], $return );
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
