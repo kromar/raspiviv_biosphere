@@ -9,13 +9,14 @@
 	$tempDay = 30.0;		// 26.5
 
 	$humidityThreshold;
-	$humidityMin = 70.0;
-	$humidityNight = 85.0;
+	$humidityMin = 65.0;
+	$humidityNight = 90.0;
 	$humidityDay = 95.0;
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
+	$lowTempRain = false;
 
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
@@ -81,15 +82,20 @@
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
+
 			if (($tempDelta > 0) and ($tempDelta < 10)) {
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
 				$reason = "temperature: ".$tempSensor;
-				letItRain($rainTime, $reason);
+				if ($lowTempRain == true) {
+					letItRain($rainTime, $reason);
+				}
 				bringTheAir($windTime, $reason);		//TODO: define windtime
 			} else {
 				$reason = "temperature: ".$tempSensor;
-				letItRain($rainTime,  $reason);
+				if ($lowTempRain == true) {
+					letItRain($rainTime, $reason);
+				}
 				bringTheAir($windTime, $reason);
 			}
 		} elseif ($humiditySensor > $humidityThreshold) {
