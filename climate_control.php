@@ -15,7 +15,7 @@
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = true;
+	$debugMode = false;
 	$lowTempRain = false;
 
 	$curentTime = date('H:i');
@@ -37,19 +37,22 @@
 		while($row = mysql_fetch_assoc($result)) {
 			$tempSensor = $row["temperature"];
 			$humiditySensor = $row["humidity"];
-
-			if ($tempSensor > 50) {
-				logToFile("high temperature reading", $tempSensor, "" );
-			}
-			if ($humiditySensor > 100) {
-				logToFile("high humidity reading", $humiditySensor, "" );
+			if ($debugMode==true) {
+				if ($tempSensor > 50) {
+					logToFile("high temperature reading", $tempSensor, "" );
+				}
+				if ($humiditySensor > 100) {
+					logToFile("high humidity reading", $humiditySensor, "" );
+				}
 			}
 		}
 	}
 
 	echo $humiditySensor;
-	logToFile("humidity",  $humiditySensor, "");
-	logToFile("temperature",  $tempSensor, "");
+	if ($debugMode==true) {
+		logToFile("humidity",  $humiditySensor, "");
+		logToFile("temperature",  $tempSensor, "");
+	}
 
 
 	//night time climate
@@ -138,10 +141,14 @@
 			exec("/usr/local/bin/gpio mode $pin out");
 			exec("/usr/local/bin/gpio write $pin 0");
 			sleep($time);
-			logToFile("let it rain", $time."s", $reason);
+			if ($debugMode==true) {
+				logToFile("let it rain", $time."s", $reason);
+			}
 			exec("/usr/local/bin/gpio write $pin 1");
 		} elseif ($time == 0) {
-			logToFile("let it rain", $time."s", $reason);
+			if ($debugMode==true) {
+				logToFile("let it rain", $time."s", $reason);
+			}
 			exec("/usr/local/bin/gpio write $pin 1");
 		}
 	}
@@ -154,10 +161,14 @@
 			exec("/usr/local/bin/gpio write $pin 1");
 			//time till wind stops
 			sleep ($time);
-			logToFile("bring the air", $time."s", $reason);
+			if ($debugMode==true) {
+				logToFile("bring the air", $time."s", $reason);
+			}
 			exec("/usr/local/bin/gpio write $pin 0");
 		} elseif ($time == 0) {
-			logToFile("bring the air", $time."s", $reason);
+			if ($debugMode==true) {
+				logToFile("bring the air", $time."s", $reason);
+			}
 			exec("/usr/local/bin/gpio write $pin 0");
 
 		}
