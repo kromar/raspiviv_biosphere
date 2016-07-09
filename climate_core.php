@@ -3,16 +3,24 @@
 	$interval = 30;
 	$somearg;
 	$coreActive = false;
+	$coreDebugMode = true;
 
 	while (true) {
 		if ($coreActive == false) {
 			$coreActive = true;
-			logToFile("core activated", $interval, $coreActive);
+			if ($coreDebugMode == true) {
+				system("watch -n 1 tail ../../log/raspiviv.log");
+				system("watch -n 10 tail ../../log/apache2/error.log");
+			}
+			logToFile("core initialized", $interval, $coreActive);
+
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
 			//exec("php sensor.php");
 			//exec("php cliamte_control.php $somearg");	//use ajax so the user wont know the file is loaded
-			logToFile("core interval", $interval, $coreActive);
+			if ($coreDebugMode == true) {
+				logToFile("core interval", $interval, $coreActive);
+			}
 			sleep($interval);
 		}
 	}
