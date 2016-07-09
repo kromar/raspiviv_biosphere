@@ -9,8 +9,8 @@
 		if ($coreActive == false) {
 			$coreActive = true;
 			if ($coreDebugMode == true) {
-				system("watch -n 1 tail ../../log/raspiviv.log");
-				system("watch -n 10 tail ../../log/apache2/error.log");
+				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
+				shell_exec("watch -n 10 tail ../../log/apache2/error.log");
 			}
 			logToFile("core initialized", $interval, $coreActive);
 
