@@ -1,10 +1,10 @@
 <?php
 	include_once 'log.php';
-	logToFile("sensor trigger", $argv,'');
+	logToFile("sensor trigger", $argv[1],'');
 	//write sensor values to sql database every update interval
 	function readSensor($sensor)
 	{
-		$interval = $argv;
+		$interval = $argv[1];
 		$output = array();
 		$return_var = 0;
 		$i=1;
