@@ -7,14 +7,15 @@
 		$return_var = 0;
 		$i=1;
 		exec('sudo /usr/local/bin/loldht '.$sensor, $output, $return_var);
-		logToFile("loldht output", $output[$i],'');
 	  	while (substr($output[$i],0,1)!="H") {
-                $i++;
+			logToFile("loldht output", $output[$i], $i);
+            $i++;
 		}
 		$humid=substr($output[$i],11,5);
-		logToFile("loldht humid", $humid,'');
+		logToFile("loldht humid", $humid, $i);
         $temp=substr($output[$i],33,5);
-		logToFile("loldht temp", $temp,'');
+		logToFile("loldht temp", $temp, $i);
+
 	    $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
 		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)";
