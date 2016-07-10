@@ -8,7 +8,6 @@
 	while (true) {
 		if ($coreActive == false) {
 			if ($coreDebugMode == true) {
-				chmod("../../log/raspiviv.log", 0766);
 				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
 				shell_exec("watch -n 10 tail ../../log/apache2/error.log");
 			}
