@@ -7,9 +7,8 @@
 		$return_var = 0;
 		$i=1;
 		exec('sudo /usr/local/bin/loldht '.$sensor, $output, $return_var);
-		logToFile("loldht output", $output,'');
-	  	while (substr($output[$i],0,1)!="H")
-		{
+		logToFile("loldht output", $output[$i],'');
+	  	while (substr($output[$i],0,1)!="H") {
                 $i++;
 		}
 		$humid=substr($output[$i],11,5);
