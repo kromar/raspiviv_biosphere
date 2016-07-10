@@ -13,8 +13,7 @@
 		exec("sudo /usr/local/bin/loldht".$sensor." | grep -i "."humidity"." | cut -d "." ". "-f3", $output, $return_var);
 		//exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f7", $output, $return_var);
 
-		print_r(array_values($output));
-		print_r(array_keys($output));
+		var_dump($output);
 		//echo ($return_var);
 		$humidity = $output[1];
 		logToFile("loldht", $humidity,'');
