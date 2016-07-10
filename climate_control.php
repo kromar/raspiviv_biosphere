@@ -1,9 +1,10 @@
 
 <?php
-	//var_dump($argv); //variables from climate_core.php
+	var_dump($argv); //variables from climate_core.php
 	include_once "log.php";
 	//include_once "sensor.php";
 
+	$interval = $argv;
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5

@@ -3,7 +3,7 @@
 	$interval = 30;
 	$somearg;
 	$coreActive = false;
-	$coreDebugMode = true;
+	$coreDebugMode = false;
 
 	while (true) {
 		if ($coreActive == false) {
@@ -19,8 +19,8 @@
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
-			//exec("php sensor.php");
-			//exec("php cliamte_control.php $somearg");	//use ajax so the user wont know the file is loaded
+			exec("php sensor.php");
+			exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
 			if ($coreDebugMode == true) {
 				logToFile("core interval", $interval, $coreActive);
 			}

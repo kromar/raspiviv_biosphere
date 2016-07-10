@@ -12,7 +12,9 @@
                 $i++;
 		}
 		$humid=substr($output[$i],11,5);
+		logToFile("loldht humid", $humid,'');
         $temp=substr($output[$i],33,5);
+		logToFile("loldht temp", $temp,'');
 	    $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
 		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)";
