@@ -14,7 +14,8 @@
 		//exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f7", $output, $return_var);
 
 		print_r(array_values($output));
-		echo ($return_var);
+		print_r(array_keys($output));
+		//echo ($return_var);
 		$humidity = $output[1];
 		logToFile("loldht", $humidity,'');
 		/*
