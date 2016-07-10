@@ -16,7 +16,7 @@
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = false;
+	$debugMode = true;
 	$lowTempRain = false;
 
 	$curentTime = date('H:i');
@@ -33,9 +33,10 @@
 	mysql_select_db("datalogger");
 	$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 	$result = mysql_query($sql);
+	//$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
 	if (mysql_num_rows($result) > 0) {
-		while($row = mysql_fetch_assoc($result)) {
+		while($row = (float)mysql_fetch_assoc($result)) {
 			$tempSensor = $row["temperature"];
 			$humiditySensor = $row["humidity"];
 			if ($debugMode==true) {
