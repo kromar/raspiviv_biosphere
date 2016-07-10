@@ -1,10 +1,11 @@
 <?php
 	include_once 'log.php';
-	logToFile("sensor trigger", $argv[1],'');
+	logToFile("sensor trigger",'','');
+	$interval = $argv[1];
+
 	//write sensor values to sql database every update interval
 	function readSensor($sensor)
 	{
-		$interval = $argv[1];
 		$output = array();
 		$return_var = 0;
 		$i=1;
@@ -12,7 +13,7 @@
 	  	while (substr($output[$i],0,1)!="H") {
 			//logToFile("loldht output", $output[$i], $i);
             $i++;
-            sleep($interval);
+            //sleep($interval);
 		}
 			$humid=substr($output[$i],11,5);
 			logToFile("loldht humid", $humid, $i);
