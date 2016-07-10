@@ -10,10 +10,11 @@
 		$return_var = 0;
 		$i=1;
 		//exec('sudo /usr/local/bin/loldht '.$sensor, $output, $return_var);
-		exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output, $return_var);
+		exec("sudo /usr/local/bin/loldht".$sensor." | grep -i "."humidity"." | cut -d "." ". "-f3", $output, $return_var);
 		//exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f7", $output, $return_var);
 
 		print_r(array_values($output));
+		echo ($return_var);
 		$humidity = $output[1];
 		logToFile("loldht", $humidity,'');
 		/*
