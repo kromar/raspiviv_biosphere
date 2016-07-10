@@ -1,8 +1,7 @@
 
 <?php
-	var_dump($argv); //variables from climate_core.php
 	include_once "log.php";
-	logToFile("climate trigger",'','');
+	logToFile("climate trigger", $argv,'');
 
 	$interval = $argv;
 	$tempThreshold;

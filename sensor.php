@@ -1,7 +1,6 @@
 <?php
 	include_once 'log.php';
-	logToFile("sensor trigger",'','');
-	var_dump($argv); //variables from climate_core.php
+	logToFile("sensor trigger", $argv,'');
 	//write sensor values to sql database every update interval
 	function readSensor($sensor)
 	{
