@@ -13,7 +13,8 @@
 		exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output, $return_var);
 		//exec("sudo /usr/local/bin/loldht $sensor | grep -i 'humidity' | cut -d ' ' -f7", $output, $return_var);
 
-		logToFile("loldht", $output[0], $output[1]);
+		$humidity = $output[1];
+		logToFile("loldht", $humidity,'');
 		/*
 	  	while (substr($output[$i],0,1)!="H") {
 			//logToFile("loldht output", $output[$i], $i);
