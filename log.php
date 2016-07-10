@@ -1,6 +1,7 @@
 <?php
 	function logToFile($string, $value, $reason) {
 		$file = "/../../log/raspiviv.log";
+		chmod($file, 0766);
 		$size = filesize(__DIR__.$file);
 		$curentTime = date('H:i:s');
 		if ($size < 10*1024*1000) {
