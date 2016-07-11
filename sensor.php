@@ -17,11 +17,12 @@
 			$cliamte = $output[0];
 			$humidity = $output[1];
 			$temperature = $output[2];
-			logToFile("climate", $humidity, $temperature);
+			logToFile("climate", $humidity, $temperature ."\n");
 
-			echo "climate: $cliamte";
-			echo "humidity: $humidity";
-			echo "temperature: $temperature";
+			echo "climate: $cliamte \n";
+			echo "humidity: $humidity \n";
+			echo "temperature: $temperature \n";
+			echo "-----------------";
 
 			sleep($interval);
 		}
