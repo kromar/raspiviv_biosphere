@@ -7,13 +7,13 @@
 		logToFile("sensor trigger",'','');
 		$interval = 10;
 
-		echo "output size: ".count($output)."\n";
 		while (true){
 			$output = array();
 			exec("sudo loldht $sensor | grep -i 'humidity' 2>&1", $output);
 			exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3 2>&1", $output);
 			exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7 2>&1", $output);
 
+			echo "output size: ".count($output)."\n";
 			$cliamte = $output[0];
 			$humidity = $output[1];
 			$temperature = $output[2];
