@@ -24,6 +24,16 @@
 				echo "humidity: $humidity \n";
 				echo "temperature: $temperature \n";
 				echo "-----------------\n";
+
+				//*
+				$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+				mysql_select_db("datalogger");
+				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humiditys',0)";
+				mysql_query($q);
+				mysql_close($db);
+				return;
+				//*/
+
 			} else {
 				echo "failed to read sensor data";
 			}
@@ -32,14 +42,7 @@
 
 
 
-		//*
-	    $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-		mysql_select_db("datalogger");
-		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humiditys',0)";
-		mysql_query($q);
-		mysql_close($db);
-		return;
-		//*/
+
 	}
 
 	readSensor(8);
