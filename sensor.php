@@ -5,7 +5,7 @@
 	function readSensor($sensor)
 	{
 		//logToFile("sensor trigger",'','');
-		$interval = 10;
+		$interval = 30;
 
 		while (true){
 			$output = array();
@@ -28,7 +28,7 @@
 				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
 				mysql_query($q);
 				mysql_close($db);
-				//return;
+				return;
 				//*/
 
 			} else {
@@ -36,10 +36,6 @@
 			}
 			sleep($interval);
 		}
-
-
-
-
 	}
 
 	readSensor(8);
