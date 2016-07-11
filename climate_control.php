@@ -1,10 +1,10 @@
 
 <?php
 	include_once "log.php";
-	logToFile("climate trigger", $argv[1],'');
+	//logToFile("climate trigger", $argv[1],'');
 	echo ("climate test");
 
-	$interval = $argv[1];
+	//$interval = $argv[1];
 	$tempThreshold;
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
