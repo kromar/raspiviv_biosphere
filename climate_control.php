@@ -1,7 +1,7 @@
 
 <?php
 	include_once "log.php";
-	//logToFile("climate trigger", $argv[1],'');
+	logToFile("climate trigger", '','');
 	echo ("climate test");
 
 	//$interval = $argv[1];

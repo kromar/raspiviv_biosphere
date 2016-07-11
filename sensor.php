@@ -5,22 +5,19 @@
 	function readSensor($sensor)
 	{
 		//logToFile("sensor trigger",'','');
-		$interval = 30;
+		$interval = 10;
 
 		while (true){
 			$output = array();
 			exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3 2>&1", $output);
 			exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7 2>&1", $output);
-			//exec("sudo loldht $sensor | grep -i 'humidity' 2>&1", $output);
 
 			echo "output size: ".count($output)."\n";
 			if (count($output)>0){
 				$humidity = $output[0];
 				$temperature = $output[1];
-				//$cliamte = $output[2];
 				logToFile("climate", $humidity, $temperature);
 
-				echo "climate: $cliamte \n";
 				echo "humidity: $humidity \n";
 				echo "temperature: $temperature \n";
 				echo "-----------------\n";
