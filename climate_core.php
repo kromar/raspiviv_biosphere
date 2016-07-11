@@ -19,8 +19,8 @@
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
-			exec("php sensor.php $interval");
-			exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
+			//exec("php sensor.php $interval");
+			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
 			if ($coreDebugMode == true) {
 				logToFile("core interval", $interval, $coreActive);
 			}
