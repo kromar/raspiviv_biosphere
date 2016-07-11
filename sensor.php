@@ -18,7 +18,7 @@
 				$humidity = $output[0];
 				$temperature = $output[1];
 				//$cliamte = $output[2];
-				logToFile("climate", $humidity, $temperature ."\n");
+				logToFile("climate", $humidity, $temperature);
 
 				echo "climate: $cliamte \n";
 				echo "humidity: $humidity \n";
@@ -31,7 +31,7 @@
 				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
 				mysql_query($q);
 				mysql_close($db);
-				return;
+				//return;
 				//*/
 
 			} else {
