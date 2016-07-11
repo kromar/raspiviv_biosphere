@@ -4,35 +4,38 @@
 	//write sensor values to sql database every update interval
 	function readSensor($sensor)
 	{
-		logToFile("sensor trigger",'','');
-		$interval = 10;
+		//logToFile("sensor trigger",'','');
+		$interval = 30;
 
 		while (true){
 			$output = array();
-			exec("sudo loldht $sensor | grep -i 'humidity' 2>&1", $output);
 			exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3 2>&1", $output);
 			exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7 2>&1", $output);
+			//exec("sudo loldht $sensor | grep -i 'humidity' 2>&1", $output);
 
 			echo "output size: ".count($output)."\n";
-			$cliamte = $output[0];
-			$humidity = $output[1];
-			$temperature = $output[2];
-			logToFile("climate", $humidity, $temperature ."\n");
+			if (count($output)>0){
+				$humidity = $output[0];
+				$temperature = $output[1];
+				//$cliamte = $output[2];
+				logToFile("climate", $humidity, $temperature ."\n");
 
-			echo "climate: $cliamte \n";
-			echo "humidity: $humidity \n";
-			echo "temperature: $temperature \n";
-			echo "-----------------";
-
+				echo "climate: $cliamte \n";
+				echo "humidity: $humidity \n";
+				echo "temperature: $temperature \n";
+				echo "-----------------\n";
+			} else {
+				echo "failed to read sensor data";
+			}
 			sleep($interval);
 		}
 
 
 
-		/*
+		//*
 	    $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
-		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)";
+		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humiditys',0)";
 		mysql_query($q);
 		mysql_close($db);
 		return;
