@@ -15,7 +15,7 @@
 
 		var_dump($output);
 		//echo ($return_var);
-		$humidity = $output[0];
+		$humidity = $output[1];
 		logToFile("loldht", $humidity,'');
 		/*
 	  	while (substr($output[$i],0,1)!="H") {
