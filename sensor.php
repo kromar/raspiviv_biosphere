@@ -8,11 +8,11 @@
 		$interval = 30;
 		$v = true;
 		$output = array();
-		exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output);
-		exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output);
 
 		echo "output size: ".count($output)."\n";
 		while ($v = true){
+			exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output);
+			exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output);
 			if (count($output)>0) {
 				$humidity = $output[0];
 				$temperature = $output[1];
