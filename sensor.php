@@ -28,17 +28,16 @@
 	        $temp=substr($output[$i],33,5);
 			logToFile("loldht temp", $temp, $i);
 		//*/
-			//sudo /opt/lol_dht22/loldht 7 | grep -i "humidity" | cut -d ' ' -f3
-			//sudo /opt/lol_dht22/loldht 7 | grep -i "temperature" | cut -d ' ' -f7
 
 
-
+		/*
 	    $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
 		$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temp', '$humid',0)";
 		mysql_query($q);
 		mysql_close($db);
 		return;
+		//*/
 	}
 
 	readSensor(8);
