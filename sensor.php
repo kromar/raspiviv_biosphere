@@ -12,8 +12,8 @@
 		//exec('sudo /usr/local/bin/loldht '.$sensor, $output, $return_var);
 		exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output, $return_var);
 		exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output, $return_var);
-		echo "sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3";
-		echo "sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7";
+		echo (exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3"));
+		echo (exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7"));
 
 		var_dump($output[0]);
 		var_dump($output[1]);
