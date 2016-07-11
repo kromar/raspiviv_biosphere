@@ -7,8 +7,8 @@
 	function readSensor($sensor)
 	{
 		$output = array();
-		exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output);
-		exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output);
+		exec("sudo loldht $sensor | grep -i 'humidity'", $output);
+		//exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output);
 
 		echo "output size: ".count($output)."\n";
 		for ($i=0; $i < count($output); $i++) {
