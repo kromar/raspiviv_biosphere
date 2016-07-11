@@ -1,26 +1,28 @@
 <?php
 	include_once 'log.php';
-	logToFile("sensor trigger",'','');
-	$interval = 30;
-	$v = 0;
 
 	//write sensor values to sql database every update interval
 	function readSensor($sensor)
 	{
+		logToFile("sensor trigger",'','');
+		$interval = 30;
+		$v = true;
 		$output = array();
 		exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3", $output);
 		exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7", $output);
 
 		echo "output size: ".count($output)."\n";
-		while (count($output)==0){
-			echo $v;
-			$v++;
+		while ($v = true){
+			if (count($output)>0) {
+				$humidity = $output[0];
+				$temperature = $output[1];
+				logToFile("climate", $humidity, $temperature);
+				echo "humidity: $humidity temperature: $temperature";
+				$v = false;
+				break;
+			}
 		}
 
-		$humidity = $output[0];
-		$temperature = $output[1];
-		logToFile("climate", $humidity, $temperature);
-		echo "humidity: $humidity temperature: $temperature";
 
 
 		/*
