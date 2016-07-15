@@ -1,40 +1,43 @@
 <?php
 	include_once 'log.php';
 
-	//write sensor values to sql database every update interval
-	function readSensor($sensor)
-	{
-		//logToFile("sensor trigger",'','');
-		$interval = 30;
+	$maxValue = 100;
+	$minValue = 0;
+	$interval = 30;
 
+	function readSensor($sensor) {
 		while (true){
+			$time = date('H:i:s');
 			$output = array();
-			exec("sudo loldht $sensor | grep -i 'humidity' | cut -d ' ' -f3 2>&1", $output);
-			exec("sudo loldht $sensor | grep -i 'temperature' | cut -d ' ' -f7 2>&1", $output);
+			exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 
-			echo "output size: ".count($output)."\n";
-			if (count($output)>0){
-				$humidity = $output[0];
-				$temperature = $output[1];
-				logToFile("climate", $humidity, $temperature);
+			$count = count($output);
+			echo "output size: $count \n";
 
-				echo "humidity: $humidity \n";
-				echo "temperature: $temperature \n";
-				echo "-----------------\n";
+			for ($i=0; $i<$count; $i++) {
+				$value = floatval($output[$i]);
+				if ($value < $maxValue && $value > $minValue) {		//filter for realistic values
+					$name;
+					if ($i == 0) {
+						$name = "humidity";
+						$humidity = $value;
+					} elseif ($i == 1){
+						$name = "temperature";
+						$temperature = $value;
+					}
+					logToFile($name, $sensor, $value);
 
-				//*
-				$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-				mysql_select_db("datalogger");
-				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
-				mysql_query($q);
-				mysql_close($db);
-				return;
-				//*/
+					$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+					mysql_select_db("datalogger");
+					$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
+					mysql_query($q);
+					mysql_close($db);
 
-			} else {
-				echo "failed to read sensor data";
-			}
-			sleep($interval);
+
+				} else {
+					logToFile("filtered values $name", $sensor, $value);
+				}
+			} return; 	//end sensor reading
 		}
 	}
 
