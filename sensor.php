@@ -4,6 +4,7 @@
 	$maxValue = 100;
 	$minValue = 0;
 	$interval = 30;
+	logToFile("call sensors",'','');
 
 	function readSensor($sensor) {
 		while (true){
