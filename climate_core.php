@@ -8,8 +8,8 @@
 	while (true) {
 		if ($coreActive == false) {
 			if ($coreDebugMode == true) {
-				shell_exec("sudo watch -n 1 tail ../../log/raspiviv.log");
-				shell_exec("sudo watch -n 10 tail ../../log/apache2/error.log");
+				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
+				shell_exec("watch -n 10 tail ../../log/apache2/error.log");
 			}
 			else {
 				logToFile("shell exec failed",'','');
@@ -27,6 +27,7 @@
 			sleep($interval);
 		}
 	}
+
 
 	//nohup php myscript.php &		//this creates a service
 	//use upstart to restart services that get killed http://upstart.ubuntu.com/
