@@ -7,46 +7,52 @@
 		$interval = 30;
 		$temperature = 0;
 		$humidity = 0;
-		//logToFile("call sensors (min/max)",$minValue,$maxValue);
+		$debugMode = false;
+		if ($debugMode==true) {
+			logToFile("call sensors (min/max)",$minValue,$maxValue);
+		}
 
-		//while (true){
-			$time = date('H:i:s');
-			$output = array();
+		$time = date('H:i:s');
+		$output = array();
 
-			//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
-			exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
+		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
+		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 
-			$count = count($output);
-			echo "output size: $count \n";
+		$count = count($output);
+		echo "output size: $count \n";
 
-			for ($i=0; $i<$count; $i++) {
-				$value = floatval($output[$i]);
-				if ($value && $value < $maxValue && $value > $minValue) {		//filter for realistic values
-					$name;
-				    logToFile("debugvalue $name", $value, $sensor);
+		for ($i=0; $i<$count; $i++) {
+			$value = floatval($output[$i]);
+			if ($value && $value < $maxValue && $value > $minValue) {		//filter for realistic values
+				$name;
+			    logToFile("debugvalue $name", $value, $sensor);
 
-					if ($i == 0) {
-						$name = "humidity";
-						$humidity = $value;
-						echo "$name $value\n";
-					} elseif ($i == 1){
-						$name = "temperature";
-						$temperature = $value;
-						echo "$name $value\n";
-					}
+				if ($i == 0) {
+					$name = "humidity";
+					$humidity = $value;
+					echo "$name $value\n";
+				} elseif ($i == 1){
+					$name = "temperature";
+					$temperature = $value;
+					echo "$name $value\n";
+				}
+				if ($debugMode==true) {
 					logToFile($name, $sensor, $value);
+				}
 
-					$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-					mysql_select_db("datalogger");
-					$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
-					mysql_query($q);
-					mysql_close($db);
+				$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+				mysql_select_db("datalogger");
+				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
+				mysql_query($q);
+				mysql_close($db);
 
 
-				} else {
+			} else {
+				if ($debugMode==true) {
 					logToFile("filtered values $name", $sensor, $value);
 				}
-			//} return; 	//end sensor reading
+			}
+		//} return; 	//end sensor reading
 		}
 	}
 

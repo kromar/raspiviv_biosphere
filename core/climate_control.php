@@ -14,7 +14,7 @@
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = false;
+	$debugMode = true;
 	$highTempRain = false;
 
 	$curentTime = date('H:i');
