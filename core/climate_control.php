@@ -83,6 +83,7 @@
 			//climateTemperature();
 			//climateHumidity();
 
+			logToFile("night time", $tempThreshold, $humidityThreshold);
 			if ($debugMode==true) {
 
 				logToFile("night time", $tempThreshold, $humidityThreshold);
