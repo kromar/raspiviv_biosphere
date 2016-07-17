@@ -21,7 +21,7 @@
 			//for ($i = 0; $i < $max_clients; $i++)
 			$escaped_command = escapeshellcmd("php /home/pi/sensor.php 2>&1");
 			logToFile("escapecommand", $escaped_command,'');
-			exec($escaped_command);
+			exec("php /home/pi/sensor.php");
 			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
 			if ($coreDebugMode == true) {
 				logToFile("core interval", $interval, $coreActive);
