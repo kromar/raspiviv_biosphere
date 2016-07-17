@@ -143,7 +143,7 @@
 		global $currentTime, $rainShedule;
 
 		if ($debugMode == true) {
-			logToFile("running climateRainShedule",$rainShedule,'');
+			logToFile("running climateRainShedule",'','');
 		}
 
 		//trigger rain shedules
