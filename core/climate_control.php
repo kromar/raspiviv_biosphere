@@ -1,9 +1,10 @@
 
 <?php
 	include_once '/var/www/html/log.php';
+	global $debugMode,$tempThreshold;
 
 	//$interval = $argv[1];
-	$tempThreshold;
+	$tempThreshold = 0;
 	//$tempSensor;
 	//$humiditySensor;
 
@@ -29,7 +30,8 @@
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	global $debugMode = true;
+
+	$debugMode = true;
 	$highTempRain = false;
 
 
