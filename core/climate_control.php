@@ -64,6 +64,8 @@
 				}
 			}
 		}
+		mysql_query($sql);
+		mysql_close($db);
 	}
 
 	climateDB();
@@ -239,8 +241,5 @@
 
 		}
 	}
-
-	mysql_query($sql);
-	mysql_close($db);
 
 ?>
