@@ -7,7 +7,7 @@
 		$interval = 30;
 		$temperature = 0;
 		$humidity = 0;
-		logToFile("call sensors (min/max)",$minValue,$maxValue);
+		//logToFile("call sensors (min/max)",$minValue,$maxValue);
 
 		while (true){
 			$time = date('H:i:s');
@@ -21,6 +21,7 @@
 
 			for ($i=0; $i<$count; $i++) {
 				$value = floatval($output[$i]);
+				logToFile("value", $value, '');
 				if ($value < $maxValue && $value > $minValue) {		//filter for realistic values
 					$name;
 					if ($i == 0) {
