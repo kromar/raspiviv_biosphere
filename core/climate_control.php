@@ -76,7 +76,7 @@
 		}
 
 		//day time climate
-		if (($curentTime >= $morningTime) && ($curentTime <= $eveningTime))
+		if (($curentTime >= $morningTime) && ($curentTime <= $eveningTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
@@ -87,9 +87,10 @@
 			if ($debugMode==true) {
 				logToFile("day time", $tempThreshold, $humidityThreshold);
 			}
-
 		}
+
 	}
+
 
 
 	function climateTemperature() {

@@ -4,8 +4,8 @@
 	$user = $_POST['user'];
 	$password = $_POST['userpassword'];
 	$query = "UPDATE test SET password = '$password' WHERE name = '$user'";
-if(mysql_query($query)){
-	echo "updated";}
-else{
-	echo "fail";}
+	if(mysql_query($query)){
+		echo "updated";}
+	else{
+		echo "fail";}
 ?>
