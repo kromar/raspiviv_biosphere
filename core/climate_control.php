@@ -36,6 +36,7 @@
 
 
 	function climateDB(){
+		global $debugMode;
 
 		if ($debugMode == true) {
 			logToFile("running climateDB",'','');
@@ -67,8 +68,13 @@
 		mysql_close($db);
 	}
 
+
 	function cliamteDaytime() {
 		global $debugMode;
+
+		if ($debugMode == true) {
+			logToFile("running cliamteDaytime",'','');
+		}
 
 		//night time climate
 		if (($curentTime < $morningTime) && ($curentTime > $eveningTime)) {
@@ -101,6 +107,11 @@
 
 	function climateTemperature() {
 		global $debugMode;
+
+		if ($debugMode == true) {
+			logToFile("running climateTemperature",'','');
+		}
+
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -129,6 +140,10 @@
 	function climateRainShedule() {
 		global $debugMode;
 
+		if ($debugMode == true) {
+			logToFile("running climateRainShedule",'','');
+		}
+
 		//trigger rain shedules
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
@@ -140,6 +155,10 @@
 
 	function climateHumidity() {
 		global $debugMode;
+
+		if ($debugMode == true) {
+			logToFile("running climateHumidity",'','');
+		}
 
 		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -182,6 +201,10 @@
 	function climateOverride() {
 		global $debugMode;
 
+		if ($debugMode == true) {
+			logToFile("running climateOverride",'','');
+		}
+
 		//override to pressure pump
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
@@ -196,6 +219,10 @@
 
 	function letItRain($time, $reason) {
 		global $debugMode;
+
+		if ($debugMode == true) {
+			logToFile("running letItRain",'','');
+		}
 
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
 		$pin = 2;
@@ -218,6 +245,10 @@
 
 	function bringTheAir($time, $reason) {
 		global $debugMode;
+
+		if ($debugMode == true) {
+			logToFile("running bringTheAir",'','');
+		}
 
 		$pin = 5;
 		if ($time > 0) {
