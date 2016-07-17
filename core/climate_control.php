@@ -80,12 +80,12 @@
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
-			//climateTemperature();
+			climateTemperature();
 			//climateHumidity();
 
 			if ($debugMode==true) {
 
-				logToFile("night time", $tempThreshold, $humidityThreshold);
+				logToFile("night time limits", $tempThreshold, $humidityThreshold);
 			}
 		}
 
@@ -95,11 +95,11 @@
 			$tempThreshold = $tempDay;
 
 			climateRainShedule();
-			//climateTemperature();
+			climateTemperature();
 			//climateHumidity();
 
 			if ($debugMode==true) {
-				logToFile("day time", $tempThreshold, $humidityThreshold);
+				logToFile("day time limits", $tempThreshold, $humidityThreshold);
 			}
 		}
 	}
@@ -142,7 +142,7 @@
 		global $currentTime, $rainShedule;
 
 		if ($debugMode == true) {
-			logToFile("running climateRainShedule",'','');
+			logToFile("running climateRainShedule",$rainShedule,'');
 		}
 
 		//trigger rain shedules
