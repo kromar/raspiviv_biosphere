@@ -44,23 +44,19 @@
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
 
-				for ($i=0; $i<count($row); $i++) {
-					logToFile($i, $row[$i],'');
-				}
-
 				//run climate
 				cliamteDaytime($tempSensor,$humiditySensor);
 
 				if ($debugMode==true) {
-					if ($tempSensor > 50) {
-						logToFile("high temperature reading", $tempSensor, "");
+					if ($tempSensor > 50 or $tempSensor <= 0) {
+						logToFile("extreme temperature reading", $tempSensor, "");
 					} else {
 						logToFile("temperature reading", $tempSensor, "");
 					}
-					if ($humiditySensor > 100) {
-						logToFile("high humidity reading", $humiditySensor, "");
+					if ($humiditySensor > 100 or $humiditySensor < 0) {
+						logToFile("extreme humidity reading", $humiditySensor, "");
 					} else {
-						logToFile("high humidity reading", $humiditySensor, "");
+						logToFile("humidity reading", $humiditySensor, "");
 					}
 				}
 			}
