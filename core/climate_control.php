@@ -2,6 +2,7 @@
 <?php
 	include_once '/var/www/html/log.php';
 	global $tempThreshold, $humidityThreshold;
+	$tempThreshold = 0;
 	global $tempSensor, $humiditySensor;
 	//$interval = $argv[1];
 	$tempNight = 24.5;  	// 24.5
@@ -73,7 +74,7 @@
 		}
 
 		//night time climate
-		if (($curentTime < $sunriseTime) and ($curentTime > $sunsetTime)) {
+		if (($curentTime < $sunriseTime) or ($curentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
@@ -86,7 +87,7 @@
 		}
 
 		//day time climate
-		if (($curentTime >= $sunriseTime) and ($curentTime <= $sunsetTime)) {
+		if (($curentTime > $sunriseTime) or ($curentTime < $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
