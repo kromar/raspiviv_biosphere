@@ -48,8 +48,8 @@
 
 			if ($debugMode==true) {
 				echo $humiditySensor;
-				logToFile("humidity",  $humiditySensor, "");
-				logToFile("temperature",  $tempSensor, "");
+				logToFile("debughumidity",  $humiditySensor, "");
+				logToFile("debugtemperature",  $tempSensor, "");
 			}
 
 		}
