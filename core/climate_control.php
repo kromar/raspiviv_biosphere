@@ -4,8 +4,8 @@
 
 	//$interval = $argv[1];
 	$tempThreshold;
-	$tempSensor;
-	$humiditySensor;
+	//$tempSensor;
+	//$humiditySensor;
 
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
@@ -29,13 +29,14 @@
 
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = true;
+	global $debugMode = true;
 	$highTempRain = false;
 
 
 	function climateDB(){
+		global $debugMode;
 
-		if ($debugMode==true) {
+		if ($debugMode == true) {
 			logToFile("running climateDB",'','');
 		}
 		$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
@@ -66,6 +67,8 @@
 	climateDB();
 
 	function cliamteDaytime() {
+		global $debugMode;
+
 		//night time climate
 		if (($curentTime < $morningTime) && ($curentTime > $eveningTime)) {
 			$tempThreshold = $tempNight;
@@ -98,6 +101,7 @@
 
 
 	function climateTemperature() {
+		global $debugMode;
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -123,6 +127,8 @@
 	}
 
 	function climateRainShedule() {
+		global $debugMode;
+
 		//trigger rain shedules
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
@@ -133,17 +139,16 @@
 	}
 
 	function climateHumidity() {
+		global $debugMode;
+
 		if ($tempSensor > $tempThreshold) {
-
 			$tempDelta = ($tempSensor - $tempThreshold);
-
 			if ($humiditySensor > $humidityThreshold) {
 				//wind on high humidity
 				$humidityDelta = ($humiditySensor - $humidityThreshold);
 				$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
 				$reason = "humidity: ".$humiditySensor;
 				bringTheAir($windTime, $reason);
-
 			}
 
 			if ($humiditySensor < $humidityMin) {
@@ -160,7 +165,6 @@
 			}
 
 			//wind when humidity is high
-
 			$humDelta = ($humiditySensor - $humidityThreshold);
 			if ($humiditySensor > $humidityThreshold) {
 				$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
@@ -176,6 +180,8 @@
 
 
 	function climateOverride() {
+		global $debugMode;
+
 		//override to pressure pump
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
@@ -189,6 +195,8 @@
 
 
 	function letItRain($time, $reason) {
+		global $debugMode;
+
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
 		$pin = 2;
 		if ($time > 0) {
@@ -209,6 +217,8 @@
 
 
 	function bringTheAir($time, $reason) {
+		global $debugMode;
+
 		$pin = 5;
 		if ($time > 0) {
 			exec("/usr/local/bin/gpio mode $pin out");
