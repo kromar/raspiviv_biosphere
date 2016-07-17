@@ -5,12 +5,13 @@
 	$tempThreshold = 0;
 	global $tempSensor, $humiditySensor;
 	//$interval = $argv[1];
+	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
-	$humidityMin = 65.0;
 	$humidityNight = 90.0;
 	$humidityDay = 95.0;
-	global $highTempRain;
+	global $highTempRain, $humidityMin;
+	$humidityMin = 65.0;
 	$highTempRain = false;
 	global $curentTime, $sunriseTime, $sunsetTime;
 	$curentTime = date('H:i');
@@ -68,6 +69,7 @@
 		global $curentTime, $sunriseTime, $sunsetTime;
 		global $humidityThreshold, $tempThreshold;
 		global $tempNight, $humidityNight;
+		global $tempDay, $humidityDay;
 
 		if ($debugMode == true) {
 			logToFile("running cliamteDaytime",$sunriseTime, $sunsetTime);
