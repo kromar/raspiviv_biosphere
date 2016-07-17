@@ -158,7 +158,7 @@
 	function climateHumidity() {
 		global $debugMode;
 		global $tempSensor, $tempThresold;
-		global $humiditySensor, $humidityThreshold $humidityMin;
+		global $humiditySensor, $humidityThreshold, $humidityMin;
 		global $windTime;
 
 		if ($debugMode == true) {
