@@ -25,8 +25,6 @@
 			$value = floatval($output[$i]);
 			if ($value && $value < $maxValue && $value > $minValue) {		//filter for realistic values
 				$name;
-			    logToFile("debugvalue $name", $value, $sensor);
-
 				if ($i == 0) {
 					$name = "humidity";
 					$humidity = $value;
