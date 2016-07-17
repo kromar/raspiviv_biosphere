@@ -50,7 +50,7 @@
 	}
 
 
-	//*
+	/*
 	//night time climate
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 		$tempThreshold = $tempNight;
@@ -130,7 +130,7 @@
 
 	//*/
 
-	/*
+	//*
 	function letItRain($time, $reason) {
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
 		$pin = 2;
