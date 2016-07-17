@@ -103,39 +103,6 @@
 	}
 
 
-	function climateTemperature($tempSensor,$humiditySensor) {
-		global $debugMode;
-		global $tempThreshold;
-		global $rainTime, $windTime;
-		global $highTempRain;
-
-		if ($debugMode == true) {
-			logToFile("running climateTemperature",'','');
-		}
-
-		//react to high temperatures
-		if ($tempSensor > $tempThreshold) {
-			$tempDelta = ($tempSensor - $tempThreshold);
-
-			if (($tempDelta > 0) and ($tempDelta < 10)) {
-				$rainTime = $tempDelta + $rainTime;
-				$windTime = $windTime + $tempDelta;
-				$reason = "temperature: ".$tempSensor;
-				if ($highTempRain == true) {
-					letItRain($rainTime, $reason);
-				}
-				bringTheAir($windTime, $reason);		//TODO: define windtime
-			} else {
-				$reason = "temperature: ".$tempSensor;
-				if ($highTempRain == true) {
-					letItRain($rainTime, $reason);
-				}
-				bringTheAir($windTime, $reason);
-			}
-		}
-	}
-
-
 	function climateRainShedule($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $currentTime, $rainShedule;
@@ -153,6 +120,39 @@
 	}
 
 
+	function climateTemperature($tempSensor,$humiditySensor) {
+		global $debugMode;
+		global $tempThreshold;
+		global $rainTime, $windTime;
+		global $highTempRain;
+
+		if ($debugMode == true) {
+			logToFile("running climateTemperature",'','');
+		}
+
+		//react to high temperatures
+		if ($tempSensor > $tempThreshold) {
+			$tempDelta = ($tempSensor - $tempThreshold);
+
+			if (($tempDelta > 0) and ($tempDelta < 10)) {
+				$rainTime = $tempDelta + $rainTime;
+				$windTime = $windTime + $tempDelta;
+				$reason = "high temperature: ".$tempSensor;
+				if ($highTempRain == true) {
+					letItRain($rainTime, $reason);
+				}
+				bringTheAir($windTime, $reason);		//TODO: define windtime
+			} else {
+				$reason = "high temperature: ".$tempSensor;
+				if ($highTempRain == true) {
+					letItRain($rainTime, $reason);
+				}
+				bringTheAir($windTime, $reason);
+			}
+		}
+	}
+
+
 	function climateHumidity($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $tempThresold;
@@ -164,7 +164,7 @@
 		}
 
 		// rain when humidity drops below specified minimum valuee
-		if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
+		if ($humiditySensor < $humidityMin) {
 			//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
@@ -172,7 +172,7 @@
 				$reason = "low humidity: ".$humiditySensor;
 				letItRain($humidityDelta, $reason);
 			} else {
-				$reason = "lowhumidity: ".$humiditySensor;
+				$reason = "low humidity: ".$humiditySensor;
 				letItRain($rainTime, $reason);
 			}
 		}
@@ -185,7 +185,7 @@
 			$reason = "high humidity: ".$humiditySensor;
 			bringTheAir($windTime, $reason);
 		} else { //turn off air when below humidity value
-			$reason = "humidity: ".$humiditySensor;
+			$reason = "low humidity: ".$humiditySensor;
 			bringTheAir(0, $reason);
 		}
 	}
