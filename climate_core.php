@@ -1,6 +1,6 @@
 <?php
 	include_once '/var/www/html/log.php';
-	$interval = 10;
+	$interval = 60;
 	$somearg;
 	$coreActive = false;
 	$coreDebugMode = true;
