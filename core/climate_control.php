@@ -76,14 +76,13 @@
 		}
 
 		//night time climate
-		if (($currentTime < $sunriseTime) and ($currentTime > $sunsetTime)) {
+		if (($currentTime < $sunriseTime) or ($currentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
 			//climateTemperature();
 			//climateHumidity();
 
-			logToFile("night time", $tempThreshold, $humidityThreshold);
 			if ($debugMode==true) {
 
 				logToFile("night time", $tempThreshold, $humidityThreshold);
@@ -91,7 +90,7 @@
 		}
 
 		//day time climate
-		if (($currentTime >= $sunriseTime) and ($currentTime <= $sunsetTime)) {
+		if (($currentTime > $sunriseTime) and ($currentTime < $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
