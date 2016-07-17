@@ -16,7 +16,7 @@
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
-	$sunsetTime = ('22:00');
+	$sunsetTime = ('24:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
 	$rainShedule = array('12:00' => 10, '18:00' => 10);
