@@ -33,14 +33,14 @@
 		if ($debugMode == true) {
 			logToFile("running climateCore",'','');
 		}
-		$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-		mysql_select_db("datalogger");
+		$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+		mysqli_select_db("datalogger");
 		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-		$result = mysql_query($sql);
-		//$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
+		$result = mysqli_query($sql);
+		//$humiditySensor=(float)mysqli_fetch_object($dh)->humidity;
 
-		if (mysql_num_rows($result) > 0) {
-			while($row = mysql_fetch_assoc($result)) {
+		if (mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
 
@@ -61,8 +61,8 @@
 				}
 			}
 		}
-		mysql_query($sql);
-		mysql_close($db);
+		mysqli_query($sql);
+		mysqli_close($db);
 	}
 
 

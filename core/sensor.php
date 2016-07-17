@@ -39,11 +39,11 @@
 					logToFile($name, $sensor, $value);
 				}
 
-				$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-				mysql_select_db("datalogger");
+				$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+				mysqli_select_db("datalogger");
 				$q = "INSERT INTO datalogger VALUES (now(), $sensor, '$temperature', '$humidity',0)";
-				mysql_query($q);
-				mysql_close($db);
+				mysqli_query($q);
+				mysqli_close($db);
 
 
 			} else {

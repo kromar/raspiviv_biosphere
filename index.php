@@ -267,16 +267,16 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysql_select_db ( "datalogger" );
+				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysqli_select_db ( "datalogger" );
 
 				$q = "select * from history ";
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysql_query ( $q );
+				$ds = mysqli_query ( $q );
 
-				while ( $r = mysql_fetch_object ( $ds ) ) {
+				while ( $r = mysqli_fetch_object ( $ds ) ) {
 					echo "['" . $r->date_time . "', ";
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
@@ -321,16 +321,16 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysql_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysql_select_db ( "datalogger" );
+				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
+				mysqli_select_db ( "datalogger" );
 
 				$q = "select * from history ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysql_query ( $q );
+				$ds = mysqli_query ( $q );
 
-				while ( $r = mysql_fetch_object ( $ds ) ) {
+				while ( $r = mysqli_fetch_object ( $ds ) ) {
 					echo "['" . $r->date_time . "', ";
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
