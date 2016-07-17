@@ -4,6 +4,9 @@
 
 	//$interval = $argv[1];
 	$tempThreshold;
+	$tempSensor;
+	$humiditySensor;
+
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
 
@@ -12,10 +15,7 @@
 	$humidityNight = 90.0;
 	$humidityDay = 95.0;
 
-	$override = false;		// override temperature and rain every minute
-	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = true;
-	$highTempRain = false;
+
 
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
@@ -27,57 +27,62 @@
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 
-	$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-	mysql_select_db("datalogger");
-	$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-	$result = mysql_query($sql);
-	//$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
+	$override = false;		// override temperature and rain every minute
+	$pumpPrimer = false; 	// set this to true to build up rain system pressure
+	$debugMode = true;
+	$highTempRain = false;
 
-	if (mysql_num_rows($result) > 0) {
-		while($row = (float)mysql_fetch_assoc($result)) {
-			$tempSensor = $row["temperature"];
-			$humiditySensor = $row["humidity"];
 
-			if ($debugMode==true) {
-				if ($tempSensor > 50) {
-					logToFile("high temperature reading", $tempSensor, "");
-				}
-				if ($humiditySensor > 100) {
-					logToFile("high humidity reading", $humiditySensor, "");
+	function readDatabase(){
+		$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+		mysql_select_db("datalogger");
+		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+		$result = mysql_query($sql);
+		//$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
+
+		if (mysql_num_rows($result) > 0) {
+			while($row = (float)mysql_fetch_assoc($result)) {
+				$tempSensor = $row["temperature"];
+				$humiditySensor = $row["humidity"];
+
+				//cliamteDaytime();
+
+				if ($debugMode==true) {
+					if ($tempSensor > 50) {
+						logToFile("high temperature reading", $tempSensor, "");
+					}
+					if ($humiditySensor > 100) {
+						logToFile("high humidity reading", $humiditySensor, "");
+					}
 				}
 			}
 		}
 	}
 
+	readDatabase();
 
-	//*
-	//night time climate
-	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
-		$tempThreshold = $tempNight;
-		$humidityThreshold = $humidityNight;
-		$humDelta = ($humiditySensor - $humidityThreshold);
+	function cliamteDaytime() {
+		//night time climate
+		if (($curentTime < $morningTime) && ($curentTime > $eveningTime)) {
+			$tempThreshold = $tempNight;
+			$humidityThreshold = $humidityNight;
 
-		//wind when humidity is high
-		if ($humiditySensor > $humidityThreshold) {
-			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-			$reason = "humidity: ".$humiditySensor;
-			bringTheAir($windTime, $reason);
-		} else {
-			$reason = "humidity: ".$humiditySensor;
-			bringTheAir(0, $reason);
-		}
-		//TODO: what to do when temps are high?
-
-	} else { //day time climate
-		$humidityThreshold = $humidityDay;
-		$tempThreshold = $tempDay;
-		//trigger rain shedules
-		if (array_key_exists($curentTime, $rainShedule)) {
-			$time = current($rainShedule);
-			$reason = "rain shedule";
-			letItRain($time, $reason);
+			//climateTemperature();
+			//climateHumidity();
 		}
 
+		//day time climate
+		if (($curentTime >= $morningTime) && ($curentTime <= $eveningTime))
+			$humidityThreshold = $humidityDay;
+			$tempThreshold = $tempDay;
+			climateRainTime();
+			//climateTemperature();
+			//climateHumidity();
+		}
+	}
+
+
+	function climateTemperature() {
 		//react to high temperatures
 		if ($tempSensor > $tempThreshold) {
 			$tempDelta = ($tempSensor - $tempThreshold);
@@ -97,26 +102,65 @@
 				}
 				bringTheAir($windTime, $reason);
 			}
-		} elseif ($humiditySensor > $humidityThreshold) {
-		//wind on high humidity
-			$humidityDelta = ($humiditySensor - $humidityThreshold);
-			$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
-			$reason = "humidity: ".$humiditySensor;
-			bringTheAir($windTime, $reason);
 
-		} elseif ($humiditySensor < $humidityMin) {
-		//react to low humidity
-			$humidityDelta = ($humidityMin - $humiditySensor);
-			if (($humidityDelta > 0) and ($humidityDelta < 10)) {
-				$humidityDelta = $rainTime;
-				$reason = "humidity: ".$humiditySensor;
-				letItRain($humidityDelta, $reason);
-			} else {
-				$reason = "humidity: ".$humiditySensor;
-				letItRain($rainTime, $reason);
-			}
+			//TODO: what to do when temps are high?
+		}
+	}
+
+	function climateRainTime() {
+		//trigger rain shedules
+		if (array_key_exists($curentTime, $rainShedule)) {
+			$time = current($rainShedule);
+			$reason = "rain shedule";
+			letItRain($time, $reason);
 		}
 
+	}
+
+	function climateHumidity() {
+		if ($tempSensor > $tempThreshold) {
+
+			$tempDelta = ($tempSensor - $tempThreshold);
+
+			if ($humiditySensor > $humidityThreshold) {
+				//wind on high humidity
+				$humidityDelta = ($humiditySensor - $humidityThreshold);
+				$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
+				$reason = "humidity: ".$humiditySensor;
+				bringTheAir($windTime, $reason);
+
+			}
+
+			if ($humiditySensor < $humidityMin) {
+				//react to low humidity
+				$humidityDelta = ($humidityMin - $humiditySensor);
+				if (($humidityDelta > 0) and ($humidityDelta < 10)) {
+					$humidityDelta = $rainTime;
+					$reason = "humidity: ".$humiditySensor;
+					letItRain($humidityDelta, $reason);
+				} else {
+					$reason = "humidity: ".$humiditySensor;
+					letItRain($rainTime, $reason);
+				}
+			}
+
+			//wind when humidity is high
+
+			$humDelta = ($humiditySensor - $humidityThreshold);
+			if ($humiditySensor > $humidityThreshold) {
+				$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+				$reason = "humidity: ".$humiditySensor;
+				bringTheAir($windTime, $reason);
+			} else {
+				$reason = "humidity: ".$humiditySensor;
+				bringTheAir(0, $reason);
+			}
+
+		}
+	}
+
+
+	function climateOverride() {
 		//override to pressure pump
 		if ($pumpPrimer==true and $override==true) {
 			$i = 0;
@@ -127,8 +171,6 @@
 			}
 		}
 	}
-
-	//*/
 
 
 	function letItRain($time, $reason) {
