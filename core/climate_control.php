@@ -76,7 +76,7 @@
 		}
 
 		//night time climate
-		if (($curentTime < $sunriseTime) or ($curentTime > $sunsetTime)) {
+		if (($curentTime < $sunriseTime) and ($curentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
@@ -89,7 +89,7 @@
 		}
 
 		//day time climate
-		if (($curentTime > $sunriseTime) or ($curentTime < $sunsetTime)) {
+		if (($curentTime >= $sunriseTime) and ($curentTime <= $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
