@@ -33,7 +33,11 @@
 	$highTempRain = false;
 
 
-	function readDatabase(){
+	function climateDB(){
+
+		if ($debugMode==true) {
+			logToFile("running climateDB",'','');
+		}
 		$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
 		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
@@ -59,7 +63,7 @@
 		}
 	}
 
-	readDatabase();
+	climateDB();
 
 	function cliamteDaytime() {
 		//night time climate
