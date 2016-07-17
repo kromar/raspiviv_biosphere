@@ -3,9 +3,6 @@
 	include_once '/var/www/html/log.php';
 	global $tempThreshold, $humidityThreshold;
 	$tempThreshold = 0;
-	global $tempSensor, $humiditySensor;
-	$tempSensor = 0;
-	$humiditySensor = 0;
 	//$interval = $argv[1];
 	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
@@ -32,7 +29,6 @@
 
 	function climateCore(){
 		global $debugMode;
-		global $tempSensor, $humiditySensor;
 
 		if ($debugMode == true) {
 			logToFile("running climateCore",'','');
@@ -49,7 +45,7 @@
 				$humiditySensor = $row["humidity"];
 
 				//run climate
-				cliamteDaytime();
+				cliamteDaytime($tempSensor,$humiditySensor);
 
 				if ($debugMode==true) {
 					if ($tempSensor > 50) {
@@ -66,7 +62,7 @@
 	}
 
 
-	function cliamteDaytime() {
+	function cliamteDaytime($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $currentTime, $sunriseTime, $sunsetTime;
 		global $humidityThreshold, $tempThreshold;
@@ -82,8 +78,8 @@
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
-			climateTemperature();
-			climateHumidity();
+			climateTemperature($tempSensor,$humiditySensor);
+			climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 
@@ -97,8 +93,8 @@
 			$tempThreshold = $tempDay;
 
 			climateRainShedule();
-			climateTemperature();
-			climateHumidity();
+			climateTemperature($tempSensor,$humiditySensor);
+			climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 				logToFile("day time limits", $tempThreshold, $humidityThreshold);
@@ -107,9 +103,9 @@
 	}
 
 
-	function climateTemperature() {
+	function climateTemperature($tempSensor,$humiditySensor) {
 		global $debugMode;
-		global $tempSensor, $tempThreshold;
+		global $tempThreshold;
 		global $rainTime, $windTime;
 		global $highTempRain;
 
@@ -140,7 +136,7 @@
 	}
 
 
-	function climateRainShedule() {
+	function climateRainShedule($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $currentTime, $rainShedule;
 
@@ -157,10 +153,10 @@
 	}
 
 
-	function climateHumidity() {
+	function climateHumidity($tempSensor,$humiditySensor) {
 		global $debugMode;
-		global $tempSensor, $tempThresold;
-		global $humiditySensor, $humidityThreshold, $humidityMin;
+		global $tempThresold;
+		global $humidityThreshold, $humidityMin;
 		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
