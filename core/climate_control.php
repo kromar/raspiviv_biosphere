@@ -16,7 +16,7 @@
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
-	$sunsetTime = ('24:00');
+	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
 	$rainShedule = array('12:00' => 10, '18:00' => 10);
@@ -81,7 +81,7 @@
 			$humidityThreshold = $humidityNight;
 
 			climateTemperature();
-			//climateHumidity();
+			climateHumidity();
 
 			if ($debugMode==true) {
 
@@ -96,7 +96,7 @@
 
 			climateRainShedule();
 			climateTemperature();
-			//climateHumidity();
+			climateHumidity();
 
 			if ($debugMode==true) {
 				logToFile("day time limits", $tempThreshold, $humidityThreshold);
@@ -107,7 +107,7 @@
 
 	function climateTemperature() {
 		global $debugMode;
-		global $tempSensor, $tempThreshold, $tempDelta;
+		global $tempSensor, $tempThreshold;
 		global $rainTime, $windTime;
 		global $highTempRain;
 
@@ -157,45 +157,38 @@
 
 	function climateHumidity() {
 		global $debugMode;
+		global $tempSensor, $tempThresold;
+		global $humiditySensor, $humidityThreshold $humidityMin;
+		global $windTime;
 
 		if ($debugMode == true) {
 			logToFile("running climateHumidity",'','');
 		}
 
-		if ($tempSensor > $tempThreshold) {
-			$tempDelta = ($tempSensor - $tempThreshold);
-			if ($humiditySensor > $humidityThreshold) {
-				//wind on high humidity
-				$humidityDelta = ($humiditySensor - $humidityThreshold);
-				$windTime = 10 + (50 / (100-$humidityThreshold) * $humidityDelta);
-				$reason = "humidity: ".$humiditySensor;
-				bringTheAir($windTime, $reason);
-			}
-
-			if ($humiditySensor < $humidityMin) {
-				//react to low humidity
-				$humidityDelta = ($humidityMin - $humiditySensor);
-				if (($humidityDelta > 0) and ($humidityDelta < 10)) {
-					$humidityDelta = $rainTime;
-					$reason = "humidity: ".$humiditySensor;
-					letItRain($humidityDelta, $reason);
-				} else {
-					$reason = "humidity: ".$humiditySensor;
-					letItRain($rainTime, $reason);
-				}
-			}
-
-			//wind when humidity is high
-			$humDelta = ($humiditySensor - $humidityThreshold);
-			if ($humiditySensor > $humidityThreshold) {
-				$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
-				$reason = "humidity: ".$humiditySensor;
-				bringTheAir($windTime, $reason);
+		// rain when humidity drops below specified minimum valuee
+		if ($humiditySensor < $humidityMin) {
+			//react to low humidity
+			$humidityDelta = ($humidityMin - $humiditySensor);
+			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
+				$humidityDelta = $rainTime;
+				$reason = "low humidity: ".$humiditySensor;
+				letItRain($humidityDelta, $reason);
 			} else {
-				$reason = "humidity: ".$humiditySensor;
-				bringTheAir(0, $reason);
+				$reason = "lowhumidity: ".$humiditySensor;
+				letItRain($rainTime, $reason);
 			}
+		}
 
+		//air when humidity reaches a specified maximum
+		if ($humiditySensor > $humidityThreshold) {
+			$humDelta = ($humiditySensor - $humidityThreshold);
+			$windTime = 10 + (50/(100-$humidityThreshold)*($humiditySensor-$humidityThreshold));
+
+			$reason = "high humidity: ".$humiditySensor;
+			bringTheAir($windTime, $reason);
+		} else { //turn off air when below humidity value
+			$reason = "humidity: ".$humiditySensor;
+			bringTheAir(0, $reason);
 		}
 	}
 
