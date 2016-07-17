@@ -1,19 +1,20 @@
 <?php
 	include_once '/var/www/html/log.php';
 
-
 	function readSensor($sensor) {
 		$maxValue = 100;
 		$minValue = 0;
 		$interval = 30;
+		$temperature = 0;
+		$humidity = 0;
 		logToFile("call sensors (min/max)",$minValue,$maxValue);
 
 		while (true){
 			$time = date('H:i:s');
 			$output = array();
 
-			$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
-			exec($escaped_command, $output);
+			//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
+			exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 
 			$count = count($output);
 			echo "output size: $count \n";
@@ -25,9 +26,11 @@
 					if ($i == 0) {
 						$name = "humidity";
 						$humidity = $value;
+						echo "$name $value\n";
 					} elseif ($i == 1){
 						$name = "temperature";
 						$temperature = $value;
+						echo "$name $value\n";
 					}
 					logToFile($name, $sensor, $value);
 
