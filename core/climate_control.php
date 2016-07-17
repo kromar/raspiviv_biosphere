@@ -4,6 +4,8 @@
 	global $tempThreshold, $humidityThreshold;
 	$tempThreshold = 0;
 	global $tempSensor, $humiditySensor;
+	$tempSensor = 0;
+	$humiditySensor = 0;
 	//$interval = $argv[1];
 	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
@@ -166,7 +168,7 @@
 		}
 
 		// rain when humidity drops below specified minimum valuee
-		if ($humiditySensor < $humidityMin) {
+		if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
 			//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
