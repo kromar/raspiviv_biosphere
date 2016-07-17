@@ -1,12 +1,12 @@
 <?php
 	include_once 'log.php';
 
-	$maxValue = 100;
-	$minValue = 0;
-	$interval = 30;
-	logToFile("call sensors (min/max)",$minValue,$maxValue);
 
 	function readSensor($sensor) {
+		$maxValue = 100;
+		$minValue = 0;
+		$interval = 30;
+		logToFile("call sensors (min/max)",$minValue,$maxValue);
 		while (true){
 			$time = date('H:i:s');
 			$output = array();
