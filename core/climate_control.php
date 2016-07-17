@@ -130,6 +130,7 @@
 
 	//*/
 
+	/*
 	function letItRain($time, $reason) {
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
 		$pin = 2;
@@ -169,6 +170,7 @@
 
 		}
 	}
+	//*/
 
 	mysql_query($sql);
 	mysql_close($db);
