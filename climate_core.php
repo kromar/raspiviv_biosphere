@@ -3,19 +3,23 @@
 	$interval = 60;
 	$somearg;
 	$coreActive = false;
-	$coreDebugMode = true;
+	$debugMode = false;
 
 	while (true) {
 		if ($coreActive == false) {
-			if ($coreDebugMode == true) {
+			if ($debugMode == true) {
 				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
 				shell_exec("watch -n 10 tail ../../log/apache2/error.log");
 			}
 			else {
-				logToFile("shell exec failed",'','');
+				if ($debugMode==true) {
+					logToFile("shell exec failed",'','');
+				}
 			}
 			$coreActive = true;
-			logToFile("core initialized", $interval, $coreActive);
+			if ($debugMode==true) {
+				logToFile("core initialized", $interval, $coreActive);
+			}
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
@@ -23,7 +27,7 @@
 			//logToFile("escapecommand", $escaped_command,'');
 			//exec("php /home/pi/sensor.php");
 			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
-			if ($coreDebugMode == true) {
+			if ($debugMode == true) {
 				logToFile("core interval", $interval, $coreActive);
 			}
 			sleep($interval);
