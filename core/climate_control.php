@@ -41,10 +41,9 @@
 			if ($debugMode==true) {
 				if ($tempSensor > 50) {
 					logToFile("high temperature reading", $tempSensor, "");
-				} elseif ($humiditySensor > 100) {
+				}
+				if ($humiditySensor > 100) {
 					logToFile("high humidity reading", $humiditySensor, "");
-				} else {
-					logToFile("debug reading", $humiditySensor, $tempSensor);
 				}
 			}
 		}
