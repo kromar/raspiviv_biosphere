@@ -138,6 +138,7 @@
 
 	function climateRainShedule() {
 		global $debugMode;
+		global $curentTime, $rainShedule;
 
 		if ($debugMode == true) {
 			logToFile("running climateRainShedule",'','');
