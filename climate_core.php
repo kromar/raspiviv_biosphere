@@ -6,6 +6,7 @@
 	$coreDebugMode = true;
 
 	while (true) {
+		logToFile(".",".",".");
 		if ($coreActive == false) {
 			if ($coreDebugMode == true) {
 				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
