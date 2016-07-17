@@ -6,7 +6,6 @@
 	$coreDebugMode = true;
 
 	while (true) {
-		logToFile(".",".",".");
 		if ($coreActive == false) {
 			if ($coreDebugMode == true) {
 				shell_exec("watch -n 1 tail ../../log/raspiviv.log");
@@ -20,7 +19,7 @@
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
-			$escaped_command = escapeshellcmd("php /home/pi/sensor.php 2>&1");
+			$escaped_command = escapeshellcmd("php /home/pi/sensor.php");
 			logToFile("escapecommand", $escaped_command,'');
 			exec("php /home/pi/sensor.php");
 			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
