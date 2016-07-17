@@ -107,6 +107,9 @@
 
 	function climateTemperature() {
 		global $debugMode;
+		global $tempSensor, $tempThreshold, $tempDelta;
+		global $rainTime, $windTime;
+		global $highTempRain;
 
 		if ($debugMode == true) {
 			logToFile("running climateTemperature",'','');
@@ -131,8 +134,6 @@
 				}
 				bringTheAir($windTime, $reason);
 			}
-
-			//TODO: what to do when temps are high?
 		}
 	}
 
