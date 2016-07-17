@@ -36,7 +36,7 @@
 		$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysqli_select_db($db, "datalogger");
 		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-		$result = mysqli_query($sql);
+		$result = mysqli_query($db, $sql);
 		//$humiditySensor=(float)mysqli_fetch_object($dh)->humidity;
 
 		if (mysqli_num_rows($result) > 0) {
