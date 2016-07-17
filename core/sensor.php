@@ -7,7 +7,8 @@
 		$interval = 30;
 		$temperature = 0;
 		$humidity = 0;
-		$debugMode = false;
+		$debugMode = true;
+
 		if ($debugMode==true) {
 			logToFile("call sensors (min/max)",$minValue,$maxValue);
 		}
