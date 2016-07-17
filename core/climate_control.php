@@ -56,7 +56,7 @@
 	}
 
 
-	/*
+	//*
 	//night time climate
 	if (($curentTime < $morningTime) or ($curentTime > $eveningTime)) {
 		$tempThreshold = $tempNight;
