@@ -1,6 +1,6 @@
 ﻿<!-- This page is requested by the JavaScript, it updates the pin's status and then print it -->
 <?php
-	include_once "log.php";
+	include_once '/var/www/html/log.php';
 	//Getting and using values
 	if (isset ($_GET["pin"]) && isset($_GET["status"]) ) {
 		$pin = strip_tags($_GET["pin"]);

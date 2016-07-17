@@ -1,6 +1,6 @@
 
 <?php
-	include_once "log.php";
+	include_once '/var/www/html/log.php';
 	logToFile("climate trigger", '','');
 	echo ("climate test");
 
