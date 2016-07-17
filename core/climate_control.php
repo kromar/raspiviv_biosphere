@@ -13,8 +13,8 @@
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;
 	$highTempRain = false;
-	global $curentTime, $sunriseTime, $sunsetTime;
-	$curentTime = date('H:i');
+	global $currentTime, $sunriseTime, $sunsetTime;
+	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
@@ -66,7 +66,7 @@
 
 	function cliamteDaytime() {
 		global $debugMode;
-		global $curentTime, $sunriseTime, $sunsetTime;
+		global $currentTime, $sunriseTime, $sunsetTime;
 		global $humidityThreshold, $tempThreshold;
 		global $tempNight, $humidityNight;
 		global $tempDay, $humidityDay;
@@ -76,7 +76,7 @@
 		}
 
 		//night time climate
-		if (($curentTime < $sunriseTime) and ($curentTime > $sunsetTime)) {
+		if (($currentTime < $sunriseTime) and ($currentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
@@ -90,7 +90,7 @@
 		}
 
 		//day time climate
-		if (($curentTime >= $sunriseTime) and ($curentTime <= $sunsetTime)) {
+		if (($currentTime >= $sunriseTime) and ($currentTime <= $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
@@ -139,14 +139,14 @@
 
 	function climateRainShedule() {
 		global $debugMode;
-		global $curentTime, $rainShedule;
+		global $currentTime, $rainShedule;
 
 		if ($debugMode == true) {
 			logToFile("running climateRainShedule",'','');
 		}
 
 		//trigger rain shedules
-		if (array_key_exists($curentTime, $rainShedule)) {
+		if (array_key_exists($currentTime, $rainShedule)) {
 			$time = current($rainShedule);
 			$reason = "rain shedule";
 			letItRain($time, $reason);
