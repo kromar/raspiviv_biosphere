@@ -21,7 +21,7 @@
 
 			for ($i=0; $i<$count; $i++) {
 				$value = floatval($output[$i]);
-				logToFile("value", $value, '');
+				//logToFile("value", $value, '');
 				if ($value < $maxValue && $value > $minValue) {		//filter for realistic values
 					$name;
 					if ($i == 0) {
