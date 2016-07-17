@@ -37,21 +37,16 @@
 		while($row = (float)mysql_fetch_assoc($result)) {
 			$tempSensor = $row["temperature"];
 			$humiditySensor = $row["humidity"];
+
 			if ($debugMode==true) {
 				if ($tempSensor > 50) {
-					logToFile("high temperature reading", $tempSensor, "" );
-				}
-				if ($humiditySensor > 100) {
-					logToFile("high humidity reading", $humiditySensor, "" );
+					logToFile("high temperature reading", $tempSensor, "");
+				} elseif ($humiditySensor > 100) {
+					logToFile("high humidity reading", $humiditySensor, "");
+				} else {
+					logToFile("debug reading", $humiditySensor, $tempSensor);
 				}
 			}
-
-			if ($debugMode==true) {
-				echo $humiditySensor;
-				logToFile("debughumidity",  $humiditySensor, "");
-				logToFile("debugtemperature",  $tempSensor, "");
-			}
-
 		}
 	}
 
