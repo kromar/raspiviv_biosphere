@@ -1,8 +1,6 @@
 
 <?php
 	include_once '/var/www/html/log.php';
-	logToFile("climate trigger", '','');
-	echo ("climate test");
 
 	//$interval = $argv[1];
 	$tempThreshold;
@@ -17,7 +15,7 @@
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
-	$lowTempRain = false;
+	$highTempRain = false;
 
 	$curentTime = date('H:i');
 	$morningTime = ('10:00');
@@ -47,14 +45,16 @@
 					logToFile("high humidity reading", $humiditySensor, "" );
 				}
 			}
+
+			if ($debugMode==true) {
+				echo $humiditySensor;
+				logToFile("humidity",  $humiditySensor, "");
+				logToFile("temperature",  $tempSensor, "");
+			}
+
 		}
 	}
 
-	echo $humiditySensor;
-	if ($debugMode==true) {
-		logToFile("humidity",  $humiditySensor, "");
-		logToFile("temperature",  $tempSensor, "");
-	}
 
 
 	//night time climate
@@ -92,13 +92,13 @@
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
 				$reason = "temperature: ".$tempSensor;
-				if ($lowTempRain == true) {
+				if ($highTempRain == true) {
 					letItRain($rainTime, $reason);
 				}
 				bringTheAir($windTime, $reason);		//TODO: define windtime
 			} else {
 				$reason = "temperature: ".$tempSensor;
-				if ($lowTempRain == true) {
+				if ($highTempRain == true) {
 					letItRain($rainTime, $reason);
 				}
 				bringTheAir($windTime, $reason);

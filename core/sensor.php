@@ -22,7 +22,7 @@
 			for ($i=0; $i<$count; $i++) {
 				$value = floatval($output[$i]);
 				//logToFile("value", $value, '');
-				if ($value < $maxValue && $value > $minValue) {		//filter for realistic values
+				if ($value && $value < $maxValue && $value > $minValue) {		//filter for realistic values
 					$name;
 					if ($i == 0) {
 						$name = "humidity";
