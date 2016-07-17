@@ -9,7 +9,7 @@
 		$humidity = 0;
 		//logToFile("call sensors (min/max)",$minValue,$maxValue);
 
-		while (true){
+		//while (true){
 			$time = date('H:i:s');
 			$output = array();
 
@@ -45,7 +45,7 @@
 				} else {
 					logToFile("filtered values $name", $sensor, $value);
 				}
-			} return; 	//end sensor reading
+			//} return; 	//end sensor reading
 		}
 	}
 

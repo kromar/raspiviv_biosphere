@@ -19,8 +19,8 @@
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
-			$escaped_command = escapeshellcmd("php /home/pi/sensor.php");
-			logToFile("escapecommand", $escaped_command,'');
+			//$escaped_command = escapeshellcmd("php /home/pi/sensor.php");
+			//logToFile("escapecommand", $escaped_command,'');
 			//exec("php /home/pi/sensor.php");
 			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
 			if ($coreDebugMode == true) {
