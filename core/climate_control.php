@@ -159,7 +159,7 @@
 		global $debugMode;
 		global $tempSensor, $tempThresold;
 		global $humiditySensor, $humidityThreshold, $humidityMin;
-		global $windTime;
+		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
 			logToFile("running climateHumidity",'','');
