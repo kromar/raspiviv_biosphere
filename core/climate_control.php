@@ -40,9 +40,13 @@
 		//$humiditySensor=(float)mysql_fetch_object($dh)->humidity;
 
 		if (mysql_num_rows($result) > 0) {
-			while($row = (float)mysql_fetch_assoc($result)) {
+			while($row = mysql_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
+
+				for ($i=0; $i<count($row); $i++) {
+					logToFile($i, $row[$i],'');
+				}
 
 				//run climate
 				cliamteDaytime($tempSensor,$humiditySensor);
@@ -50,8 +54,12 @@
 				if ($debugMode==true) {
 					if ($tempSensor > 50) {
 						logToFile("high temperature reading", $tempSensor, "");
+					} else {
+						logToFile("temperature reading", $tempSensor, "");
 					}
 					if ($humiditySensor > 100) {
+						logToFile("high humidity reading", $humiditySensor, "");
+					} else {
 						logToFile("high humidity reading", $humiditySensor, "");
 					}
 				}
@@ -78,8 +86,8 @@
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
-			climateTemperature($tempSensor,$humiditySensor);
-			climateHumidity($tempSensor,$humiditySensor);
+			//climateTemperature($tempSensor,$humiditySensor);
+			//climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 
@@ -93,8 +101,8 @@
 			$tempThreshold = $tempDay;
 
 			climateRainShedule();
-			climateTemperature($tempSensor,$humiditySensor);
-			climateHumidity($tempSensor,$humiditySensor);
+			//climateTemperature($tempSensor,$humiditySensor);
+			//climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 				logToFile("day time limits", $tempThreshold, $humidityThreshold);
@@ -164,6 +172,7 @@
 		}
 
 		// rain when humidity drops below specified minimum valuee
+		//if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
 		if ($humiditySensor < $humidityMin) {
 			//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
