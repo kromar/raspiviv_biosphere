@@ -36,7 +36,6 @@
 
 
 	function climateDB(){
-		global $debugMode;
 
 		if ($debugMode == true) {
 			logToFile("running climateDB",'','');
@@ -68,8 +67,6 @@
 		mysql_close($db);
 	}
 
-	climateDB();
-
 	function cliamteDaytime() {
 		global $debugMode;
 
@@ -99,9 +96,7 @@
 				logToFile("day time", $tempThreshold, $humidityThreshold);
 			}
 		}
-
 	}
-
 
 
 	function climateTemperature() {
@@ -130,6 +125,7 @@
 		}
 	}
 
+
 	function climateRainShedule() {
 		global $debugMode;
 
@@ -139,8 +135,8 @@
 			$reason = "rain shedule";
 			letItRain($time, $reason);
 		}
-
 	}
+
 
 	function climateHumidity() {
 		global $debugMode;
@@ -238,8 +234,11 @@
 				logToFile("bring the air", $time."s", $reason);
 			}
 			exec("/usr/local/bin/gpio write $pin 0");
-
 		}
 	}
+
+
+	//run climate
+	climateDB();
 
 ?>
