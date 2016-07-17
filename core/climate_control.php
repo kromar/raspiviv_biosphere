@@ -34,7 +34,7 @@
 			logToFile("running climateCore",'','');
 		}
 		$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-		mysqli_select_db("datalogger");
+		mysqli_select_db($db, "datalogger");
 		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 		$result = mysqli_query($sql);
 		//$humiditySensor=(float)mysqli_fetch_object($dh)->humidity;
