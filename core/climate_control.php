@@ -1,42 +1,34 @@
 
 <?php
 	include_once '/var/www/html/log.php';
-	global $debugMode,$tempThreshold;
-
+	global $tempThreshold, $humidityThreshold;
+	global $tempSensor, $humiditySensor;
 	//$interval = $argv[1];
-	$tempThreshold = 0;
-	//$tempSensor;
-	//$humiditySensor;
-
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
-
-	$humidityThreshold;
 	$humidityMin = 65.0;
 	$humidityNight = 90.0;
 	$humidityDay = 95.0;
-
-
-
+	global $highTempRain;
+	$highTempRain = false;
+	global $curentTime, $sunriseTime, $sunsetTime;
 	$curentTime = date('H:i');
-	$morningTime = ('10:00');
-	$eveningTime = ('22:00');
+	$sunriseTime = ('10:00');
+	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
-	$rainShedule = array('12:00' => 10,
-						 '18:00' => 10);
-
+	global $rainShedule, $rainTime, $windTime;
+	$rainShedule = array('12:00' => 10, '18:00' => 10);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
-
+	global $debugMode, $override, $pumpPrimer;
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-
 	$debugMode = true;
-	$highTempRain = false;
 
 
 	function climateCore(){
 		global $debugMode;
+		global $tempSensor, $humiditySensor;
 
 		if ($debugMode == true) {
 			logToFile("running climateCore",'','');
@@ -72,13 +64,16 @@
 
 	function cliamteDaytime() {
 		global $debugMode;
+		global $curentTime, $sunriseTime, $sunsetTime;
+		global $humidityThreshold, $tempThreshold;
+		global $tempNight, $humidityNight;
 
 		if ($debugMode == true) {
 			logToFile("running cliamteDaytime",'','');
 		}
 
 		//night time climate
-		if (($curentTime < $morningTime) && ($curentTime > $eveningTime)) {
+		if (($curentTime < $sunriseTime) && ($curentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
@@ -91,7 +86,7 @@
 		}
 
 		//day time climate
-		if (($curentTime >= $morningTime) && ($curentTime <= $eveningTime)) {
+		if (($curentTime >= $sunriseTime) && ($curentTime <= $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
 
