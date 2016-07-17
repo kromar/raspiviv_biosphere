@@ -7,10 +7,13 @@
 		$minValue = 0;
 		$interval = 30;
 		logToFile("call sensors (min/max)",$minValue,$maxValue);
+
 		while (true){
 			$time = date('H:i:s');
 			$output = array();
-			exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
+
+			$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
+			exec($escaped_command, $output);
 
 			$count = count($output);
 			echo "output size: $count \n";
