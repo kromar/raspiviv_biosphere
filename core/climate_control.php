@@ -72,7 +72,7 @@
 		global $tempDay, $humidityDay;
 
 		if ($debugMode == true) {
-			logToFile("running cliamteDaytime",$sunriseTime, $sunsetTime);
+			logToFile("running cliamteDaytime $currentTime",$sunriseTime, $sunsetTime);
 		}
 
 		//night time climate
@@ -84,6 +84,7 @@
 			//climateHumidity();
 
 			if ($debugMode==true) {
+
 				logToFile("night time", $tempThreshold, $humidityThreshold);
 			}
 		}
