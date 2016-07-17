@@ -35,11 +35,11 @@
 	$highTempRain = false;
 
 
-	function climateDB(){
+	function climateCore(){
 		global $debugMode;
 
 		if ($debugMode == true) {
-			logToFile("running climateDB",'','');
+			logToFile("running climateCore",'','');
 		}
 		$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysql_select_db("datalogger");
@@ -52,7 +52,8 @@
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
 
-				//cliamteDaytime();
+				//run climate
+				cliamteDaytime();
 
 				if ($debugMode==true) {
 					if ($tempSensor > 50) {
@@ -269,7 +270,7 @@
 	}
 
 
-	//run climate
-	climateDB();
+	//run climateCore
+	climateCore();
 
 ?>
