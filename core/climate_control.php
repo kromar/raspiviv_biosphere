@@ -69,15 +69,25 @@
 
 			//climateTemperature();
 			//climateHumidity();
+
+			if ($debugMode==true) {
+				logToFile("night time", $tempThreshold, $humidityThreshold);
+			}
 		}
 
 		//day time climate
 		if (($curentTime >= $morningTime) && ($curentTime <= $eveningTime))
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
-			climateRainTime();
+
+			climateRainShedule();
 			//climateTemperature();
 			//climateHumidity();
+
+			if ($debugMode==true) {
+				logToFile("day time", $tempThreshold, $humidityThreshold);
+			}
+
 		}
 	}
 
@@ -107,7 +117,7 @@
 		}
 	}
 
-	function climateRainTime() {
+	function climateRainShedule() {
 		//trigger rain shedules
 		if (array_key_exists($curentTime, $rainShedule)) {
 			$time = current($rainShedule);
