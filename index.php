@@ -274,7 +274,7 @@
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysqli_query ( $q );
+				$ds = mysqli_query ($db, $q );
 
 				while ( $r = mysqli_fetch_object ( $ds ) ) {
 					echo "['" . $r->date_time . "', ";
@@ -328,7 +328,7 @@
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysqli_query ( $q );
+				$ds = mysqli_query ($db, $q );
 
 				while ( $r = mysqli_fetch_object ( $ds ) ) {
 					echo "['" . $r->date_time . "', ";

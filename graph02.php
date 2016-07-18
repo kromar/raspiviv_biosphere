@@ -136,23 +136,23 @@ mysqli_close($conn);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['TIME', 'HUMIDITY', ],
-<?php
-$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-mysqli_select_db("datalogger");
+			<?php
+				$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+				mysqli_select_db("datalogger");
 
-$q=   "select * from datalogger ";
-$q=$q."where sensor = 9 ";
-$q=$q."order by date_time desc ";
-$q=$q."limit 60";
-$ds=mysqli_query($q);
+				$q=   "select * from datalogger ";
+				$q=$q."where sensor = 9 ";
+				$q=$q."order by date_time desc ";
+				$q=$q."limit 60";
+				$ds=mysqli_query($db, $q);
 
-while($r = mysqli_fetch_object($ds))
-{
-	echo "['".$r->date_time."', ";
-	echo " ".$r->humidity." ],";
+				while($r = mysqli_fetch_object($ds))
+				{
+					echo "['".$r->date_time."', ";
+					echo " ".$r->humidity." ],";
 
-}
-?>
+				}
+			?>
         ]);
 
 	var options = {
@@ -176,23 +176,23 @@ while($r = mysqli_fetch_object($ds))
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['TIME', 'TEMP', ],
-<?php
-$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
-mysqli_select_db("datalogger");
+			<?php
+				$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
+				mysqli_select_db("datalogger");
 
-$q=   "select * from datalogger ";
-$q=$q."where sensor = 9 ";
-$q=$q."order by date_time desc ";
-$q=$q."limit 60";
-$ds=mysqli_query($q);
+				$q=   "select * from datalogger ";
+				$q=$q."where sensor = 9 ";
+				$q=$q."order by date_time desc ";
+				$q=$q."limit 60";
+				$ds=mysqli_query($db, $q);
 
-while($r = mysqli_fetch_object($ds))
-{
-	echo "['".$r->date_time."', ";
-	echo " ".$r->temperature." ],";
+				while($r = mysqli_fetch_object($ds))
+				{
+					echo "['".$r->date_time."', ";
+					echo " ".$r->temperature." ],";
 
-}
-?>
+				}
+			?>
         ]);
 
 	var options = {

@@ -211,7 +211,6 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
-
 			?>
 		]);
 
@@ -267,7 +266,6 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
-
 			?>
 		]);
 

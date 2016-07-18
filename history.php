@@ -3,7 +3,7 @@
 		$db = mysqli_connect("localhost","datalogger","datalogger") or die("DB Connect error");
 		mysqli_select_db("datalogger");
 		$q="delete from datalogger";
-		mysqli_query($q);
+		mysqli_query($db, $q);
 		mysqli_close($db);
 		return 0;
 	}
@@ -20,7 +20,7 @@
 			$q=$q."and date_time >=date_add(curdate(),interval $i hour) ";$ii=$i+1;
 			$q=$q."and date_time < date_add(curdate(),interval $ii hour) ";
 			$q=$q.") ";
-			mysqli_query($q);
+			mysqli_query($db, $q);
 		}
 		mysqli_close($db);
 		return 0;
