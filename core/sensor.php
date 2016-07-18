@@ -38,7 +38,7 @@
 				}
 			}
 		}
-		$db = mysqli_connect("localhost", "datalogger", "datalogger", "climate") or die("DB Connect error");
+		$db = mysqli_connect("localhost", "datalogger", "datalogger") or die("DB Connect error");
 		mysqli_select_db($db, "datalogger");
 		$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
 		mysqli_query($db, $q);
