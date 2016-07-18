@@ -52,7 +52,7 @@
 				//run climate
 				//cliamteDaytime($tempSensor,$humiditySensor);
 
-				/*
+				//*
 
 			 	if ($debugMode==true) {
 					if ($tempSensor > 50 or $tempSensor <= 0) {
@@ -73,49 +73,6 @@
 		}
 		mysqli_close($db);
 	}
-
-
-
-
-
-
-
-	function climateCore_OLD(){
-		global $debugMode;
-
-		if ($debugMode == true) {
-			logToFile("running climateCore",'','');
-		}
-		$db = mysqli_connect("localhost", "datalogger", "datalogger") or die("DB Connect error");
-		mysqli_select_db($db, "datalogger");
-		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-		$result = mysqli_query($db, $sql);
-
-		if (mysqli_num_rows($result) > 0) {
-			while($row = (float)mysqli_fetch_assoc($result)) {
-				$tempSensor = $row["temperature"];
-				$humiditySensor = $row["humidity"];
-				logToFile("sensor test", $row, $humiditySensor);
-				//run climate
-				//cliamteDaytime($tempSensor,$humiditySensor);
-
-				if ($debugMode==true) {
-					if ($tempSensor > 50 or $tempSensor <= 0) {
-						logToFile("extreme temperature reading", $tempSensor, "");
-					} else {
-						logToFile("temperature reading", $tempSensor, "");
-					}
-					if ($humiditySensor > 100 or $humiditySensor < 0) {
-						logToFile("extreme humidity reading", $humiditySensor, "");
-					} else {
-						logToFile("humidity reading", $humiditySensor, "");
-					}
-				}
-			}
-		}
-		mysqli_close($db);
-	}
-
 
 	function cliamteDaytime($tempSensor,$humiditySensor) {
 		global $debugMode;
