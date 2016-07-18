@@ -90,7 +90,7 @@
 						} else {
 							echo "0 results";
 						}
-						mysqli_close($db);
+						//mysqli_close($db);
 					?>
 				],
 			]);
@@ -146,7 +146,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($db);
+						//mysqli_close($db);
 					?>
 				],
 
@@ -202,7 +202,7 @@
 				} else {
 					echo "0 results";
 				}
-				mysqli_close($db);
+				//mysqli_close($db);
 			?>
 		]);
 
