@@ -32,22 +32,21 @@
 				if ($debugMode==true) {
 					logToFile($name, $sensor, $value);
 				}
-
-				$db = mysqli_connect("localhost", "datalogger", "datalogger") or die("DB Connect error");
-				mysqli_select_db($db, "datalogger");
-				$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
-				mysqli_query($db, $q);
-				mysqli_close($db);
-
-
 			} else {
 				if ($debugMode==true) {
 					logToFile("filtered values $name", $sensor, $value);
 				}
 			}
-		} return; 	//end sensor reading
+		}
+		$db = mysqli_connect("localhost", "datalogger", "datalogger") or die("DB Connect error");
+		mysqli_select_db($db, "datalogger");
+		$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
+		mysqli_query($db, $q);
+		mysqli_close($db);
+		return; 	//end sensor reading
 		//}
 	}
+
 
 	readSensor(8);
 	readSensor(9);
