@@ -73,20 +73,14 @@
 				['Label', 'Value'],
 				['C',
 					<?php
-						$servername = "localhost";
-						$username = "datalogger";
-						$password = "datalogger";
-						$dbname = "datalogger";
-
 						// Create connection
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						$db = mysqli_connect("localhost", "datalogger", "datalogger");
 						// Check connection
-						if (!$conn) {
+						if (!$db) {
 							die("Connection failed: " . mysqli_connect_error());
 						}
-
 						$sql = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-						$result = mysqli_query($conn, $sql);
+						$result = mysqli_query($db, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
 							// output data of each row
@@ -96,8 +90,7 @@
 						} else {
 							echo "0 results";
 						}
-
-						mysqli_close($conn);
+						mysqli_close($db);
 					?>
 				],
 			]);
@@ -135,20 +128,14 @@
 			  ['Label', 'Value'],
 			  ['%',
 					<?php
-						$servername = "localhost";
-						$username = "datalogger";
-						$password = "datalogger";
-						$dbname = "datalogger";
-
 						// Create connection
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						$db = mysqli_connect("localhost", "datalogger", "datalogger");
 						// Check connection
-						if (!$conn) {
+						if (!$db) {
 							die("Connection failed: " . mysqli_connect_error());
 						}
-
 						$sql = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-						$result = mysqli_query($conn, $sql);
+						$result = mysqli_query($db, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
 							// output data of each row
@@ -159,7 +146,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						mysqli_close($db);
 					?>
 				],
 
@@ -197,20 +184,25 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysqli_select_db ( "datalogger" );
+				// Create connection
+				$db = mysqli_connect("localhost", "datalogger", "datalogger");
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 10";
+				$result = mysqli_query($db, $sql);
 
-				$q = "select * from datalogger ";
-				$q = $q . "where sensor = 8 ";
-				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 10";
-				$ds = mysqli_query ($db, $q );
-
-				while ( $r = mysqli_fetch_object ( $ds ) ) {
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_object($result)) {
 					echo "['" . $r->date_time . "', ";
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+				} else {
+					echo "0 results";
+				}
+				mysqli_close($db);
 			?>
 		]);
 
@@ -252,20 +244,25 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysqli_select_db ( "datalogger" );
+				// Create connection
+				$db = mysqli_connect("localhost", "datalogger", "datalogger");
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 240";
+				$result = mysqli_query($db, $sql);
 
-				$q = "select * from datalogger ";
-				$q = $q . "where sensor = 8 ";
-				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 240";
-				$ds = mysqli_query ($db, $q );
-
-				while ( $r = mysql_fetch_object ( $ds ) ) {
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_object($result)) {
 					echo "['" . $r->date_time . "', ";
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+				} else {
+					echo "0 results";
+				}
+				mysqli_close($db);
 			?>
 		]);
 

@@ -8,7 +8,7 @@
 		global $temperature, $humidity;
 		$time = date('H:i:s');
 		$output = array();
-		$debugMode = true;
+		$debugMode = false;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);

@@ -36,7 +36,6 @@
 
 		// Create connection
 		$db = mysqli_connect("localhost", "datalogger", "datalogger");
-
 		// Check connection
 		if (!$db) {
 			die("Connection failed: " . mysqli_connect_error());
