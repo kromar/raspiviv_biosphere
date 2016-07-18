@@ -195,9 +195,9 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					echo "['" . $r->date_time . "', ";
-					echo " " . $r->temperature . " ,";
-					echo " " . $r->humidity . " ],";
+					echo "['" . $row->date_time . "', ";
+					echo " " . $row->temperature . " ,";
+					echo " " . $row->humidity . " ],";
 					}
 				} else {
 					echo "0 results";
@@ -255,9 +255,9 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					echo "['" . $r->date_time . "', ";
-					echo " " . $r->temperature . " ,";
-					echo " " . $r->humidity . " ],";
+					echo "['" . $row->date_time . "', ";
+					echo " " . $row->temperature . " ,";
+					echo " " . $row->humidity . " ],";
 					}
 				} else {
 					echo "0 results";

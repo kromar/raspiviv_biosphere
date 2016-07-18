@@ -47,22 +47,22 @@
 			while($row = mysqli_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
-			}
 
-			//run climate
-			cliamteDaytime($tempSensor, $humiditySensor);
+				//run climate
+				cliamteDaytime($tempSensor, $humiditySensor);
 
-			if ($debugMode==true) {
-				logToFile("sensor test", $tempSensor, $humiditySensor);
-				if ($tempSensor > 50 or $tempSensor <= 0) {
-					logToFile("extreme temperature reading", $tempSensor, "");
-				} else {
-					logToFile("temperature reading", $tempSensor, "");
-				}
-				if ($humiditySensor > 100 or $humiditySensor < 0) {
-					logToFile("extreme humidity reading", $humiditySensor, "");
-				} else {
-					logToFile("humidity reading", $humiditySensor, "");
+			 	if ($debugMode==true) {
+					logToFile("sensor test", $tempSensor, $humiditySensor);
+					if ($tempSensor > 50 or $tempSensor <= 0) {
+						logToFile("extreme temperature reading", $tempSensor, "");
+					} else {
+						logToFile("temperature reading", $tempSensor, "");
+					}
+					if ($humiditySensor > 100 or $humiditySensor < 0) {
+						logToFile("extreme humidity reading", $humiditySensor, "");
+					} else {
+						logToFile("humidity reading", $humiditySensor, "");
+					}
 				}
 			}
 		} else {
