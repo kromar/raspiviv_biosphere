@@ -48,13 +48,12 @@
 			while($row = mysqli_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
-				logToFile("sensor test", $tempSensor, $humiditySensor);
-				//run climate
-				//cliamteDaytime($tempSensor,$humiditySensor);
 
-				//*
+				//run climate
+				cliamteDaytime($tempSensor,$humiditySensor);
 
 			 	if ($debugMode==true) {
+					logToFile("sensor test", $tempSensor, $humiditySensor);
 					if ($tempSensor > 50 or $tempSensor <= 0) {
 						logToFile("extreme temperature reading", $tempSensor, "");
 					} else {
@@ -66,7 +65,6 @@
 						logToFile("humidity reading", $humiditySensor, "");
 					}
 				}
-				//*/
 			}
 		} else {
     		echo "0 results";
