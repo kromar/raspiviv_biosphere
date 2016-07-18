@@ -5,16 +5,10 @@
 		$maxValue = 100;
 		$minValue = 0;
 		$interval = 30;
-		$temperature = 0;
-		$humidity = 0;
-		$debugMode = true;
-
-		if ($debugMode==true) {
-			logToFile("call sensors (min/max)",$minValue,$maxValue);
-		}
-
+		global $temperature, $humidity;
 		$time = date('H:i:s');
 		$output = array();
+		$debugMode = true;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
