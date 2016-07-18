@@ -42,7 +42,7 @@
 			while($row = (float)mysqli_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
-				logToFile("sensor test", $tempSensor, $humiditySensor);
+				logToFile("sensor test", $row, $humiditySensor);
 				//run climate
 				cliamteDaytime($tempSensor,$humiditySensor);
 
