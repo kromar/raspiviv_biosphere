@@ -49,7 +49,7 @@
 				$humiditySensor = $row["humidity"];
 
 				//run climate
-				cliamteDaytime($tempSensor,$humiditySensor);
+				cliamteDaytime($tempSensor, $humiditySensor);
 
 			 	if ($debugMode==true) {
 					logToFile("sensor test", $tempSensor, $humiditySensor);
@@ -87,8 +87,8 @@
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
 
-			//climateTemperature($tempSensor,$humiditySensor);
-			//climateHumidity($tempSensor,$humiditySensor);
+			climateTemperature($tempSensor,$humiditySensor);
+			climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 
@@ -102,8 +102,8 @@
 			$tempThreshold = $tempDay;
 
 			climateRainShedule();
-			//climateTemperature($tempSensor,$humiditySensor);
-			//climateHumidity($tempSensor,$humiditySensor);
+			climateTemperature($tempSensor,$humiditySensor);
+			climateHumidity($tempSensor,$humiditySensor);
 
 			if ($debugMode==true) {
 				logToFile("day time limits", $tempThreshold, $humidityThreshold);
