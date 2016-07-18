@@ -268,7 +268,6 @@
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
 				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysqli_select_db ( "datalogger" );
 
 				$q = "select * from history ";
 				$q = $q . "where sensor = 9 ";
@@ -281,6 +280,7 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+				mysqli_close($db);
 			?>
 		]);
 
@@ -322,7 +322,6 @@
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
 				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-				mysqli_select_db ( "datalogger" );
 
 				$q = "select * from history ";
 				$q = $q . "where sensor = 8 ";
@@ -335,6 +334,7 @@
 					echo " " . $r->temperature . " ,";
 					echo " " . $r->humidity . " ],";
 					}
+				mysqli_close($db);
 			?>
 		]);
 
