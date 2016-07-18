@@ -45,8 +45,8 @@
 					logToFile("filtered values $name", $sensor, $value);
 				}
 			}
-		//} return; 	//end sensor reading
-		}
+		} return; 	//end sensor reading
+		//}
 	}
 
 	readSensor(8);
