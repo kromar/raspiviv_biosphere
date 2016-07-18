@@ -44,7 +44,7 @@
 				$humiditySensor = $row["humidity"];
 				logToFile("sensor test", $row, $humiditySensor);
 				//run climate
-				cliamteDaytime($tempSensor,$humiditySensor);
+				//cliamteDaytime($tempSensor,$humiditySensor);
 
 				if ($debugMode==true) {
 					if ($tempSensor > 50 or $tempSensor <= 0) {
