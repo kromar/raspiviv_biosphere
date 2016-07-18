@@ -34,12 +34,8 @@
 			logToFile("running climateCore",'','');
 		}
 
-		$servername = "localhost";
-		$username = "datalogger";
-		$password = "datalogger";
-		$dbname = "climate";
 		// Create connection
-		$db = mysqli_connect($servername, $username, $password, $dbname);
+		$db = mysqli_connect("localhost", "datalogger", "datalogger");
 
 		// Check connection
 		if (!$db) {
