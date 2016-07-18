@@ -267,19 +267,27 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-
+				// Create connection
+				$db = mysqli_connect("localhost", "datalogger", "datalogger");
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
 				$q = "select * from history ";
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysqli_query ($db, $q );
+				$result = mysqli_query ($db, $q );
 
-				while ( $r = mysqli_fetch_object ( $ds ) ) {
-					echo "['" . $r->date_time . "', ";
-					echo " " . $r->temperature . " ,";
-					echo " " . $r->humidity . " ],";
+				if (mysqli_num_rows($result) > 0) {
+					while ( $r = mysqli_fetch_object ( $result ) ) {
+						echo "['" . $r->date_time . "', ";
+						echo " " . $r->temperature . " ,";
+						echo " " . $r->humidity . " ],";
 					}
+				} else {
+					echo "0 results";
+				}
 				mysqli_close($db);
 			?>
 		]);
@@ -321,19 +329,27 @@
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
-				$db = mysqli_connect ( "localhost", "datalogger", "datalogger" ) or die ( "DB Connect error" );
-
+				// Create connection
+				$db = mysqli_connect("localhost", "datalogger", "datalogger");
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
 				$q = "select * from history ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 24";
-				$ds = mysqli_query ($db, $q );
+				$result = mysqli_query ($db, $q );
 
-				while ( $r = mysqli_fetch_object ( $ds ) ) {
-					echo "['" . $r->date_time . "', ";
-					echo " " . $r->temperature . " ,";
-					echo " " . $r->humidity . " ],";
-					}
+				if (mysqli_num_rows($result) > 0) {
+					while ( $r = mysqli_fetch_object ( $result ) ) {
+						echo "['" . $r->date_time . "', ";
+						echo " " . $r->temperature . " ,";
+						echo " " . $r->humidity . " ],";
+						}
+				} else {
+		    		echo "0 results";
+				}
 				mysqli_close($db);
 			?>
 		]);
