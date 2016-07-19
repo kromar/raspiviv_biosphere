@@ -254,7 +254,8 @@
 		},
 
 		hAxis: {
-			0: {title: 'time'},
+			textPosition: 'none',
+			direction: '-1' },
 		};
 
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
