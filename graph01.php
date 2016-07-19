@@ -224,14 +224,23 @@
 		]);
 
 		var options = {
-			legend: { position: 'top' },
-			point: {visible: true},
-			pointSize: 6,
-			pointShape: 'circle',
-			curveType: 'none',
-			//fill-color: #000000,
-			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'black'},
-			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+			legend: {
+				position: 'top' },
+			point: {
+				visible: true,
+				pointSize: 6,
+				pointShape: 'circle',
+				//fill-color: #000000
+				},
+			curveType: 'function',
+			crosshair: {
+				trigger: 'both' ,
+				orientation: 'vertical',
+				color: 'black'},
+			backgroundColor: {
+				stroke: 'black',
+				fill: 'white',
+				strokeSize: 1},
 	        height: 400,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
@@ -247,6 +256,7 @@
 		hAxis: {
 			textPosition: 'none',
 			direction: '-1' },
+			0: {title: 'time'},
 		};
 
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
