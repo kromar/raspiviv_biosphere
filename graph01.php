@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
 
 
+	<!--
 	<script type="text/javascript">
 		google.load('visualization',  "1", {'packages':['gauge']});
 	    google.setOnLoadCallback(drawGauge);
@@ -58,6 +59,7 @@
 	    }
 
 	</script>
+	-->
 
 
 
