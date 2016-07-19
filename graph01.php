@@ -226,7 +226,7 @@
 		var options = {
 			legend: { position: 'top' },
 			point: {visible: true},
-			pointSize: 8,
+			pointSize: 4,
 			pointShape: 'circle',
 			curveType: 'function',
 			//fill-color: #000000,
