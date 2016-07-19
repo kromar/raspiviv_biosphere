@@ -229,7 +229,7 @@
 			pointSize: 20,
 			pointShape: 'circle',
 			curveType: 'function',
-			fill-color: #000000,
+			//fill-color: #000000,
 			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'black'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
 	        height: 400,
