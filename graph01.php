@@ -228,10 +228,10 @@
 				position: 'top' },
 			point: {
 				visible: true,
-				pointSize: 6,
-				pointShape: 'circle',
-				//fill-color: #000000
+				//fill-color: #000000,
 				},
+			pointSize: 6,
+			pointShape: 'circle',
 			curveType: 'function',
 			crosshair: {
 				trigger: 'both' ,

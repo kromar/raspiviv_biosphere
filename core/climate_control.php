@@ -76,6 +76,8 @@
 		mysqli_close($db);
 	}
 
+
+
 	function cliamteDaytime($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $currentTime, $sunriseTime, $sunsetTime;
@@ -117,6 +119,8 @@
 	}
 
 
+
+
 	function climateRainShedule($tempSensor,$humiditySensor) {
 		global $debugMode;
 		global $currentTime, $rainShedule;
@@ -132,6 +136,8 @@
 			letItRain($time, $reason);
 		}
 	}
+
+
 
 
 	function climateTemperature($tempSensor,$humiditySensor) {
@@ -165,6 +171,8 @@
 			}
 		}
 	}
+
+
 
 
 	function climateHumidity($tempSensor,$humiditySensor) {
@@ -206,6 +214,8 @@
 	}
 
 
+
+
 	function climateOverride() {
 		global $debugMode;
 
@@ -223,6 +233,8 @@
 			}
 		}
 	}
+
+
 
 
 	function letItRain($time, $reason) {
@@ -249,6 +261,8 @@
 			exec("/usr/local/bin/gpio write $pin 1");
 		}
 	}
+
+
 
 
 	function bringTheAir($time, $reason) {
