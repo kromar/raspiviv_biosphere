@@ -254,8 +254,6 @@
 		},
 
 		hAxis: {
-			textPosition: 'none',
-			direction: '-1' },
 			0: {title: 'time'},
 		};
 
