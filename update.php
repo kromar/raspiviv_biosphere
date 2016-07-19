@@ -1,5 +1,15 @@
 <?php
-	mysqli_connect("localhost", "datalogger", "datalogger") or die("Connection Failed");
+	$servername = "localhost";
+	$username = "datalogger";
+	$password = "datalogger";
+	$dbname = "datalogger";
+
+	// Create connection
+	$db = mysqli_connect($servername, $username, $password, $dbname);
+	// Check connection
+	if (!$db) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
 	mysqli_select_db("vivs")or die("Connection Failed");
 	$user = $_POST['user'];
 	$password = $_POST['userpassword'];

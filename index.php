@@ -410,10 +410,12 @@
 						</span>
 					</a>
 			<div class="row">
+				<!--
 				<div class="col-xs-4">
 					<div id="roomtemp_div" style="width: auto; height: auto;"></div>
 					<div id="roomhum_div" style="width: auto; height: auto;"></div>
 				</div>
+				-->
 				<div class="col-xs-8"">
 					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
 				</div>
