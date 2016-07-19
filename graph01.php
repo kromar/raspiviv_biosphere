@@ -225,6 +225,9 @@
 
 		var options = {
 			legend: { position: 'top' },
+			point: {visible: true},
+			pointSize: 20,
+			pointShape: 'circle',
 			curveType: 'function',
 			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'black'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
