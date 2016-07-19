@@ -228,7 +228,7 @@
 			point: {visible: true},
 			pointSize: 6,
 			pointShape: 'circle',
-			curveType: 'function',
+			curveType: 'none',
 			//fill-color: #000000,
 			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'black'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
