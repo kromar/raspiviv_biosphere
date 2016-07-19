@@ -31,20 +31,14 @@
 				['Label', 'Value'],
 				['BASE TMP',
 					<?php
-						$servername = "localhost";
-						$username = "datalogger";
-						$password = "datalogger";
-						$dbname = "datalogger";
-
 						// Create connection
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						$db = mysqli_connect("localhost", "datalogger", "datalogger");
 						// Check connection
-						if (!$conn) {
+						if (!$db) {
 							die("Connection failed: " . mysqli_connect_error());
 						}
-
 						$sql = "SELECT temperature FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
-						$result = mysqli_query($conn, $sql);
+						$result = mysqli_query($db, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
 							// output data of each row
@@ -55,7 +49,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						//mysqli_close($db);
 					?>
 				],
 
@@ -85,7 +79,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						//mysqli_close($conn);
 					?>
 				],
 
@@ -137,7 +131,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						//mysqli_close($conn);
 					?>
 				],
 			]);
@@ -187,7 +181,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						//mysqli_close($conn);
 					?>
 				],
 
@@ -240,7 +234,7 @@
 							echo "0 results";
 						}
 
-						mysqli_close($conn);
+						//mysqli_close($conn);
 					?>
 				],
 			]);
@@ -288,7 +282,7 @@
 				} else {
 					echo "0 results";
 				}
-				mysqli_close($db);
+				//mysqli_close($db);
 			?>
 		]);
 
@@ -350,7 +344,7 @@
 				} else {
 		    		echo "0 results";
 				}
-				mysqli_close($db);
+				//mysqli_close($db);
 			?>
 		]);
 
