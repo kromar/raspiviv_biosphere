@@ -224,6 +224,11 @@
 		]);
 
 		var options = {
+			animation: {
+				startup: true,
+				duration: 1000,
+				easing: 'out'},
+
 			legend: {
 				position: 'top' },
 			point: {
