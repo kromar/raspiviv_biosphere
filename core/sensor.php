@@ -24,7 +24,7 @@
 			$name;
 			if ($value) {
 				if ($i == 0) {
-					if ($value < $maxTemperature and $value > $minTemperature) {		//filter for realistic values
+					if ($value < $maxHumidity and $value > $minHumidity) {		//filter for realistic values
 						$name = "humidity";
 						$humidity = $value;
 						echo "$name $value\n";
