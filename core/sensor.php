@@ -2,8 +2,11 @@
 	include_once '/var/www/html/log.php';
 
 	function readSensor($sensor) {
-		$maxValue = 100;
-		$minValue = 0;
+		$maxTemperature = 50;
+		$minTemperature = 15;
+		$maxHumidity = 100;
+		$minHumidity = 30;
+
 		$interval = 30;
 		global $temperature, $humidity;
 		$time = date('H:i:s');
@@ -18,24 +21,30 @@
 
 		for ($i=0; $i<$count; $i++) {
 			$value = floatval($output[$i]);
-			if ($value && $value < $maxValue && $value > $minValue) {		//filter for realistic values
-				$name;
-				if ($i == 0) {
+			$name;
+			if ($i == 0) {
+				if ($value && $value < $maxTemperature && $value > $minTemperature) {		//filter for realistic values
 					$name = "humidity";
 					$humidity = $value;
 					echo "$name $value\n";
-				} elseif ($i == 1){
+				} else {
+					if ($debugMode==true) {
+						logToFile("filtered $name values", $sensor, $value);
+					}
+				}
+			} elseif ($i == 1){
+				if ($value && $value < $maxTemperature && $value > $minTemperature) {		//filter for realistic values
 					$name = "temperature";
 					$temperature = $value;
 					echo "$name $value\n";
+				} else {
+					if ($debugMode==true) {
+						logToFile("filtered $name values", $sensor, $value);
+					}
 				}
-				if ($debugMode==true) {
-					logToFile($name, $sensor, $value);
-				}
-			} else {
-				if ($debugMode==true) {
-					logToFile("filtered values $name", $sensor, $value);
-				}
+			}
+			if ($debugMode==true) {
+				logToFile($name, $sensor, $value);
 			}
 		}
 		$servername = "localhost";
