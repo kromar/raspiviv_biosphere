@@ -5,7 +5,7 @@
 		$maxTemperature = 50;
 		$minTemperature = 15;
 		$maxHumidity = 100;
-		$minHumidity = 30;
+		$minHumidity = 50;
 
 		$interval = 30;
 		global $temperature, $humidity;
