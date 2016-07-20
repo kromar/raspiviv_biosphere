@@ -22,29 +22,31 @@
 		for ($i=0; $i<$count; $i++) {
 			$value = floatval($output[$i]);
 			$name;
-			if ($i == 0) {
-				if ($value && $value < $maxTemperature && $value > $minTemperature) {		//filter for realistic values
-					$name = "humidity";
-					$humidity = $value;
-					echo "$name $value\n";
-				} else {
-					if ($debugMode==true) {
-						logToFile("filtered $name values", $sensor, $value);
+			if ($value) {
+				if ($i == 0) {
+					if ($value < $maxTemperature and $value > $minTemperature) {		//filter for realistic values
+						$name = "humidity";
+						$humidity = $value;
+						echo "$name $value\n";
+					} else {
+						if ($debugMode==true) {
+							logToFile("filtered $name values", $sensor, $value);
+						}
+					}
+				} elseif ($i == 1){
+					if ($value < $maxTemperature and $value > $minTemperature) {		//filter for realistic values
+						$name = "temperature";
+						$temperature = $value;
+						echo "$name $value\n";
+					} else {
+						if ($debugMode==true) {
+							logToFile("filtered $name values", $sensor, $value);
+						}
 					}
 				}
-			} elseif ($i == 1){
-				if ($value && $value < $maxTemperature && $value > $minTemperature) {		//filter for realistic values
-					$name = "temperature";
-					$temperature = $value;
-					echo "$name $value\n";
-				} else {
-					if ($debugMode==true) {
-						logToFile("filtered $name values", $sensor, $value);
-					}
+				if ($debugMode==true) {
+					logToFile($name, $sensor, $value);
 				}
-			}
-			if ($debugMode==true) {
-				logToFile($name, $sensor, $value);
 			}
 		}
 		$servername = "localhost";
