@@ -7,7 +7,7 @@
 	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
-	$humidityNight = 90.0;
+	$humidityNight = 85.0;
 	$humidityDay = 95.0;
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;

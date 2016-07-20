@@ -19,12 +19,12 @@
 		$count = count($output);
 		echo "output size: $count \n";
 
-		for ($i=0; $i<$count; $i++) {
+		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
 			$name;
 			if ($value) {
 				if ($i == 0) {
-					if ($value < $maxHumidity and $value > $minHumidity) {		//filter for realistic values
+					if ($value < $maxHumidity and $value > $minHumidity) {	//filter for realistic values
 						$name = "humidity";
 						$humidity = $value;
 						echo "$name $value\n";
@@ -34,7 +34,7 @@
 						}
 					}
 				} elseif ($i == 1){
-					if ($value < $maxTemperature and $value > $minTemperature) {		//filter for realistic values
+					if ($value < $maxTemperature and $value > $minTemperature) {	//filter for realistic values
 						$name = "temperature";
 						$temperature = $value;
 						echo "$name $value\n";
