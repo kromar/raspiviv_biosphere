@@ -29,7 +29,7 @@
 
 
 	function climateCore(){
-		global $debugMode;
+		global $debugMode, $climateControl;
 
 		if ($debugMode == true) {
 			logToFile("running climateCore",'','');
