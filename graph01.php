@@ -193,7 +193,7 @@
 
 	var myVar;
 	function myFunction() {
-	    myVar = setTimeout(drawChart(), 10000);
+	    myVar = setTimeout(drawChart, 10000);
 	}
 
 	function drawChart() {
@@ -269,6 +269,14 @@
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
 		chart.draw(data, options);
+
+
+	    setTimeout(function() {
+	        data.setValue(0, 1);
+	        chart.draw(data, options);
+	    }, 3000);
+
+
 		}
 	</script>
 
