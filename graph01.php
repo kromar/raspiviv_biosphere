@@ -190,6 +190,12 @@
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
+
+	var myVar;
+	function myFunction() {
+	    myVar = setTimeout(drawChart(), 10000);
+	}
+
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
@@ -263,13 +269,6 @@
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
 		chart.draw(data, options);
-		}
-
-
-		var myVar;
-
-		function myFunction() {
-		    myVar = setTimeout(drawChart, 10000);
 		}
 	</script>
 
