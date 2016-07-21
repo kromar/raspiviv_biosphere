@@ -25,7 +25,7 @@
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
-	$climateControl = false;
+	$climateControl = true;	//toggle climate control
 
 
 	function climateCore(){
