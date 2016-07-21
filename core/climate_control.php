@@ -21,10 +21,11 @@
 	$rainShedule = array('12:00' => 10, '18:00' => 10);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
-	global $debugMode, $override, $pumpPrimer;
+	global $debugMode, $override, $pumpPrimer, $climateControl;
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
 	$debugMode = true;
+	$climateControl = false;
 
 
 	function climateCore(){
@@ -54,7 +55,9 @@
 				$humiditySensor = $row["humidity"];
 
 				//run climate
-				cliamteDaytime($tempSensor, $humiditySensor);
+				if ($climateControl == true) {
+					cliamteDaytime($tempSensor, $humiditySensor);
+				}
 
 				$maxTemperature = 50;
 				$minTemperature = 15;
