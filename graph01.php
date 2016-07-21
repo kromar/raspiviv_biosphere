@@ -61,8 +61,6 @@
 	</script>
 	-->
 
-
-
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
 	<!-- ============================ -->
@@ -219,7 +217,7 @@
 				} else {
 					echo "0 results";
 				}
-				//mysqli_close($db);
+				mysqli_close($db);
 			?>
 		]);
 
@@ -265,11 +263,16 @@
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
 		chart.draw(data, options);
-		setTimeout(function() {
-        	chart.draw(data, options);
-	    }, 10000);
+		}
+
+
+		var myVar;
+
+		function myFunction() {
+		    myVar = setTimeout(drawChart, 10000);
 		}
 	</script>
+
 
 	<!-- ============================ -->
 	<!-- TEMP-HUM GRAPH LONG-->
