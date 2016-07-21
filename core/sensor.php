@@ -39,17 +39,34 @@
 						$name = "temperature";
 						$temperature = $value;
 						echo "$name $value\n";
+
+						if ($debugMode==true) {
+							logToFile("a $name", $sensor, $value);
+						}
 					} else {
 						if ($debugMode==true) {
 							logToFile("filtered $name values", $sensor, $value);
 						}
 					}
+					if ($debugMode==true) {
+						logToFile("b $name", $sensor, $value);
+					}
 				}
 				if ($debugMode==true) {
-					logToFile($name, $sensor, $value);
+					logToFile("c $name", $sensor, $value);
 				}
 			}
+			if ($debugMode==true) {
+				logToFile("d $name", $sensor, $value);
+			}
 		}
+
+
+
+		if ($debugMode==true) {
+			logToFile("e $name", $sensor, $value);
+		}
+
 		$servername = "localhost";
 		$username = "datalogger";
 		$password = "datalogger";
