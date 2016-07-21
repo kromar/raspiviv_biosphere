@@ -265,6 +265,9 @@
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
 		chart.draw(data, options);
+		setTimeout(function() {
+        	chart.draw(data, options);
+	    }, 10000);
 		}
 	</script>
 
@@ -274,6 +277,7 @@
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
+
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
@@ -330,6 +334,11 @@
 		var chart = new google.visualization.LineChart(document.getElementById('chart_long_div'));
 
 		chart.draw(data, options);
+
+		setTimeout(function() {
+        	chart.draw(data, options);
+	    }, 10000);
+
 		}
 	</script>
 
