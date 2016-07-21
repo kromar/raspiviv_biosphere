@@ -1,5 +1,6 @@
 <?php
 	include_once '/var/www/html/log.php';
+	global $temperature, $humidity;
 
 	function readSensor($sensor) {
 		$maxTemperature = 50;
@@ -24,7 +25,7 @@
 			$name;
 			if ($value) {
 				if ($i == 0) {
-					if ($value < $maxHumidity and $value > $minHumidity) {	//filter for realistic values
+					if ($value > $minHumidity && $value < $maxHumidity) {
 						$name = "humidity";
 						$humidity = $value;
 						echo "$name $value\n";
@@ -34,7 +35,7 @@
 						}
 					}
 				} elseif ($i == 1){
-					if ($value < $maxTemperature and $value > $minTemperature) {	//filter for realistic values
+					if ($value > $minTemperature && $value < $maxTemperature) {
 						$name = "temperature";
 						$temperature = $value;
 						echo "$name $value\n";

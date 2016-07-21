@@ -56,14 +56,19 @@
 				//run climate
 				cliamteDaytime($tempSensor, $humiditySensor);
 
+				$maxTemperature = 50;
+				$minTemperature = 15;
+				$maxHumidity = 100;
+				$minHumidity = 50;
+
 			 	if ($debugMode==true) {
 					logToFile("sensor test", $tempSensor, $humiditySensor);
-					if ($tempSensor > 50 or $tempSensor <= 0) {
+					if ($tempSensor > $maxTemperature or $tempSensor < $minTemperature) {
 						logToFile("extreme temperature reading", $tempSensor, "");
 					} else {
 						logToFile("temperature reading", $tempSensor, "");
 					}
-					if ($humiditySensor > 100 or $humiditySensor < 0) {
+					if ($humiditySensor > $maxHumidity or $humiditySensor < $minHumidity) {
 						logToFile("extreme humidity reading", $humiditySensor, "");
 					} else {
 						logToFile("humidity reading", $humiditySensor, "");
