@@ -1,21 +1,28 @@
 <?php
 	include_once '/var/www/html/log.php';
-	global $temperature, $humidity;
+	global $temperature, $humidity, $debugMode;
+	$debugMode = true;
+
+
+	function filterValues($value, $min, $max, $name) {
+		if ($value > $min && $value < $max) {
+			return($value);
+		} else {
+			if ($debugMode==true) {
+				logToFile("filtered", $name, $value);
+			}
+		}
+	}
+
 
 	function readSensor($sensor) {
-		global $temperature, $humidity;
-		$temperature = 24;
-		$humidity = 80;
+		$time = date('H:i:s');
+		$output = array();
 		$maxTemperature = 50;
 		$minTemperature = 15;
 		$maxHumidity = 100;
-		$minHumidity = 50;
+		$minHumidity = 30;
 
-		$interval = 30;
-		global $temperature, $humidity;
-		$time = date('H:i:s');
-		$output = array();
-		$debugMode = true;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -25,69 +32,45 @@
 
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
-			$name;
+
 			if ($value) {
 				if ($i == 0) {
-					if ($value > $minHumidity && $value < $maxHumidity) {
-						$name = "humidity";
-						$humidity = $value;
-						echo "$name $value\n";
-					} else {
-						$humidity = $humidity;
-						if ($debugMode==true) {
-							logToFile("filtered $name values", $sensor, "$value  $humidity");
-						}
-					}
-				} elseif ($i == 1){
-					if ($value > $minTemperature && $value < $maxTemperature) {
-						$name = "temperature";
-						$temperature = $value;
-						echo "$name $value\n";
-						if ($debugMode==true) {
-							logToFile("a $name", $sensor, $value);
-						}
-					} else {
-						$temperature = $temperature;
-						if ($debugMode==true) {
-							logToFile("filtered $name values", $sensor, "$value  $temperature");
-						}
-					}
+					$humidity = filterValues($value, $minHumidity, $maxHumidity, 'Humidity');
+				}
+				if ($i == 1) {
+					$temperature = filterValues($value, $minTemperature, $maxTemperature, 'Temperature');
+				}
+
+				//only if we get both values we write to the database
+				if ($temperature && $humidity) {
+
 					if ($debugMode==true) {
-						logToFile("b $name", $sensor, $value);
+						logToFile("both values", $humidity, $temperature);
+					}
+
+					$servername = "localhost";
+					$username = "datalogger";
+					$password = "datalogger";
+					$dbname = "datalogger";
+
+					// Create connection
+					$db = mysqli_connect($servername, $username, $password, $dbname);
+					// Check connection
+					if (!$db) { die("Connection failed: " . mysqli_connect_error()); }
+
+					mysqli_select_db($db, "datalogger");
+					$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
+					mysqli_query($db, $q);
+					mysqli_close($db);
+					return;
+
+				} else {
+					if ($debugMode==true) {
+						logToFile("only one value", '', '');
 					}
 				}
-				if ($debugMode==true) {
-					logToFile("c $name", $sensor, $value);
-				}
-			}
-			if ($debugMode==true) {
-				logToFile("d $name", $sensor, $value);
 			}
 		}
-
-
-
-		if ($debugMode==true) {
-			logToFile("e $name", $sensor, $value);
-		}
-
-		$servername = "localhost";
-		$username = "datalogger";
-		$password = "datalogger";
-		$dbname = "datalogger";
-
-		// Create connection
-		$db = mysqli_connect($servername, $username, $password, $dbname);
-		// Check connection
-		if (!$db) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-		mysqli_select_db($db, "datalogger");
-		$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
-		mysqli_query($db, $q);
-		mysqli_close($db);
-		return; 	//end sensor reading
-		//}
 	}
 
 
