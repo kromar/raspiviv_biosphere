@@ -5,7 +5,7 @@
 	function readSensor($sensor) {
 		$maxTemperature = 50;
 		$minTemperature = 15;
-		$maxHumidity = 80;
+		$maxHumidity = 100;
 		$minHumidity = 50;
 
 		$interval = 30;
@@ -30,7 +30,7 @@
 						$humidity = $value;
 						echo "$name $value\n";
 					} else {
-						$humidity = $humidity;
+						$humidity = $maxHumidity - $minHumidity;
 						if ($debugMode==true) {
 							logToFile("filtered $name values", $sensor, "$value  $humidity");
 						}
@@ -38,7 +38,7 @@
 				} elseif ($i == 1){
 					if ($value > $minTemperature && $value < $maxTemperature) {
 						$name = "temperature";
-						$temperature = $value;
+						$temperature = $maxTemperature - $minTemperature;
 						echo "$name $value\n";
 						if ($debugMode==true) {
 							logToFile("a $name", $sensor, $value);
