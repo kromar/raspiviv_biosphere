@@ -366,6 +366,17 @@
 			<div class="col-xs-4">
 				<div id="temp_gauge_div"></div>
 			    <div id="hum_gauge_div"></div>
+
+			    <form>
+				  Humidity: 	<input type="number" name="nighthumidity" value="90.0">
+				  				<input type="number" name="dayhumidity" value="95.0">
+				  				<br>
+				  Temperature: 	<input type="number" name="nighttemperature" value="24.5">
+				  				<input type="number" name="nighttemperature" value="24.5">
+				  				<br>
+
+				  <input type="submit" value="test">
+				</form>
 			</div>
 			<div class="col-xs-8">
     			<div id="chart_short_div"></div>
