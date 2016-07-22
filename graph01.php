@@ -368,12 +368,16 @@
 			    <div id="hum_gauge_div"></div>
 
 			    <form>
-				  Humidity: 	<input type="number" name="nighthumidity" value="90.0">
-				  				<input type="number" name="dayhumidity" value="95.0">
-				  				<br>
-				  Temperature: 	<input type="number" name="nighttemperature" value="24.5">
-				  				<input type="number" name="nighttemperature" value="24.5">
-				  				<br>
+				  min: 	<input type="number" name="nighthumidity" value="90">
+				  		<br>
+				  max:	<input type="number" name="dayhumidity" value="95">
+				  		<br>
+				  		<br>
+				  min: 	<input type="number" name="nighttemperature" value="24">
+				  		<br>
+				  max:	<input type="number" name="nighttemperature" value="30">
+				  		<br>
+				  		<br>
 
 				  <input type="submit" value="test">
 				</form>
