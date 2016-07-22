@@ -1,5 +1,5 @@
 <?php
-	function logToFile($string, $value, $reason) {
+	function logToFile($value0, $value1, $value2) {
 		$file = "/../../log/raspiviv.log";
 		$size = filesize(__DIR__.$file);
 		$curentTime = date('H:i:s');
@@ -7,7 +7,7 @@
 			$mylogfile = fopen(__DIR__.$file, "a") or die("Unable to open file!");
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
-				fwrite($mylogfile, "<b> $curentTime $string: $value  $reason </b> \n");
+				fwrite($mylogfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
 				fclose($mylogfile);
 
 			} catch (Exception $e) {
