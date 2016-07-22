@@ -30,8 +30,9 @@
 						$humidity = $value;
 						echo "$name $value\n";
 					} else {
+						$humidity = $humidity;
 						if ($debugMode==true) {
-							logToFile("filtered $name values", $sensor, $value);
+							logToFile("filtered $name values", $sensor, "$value  $humidity");
 						}
 					}
 				} elseif ($i == 1){
@@ -39,13 +40,13 @@
 						$name = "temperature";
 						$temperature = $value;
 						echo "$name $value\n";
-
 						if ($debugMode==true) {
 							logToFile("a $name", $sensor, $value);
 						}
 					} else {
+						$temperature = $temperature;
 						if ($debugMode==true) {
-							logToFile("filtered $name values", $sensor, $value);
+							logToFile("filtered $name values", $sensor, "$value  $temperature");
 						}
 					}
 					if ($debugMode==true) {
