@@ -5,7 +5,7 @@
 	function readSensor($sensor) {
 		$maxTemperature = 50;
 		$minTemperature = 15;
-		$maxHumidity = 100;
+		$maxHumidity = 80;
 		$minHumidity = 50;
 
 		$interval = 30;
