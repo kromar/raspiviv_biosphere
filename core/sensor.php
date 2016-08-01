@@ -38,25 +38,28 @@
 				if ($i == 0) {	//humidity
 					$diffHumidity = abs($humiditySensor - $value);
 
+					if ($debugMode==true) {
+						logToFile("humidity delta", $diffHumidity, '');
+					}
+
 					if ($diffHumidity < $deltaHumidity) {
 						return (true);
 					} else {
 						return (false);
 					}
-					if ($debugMode==true) {
-						logToFile("humidity delta", $diffHumidity, '');
-					}
 				}
 
 				if ($i == 1) { //temperature
 					$diffTemperature = abs($tempSensor - $value);
+
+					if ($debugMode==true) {
+						logToFile("temperature delta", $diffTemperature, '');
+					}
+
 					if ($diffTemperature < $deltaTemperature) {
 						return (true);
 					} else {
 						return (false);
-					}
-					if ($debugMode==true) {
-						logToFile("temperature delta", $diffTemperature, '');
 					}
 				}
 			}
