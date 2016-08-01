@@ -10,6 +10,7 @@
 	}
 
 	function filterValues($value, $i) {
+		global $debugMode;
 		//change the filtering so we compare our values to previous value in the database,
 		// if it deviates by a certain delta then filter the value
 
@@ -81,6 +82,7 @@
 	function readSensor($sensor) {
 		$time = date('H:i:s');
 		$output = array();
+		global $debugMode;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
