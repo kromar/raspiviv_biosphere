@@ -4,7 +4,60 @@
 	$debugMode = true;
 
 
-	function filterValues($value, $min, $max, $name) {
+	function filterValues($value, $i) {
+		//change the filtering so we compare our values to previous value in the database,
+		// if it deviates by a certain delta then filter the value
+
+		$deltaTemperature = 10;
+		$deltaHumidity = 10;
+
+		$servername = "localhost";
+		$username = "datalogger";
+		$password = "datalogger";
+		$dbname = "datalogger";
+
+		// Create connection
+		$db = mysqli_connect($servername, $username, $password, $dbname);
+		// Check connection
+		if (!$db) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+		$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+		$result = mysqli_query($db, $sql);
+
+		if (mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_assoc($result)) {
+				$tempSensor = $row["temperature"];
+				$humiditySensor = $row["humidity"];
+
+				//check if sensor reading deviates by delta to the last sensor reading
+				if ($i == 0) {	//humidity
+					$diffHumidity = abs($humiditySensor - $value);
+
+					if ($diffHumidity < $deltaHumidity) {
+						return ($value, true);
+					} else {
+						return ($value, false);
+					}
+					if ($debugMode==true) {
+						logToFile("humidity delta", $diffHumidity, '');
+					}
+				}
+
+				if ($i == 1) { //temperature
+					$diffTemperature = abs($tempSensor - $value);
+					if ($diffTemperature < $deltaTemperature) {
+						return ($value, true);
+					} else {
+						return ($value, false);
+					}
+					if ($debugMode==true) {
+						logToFile("temperature delta", $diffTemperature, '');
+					}
+				}
+
+
+
 		if ($value > $min && $value < $max) {
 			return($value);
 		} else {
@@ -15,14 +68,10 @@
 	}
 
 
+
 	function readSensor($sensor) {
 		$time = date('H:i:s');
 		$output = array();
-		$maxTemperature = 50;
-		$minTemperature = 15;
-		$maxHumidity = 100;
-		$minHumidity = 30;
-
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -34,12 +83,23 @@
 			$value = floatval($output[$i]);
 
 			if ($value) {
-				if ($i == 0) {
-					$humidity = filterValues($value, $minHumidity, $maxHumidity, 'Humidity');
+				if ($i == 0) {	//humidity
+					 $valueInDeltaRange = filterValues($value, $i);
+					 if ($valueInDeltaRange == true) {
+					 	$humidity = $value;
+					 } else {
+					 	$humidity  = null;
+					 }
 				}
-				if ($i == 1) {
-					$temperature = filterValues($value, $minTemperature, $maxTemperature, 'Temperature');
+				if ($i == 1) { 	//temperature
+					$valueInDeltaRange = filterValues($value, $i);
+					 if ($valueInDeltaRange == true) {
+					 	$temperature = $value;
+					 } else {
+					 	$temperature  = null;
+					 }
 				}
+
 
 				//only if we get both values we write to the database
 				if ($temperature && $humidity) {
