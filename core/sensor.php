@@ -46,7 +46,7 @@
 					echo $diffHumidity;
 
 					if ($debugMode==true) {
-						logToFile("humidity delta", $diffHumidity, "$humiditySensor  $value");
+						logToFile("humidity delta", $diffHumidity, "$humiditySensor ."--". $value");
 					}
 
 					if ($diffHumidity < $deltaHumidity) {
@@ -60,7 +60,7 @@
 					$diffTemperature = abs($tempSensor - $value);
 
 					if ($debugMode==true) {
-						logToFile("temperature delta", $diffTemperature, "$tempSensor  $value");
+						logToFile("temperature delta", $diffTemperature, "$tempSensor ."--". $value");
 					}
 
 					if ($diffTemperature < $deltaTemperature) {
