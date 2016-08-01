@@ -5,6 +5,10 @@
 	$debugMode = true;
 
 
+	if ($debugMode==true) {
+		logToFile("running sensors.php", '', '');
+	}
+
 	function filterValues($value, $i) {
 		//change the filtering so we compare our values to previous value in the database,
 		// if it deviates by a certain delta then filter the value
