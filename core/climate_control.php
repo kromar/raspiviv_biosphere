@@ -18,7 +18,7 @@
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
-	$rainShedule = array('12:00' => 10, '18:00' => 10);
+	$rainShedule = array('12:00' => 10, '18:00' => 5);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 	global $debugMode, $override, $pumpPrimer, $climateControl;
@@ -196,12 +196,13 @@
 		// rain when humidity drops below specified minimum valuee
 		//if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
 		if ($humiditySensor < $humidityMin) {
+
 			//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
 			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
 				$humidityDelta = $rainTime;
 				$reason = "low humidity: ".$humiditySensor;
-				letItRain($humidityDelta, $reason);
+				letItRain($rainTime, $reason);
 			} else {
 				$reason = "low humidity: ".$humiditySensor;
 				letItRain($rainTime, $reason);
