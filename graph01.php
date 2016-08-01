@@ -228,7 +228,7 @@
 				mysqli_close($db);
 			?>
 		]);
-		var max = 1440;
+
 		var options = {
 			animation: {
 				duration: 1000,
@@ -268,46 +268,18 @@
 			direction: '-1' },
 		};
 
-
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
-	    var prevButton = document.getElementById('b1');
-	    var nextButton = document.getElementById('b2');
+		chart.draw(data, options);
 
 
-
-	      // Disabling the button while the chart is drawing.
-	      prevButton.disabled = true;
-	      nextButton.disabled = true;
-	      changeZoomButton.disabled = true;
-	      google.visualization.events.addListener(chart, 'ready',
-	          function() {
-	            prevButton.disabled = options.hAxis.viewWindow.min <= 0;
-	            nextButton.disabled = options.hAxis.viewWindow.max >= MAX;
-	            changeZoomButton.disabled = false;
-	          });
-	      chart.draw(data, options);
-
-
-		//chart.draw(data, options);
-
-		}
-
-	 	setTimeout(function() {
+	    setTimeout(function() {
 	        data.setValue(0, 1);
 	        chart.draw(data, options);
 	    }, 3000);
 
-		prevButton.onclick = function() {
-	      options.hAxis.viewWindow.min -= 1;
-	      options.hAxis.viewWindow.max -= 1;
-	      drawChart();
-	    }
-	    nextButton.onclick = function() {
-	      options.hAxis.viewWindow.min += 1;
-	      options.hAxis.viewWindow.max += 1;
-	      drawChart();
-	    }
+
+		}
 	</script>
 
 
