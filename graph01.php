@@ -268,26 +268,37 @@
 			direction: '-1' },
 		};
 
+
 		var chart = new google.visualization.LineChart(document.getElementById('chart_short_div'));
 
 	    var prevButton = document.getElementById('b1');
 	    var nextButton = document.getElementById('b2');
 
-	    function drawChart() {
-  	      // Disabling the button while the chart is drawing.
-  	      prevButton.disabled = true;
-  	      nextButton.disabled = true;
-  	      changeZoomButton.disabled = true;
-  	      google.visualization.events.addListener(chart, 'ready',
-  	          function() {
-  	            prevButton.disabled = options.hAxis.viewWindow.min <= 0;
-  	            nextButton.disabled = options.hAxis.viewWindow.max >= MAX;
-  	            changeZoomButton.disabled = false;
-  	          });
-  	      chart.draw(data, options);
-  	    }
 
-	    prevButton.onclick = function() {
+
+	      // Disabling the button while the chart is drawing.
+	      prevButton.disabled = true;
+	      nextButton.disabled = true;
+	      changeZoomButton.disabled = true;
+	      google.visualization.events.addListener(chart, 'ready',
+	          function() {
+	            prevButton.disabled = options.hAxis.viewWindow.min <= 0;
+	            nextButton.disabled = options.hAxis.viewWindow.max >= MAX;
+	            changeZoomButton.disabled = false;
+	          });
+	      chart.draw(data, options);
+
+
+		//chart.draw(data, options);
+
+		}
+
+	 	setTimeout(function() {
+	        data.setValue(0, 1);
+	        chart.draw(data, options);
+	    }, 3000);
+
+		prevButton.onclick = function() {
 	      options.hAxis.viewWindow.min -= 1;
 	      options.hAxis.viewWindow.max -= 1;
 	      drawChart();
@@ -297,19 +308,6 @@
 	      options.hAxis.viewWindow.max += 1;
 	      drawChart();
 	    }
-
-
-
-		chart.draw(data, options);
-
-
-	    setTimeout(function() {
-	        data.setValue(0, 1);
-	        chart.draw(data, options);
-	    }, 3000);
-
-
-		}
 	</script>
 
 
