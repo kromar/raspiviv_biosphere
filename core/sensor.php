@@ -46,7 +46,7 @@
 					echo $diffHumidity;
 
 					if ($debugMode==true) {
-						logToFile("humidity delta", $diffHumidity, '');
+						logToFile("humidity delta", $diffHumidity, "$humiditySensor  $value");
 					}
 
 					if ($diffHumidity < $deltaHumidity) {
@@ -60,7 +60,7 @@
 					$diffTemperature = abs($tempSensor - $value);
 
 					if ($debugMode==true) {
-						logToFile("temperature delta", $diffTemperature, '');
+						logToFile("temperature delta", $diffTemperature, "$tempSensor  $value");
 					}
 
 					if ($diffTemperature < $deltaTemperature) {
@@ -153,7 +153,7 @@
 
 
 	readSensor(8);
-	readSensor(9);
+	//readSensor(9);
 
 
 	//change pull for a given amount of time and then switch back to previous pull state
