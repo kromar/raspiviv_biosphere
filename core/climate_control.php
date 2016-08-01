@@ -129,7 +129,7 @@
 
 
 
-	function climateRainShedule($tempSensor,$humiditySensor) {
+	function climateRainShedule() {
 		global $debugMode;
 		global $currentTime, $rainShedule;
 
