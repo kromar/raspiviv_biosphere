@@ -24,7 +24,7 @@
 	global $debugMode, $override, $pumpPrimer, $climateControl;
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = true;
+	$debugMode = false;
 	$climateControl = true;	//toggle climate control
 
 
