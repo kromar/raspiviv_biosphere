@@ -93,7 +93,7 @@
 				//filter humidity
 				if ($i == 0) {
 					if ($debugMode==true) {
-						logToFile("get filter value $i", $value, $i);
+						logToFile("get filter value humidity", $value, $i);
 					}
 					 $valueInDeltaRange = filterValues($value, $i);
 					 if ($valueInDeltaRange == true) {
@@ -105,7 +105,7 @@
 				//filter temperature
 				if ($i == 1) {
 					if ($debugMode==true) {
-						logToFile("get filter value $i", $value, $i);
+						logToFile("get filter value temperature", $value, $i);
 					}
 					$valueInDeltaRange = filterValues($value, $i);
 					 if ($valueInDeltaRange == true) {
@@ -145,6 +145,9 @@
 					}
 				}
 			}
+		}
+		if ($debugMode==true) {
+			logToFile("=============================", '', '');
 		}
 	}
 
