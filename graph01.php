@@ -300,7 +300,7 @@
 
 
 
-		//chart.draw(data, options);
+		chart.draw(data, options);
 
 
 	    setTimeout(function() {
