@@ -187,7 +187,7 @@
 
 
 	<!-- ============================ -->
-	<!-- GRAPH short-->
+	<!-- TEMP-HUM GRAPH-->
 	<!-- ============================ -->
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
@@ -284,7 +284,7 @@
 
 
 	<!-- ============================ -->
-	<!-- GRAPH LONG-->
+	<!-- TEMP-HUM GRAPH LONG-->
 	<!-- ============================ -->
 	<script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
