@@ -8,8 +8,8 @@
 		//change the filtering so we compare our values to previous value in the database,
 		// if it deviates by a certain delta then filter the value
 
-		$deltaTemperature = 10;
-		$deltaHumidity = 10;
+		$deltaTemperature = 5;
+		$deltaHumidity = 5;
 
 		$servername = "localhost";
 		$username = "datalogger";
@@ -35,9 +35,9 @@
 					$diffHumidity = abs($humiditySensor - $value);
 
 					if ($diffHumidity < $deltaHumidity) {
-						return ($value, true);
+						return (true);
 					} else {
-						return ($value, false);
+						return (false);
 					}
 					if ($debugMode==true) {
 						logToFile("humidity delta", $diffHumidity, '');
@@ -47,9 +47,9 @@
 				if ($i == 1) { //temperature
 					$diffTemperature = abs($tempSensor - $value);
 					if ($diffTemperature < $deltaTemperature) {
-						return ($value, true);
+						return (true);
 					} else {
-						return ($value, false);
+						return (false);
 					}
 					if ($debugMode==true) {
 						logToFile("temperature delta", $diffTemperature, '');
