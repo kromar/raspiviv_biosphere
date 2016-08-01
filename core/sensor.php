@@ -1,6 +1,7 @@
 <?php
 	include_once '/var/www/html/log.php';
 	global $temperature, $humidity, $debugMode;
+	global $deltaTemperature, $deltaHumidity;
 	$debugMode = true;
 
 
@@ -37,6 +38,7 @@
 				//check if sensor reading deviates by delta to the last sensor reading
 				if ($i == 0) {	//humidity
 					$diffHumidity = abs($humiditySensor - $value);
+					echo $diffHumidity;
 
 					if ($debugMode==true) {
 						logToFile("humidity delta", $diffHumidity, '');
