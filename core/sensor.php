@@ -9,7 +9,7 @@
 		// if it deviates by a certain delta then filter the value
 
 		$deltaTemperature = 5;
-		$deltaHumidity = 5;
+		$deltaHumidity = 10;
 
 		$servername = "localhost";
 		$username = "datalogger";
@@ -29,6 +29,10 @@
 			while($row = mysqli_fetch_assoc($result)) {
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
+
+				if ($debugMode==true) {
+					logToFile("filtering value $i", $value, $i);
+				}
 
 				//check if sensor reading deviates by delta to the last sensor reading
 				if ($i == 0) {	//humidity
@@ -71,15 +75,15 @@
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
-
 		$count = count($output);
-		echo "output size: $count \n";
-
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
-
 			if ($value) {
-				if ($i == 0) {	//humidity
+				//filter humidity
+				if ($i == 0) {
+					if ($debugMode==true) {
+						logToFile("get filter value $i", $value, $i);
+					}
 					 $valueInDeltaRange = filterValues($value, $i);
 					 if ($valueInDeltaRange == true) {
 					 	$humidity = $value;
@@ -87,7 +91,11 @@
 					 	$humidity  = null;
 					 }
 				}
-				if ($i == 1) { 	//temperature
+				//filter temperature
+				if ($i == 1) {
+					if ($debugMode==true) {
+						logToFile("get filter value $i", $value, $i);
+					}
 					$valueInDeltaRange = filterValues($value, $i);
 					 if ($valueInDeltaRange == true) {
 					 	$temperature = $value;
