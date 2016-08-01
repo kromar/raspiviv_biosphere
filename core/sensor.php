@@ -120,7 +120,7 @@
 				if ($temperature && $humidity) {
 
 					if ($debugMode==true) {
-						logToFile("both values", $humidity, $temperature);
+						logToFile("both values exist", $humidity, $temperature);
 					}
 
 					$servername = "localhost";
