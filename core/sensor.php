@@ -55,17 +55,13 @@
 						logToFile("temperature delta", $diffTemperature, '');
 					}
 				}
-
-
-
-		if ($value > $min && $value < $max) {
-			return($value);
-		} else {
-			if ($debugMode==true) {
-				logToFile("filtered", $name, $value);
 			}
+		} else {
+    		echo "0 results";
 		}
+		mysqli_close($db);
 	}
+
 
 
 
