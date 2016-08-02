@@ -101,9 +101,10 @@
 		if (($currentTime < $sunriseTime) or ($currentTime > $sunsetTime)) {
 			$tempThreshold = $tempNight;
 			$humidityThreshold = $humidityNight;
+			$day = false;
 
-			climateTemperature($tempSensor,$humiditySensor);
-			climateHumidity($tempSensor,$humiditySensor);
+			climateTemperature($tempSensor, $humiditySensor, $day);
+			climateHumidity($tempSensor, $humiditySensor, $day);
 
 			if ($debugMode==true) {
 
@@ -115,10 +116,11 @@
 		if (($currentTime > $sunriseTime) and ($currentTime < $sunsetTime)) {
 			$humidityThreshold = $humidityDay;
 			$tempThreshold = $tempDay;
+			$day = true;
 
 			climateRainShedule();
-			climateTemperature($tempSensor,$humiditySensor);
-			climateHumidity($tempSensor,$humiditySensor);
+			climateTemperature($tempSensor, $humiditySensor, $day);
+			climateHumidity($tempSensor, $humiditySensor, $day);
 
 			if ($debugMode==true) {
 				logToFile("day time limits", $tempThreshold, $humidityThreshold);
@@ -148,7 +150,7 @@
 
 
 
-	function climateTemperature($tempSensor,$humiditySensor) {
+	function climateTemperature($tempSensor, $humiditySensor, $day) {
 		global $debugMode;
 		global $tempThreshold;
 		global $rainTime, $windTime;
@@ -166,13 +168,13 @@
 				$rainTime = $tempDelta + $rainTime;
 				$windTime = $windTime + $tempDelta;
 				$reason = "high temperature: ".$tempSensor;
-				if ($highTempRain == true) {
+				if ($highTempRain == true && $day == true) {
 					letItRain($rainTime, $reason);
 				}
 				bringTheAir($windTime, $reason);		//TODO: define windtime
 			} else {
 				$reason = "high temperature: ".$tempSensor;
-				if ($highTempRain == true) {
+				if ($highTempRain == true && $day == true) {
 					letItRain($rainTime, $reason);
 				}
 				bringTheAir($windTime, $reason);
@@ -183,7 +185,7 @@
 
 
 
-	function climateHumidity($tempSensor,$humiditySensor) {
+	function climateHumidity($tempSensor, $humiditySensor, $day) {
 		global $debugMode;
 		global $tempThresold;
 		global $humidityThreshold, $humidityMin;
@@ -195,7 +197,7 @@
 
 		// rain when humidity drops below specified minimum valuee
 		//if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
-		if ($humiditySensor < $humidityMin) {
+		if ($humiditySensor < $humidityMin && $day == true) {
 
 			//react to low humidity
 			$humidityDelta = ($humidityMin - $humiditySensor);
