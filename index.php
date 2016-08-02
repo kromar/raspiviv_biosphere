@@ -281,7 +281,7 @@
 				$q = "select * from history ";
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 24";
+				$q = $q . "limit 168";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {
@@ -348,7 +348,7 @@
 				$q = "select * from history ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 24";
+				$q = $q . "limit 168";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {
