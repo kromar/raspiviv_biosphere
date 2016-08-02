@@ -28,7 +28,7 @@
 		if (!$db) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
-		$sql = "SELECT * FROM datalogger where sensor = $i ORDER BY date_time DESC LIMIT 1";
+		$sql = "SELECT * FROM datalogger where sensor = '$i' ORDER BY date_time DESC LIMIT 1";
 		$result = mysqli_query($db, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
