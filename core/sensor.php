@@ -15,7 +15,7 @@
 		// if it deviates by a certain delta then filter the value
 
 		$deltaTemperature = 5;
-		$deltaHumidity = 10;
+		$deltaHumidity = 20;
 
 		$servername = "localhost";
 		$username = "datalogger";
