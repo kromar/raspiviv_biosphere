@@ -71,7 +71,9 @@
 				}
 			}
 		} else {
-    		echo "0 results";
+    		if ($debugMode==true) {
+				logToFile("no db results", '', '');
+			}
 		}
 		mysqli_close($db);
 	}
