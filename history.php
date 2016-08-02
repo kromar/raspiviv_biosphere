@@ -37,7 +37,7 @@
 			$q=$q."select date_add(curdate(),interval $i hour),'$sensor', round(avg(temperature),2),round(avg(humidity),2) ";
 			$q=$q."from datalogger ";
 			$q=$q."where sensor = '$sensor' ";
-			$q=$q."and date_time >=date_add(curdate(),interval $i hour) ";$ii=$i+1;
+			$q=$q."and date_time >=date_add(curdate(),interval $i hour) "; $ii=$i+1;
 			$q=$q."and date_time < date_add(curdate(),interval $ii hour) ";
 			$q=$q.") ";
 			mysqli_query($db, $q);

@@ -156,7 +156,7 @@
 
 
 	readSensor(8);
-	//readSensor(9);
+	readSensor(9);
 
 
 	//change pull for a given amount of time and then switch back to previous pull state
