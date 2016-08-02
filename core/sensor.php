@@ -9,7 +9,7 @@
 		logToFile("running sensors.php", '', '');
 	}
 
-	function filterValues($value, $i) {
+	function filterValues($value, $i, $sensor) {
 		global $debugMode;
 		//change the filtering so we compare our values to previous value in the database,
 		// if it deviates by a certain delta then filter the value
@@ -28,7 +28,7 @@
 		if (!$db) {
 			die("Connection failed: " . mysqli_connect_error());
 		}
-		$sql = "SELECT * FROM datalogger where sensor = '$i' ORDER BY date_time DESC LIMIT 1";
+		$sql = "SELECT * FROM datalogger where sensor = $sensor ORDER BY date_time DESC LIMIT 1";
 		$result = mysqli_query($db, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
@@ -98,7 +98,7 @@
 					if ($debugMode==true) {
 						logToFile("get filter value humidity", $value, $i);
 					}
-					 $valueInDeltaRange = filterValues($value, $i);
+					 $valueInDeltaRange = filterValues($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$humidity = $value;
 					 } else {
@@ -110,7 +110,7 @@
 					if ($debugMode==true) {
 						logToFile("get filter value temperature", $value, $i);
 					}
-					$valueInDeltaRange = filterValues($value, $i);
+					$valueInDeltaRange = filterValues($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$temperature = $value;
 					 } else {
