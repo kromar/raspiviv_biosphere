@@ -73,6 +73,7 @@
 		} else {
     		if ($debugMode==true) {
 				logToFile("no db results", '', '');
+				return (true);
 			}
 		}
 		mysqli_close($db);
