@@ -197,7 +197,7 @@
 							die("Connection failed: " . mysqli_connect_error());
 						}
 
-						$sql = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+						$sql = "SELECT humidity FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 						$result = mysqli_query($conn, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
@@ -247,10 +247,10 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$q = "select * from history ";
+				$q = "select * from $dbname ";
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 168";
+				$q = $q . "limit 1440";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {
@@ -314,10 +314,10 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$q = "select * from history ";
+				$q = "select * from $dbname ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 168";
+				$q = $q . "limit 10080";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {

@@ -193,11 +193,6 @@
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
 
-	var myVar;
-	function myFunction() {
-	    myVar = setTimeout(drawChart, 10000);
-	}
-
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 		  	['TIME', 'TEMP', 'HUMIDITY' ],
@@ -213,7 +208,7 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 10";
+				$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
@@ -278,6 +273,10 @@
 	        chart.draw(data, options);
 	    }, 3000);
 
+	    var myVar;
+		function myFunction() {
+		    myVar = setTimeout(drawChart, 10000);
+		}
 
 		}
 	</script>

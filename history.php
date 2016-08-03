@@ -3,7 +3,7 @@
 		$servername = "localhost";
 		$username = "datalogger";
 		$password = "datalogger";
-		$dbname = "datalogger";
+		$dbname = "history";
 
 		// Create connection
 		$db = mysqli_connect($servername, $username, $password, $dbname);
@@ -22,7 +22,7 @@
 		$servername = "localhost";
 		$username = "datalogger";
 		$password = "datalogger";
-		$dbname = "datalogger";
+		$dbname = "history";
 
 		// Create connection
 		$db = mysqli_connect($servername, $username, $password, $dbname);
