@@ -18,7 +18,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
-   	<link rel="stylesheet" href="http://bootswatch.com/superhero/bootstrap.min.css"></link>
+   	<link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"></link>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
 
 
@@ -361,8 +361,9 @@
 			<?php include 'time.php';?>
 		</div>
 
+	<!--
 	<nav class="navbar navbar-default">	</nav>
-
+ 	-->
 
 	</div>
 
@@ -373,6 +374,7 @@
 				<div id="temp_gauge_div"></div>
 			    <div id="hum_gauge_div"></div>
 
+			    <!--
 			    <form>
 				  min: 	<input type="number" name="nighthumidity" value="90">
 				  		<br>
@@ -387,6 +389,7 @@
 
 				  <input type="submit" value="test">
 				</form>
+				 -->
 			</div>
 			<div class="col-xs-8">
     			<div id="chart_short_div"></div>
