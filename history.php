@@ -47,6 +47,6 @@
 	}
 	hist(8);
 	hist(9);
-	//delOld();
+	delOld();
 ?>
 
