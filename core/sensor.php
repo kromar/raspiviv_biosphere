@@ -15,7 +15,7 @@
 		// if it deviates by a certain delta then filter the value
 
 		$deltaTemperature = 5;
-		$deltaHumidity = 50;
+		$deltaHumidity = 90;
 
 		$servername = "localhost";
 		$username = "datalogger";
@@ -156,7 +156,7 @@
 
 
 	readSensor(8);
-	readSensor(9);
+	//readSensor(9);
 
 
 	//change pull for a given amount of time and then switch back to previous pull state
