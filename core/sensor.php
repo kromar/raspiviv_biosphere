@@ -16,6 +16,8 @@
 
 		$deltaTemperature = 5;
 		$deltaHumidity = 90;
+		$filterMax = 100;
+		$filterMin = 0;
 
 		$servername = "localhost";
 		$username = "datalogger";
@@ -36,39 +38,46 @@
 				$tempSensor = $row["temperature"];
 				$humiditySensor = $row["humidity"];
 
-				if ($debugMode==true) {
-					logToFile("filtering value $i", $value, $i);
-				}
-
-				//check if sensor reading deviates by delta to the last sensor reading
-				if ($i == 0) {	//humidity
-					$diffHumidity = abs($humiditySensor - $value);
-					echo $diffHumidity;
-
+				// todo: when within 0-100 then continue
+				if ($humiditySensor > $filterMin && $humiditySensor < $filterMax) {
 					if ($debugMode==true) {
-						logToFile("humidity delta", $diffHumidity, "$humiditySensor -- $value");
+						logToFile("filtering value $i", $value, $i);
 					}
 
-					if ($diffHumidity < $deltaHumidity) {
-						return (true);
-					} else {
-						return (false);
-					}
-				}
+					//check if sensor reading deviates by delta to the last sensor reading
+					if ($i == 0) {	//humidity
+						$diffHumidity = abs($humiditySensor - $value);
+						echo $diffHumidity;
 
-				if ($i == 1) { //temperature
-					$diffTemperature = abs($tempSensor - $value);
+						if ($debugMode==true) {
+							logToFile("humidity delta", $diffHumidity, "$humiditySensor -- $value");
+						}
 
-					if ($debugMode==true) {
-						logToFile("temperature delta", $diffTemperature, "$tempSensor -- $value");
-					}
-
-					if ($diffTemperature < $deltaTemperature) {
-						return (true);
-					} else {
-						return (false);
+						if ($diffHumidity < $deltaHumidity) {
+							return (true);
+						} else {
+							return (false);
+						}
 					}
 				}
+
+
+				if ($tempSensor > $filterMin && $tempSensor < $filterMax) {
+					if ($i == 1) { //temperature
+						$diffTemperature = abs($tempSensor - $value);
+
+						if ($debugMode==true) {
+							logToFile("temperature delta", $diffTemperature, "$tempSensor -- $value");
+						}
+
+						if ($diffTemperature < $deltaTemperature) {
+							return (true);
+						} else {
+							return (false);
+						}
+					}
+				}
+				//else out of range
 			}
 		} else {
     		if ($debugMode==true) {
