@@ -14,8 +14,8 @@
 		//change the filtering so we compare our values to previous value in the database,
 		// if it deviates by a certain delta then filter the value
 
-		$deltaTemperature = 5;
-		$deltaHumidity = 90;
+		$deltaTemperature = 100;
+		$deltaHumidity = 100;
 		$filterMax = 100;
 		$filterMin = 0;
 
