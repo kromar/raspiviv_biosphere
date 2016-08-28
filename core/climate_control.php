@@ -7,7 +7,7 @@
 	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
-	$humidityNight = 80.0;
+	$humidityNight = 85.0;
 	$humidityDay = 90.0;
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;
@@ -18,7 +18,7 @@
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
-	$rainShedule = array('12:00' => 6, '18:00' => 4);
+	$rainShedule = array('12:00' => 10, '18:00' => 10);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 	global $debugMode, $override, $pumpPrimer, $climateControl;
