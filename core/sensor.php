@@ -61,7 +61,7 @@
 					}
 				}
 
-
+				//filter temperature within specified range
 				if ($tempSensor > $filterMin && $tempSensor < $filterMax) {
 					if ($i == 1) { //temperature
 						$diffTemperature = abs($tempSensor - $value);
@@ -130,7 +130,7 @@
 
 				//only if we get both values we write to the database
 				if ($temperature && $humidity) {
-
+					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
 						logToFile("both values exist", $humidity, $temperature);
 					}
