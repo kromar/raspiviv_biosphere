@@ -135,7 +135,7 @@
 			  ['Label', 'Value'],
 			  ['%',
 					<?php
-						$servername = "localhost";
+						$servername = "127.0.0.1";
 						$username = "datalogger";
 						$password = "datalogger";
 						$dbname = "datalogger";
