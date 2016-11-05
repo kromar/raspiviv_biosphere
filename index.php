@@ -250,7 +250,7 @@
 				$q = "select * from $dbname ";
 				$q = $q . "where sensor = 9 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 1440";
+				$q = $q . "limit 4320";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {
@@ -317,7 +317,7 @@
 				$q = "select * from $dbname ";
 				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
-				$q = $q . "limit 10080";
+				$q = $q . "limit 4320";
 				$result = mysqli_query ($db, $q );
 
 				if (mysqli_num_rows($result) > 0) {
