@@ -99,6 +99,11 @@
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 		$count = count($output);
+		
+		if ($debugMode==true) {
+				logToFile("sensor readings", $output, "");
+			}
+					
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
 			if ($value) {
@@ -129,9 +134,6 @@
 
 
 				//only if we get both values we write to the database
-				if ($debugMode==true) {
-						logToFile("sensor readings", $humidity, $temperature);
-					}
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
