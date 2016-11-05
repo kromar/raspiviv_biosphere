@@ -129,6 +129,9 @@
 
 
 				//only if we get both values we write to the database
+				if ($debugMode==true) {
+						logToFile("sensor readings", $humidity, $temperature);
+					}
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
