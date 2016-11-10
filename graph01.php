@@ -59,8 +59,8 @@
 					while($row = mysqli_fetch_object($result)) {
 
 					echo "['" . $row->date_time . "', ";
-					echo " {v:" . $row->temperature . " ,";
-					echo " f:" . $row->humidity . " }],";
+					echo " {" . $row->temperature . " ,";
+					echo " " . $row->humidity . " }],";
 
 					}
 				} else {
