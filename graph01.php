@@ -35,8 +35,10 @@
 	google.setOnLoadCallback(drawChart);
 
 	function drawChart() {
-		var graphData = google.visualization.arrayToDataTable([
-			['TIME', 'TEMP', 'HUMIDITY' ],
+		var graphData = google.visualization.arrayToDataTable():
+			graphData.addColumn('date_time', 'date_time');
+			graphData.addColumn('number', 'temperature');
+			graphData.addColumn('number', 'humidity'
 				<?php
 					$servername = "localhost";
 					$username = "datalogger";
@@ -54,18 +56,19 @@
 
 					if (mysqli_num_rows($result) > 0) {
 						while($row = mysqli_fetch_object($result)) {
-						echo "['" . $row->date_time . "', ";
-						echo " " . $row->temperature . " ,";
-						echo " " . $row->humidity . " ],";
+							echo "graphData.addRow([
+								{$row['date_time']},
+								{$row['temperature']},
+								{$row['humidity']}
+							]);";
 						}
 					} else {
 						echo "0 results";
 					}
 					mysqli_close($db);
 				?>
-		], false ); // 'false' means that the first row contains labels, not data.
 
-  var options = {
+ 	 	var options = {
 			animation: {
 				duration: 1000,
 				easing: 'out'
@@ -410,7 +413,6 @@
 					echo " " . $row->temperature . " ,";
 					echo " " . $row->humidity . " ],";
 
-					var_dump("<script>console.log('$row');</script>", true);
 					}
 				} else {
 					echo "0 results";
