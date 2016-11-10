@@ -33,7 +33,7 @@
 
 	function drawChart() {
 		var graphData = google.visualization.arrayToDataTable([
-		  	['TIME'{
+		  	['TIME':{
 		        "id": "time",
 		        "label": "Date Range",
 		        "pattern": "",
