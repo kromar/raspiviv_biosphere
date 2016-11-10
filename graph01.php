@@ -35,85 +35,57 @@
 	google.setOnLoadCallback(drawChart);
 
 	function drawChart() {
-		var graphData = google.visualization.arrayToDataTable():
-			graphData.addColumn('date_time', 'date_time');
-			graphData.addColumn('number', 'temperature');
-			graphData.addColumn('number', 'humidity');
-		<?php
-			$servername = "localhost";
-			$username = "datalogger";
-			$password = "datalogger";
-			$dbname = "datalogger";
 
-			// Create connection
-			$db = mysqli_connect($servername, $username, $password, $dbname);
-			// Check connection
-			if (!$db) {
-				die("Connection failed: " . mysqli_connect_error());
-			}
-			$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
-			$result = mysqli_query($db, $sql);
+  var graphData = {
+    "cols": [{
+      "id": "A",
+      "label": "Date Range",
+      "pattern": "",
+      "type": "date"
+    }, {
+      "id": "B",
+      "label": "Sessions",
+      "pattern": "",
+      "type": "number"
+    }],
+    "rows": [{
+      "c": [{
+        "v": "Date(2015,4,30)",
+        "f": "Saturday, May 30, 2015"
+      }, {
+        "v": "31"
+      }]
+    }]
+  }
+             
+  
 
-			if (mysqli_num_rows($result) > 0) {
-				while($row = mysqli_fetch_object($result)) {
-					echo "graphData.addRow([
-						{$row['date_time']},
-						{$row['temperature']},
-						{$row['humidity']}
-					]);";
-				}
-			} else {
-				echo "0 results";
-			}
-			mysqli_close($db);
-		?>
-
- 	 	var options = {
-			animation: {
-				duration: 1000,
-				easing: 'out'
-			},
-
-			legend: {
-				position: 'top'
-			},
-			point: {
-				visible: true,
-				//fill-color: #000000,
-				},
-			pointSize: 6,
-			pointShape: 'circle',
-			curveType: 'function',
-			crosshair: {
-				trigger: 'both' ,
-				orientation: 'vertical',
-				color: 'white'},
-			backgroundColor: {
-				stroke: 'white',
-				fill: 'grey',
-				strokeSize: 1},
-	        height: 400,
-
-			chartArea: {
-			  'width': '100%',
-			  'height': '80%'
-			},
-
-			series: {
-				0: {color: 'red', targetAxisIndex: 0},
-				1: {color: 'blue', targetAxisIndex: 1},
-		},
-
-		vAxes: {
-			// Adds titles to each axis.
-			0: {title: 'Temperature (C)'},
-			1: {title: 'Humidity (%)'},
-		},
-
-		hAxis: {
-			textPosition: 'none',
-			direction: '-1' },
-		};
+  var options = {
+    height: 400,
+    pointSize: 6,
+    chartArea: {
+      'width': '100%',
+      'height': '80%'
+    },
+    dataOpacity: 0.3,
+    focusTarget: 'category',
+    legend: {
+      position: 'top'
+    },
+    hAxis: {
+      gridlines: {
+        color: 'none'
+      },
+      //textPosition: textPosition,
+      textPosition: 'bottom',
+      format: 'MMM dd',
+      slantedText: false
+    },
+    animation: {
+      duration: 1000,
+      easing: 'out',
+    }
+  };
 
   data = new google.visualization.DataTable(graphData);
 
@@ -128,15 +100,18 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-    	filterColumnLabel:  'TEMP',
+      filterColumnLabel: 'Date Range',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
           chartArea: {
-            width: '100%',
+            width: '95%',
+            height: '100%'
           },
           curveType: 'function',
         },
+        // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
+        minRangeSize: 86400000
       }
     },
   });
