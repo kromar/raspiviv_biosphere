@@ -666,8 +666,16 @@ function drawChart() {
 
 		<div class="row">
 			<div class="col-xs-4">
-				<div id="temp_gauge_div"></div>
+				<div id="temp_gauge_div">
+					<div id="chart_short_div"></div>
+				</div>
 			    <div id="hum_gauge_div"></div>
+
+
+				<div class="col-xs-8">
+	    			<div id="chart_short_div"></div>
+	    			<div id="chart_long_div"></div>
+				</div>
 
 			    <!--
 			    <form>
@@ -685,10 +693,7 @@ function drawChart() {
 				  <input type="submit" value="test">
 				</form>
 				 -->
-				<div class="col-xs-8">
-	    			<div id="chart_short_div"></div>
-	    			<div id="chart_long_div"></div>
-				</div>
+
 			</div>
 
 	    	<!--
@@ -704,12 +709,12 @@ function drawChart() {
 		  <table class="columns">
 		    <tr>
 		      <td>
-		        <div id="linechart_div" style="width: 950px; height: 250px;"></div>
+		        <div id="linechart_div"></div>
 		      </td>
 		    </tr>
 		    <tr>
 		      <td>
-		        <div id="control_div" style="width: 930px; height: 50px;"></div>
+		        <div id="control_div"></div>
 		      </td>
 		    </tr>
 		  </table>
