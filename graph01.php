@@ -409,11 +409,14 @@
 					echo "['" . $row->date_time . "', ";
 					echo " " . $row->temperature . " ,";
 					echo " " . $row->humidity . " ],";
+
+					var_dump("<script>console.log('$row');</script>", true);
 					}
 				} else {
 					echo "0 results";
 				}
 				mysqli_close($db);
+
 			?>
 		]);
 
