@@ -62,8 +62,6 @@
 					echo " {v:" . $row->temperature . ",";
 					echo " v:" . $row->humidity . " }], ";
 
-['Food', {v:5595.819984, f:'5.595,82'}], 
-['Home', {v:1890.530002, f:'1.890,53'}],
 					}
 				} else {
 					echo "0 results";
