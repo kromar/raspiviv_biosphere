@@ -679,11 +679,10 @@ function drawChart() {
 
 
 	<div class="container">
-			<div class="col-xs-4">
+			<div class="row">
 				<div id="temp_gauge_div">
-					<div class="col-xs-8">
-	    				<div id="chart_short_div"></div>
-    				</div>
+					<div id="chart_short_div"></div>
+				</div>
 			    <div id="hum_gauge_div"></div>
 
 			    <!--
