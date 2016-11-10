@@ -58,10 +58,12 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 
-					echo "['" . $row->date_time . "', ";
-					echo " {" . $row->temperature . " ,";
-					echo " " . $row->humidity . " }],";
+					echo "['" . $row->date_time . "',";
+					echo " {v:" . $row->temperature . ",";
+					echo " v:" . $row->humidity . " }], ";
 
+['Food', {v:5595.819984, f:'5.595,82'}], 
+['Home', {v:1890.530002, f:'1.890,53'}],
 					}
 				} else {
 					echo "0 results";
