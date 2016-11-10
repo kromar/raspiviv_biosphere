@@ -33,7 +33,13 @@
 
 	function drawChart() {
 		var graphData = google.visualization.arrayToDataTable([
-		  	['TIME', 'TEMP', 'HUMIDITY' ],
+		  	['TIME'{
+		        "id": "time",
+		        "label": "Date Range",
+		        "pattern": "",
+		        "type": "date"
+		      },
+		      'TEMP', 'HUMIDITY' ],
 			<?php
 				$servername = "localhost";
 				$username = "datalogger";
@@ -52,6 +58,7 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 					echo "['" . $row->date_time . "', ";
+
 					echo " " . $row->temperature . " ,";
 					echo " " . $row->humidity . " ],";
 					}
@@ -60,6 +67,7 @@
 				}
 				mysqli_close($db);
 			?>
+
 		]);
 
   var options = {
@@ -122,7 +130,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-        filterColumnLabel: 'date_time',
+        filterColumnLabel: 'Date Range',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
