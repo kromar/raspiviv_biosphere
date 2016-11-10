@@ -307,8 +307,6 @@ function drawChart() {
       }, {
         "v": "325"
       }]
-    },
-    }]
   }
 
   var options = {
