@@ -685,10 +685,10 @@ function drawChart() {
 				  <input type="submit" value="test">
 				</form>
 				 -->
-			</div>
-			<div class="col-xs-8">
-    			<div id="chart_short_div"></div>
-    			<div id="chart_long_div"></div>
+				<div class="col-xs-8">
+	    			<div id="chart_short_div"></div>
+	    			<div id="chart_long_div"></div>
+				</div>
 			</div>
 
 	    	<!--
