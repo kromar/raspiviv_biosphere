@@ -38,8 +38,7 @@
 
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('string', 'TIME');
-		graphData.addColumn('number', 'TEMP');
-		graphData.addColumn('number', 'HUM');
+		graphData.addColumn('number', 'VALUES');
 		graphData.addRows([
 			<?php
 				$servername = "localhost";
@@ -58,9 +57,10 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					echo "['" . $row->date_time . "', ";
+
+					echo "['" . $row->date_time . "', {";
 					echo " " . $row->temperature . " ,";
-					echo " " . $row->humidity . " ],";
+					echo " " . $row->humidity . " }],";
 
 					}
 				} else {
