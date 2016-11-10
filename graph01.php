@@ -662,7 +662,7 @@ function drawChart() {
 
 	</div>
 
-<div id="dashboard_div">
+		<div id="dashboard_div">
 		  <table class="columns">
 		    <tr>
 		      <td>
@@ -679,7 +679,7 @@ function drawChart() {
 
 
 	<div class="container">
-			<div class="row">
+			<table class="row">
 				<div id="temp_gauge_div"></div>
 				<div id="chart_short_div"></div>
 			    <div id="hum_gauge_div"></div>
@@ -712,6 +712,7 @@ function drawChart() {
 	  		<input type="button" value="Slow down" onclick="changeTemp(-1)" />
 			-->
 
+		</table>
 		</div>
 
 	    <hr>
@@ -780,10 +781,9 @@ function drawChart() {
 			"dt":1463300886, "sys":{"message":0.0086, "country":"PA", "sunrise":1463309782, "sunset":1463354956},
 			"id":3712505, "name":"Chepo","cod":200}
 			//*/
-
 		?>
 
+		</div>
 	    <?php include 'footer.php';?>
-	</div>
 </body>
 </html>
