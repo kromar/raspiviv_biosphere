@@ -663,9 +663,6 @@ function drawChart() {
 	</div>
 
 	<div class="container">
-
-
-		<div class="row">
 		<table class="columns">
 			<div class="col-xs-4">
 				<div id="temp_gauge_div"></div>
@@ -703,7 +700,6 @@ function drawChart() {
 		</div>
 
 		  </table>
-	</div>
 
 		<div id="dashboard_div">
 		  <table class="columns">
