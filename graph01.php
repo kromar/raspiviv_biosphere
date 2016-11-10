@@ -72,37 +72,37 @@
 
 
 <!-- realtime update graph testing -->
-<script type="text/javascript">
-	google.load("visualization", "1", {packages:["gauge"]});
-	google.setOnLoadCallback(drawChart);
-	// using jQuery for simplicity, but you can implement in other libraries or vanilla javascript if you want
-	function drawChart() {
-	    var options = {
-	        title: 'Company Performance',
-	        vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
-	    };
+<!-- <script type="text/javascript"> -->
+// 	google.load("visualization", "1", {packages:["gauge"]});
+// 	google.setOnLoadCallback(drawChart);
+// 	// using jQuery for simplicity, but you can implement in other libraries or vanilla javascript if you want
+// 	function drawChart() {
+// 	    var options = {
+// 	        title: 'Company Performance',
+// 	        vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
+// 	    };
 
-	    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+// 	    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
-	    function updateChart () {
-	        $.ajax({
-	            url: 'path/to/data/source/',
-	            data: {/* any parameters you need to pass to the server to get your data back */},
-	            dataType: /* text, json, XML, whatever your server returns */,
-	            success: function (response) {
-	                // use response to create/update DataTable
-	                chart.draw(data, options);
-	                // update the chart again in 2 seconds
-	                setTimeout(updateChart, 2000);
-	            },
-	            error: function (response) {
-	                // handle errors
-	            }
-	        });
-	    }
-	    updateChart();
-	}
-</script>
+// 	    function updateChart () {
+// 	        $.ajax({
+// 	            url: 'path/to/data/source/',
+// 	            data: {/* any parameters you need to pass to the server to get your data back */},
+// 	            dataType: /* text, json, XML, whatever your server returns */,
+// 	            success: function (response) {
+// 	                // use response to create/update DataTable
+// 	                chart.draw(data, options);
+// 	                // update the chart again in 2 seconds
+// 	                setTimeout(updateChart, 2000);
+// 	            },
+// 	            error: function (response) {
+// 	                // handle errors
+// 	            }
+// 	        });
+// 	    }
+// 	    updateChart();
+// 	}
+<!-- </script> -->
 
 
 <script type="text/javascript">
