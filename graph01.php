@@ -69,7 +69,7 @@
 			},
 
 			legend: {
-				position: 'top' 
+				position: 'top'
 			},
 			point: {
 				visible: true,
@@ -87,12 +87,12 @@
 				fill: 'grey',
 				strokeSize: 1},
 	        height: 400,
-			
+
 			chartArea: {
 			  'width': '100%',
 			  'height': '80%'
 			},
-			
+
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -122,10 +122,11 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
+        filterColumnLabel: 'date_time',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
-          chartArea: { 
+          chartArea: {
             width: '100%',
           },
           curveType: 'function',
@@ -322,7 +323,7 @@
 			},
 
 			legend: {
-				position: 'top' 
+				position: 'top'
 			},
 			point: {
 				visible: true,
