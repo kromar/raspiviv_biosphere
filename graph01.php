@@ -28,6 +28,8 @@
 
 
 
+
+
 	<!--
 	<script type="text/javascript">
 		google.load('visualization',  "1", {'packages':['gauge']});
@@ -67,6 +69,332 @@
 
 	</script>
 	-->
+
+
+<!-- realtime update graph testing -->
+<script type="text/javascript">
+	google.load("visualization", "1", {packages:["gauge"]});
+	google.setOnLoadCallback(drawChart);
+	// using jQuery for simplicity, but you can implement in other libraries or vanilla javascript if you want
+	function drawChart() {
+	    var options = {
+	        title: 'Company Performance',
+	        vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
+	    };
+
+	    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+	    function updateChart () {
+	        $.ajax({
+	            url: 'path/to/data/source/',
+	            data: {/* any parameters you need to pass to the server to get your data back */},
+	            dataType: /* text, json, XML, whatever your server returns */,
+	            success: function (response) {
+	                // use response to create/update DataTable
+	                chart.draw(data, options);
+	                // update the chart again in 2 seconds
+	                setTimeout(updateChart, 2000);
+	            },
+	            error: function (response) {
+	                // handle errors
+	            }
+	        });
+	    }
+	    updateChart();
+	}
+</script>
+
+
+<script type="text/javascript">
+google.load('visualization', '1', {
+  packages: ['corechart', 'controls']
+});
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+  var graphData = {
+    "cols": [{
+      "id": "A",
+      "label": "Date Range",
+      "pattern": "",
+      "type": "date"
+    }, {
+      "id": "B",
+      "label": "Sessions",
+      "pattern": "",
+      "type": "number"
+    }],
+    "rows": [{
+      "c": [{
+        "v": "Date(2015,4,30)",
+        "f": "Saturday, May 30, 2015"
+      }, {
+        "v": "31"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,4,31)",
+        "f": "Sunday, May 31, 2015"
+      }, {
+        "v": "26"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,01)",
+        "f": "Monday, June 01, 2015"
+      }, {
+        "v": "148"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,02)",
+        "f": "Tuesday, June 02, 2015"
+      }, {
+        "v": "299"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,03)",
+        "f": "Wednesday, June 03, 2015"
+      }, {
+        "v": "285"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,04)",
+        "f": "Thursday, June 04, 2015"
+      }, {
+        "v": "273"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,05)",
+        "f": "Friday, June 05, 2015"
+      }, {
+        "v": "205"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,06)",
+        "f": "Saturday, June 06, 2015"
+      }, {
+        "v": "143"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,07)",
+        "f": "Sunday, June 07, 2015"
+      }, {
+        "v": "213"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,08)",
+        "f": "Monday, June 08, 2015"
+      }, {
+        "v": "314"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,09)",
+        "f": "Tuesday, June 09, 2015"
+      }, {
+        "v": "301"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,10)",
+        "f": "Wednesday, June 10, 2015"
+      }, {
+        "v": "287"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,11)",
+        "f": "Thursday, June 11, 2015"
+      }, {
+        "v": "274"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,12)",
+        "f": "Friday, June 12, 2015"
+      }, {
+        "v": "329"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,13)",
+        "f": "Saturday, June 13, 2015"
+      }, {
+        "v": "229"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,14)",
+        "f": "Sunday, June 14, 2015"
+      }, {
+        "v": "188"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,15)",
+        "f": "Monday, June 15, 2015"
+      }, {
+        "v": "304"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,16)",
+        "f": "Tuesday, June 16, 2015"
+      }, {
+        "v": "317"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,17)",
+        "f": "Wednesday, June 17, 2015"
+      }, {
+        "v": "211"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,18)",
+        "f": "Thursday, June 18, 2015"
+      }, {
+        "v": "288"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,19)",
+        "f": "Friday, June 19, 2015"
+      }, {
+        "v": "345"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,20)",
+        "f": "Saturday, June 20, 2015"
+      }, {
+        "v": "190"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,21)",
+        "f": "Sunday, June 21, 2015"
+      }, {
+        "v": "169"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,22)",
+        "f": "Monday, June 22, 2015"
+      }, {
+        "v": "454"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,23)",
+        "f": "Tuesday, June 23, 2015"
+      }, {
+        "v": "331"
+      }]
+    }, {
+      "c": [{
+        "v": "Date(2015,5,24)",
+        "f": "Wednesday, June 24, 2015"
+      }, {
+        "v": "325"
+      }]
+    },
+    }]
+  }
+
+  var options = {
+    width: 900,
+    height: 250,
+    pointSize: 3,
+    chartArea: {
+      'width': '100%',
+      'height': '80%'
+    },
+    dataOpacity: 0.3,
+    focusTarget: 'category',
+    legend: {
+      position: 'top'
+    },
+    hAxis: {
+      gridlines: {
+        color: 'none'
+      },
+      //textPosition: textPosition,
+      textPosition: 'bottom',
+      format: 'MMM dd',
+      slantedText: false
+    },
+    animation: {
+      duration: 500,
+      easing: 'out',
+    }
+  };
+
+  data = new google.visualization.DataTable(graphData);
+
+  var lineChart = new google.visualization.ChartWrapper({
+    chartType: 'LineChart',
+    containerId: 'linechart_div',
+    options: options
+  });
+
+  // Create a date range slider
+  var myDateSlider = new google.visualization.ControlWrapper({
+    controlType: 'ChartRangeFilter',
+    containerId: 'control_div',
+    options: {
+      filterColumnLabel: 'Date Range',
+      width: 950,
+      ui: {
+        chartType: 'LineChart',
+        chartOptions: {
+          chartArea: {
+            left: 5,
+            width: '95%',
+            height: 80
+          },
+          curveType: 'function',
+        },
+        state: {
+          range: {
+            start: "Date(2015, 4, 30)",
+            end: "Date(2015, 5, 30)"
+          }
+        },
+        // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
+        minRangeSize: 86400000
+      }
+    },
+  });
+
+  var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+  dashboard.bind(myDateSlider,lineChart);
+  google.visualization.events.addListener(myDateSlider, 'statechange', function() {
+    var state = myDateSlider.getState();
+    console.log(state)
+      // do something with state
+  });
+  dashboard.draw(data);
+
+}
+
+</script>
+
+
+
+
+
+
+
 
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
@@ -408,6 +736,22 @@
 
 		</div>
 	</div>
+
+		<div id="dashboard_div">
+		  <table class="columns">
+		    <tr>
+		      <td>
+		        <div id="linechart_div" style="width: 950px; height: 250px;"></div>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td>
+		        <div id="control_div" style="width: 930px; height: 50px;"></div>
+		      </td>
+		    </tr>
+		  </table>
+		</div>
+
 
 	    <hr>
 	    <div class="container">
