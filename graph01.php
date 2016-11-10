@@ -36,35 +36,34 @@
 
 	function drawChart() {
 		var graphData = google.visualization.arrayToDataTable([
-				['TIME', 'TEMP', 'HUMIDITY' ],
-			<?php
-				$servername = "localhost";
-				$username = "datalogger";
-				$password = "datalogger";
-				$dbname = "datalogger";
+			['TIME', 'TEMP', 'HUMIDITY' ],
+				<?php
+					$servername = "localhost";
+					$username = "datalogger";
+					$password = "datalogger";
+					$dbname = "datalogger";
 
-				// Create connection
-				$db = mysqli_connect($servername, $username, $password, $dbname);
-				// Check connection
-				if (!$db) {
-					die("Connection failed: " . mysqli_connect_error());
-				}
-				$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
-				$result = mysqli_query($db, $sql);
-
-				if (mysqli_num_rows($result) > 0) {
-					while($row = mysqli_fetch_object($result)) {
-					echo "['" . $row->date_time . "', ";
-					echo " " . $row->temperature . " ,";
-					echo " " . $row->humidity . " ],";
+					// Create connection
+					$db = mysqli_connect($servername, $username, $password, $dbname);
+					// Check connection
+					if (!$db) {
+						die("Connection failed: " . mysqli_connect_error());
 					}
-				} else {
-					echo "0 results";
-				}
-				mysqli_close($db);
-			?>
+					$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
+					$result = mysqli_query($db, $sql);
 
-		]);
+					if (mysqli_num_rows($result) > 0) {
+						while($row = mysqli_fetch_object($result)) {
+						echo "['" . $row->date_time . "', ";
+						echo " " . $row->temperature . " ,";
+						echo " " . $row->humidity . " ],";
+						}
+					} else {
+						echo "0 results";
+					}
+					mysqli_close($db);
+				?>
+		], false ); // 'false' means that the first row contains labels, not data.
 
   var options = {
 			animation: {
@@ -126,7 +125,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-    	filterColumnIndex: 0,
+    	filterColumnLabel:  'TIME',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
