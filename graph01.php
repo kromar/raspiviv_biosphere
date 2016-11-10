@@ -16,8 +16,11 @@
 
 	<title>RasPiViv.com - Vivarium 1</title>
 
+
+    <!--Load the AJAX API-->
 	<script src="scripts/jquery-1.12.3.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="/css/normalize.css" rel="stylesheet"></link>
@@ -33,13 +36,7 @@
 
 	function drawChart() {
 		var graphData = google.visualization.arrayToDataTable([
-		  	['TIME':{
-		        "id": "time",
-		        "label": "Date Range",
-		        "pattern": "",
-		        "type": "date"
-		      },
-		      'TEMP', 'HUMIDITY' ],
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
 			<?php
 				$servername = "localhost";
 				$username = "datalogger";
@@ -130,7 +127,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-        filterColumnLabel: 'Date Range',
+    	filterColumnIndex: 'TIME',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
