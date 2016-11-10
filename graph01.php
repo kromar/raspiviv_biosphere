@@ -30,35 +30,48 @@
 
 
 
-<script type="text/javascript">
+<script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawChart);
 
 	function drawChart() {
 
-  var graphData = {
-    "cols": [{
-      "id": "A",
-      "label": "Date Range",
-      "pattern": "",
-      "type": "date"
-    }, {
-      "id": "B",
-      "label": "Sessions",
-      "pattern": "",
-      "type": "number"
-    }],
-    "rows": [{
-      "c": [{
-        "v": "Date(2015,4,30)",
-        "f": "Saturday, May 30, 2015"
-      }, {
-        "v": "31"
-      }]
-    }]
-  }
-             
-  
+	  var graphData = google.visualization.DataTable();
+		graphData.addColumn('datetime', 'date_time');
+		graphData.addColumn('number', 'temperature');
+		graphData.addColumn('number', 'humidity');
+		graphData.addRows([
+			<?php
+				$servername = "localhost";
+				$username = "datalogger";
+				$password = "datalogger";
+				$dbname = "datalogger";
+
+				// Create connection
+				$db = mysqli_connect($servername, $username, $password, $dbname);
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1400";
+				$result = mysqli_query($db, $sql);
+
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_object($result)) {
+					echo "['" . $row->date_time . "', ";
+					echo " " . $row->temperature . " ,";
+					echo " " . $row->humidity . " ],";
+
+					}
+				} else {
+					echo "0 results";
+				}
+				mysqli_close($db);
+
+			?>
+		]);
+
+
 
   var options = {
     height: 400,
