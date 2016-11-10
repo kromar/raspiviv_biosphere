@@ -87,6 +87,12 @@
 				fill: 'grey',
 				strokeSize: 1},
 	        height: 400,
+			
+			chartArea: {
+			  'width': '100%',
+			  'height': '80%'
+			},
+			
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -116,17 +122,14 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-      filterColumnLabel: 'Date Range',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
-          chartArea: {
+          chartArea: { 
             width: '100%',
           },
           curveType: 'function',
         },
-        // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
-        minRangeSize: 86400000
       }
     },
   });
