@@ -113,7 +113,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-      filterColumnLabel: 'Date Range',
+      filterColumnLabel: 'date_time',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
