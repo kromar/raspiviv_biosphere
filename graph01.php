@@ -37,9 +37,9 @@
 	function drawChart() {
 
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('string', 'date_time');
-		graphData.addColumn('number', 'temperature');
-		graphData.addColumn('number', 'humidity');
+		graphData.addColumn('string', 'TIME');
+		graphData.addColumn('number', 'TEMP');
+		graphData.addColumn('number', 'HUM');
 		graphData.addRows([
 			<?php
 				$servername = "localhost";
@@ -113,7 +113,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-      filterColumnLabel: 'date_time',
+      filterColumnLabel: 'TIME',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
