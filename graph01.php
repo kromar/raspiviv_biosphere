@@ -37,7 +37,7 @@
 	function drawChart() {
 
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('datetime', 'date_time');
+		graphData.addColumn('string', 'date_time');
 		graphData.addColumn('number', 'temperature');
 		graphData.addColumn('number', 'humidity');
 		graphData.addRows([
