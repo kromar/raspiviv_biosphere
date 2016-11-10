@@ -38,35 +38,35 @@
 		var graphData = google.visualization.arrayToDataTable():
 			graphData.addColumn('date_time', 'date_time');
 			graphData.addColumn('number', 'temperature');
-			graphData.addColumn('number', 'humidity'
-				<?php
-					$servername = "localhost";
-					$username = "datalogger";
-					$password = "datalogger";
-					$dbname = "datalogger";
+			graphData.addColumn('number', 'humidity');
+		<?php
+			$servername = "localhost";
+			$username = "datalogger";
+			$password = "datalogger";
+			$dbname = "datalogger";
 
-					// Create connection
-					$db = mysqli_connect($servername, $username, $password, $dbname);
-					// Check connection
-					if (!$db) {
-						die("Connection failed: " . mysqli_connect_error());
-					}
-					$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
-					$result = mysqli_query($db, $sql);
+			// Create connection
+			$db = mysqli_connect($servername, $username, $password, $dbname);
+			// Check connection
+			if (!$db) {
+				die("Connection failed: " . mysqli_connect_error());
+			}
+			$sql = "SELECT * FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 10";
+			$result = mysqli_query($db, $sql);
 
-					if (mysqli_num_rows($result) > 0) {
-						while($row = mysqli_fetch_object($result)) {
-							echo "graphData.addRow([
-								{$row['date_time']},
-								{$row['temperature']},
-								{$row['humidity']}
-							]);";
-						}
-					} else {
-						echo "0 results";
-					}
-					mysqli_close($db);
-				?>
+			if (mysqli_num_rows($result) > 0) {
+				while($row = mysqli_fetch_object($result)) {
+					echo "graphData.addRow([
+						{$row['date_time']},
+						{$row['temperature']},
+						{$row['humidity']}
+					]);";
+				}
+			} else {
+				echo "0 results";
+			}
+			mysqli_close($db);
+		?>
 
  	 	var options = {
 			animation: {
