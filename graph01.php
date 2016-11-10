@@ -662,10 +662,28 @@ function drawChart() {
 
 	</div>
 
+<div id="dashboard_div">
+		  <table class="columns">
+		    <tr>
+		      <td>
+		        <div id="linechart_div" style="width: 950px; height: 250px;"></div>
+		      </td>
+		    </tr>
+		    <tr>
+		      <td>
+		        <div id="control_div" style="width: 950px; height: 50px;"></div>
+		      </td>
+		    </tr>
+		  </table>
+		</div>
+
+
 	<div class="container">
-		<table class="columns">
 			<div class="col-xs-4">
-				<div id="temp_gauge_div"></div>
+				<div id="temp_gauge_div">
+					<div class="col-xs-8">
+	    				<div id="chart_short_div"></div>
+    				</div>
 			    <div id="hum_gauge_div"></div>
 
 			    <!--
@@ -687,7 +705,6 @@ function drawChart() {
 
 			</div>
 				<div class="col-xs-8">
-	    			<div id="chart_short_div"></div>
 	    			<div id="chart_long_div"></div>
 				</div>
 
@@ -698,24 +715,6 @@ function drawChart() {
 			-->
 
 		</div>
-
-		  </table>
-
-		<div id="dashboard_div">
-		  <table class="columns">
-		    <tr>
-		      <td>
-		        <div id="linechart_div" style="width: 950px; height: 250px;"></div>
-		      </td>
-		    </tr>
-		    <tr>
-		      <td>
-		        <div id="control_div" style="width: 950px; height: 50px;"></div>
-		      </td>
-		    </tr>
-		  </table>
-		</div>
-
 
 	    <hr>
 	    <div class="container">
