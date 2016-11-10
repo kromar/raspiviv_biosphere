@@ -125,7 +125,7 @@
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-    	filterColumnLabel:  'TIME',
+    	filterColumnLabel:  'TEMP',
       ui: {
         chartType: 'LineChart',
         chartOptions: {
