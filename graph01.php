@@ -66,9 +66,9 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe = [
-								[6, //$row -> date_time,
-								5, //(float) $row -> temperature,
-								4] //(float) $row -> humidity,
+								[(float) $row -> humidity, 			//$row -> date_time,
+								(float) $row -> temperature,
+								(float) $row -> humidity],
 							];
 					}
 				} else {
