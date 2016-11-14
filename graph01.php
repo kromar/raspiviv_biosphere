@@ -33,19 +33,14 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
 
 <script type="text/javascript">
-  g = new Dygraph(
-
-    // containing div
-    document.getElementById("graphdiv"),
-
-    // CSV or path to a CSV file.
-    "Date,Temperature\n" +
-    "2008-05-07,75\n" +
-    "2008-05-08,70\n" +
-    "2008-05-09,80\n"
-
+  g3 = new Dygraph(
+    document.getElementById("graphdiv3"),
+    "data/temperatures.csv",
+    {
+      rollPeriod: 7,
+      showRoller: true
+    }
   );
-</script>
 
 <script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
@@ -62,7 +57,7 @@
 				$username = "datalogger";
 				$password = "datalogger";
 				$dbname = "datalogger";
-
+				$datenuebergabe = array();
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
 				// Check connection
@@ -74,7 +69,7 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-
+					$datenuebergabe[] = $result;
 					echo "['" . $row->date_time . "',";
 					echo " {v:" . $row->temperature . ",";
 					echo " v:" . $row->humidity . " }], ";
@@ -84,7 +79,7 @@
 					echo "0 results";
 				}
 				mysqli_close($db);
-
+				print json_encode($datenuebergabe);
 			?>
 		]);
 
@@ -156,7 +151,7 @@
   dashboard.draw(data);
 
 }
-
+	 var datenausdb = <?php Print($datenuebergabe); ?>;
 </script>
 
 
