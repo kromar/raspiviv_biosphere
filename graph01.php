@@ -84,6 +84,10 @@
 			?>
 		);
 
+		if (window.console) {
+			console.log('testing js log output');
+		}
+
 	  });
 
 		  var options = {
