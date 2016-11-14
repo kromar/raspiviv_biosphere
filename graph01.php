@@ -68,7 +68,7 @@
 							$datenuebergabe['TEMP'] = (float) $row -> temperature;
 							$datenuebergabe['HUM'] = (float) $row -> humidity;
 
-						echo  json_encode($datenuebergabe);
+						//echo  json_encode($datenuebergabe);
 					}
 				} else {
 					echo "0 results";
