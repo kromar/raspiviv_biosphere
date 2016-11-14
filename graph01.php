@@ -65,7 +65,7 @@
 
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
-						$fdate = new Date(date_time);
+						$fdate = Date(date_time);
 						$datenuebergabe[] = array(
 								$fdate,
 								temperature,
