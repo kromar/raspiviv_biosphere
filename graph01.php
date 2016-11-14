@@ -37,12 +37,11 @@
 
 <script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
-	google.setOnLoadCallback(drawChart);
-
+	google.setOnLoadCallback(drawDashboard);
 
 	function drawChart() {
 
-	  var graphData = new google.visualization.DataTable();
+	  var graphData = new google.visualization.DataTable(
 		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
@@ -79,84 +78,64 @@
 			?>
 		);
 
+		  var options = {
+		    height: 400,
+		    pointSize: 6,
+		    chartArea: {
+		      'width': '100%',
+		      'height': '80%'
+		    },
+		    dataOpacity: 0.3,
+		    focusTarget: 'category',
+		    legend: {
+		      position: 'top'
+		    },
+		    hAxis: {
+		      gridlines: {
+		        color: 'none'
+		      },
+		      //textPosition: textPosition,
+		      textPosition: 'bottom',
+		      format: 'MMM dd',
+		      slantedText: false
+		    },
+		    animation: {
+		      duration: 1000,
+		      easing: 'out',
+		    }
+	  }
+	  );
 
+	data = new google.visualization.DataTable(graphData);
 
-  var options = {
-    height: 400,
-    pointSize: 6,
-    chartArea: {
-      'width': '100%',
-      'height': '80%'
-    },
-    dataOpacity: 0.3,
-    focusTarget: 'category',
-    legend: {
-      position: 'top'
-    },
-    hAxis: {
-      gridlines: {
-        color: 'none'
-      },
-      //textPosition: textPosition,
-      textPosition: 'bottom',
-      format: 'MMM dd',
-      slantedText: false
-    },
-    animation: {
-      duration: 1000,
-      easing: 'out',
-    }
-  }
-
-
-  data = new google.visualization.DataTable(graphData);
-
-
-
-  var lineChart = new google.visualization.ChartWrapper({
-    chartType: 'LineChart',
-    containerId: 'linechart_div',
-    options: options
-  });
+	//create dashboard
+  	var dashboard = new google.visualization.Dashboard(
+  		  	document.getElementById('dashboard_div'));
 
   // Create a date range slider
   var myDateSlider = new google.visualization.ControlWrapper({
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-      filterColumnLabel: 'TEMP',
-      ui: {
-        chartType: 'LineChart',
-        chartOptions: {
-          chartArea: {
-            width: '95%',
-            height: '100%'
-          },
-          curveType: 'function',
-        },
-        // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
-        minRangeSize: 86400000
-      }
-    },
+    	filterColumnLabel: 'TIME'
+    }
   });
 
-  };
-  var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-  dashboard.bind(myDateSlider,lineChart);
-  google.visualization.events.addListener(myDateSlider, 'statechange', function() {
-    var state = myDateSlider.getState();
-    console.log(state)
-      // do something with state
-  });
+  //create line chart
+  var lineChart = new google.visualization.ChartWrapper({
+	    chartType: 'LineChart',
+	    containerId: 'linechart_div'
+	  });
+
+	//Establish dependencies, declaring that 'filter' drives 'lineChart',
+  // so that the  chart will only display entries that are let through
+  // given the chosen slider range.
+  dashboard.bind(myDateSlider, lineChart);
+
+	//draw the dashboard
   dashboard.draw(data);
-
-	var datenausdb = ' <?php Print($datenuebergabe); ?> ';
+  }
 </script>
-
-
-
-
-
 
 
 
