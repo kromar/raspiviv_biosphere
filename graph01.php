@@ -51,7 +51,7 @@
 				$username = "datalogger";
 				$password = "datalogger";
 				$dbname = "datalogger";
-				$datenuebergabe = array([]);
+				$datenuebergabe = array();
 				$history = 10;
 
 				// Create connection
@@ -65,9 +65,11 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-						$datenuebergabe['TIME'] =  (float) $row -> humidity;			//$row -> date_time,
-						$datenuebergabe['TEMP'] = (float) $row -> temperature;
-						$datenuebergabe['HUM'] =  	(float) $row -> humidity;
+						[
+						$datenuebergabe['TIME'] =  (float) $row -> humidity,			//$row -> date_time,
+						$datenuebergabe['TEMP'] = (float) $row -> temperature,
+						$datenuebergabe['HUM'] =  	(float) $row -> humidity
+						];
 
 						echo  json_encode($datenuebergabe);
 					}
