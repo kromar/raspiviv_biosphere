@@ -7,6 +7,8 @@
 // 	    exit;
 // 	}
 // ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
@@ -20,6 +22,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="scripts/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 
 <!--  load CSS -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -29,7 +32,20 @@
    	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css"></link>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
 
+<script type="text/javascript">
+  g = new Dygraph(
 
+    // containing div
+    document.getElementById("graphdiv"),
+
+    // CSV or path to a CSV file.
+    "Date,Temperature\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n"
+
+  );
+</script>
 
 <script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
@@ -53,7 +69,7 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1400";
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
@@ -475,6 +491,7 @@
 
 	<div class="container">
 			<table class="row">
+				<div id="graphdiv"></div>
 				<div id="temp_gauge_div"></div>
 				<div id="chart_short_div"></div>
 			    <div id="hum_gauge_div"></div>
