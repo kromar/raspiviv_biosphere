@@ -51,7 +51,7 @@
 				$username = "datalogger";
 				$password = "datalogger";
 				$dbname = "datalogger";
-				$datenuebergabe = array();
+				$datenuebergabe = array([]);
 				$history = 10;
 
 				// Create connection
@@ -69,8 +69,8 @@
 						$datenuebergabe['TEMP'] = (float) $row -> temperature;
 						$datenuebergabe['HUM'] =  	(float) $row -> humidity;
 
-					}
 						echo  json_encode($datenuebergabe);
+					}
 				} else {
 					echo "0 results";
 				}
