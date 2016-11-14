@@ -65,10 +65,10 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-						$datenuebergabe = [
-								[(float) $row -> humidity, 			//$row -> date_time,
+						$datenuebergabe[] = [
+								(float) $row -> humidity, 			//$row -> date_time,
 								(float) $row -> temperature,
-								(float) $row -> humidity],
+								(float) $row -> humidity,
 							];
 
 						echo  json_encode($datenuebergabe);
