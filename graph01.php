@@ -78,11 +78,8 @@
 				echo  json_encode($datenuebergabe);
 			?>
 		);
-
-
 			console.log("testing js log output");
-
-	  });
+	  }
 
 		  var options = {
 		    height: 400,
