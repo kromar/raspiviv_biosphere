@@ -1,4 +1,4 @@
-// <?PHP
+ <?PHP
 // 	require_once("./include/membersite_config.php");
 
 // 	if(!$fgmembersite->CheckLogin())
@@ -6,7 +6,7 @@
 // 	    $fgmembersite->RedirectToURL("login.php");
 // 	    exit;
 // 	}
-// ?>
+?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -22,7 +22,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="scripts/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 
 <!--  load CSS -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -31,9 +30,10 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
    	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css"></link>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 
 <script type="text/javascript">
-  g3 = new Dygraph(
+  	g3 = new Dygraph(
     document.getElementById("graphdiv3"),
     "data/temperatures.csv",
     {
@@ -55,7 +55,7 @@
 		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
-		graphData.addRows([
+		graphData.addRows(
 			<?php
 				$servername = "localhost";
 				$username = "datalogger";
@@ -86,7 +86,7 @@
 				}
 				mysqli_close($db);
 			?>
-		]);
+		);
 
 
 
