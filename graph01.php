@@ -66,7 +66,7 @@
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = array(
-								new Date(date_time),
+								Date(date_time),
 								(float) temperature,
 								(float) humidity );
 						echo json_encode($datenuebergabe);
