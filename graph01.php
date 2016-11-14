@@ -53,7 +53,7 @@
 				$dbname = "datalogger";
 				$datenuebergabe = array();
 				$history = 10;
-				$mydate = "2015-12-27 23:51:21";
+				$mydate = "2015,12,27, 23,51,21";
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
 				// Check connection
