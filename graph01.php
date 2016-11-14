@@ -42,6 +42,9 @@
     }
   );
 
+  </script>
+
+
 <script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawChart);
