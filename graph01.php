@@ -43,7 +43,7 @@
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('date', 'TIME'); //
 		graphData.addColumn('number', 'TEMP');
-		graphData.addColumn('number', 'HUM');
+		//graphData.addColumn('number', 'HUM');
 		graphData.addRows(
 			<?php
 				$servername = "localhost";
