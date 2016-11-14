@@ -62,9 +62,8 @@ function createTable() {
     containerId: 'control_div',
     options: {
       filterColumnLabel: 'Date',
-      height: 50,
-      width: '100%'
-    }
+      height: '80%'
+          }
   });
 
   // Line chart visualization
@@ -72,8 +71,7 @@ function createTable() {
     chartType : 'LineChart',
     containerId : 'line_div',
     options: {
-        height: 200,
-        width: '100%'
+        height: '20%'
     }
   });
 
