@@ -67,8 +67,8 @@
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = [
 								6, //$row -> date_time,
-								(float) $row -> temperature,
-								(float) $row -> humidity,
+								5, //(float) $row -> temperature,
+								4, //(float) $row -> humidity,
 							];
 					}
 				} else {
@@ -105,16 +105,12 @@
 				    }
 			  };
 
-			console.log("testing js log output");
-
 			data = new google.visualization.DataTable(graphData);
+			console.log("graph data",  data);
 
-				console.log("graph data",  graphData);
-
-
-				//create dashboard
-			  	var dashboard = new google.visualization.Dashboard(
-			  		  	document.getElementById('dashboard_div'));
+			//create dashboard
+		  	var dashboard = new google.visualization.Dashboard(
+		  		  	document.getElementById('dashboard_div'));
 
 			  // Create a date range slider
 			  var myDateSlider = new google.visualization.ControlWrapper({
