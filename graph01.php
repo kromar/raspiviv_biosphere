@@ -41,7 +41,7 @@
 
 	function drawChart() {
 
-	  var graphData = new google.visualization.DataTable(
+	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
@@ -104,7 +104,6 @@
 		      easing: 'out',
 		    }
 	  }
-	  );
 
 	data = new google.visualization.DataTable(graphData);
 
