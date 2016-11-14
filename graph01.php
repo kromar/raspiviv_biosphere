@@ -68,8 +68,8 @@
 						$fdate = new Date(date_time);
 						$datenuebergabe[] = array(
 								Date($fdate),
-								float(temperature),
-								float(humidity) );
+								temperature,
+								humidity);
 						echo json_encode($datenuebergabe);
 					}
 				} else {
