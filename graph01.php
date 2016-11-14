@@ -55,7 +55,7 @@
 		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
-		graphData.addRows(
+		graphData.addRows([
 			<?php
 				$servername = "localhost";
 				$username = "datalogger";
@@ -86,7 +86,7 @@
 				}
 				mysqli_close($db);
 			?>
-		);
+		]);
 
 
 
@@ -491,7 +491,7 @@
 
 	<div class="container">
 			<table class="row">
-				<div id="graphdiv"></div>
+				<div id="graphdiv3"></div>
 				<div id="temp_gauge_div"></div>
 				<div id="chart_short_div"></div>
 			    <div id="hum_gauge_div"></div>
