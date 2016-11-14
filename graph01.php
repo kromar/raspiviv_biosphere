@@ -78,39 +78,42 @@
 				echo  json_encode($datenuebergabe);
 			?>
 		);
+		 var options = {
+				    height: 400,
+				    pointSize: 6,
+				    chartArea: {
+				      'width': '100%',
+				      'height': '80%'
+				    },
+				    dataOpacity: 0.3,
+				    focusTarget: 'category',
+				    legend: {
+				      position: 'top'
+				    },
+				    hAxis: {
+				      gridlines: {
+				        color: 'none'
+				      },
+				      //textPosition: textPosition,
+				      textPosition: 'bottom',
+				      format: 'MMM dd',
+				      slantedText: false
+				    },
+				    animation: {
+				      duration: 1000,
+				      easing: 'out',
+				    }
+			  };
+
 			console.log("testing js log output");
+
+			data = new google.visualization.DataTable(graphData);
+
+				console.log("graph data",  graphData);
 	  };
 
-		  var options = {
-		    height: 400,
-		    pointSize: 6,
-		    chartArea: {
-		      'width': '100%',
-		      'height': '80%'
-		    },
-		    dataOpacity: 0.3,
-		    focusTarget: 'category',
-		    legend: {
-		      position: 'top'
-		    },
-		    hAxis: {
-		      gridlines: {
-		        color: 'none'
-		      },
-		      //textPosition: textPosition,
-		      textPosition: 'bottom',
-		      format: 'MMM dd',
-		      slantedText: false
-		    },
-		    animation: {
-		      duration: 1000,
-		      easing: 'out',
-		    }
-	  };
 
-	data = new google.visualization.DataTable(graphData);
 
-		console.log("graph data",  graphData);
 
 	//create dashboard
   	var dashboard = new google.visualization.Dashboard(
