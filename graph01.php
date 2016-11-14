@@ -42,7 +42,7 @@
 
 	function drawDashboard() {
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('string', 'TIME');
+		graphData.addColumn('datetime', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUMID');
 		graphData.addRows(
