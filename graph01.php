@@ -44,7 +44,7 @@
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
-		graphData.addColumn('number', 'HUM');
+		graphData.addColumn('number', 'HUMID');
 		graphData.addRows(
 			<?php
 				$servername = "localhost";
@@ -65,11 +65,18 @@
 
 				if (mysqli_num_rows($result)) {
 					while($row = mysqli_fetch_object($result)) {
-						echo json_encode($datenuebergabe[] = [
-								(string) $row->date_time,
-								(float) $row->temperature,
-								(float) $row->humidity
-						].", " );
+
+						echo json_encode(	$datenuebergabe[] = array(
+								date_time => $row['TIME'],
+								temperature => $row['TEMP'],
+								humidity => $row['HUMID']
+								)
+							);
+
+// 						(string) $row->date_time,
+// 						(float) $row->temperature,
+// 						(float) $row->humidity
+
 					}
 				} else {
 					echo "0 results";
