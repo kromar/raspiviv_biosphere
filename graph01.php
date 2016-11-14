@@ -33,8 +33,63 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 
 
+<!-- MAP VIEW -->
+<script type="text/javascript">
+      google.charts.load('current', {'packages': ['table', 'map', 'corechart']});
+      google.charts.setOnLoadCallback(initialize);
 
+      function initialize() {
+        // The URL of the spreadsheet to source data from.
+        var query = new google.visualization.Query(
+            'https://spreadsheets.google.com/pub?key=pCQbetd-CptF0r8qmCOlZGg');
+        query.send(draw);
+      }
 
+      function draw(response) {
+        if (response.isError()) {
+          alert('Error in query');
+        }
+
+        var ticketsData = response.getDataTable();
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById('chart_div'));
+        chart.draw(ticketsData, {'isStacked': true, 'legend': 'bottom',
+            'vAxis': {'title': 'Number of tickets'}});
+
+        var geoData = google.visualization.arrayToDataTable([
+          ['Lat', 'Lon', 'Name', 'Food?'],
+          [51.5072, -0.1275, 'Cinematics London', true],
+          [48.8567, 2.3508, 'Cinematics Paris', true],
+          [55.7500, 37.6167, 'Cinematics Moscow', false]]);
+
+        var geoView = new google.visualization.DataView(geoData);
+        geoView.setColumns([0, 1]);
+
+        var table =
+            new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(geoData, {showRowNumber: false, width: '100%', height: '100%'});
+
+        var map =
+            new google.visualization.Map(document.getElementById('map_div'));
+        map.draw(geoView, {showTip: true});
+
+        // Set a 'select' event listener for the table.
+        // When the table is selected, we set the selection on the map.
+        google.visualization.events.addListener(table, 'select',
+            function() {
+              map.setSelection(table.getSelection());
+            });
+
+        // Set a 'select' event listener for the map.
+        // When the map is selected, we set the selection on the table.
+        google.visualization.events.addListener(map, 'select',
+            function() {
+              table.setSelection(map.getSelection());
+            });
+      }
+    </script>
+
+<!-- DASHBOARD VIEW -->
 <script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawDashboard);
@@ -92,6 +147,8 @@
 			?>
 		);
 
+	  });
+
 		  var options = {
 		    height: 400,
 		    pointSize: 6,
@@ -117,13 +174,7 @@
 		      duration: 1000,
 		      easing: 'out',
 		    }
-	  }
-		  // Create three formatters in three styles.
-		 // var formatter_long = new google.visualization.DateFormat({formatType: 'long'});
-
-		  // Reformat our data.
-		  //formatter_long.format(data, 1);
-
+	  };
 
 	data = new google.visualization.DataTable(graphData);
 
@@ -144,13 +195,14 @@
   var lineChart = new google.visualization.ChartWrapper({
 	    chartType: 'LineChart',
 	    containerId: 'linechart_div'
+
 	  });
 
 	//Establish dependencies, declaring that 'filter' drives 'lineChart',
   // so that the  chart will only display entries that are let through
   // given the chosen slider range.
   dashboard.bind(myDateSlider, lineChart);
-
+  console.log(data);
 	//draw the dashboard
   dashboard.draw(data);
   }
@@ -465,6 +517,24 @@
 
 	</div>
 
+<!-- 	MAP -->
+<table align="center">
+      <tr valign="top">
+        <td style="width: 50%;">
+          <div id="map_div"</div>
+        </td>
+        <td style="width: 50%;">
+          <div id="table_div"></div>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan=2>
+          <div id="chart_div" style="align: center; width: 700px; height: 300px;"></div>
+        </td>
+      </tr>
+    </table>
+
+	<!-- 	DASHBOARD -->
 		<div id="dashboard_div">
 		  <table class="columns">
 		    <tr>
@@ -480,7 +550,7 @@
 		  </table>
 		</div>
 
-
+	<!-- 	DYGRAPH -->
 	<div class="container">
 			<table class="row">
 				<div id="graphdiv3"></div>
