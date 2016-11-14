@@ -41,7 +41,7 @@
 	console.log("test");
 
 	function drawDashboard() {
-	  var graphData = new google.visualization.DataTable(
+	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('date', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
@@ -113,7 +113,6 @@
 		    }
 	  };
 
-		);
 	data = new google.visualization.DataTable(graphData);
 
 		console.log("graph data",  graphData);
