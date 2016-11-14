@@ -71,7 +71,7 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = [
-							new Date(2015,12,27, 23,51,21),
+							new Date(2015, 12, 27),
 							(float) $row -> temperature,
 							(float) $row -> humidity,
 							];
