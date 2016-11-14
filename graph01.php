@@ -65,12 +65,11 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-						$datenuebergabe = [
+						$datenuebergabe[] = [
 								(string) $row -> date_time,			//$row -> date_time,
 								(float) $row -> temperature,
 								(float) $row -> humidity
 								];
-
 
 
 
