@@ -61,7 +61,7 @@ function createTable() {
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
     options: {
-      filterColumnLabel: 'Date'
+      filterColumnLabel: 'Date',
       height: 50,
       width: '100%'
     }
