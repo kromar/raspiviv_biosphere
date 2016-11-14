@@ -64,10 +64,11 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
+
 						$datenuebergabe[] = [
-							$row -> date_time, 			//json date format "Date($year, $month, 1)"),
-							(float) $row -> temperature,
-							(float) $row -> humidity
+							date($row -> date_time),			// "2016-11-14 14:11:04"
+							float($row -> temperature),
+							float($row -> humidity)
 							];
 					}
 				} else {
