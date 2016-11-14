@@ -39,7 +39,7 @@
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawDashboard);
 
-	var mydate = new Date(2015,12,27, 23,51,21);
+
 
 	function drawDashboard() {
 
@@ -55,6 +55,7 @@
 				$dbname = "datalogger";
 				$datenuebergabe = array();
 				$history = 10;
+				$mydate = new Date(2015,12,27, 23,51,21);
 
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
