@@ -65,10 +65,11 @@
 
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
+						$fdate = new Date(date_time);
 						$datenuebergabe[] = array(
-								Date(date_time),
-								(float) temperature,
-								(float) humidity );
+								Date($fdate),
+								float(temperature),
+								float(humidity) );
 						echo json_encode($datenuebergabe);
 					}
 				} else {
