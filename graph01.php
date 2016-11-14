@@ -111,7 +111,6 @@
 
   data = new google.visualization.DataTable(graphData);
 
-  };
 
 
   var lineChart = new google.visualization.ChartWrapper({
@@ -141,6 +140,7 @@
     },
   });
 
+  };
   var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
   dashboard.bind(myDateSlider,lineChart);
   google.visualization.events.addListener(myDateSlider, 'statechange', function() {
