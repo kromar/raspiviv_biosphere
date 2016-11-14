@@ -52,7 +52,7 @@
 				$password = "datalogger";
 				$dbname = "datalogger";
 				$datenuebergabe = array();
-				$history = 1;
+				$history = 3;
 
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
