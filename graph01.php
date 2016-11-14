@@ -41,7 +41,9 @@
 	console.log("test");
 
 	function drawDashboard() {
-	  	graphData = new google.visualization.DataTable();
+	  var graphData = new google.visualization.DataTable(
+				$date = new Date(2015, 0, 1);
+				);
 		graphData.addColumn('date', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
@@ -54,7 +56,6 @@
 				$datenuebergabe = array();
 				$history = 3;
 
-				$date = new Date(2015, 0, 1);
 				//(string) $row -> date_time,
 				// Try this fix: new Date((dateArr2[i]).replace(/-/g, '/')). For Safari new Date("2015-12-27 23:51:21") is invalid date but new Date("2015/12/27 23:51:21") is valid
 
