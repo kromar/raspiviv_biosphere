@@ -65,9 +65,8 @@
 
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
-						$fdate = Date(date_time);
 						$datenuebergabe[] = array(
-								$fdate,
+								Date(date_time),
 								temperature,
 								humidity);
 						echo json_encode($datenuebergabe);
@@ -79,40 +78,12 @@
 			?>
 		);
 
-		 var options = {
-				    height: 400,
-				    pointSize: 6,
-				    chartArea: {
-				      'width': '100%',
-				      'height': '80%'
-				    },
-				    dataOpacity: 0.3,
-				    focusTarget: 'category',
-				    legend: {
-				      position: 'top'
-				    },
-				    hAxis: {
-				      gridlines: {
-				        color: 'none'
-				      },
-				      //textPosition: textPosition,
-				      textPosition: 'bottom',
-				     // format: 'MMM dd',
-				      slantedText: false
-				    },
-				    animation: {
-				      duration: 1000,
-				      easing: 'out',
-				    }
-			  };
-
-
-
 			// Create three formatters in three styles.
 			  var format_date = new google.visualization.DateFormat({pattern: "yyyy, MM, dd, Hk, mm, ss"});
 
 			  // Reformat our data. (format(dataTable, columnIndex))
 			  format_date.format(graphData, 0);
+
 
 			data = new google.visualization.DataTable(graphData);
 			console.log("graph data",  data);
@@ -480,33 +451,11 @@
 		  </table>
 		</div>
 
-	<!-- 	DYGRAPH -->
-	<div class="container">
-			<table class="row">
-				<div id="graphdiv3"></div>
-					<script type="text/javascript">
-					  	g3 = new Dygraph(
-					    document.getElementById("graphdiv3"),
-					    "data/temperatures.csv",
-					    {
-					      rollPeriod: 7,
-					      showRoller: true
-					    }
-					  );
+		<div id="temp_gauge_div"></div>
+		<div id="chart_short_div"></div>
+	    <div id="hum_gauge_div"></div>
+    	<div id="chart_long_div"></div>
 
-					  </script>
-
-				<div id="temp_gauge_div"></div>
-				<div id="chart_short_div"></div>
-			    <div id="hum_gauge_div"></div>
-
-
-			</div>
-				<div class="row">
-	    			<div id="chart_long_div"></div>
-				</div>
-		</table>
-		</div>
 
 	    <hr>
 	    <div class="container">
