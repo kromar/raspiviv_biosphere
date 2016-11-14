@@ -66,7 +66,7 @@
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = array(
-								new Date(date_time) => $row['TIME'],
+								date_time => new Date($row['TIME']),
 								temperature => (float) $row['TEMP'],
 								humidity => (float) $row['HUMID']
 						);
@@ -78,14 +78,6 @@
 				mysqli_close($db);
 			?>
 		);
-
-
-		// Create three formatters in three styles.
-		  var format_date = new google.visualization.DateFormat({pattern: "yyyy, MM, dd, Hk, mm, ss"});
-
-		  // Reformat our data. (format(dataTable, columnIndex))
-		  format_date.format(graphData, 0);
-
 
 		 var options = {
 				    height: 400,
@@ -114,6 +106,13 @@
 				    }
 			  };
 
+
+
+			// Create three formatters in three styles.
+			  var format_date = new google.visualization.DateFormat({pattern: "yyyy, MM, dd, Hk, mm, ss"});
+
+			  // Reformat our data. (format(dataTable, columnIndex))
+			  format_date.format(graphData, 0);
 
 			data = new google.visualization.DataTable(graphData);
 			console.log("graph data",  data);
