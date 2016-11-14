@@ -81,7 +81,7 @@
 
 
 		// Create three formatters in three styles.
-		  var format_date = new google.visualization.DateFormat({formatType: 'long'});
+		  var format_date = new google.visualization.DateFormat({pattern: "yyyy, MM, dd, Hk, mm, ss"});
 
 		  // Reformat our data. (format(dataTable, columnIndex))
 		  format_date.format(graphData, 0);
