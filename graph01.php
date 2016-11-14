@@ -66,7 +66,7 @@
 					$datenuebergabe = [
 								(string) $row->date_time,
 								(float) $row->temperature,
-								(float) $row->humidity]',';
+								(float) $row->humidity]. " ,";
 
 					echo  json_encode($datenuebergabe);
 
