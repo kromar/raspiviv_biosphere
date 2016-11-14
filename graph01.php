@@ -110,38 +110,41 @@
 			data = new google.visualization.DataTable(graphData);
 
 				console.log("graph data",  graphData);
+
+
+				//create dashboard
+			  	var dashboard = new google.visualization.Dashboard(
+			  		  	document.getElementById('dashboard_div'));
+
+			  // Create a date range slider
+			  var myDateSlider = new google.visualization.ControlWrapper({
+			    controlType: 'ChartRangeFilter',
+			    containerId: 'control_div',
+			    options: {
+			    	filterColumnLabel: 'TIME'
+			    }
+			  });
+
+			  //create line chart
+			  var lineChart = new google.visualization.ChartWrapper({
+				    chartType: 'LineChart',
+				    containerId: 'linechart_div'
+
+				  });
+
+				//Establish dependencies, declaring that 'filter' drives 'lineChart',
+			  // so that the  chart will only display entries that are let through
+			  // given the chosen slider range.
+			  dashboard.bind(myDateSlider, lineChart);
+			  console.log(data);
+				//draw the dashboard
+			  dashboard.draw(data);
+
 	  };
 
 
 
 
-	//create dashboard
-  	var dashboard = new google.visualization.Dashboard(
-  		  	document.getElementById('dashboard_div'));
-
-  // Create a date range slider
-  var myDateSlider = new google.visualization.ControlWrapper({
-    controlType: 'ChartRangeFilter',
-    containerId: 'control_div',
-    options: {
-    	filterColumnLabel: 'TIME'
-    }
-  });
-
-  //create line chart
-  var lineChart = new google.visualization.ChartWrapper({
-	    chartType: 'LineChart',
-	    containerId: 'linechart_div'
-
-	  });
-
-	//Establish dependencies, declaring that 'filter' drives 'lineChart',
-  // so that the  chart will only display entries that are let through
-  // given the chosen slider range.
-  dashboard.bind(myDateSlider, lineChart);
-  console.log(data);
-	//draw the dashboard
-  dashboard.draw(data);
 
 </script>
 
