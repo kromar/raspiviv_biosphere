@@ -51,6 +51,47 @@ function createTable() {
     [new Date(2014, 6, 16), 0]
   ]);
 
+  var options = {
+			animation: {
+				duration: 1000,
+				easing: 'out'
+			},
+
+			legend: {
+				position: 'top'
+			},
+			point: {
+				visible: true,
+				//fill-color: #000000,
+				},
+			pointSize: 6,
+			pointShape: 'circle',
+			curveType: 'function',
+			crosshair: {
+				trigger: 'both' ,
+				orientation: 'vertical',
+				color: 'white'},
+			backgroundColor: {
+				stroke: 'white',
+				fill: 'grey',
+				strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
+
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
+
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
+
   // Create a dashboard.
   var dash_container = document.getElementById('dashboard_div'),
     myDashboard = new google.visualization.Dashboard(dash_container);
@@ -63,16 +104,6 @@ function createTable() {
       'filterColumnLabel': 'Date'
     }
   });
-
-  // Table visualization
-  var myTable = new google.visualization.ChartWrapper({
-    'chartType' : 'Table',
-    'containerId' : 'table_div'
-  });
-
-  // Bind myTable to the dashboard, and to the controls
-  // this will make sure our table is update when our date changes
-  myDashboard.bind(myDateSlider, myTable);
 
   // Line chart visualization
   var myLine = new google.visualization.ChartWrapper({
@@ -400,9 +431,8 @@ function createTable() {
 
 		<!-- 	DASHBOARD -->
 		<div id="dashboard_div">
-		  <div id="control_div"><!-- Controls renders here --></div>
 		  <div id="line_div"><!-- Line chart renders here --></div>
-		  <div id="table_div"><!-- Table renders here --></div>
+		  <div id="control_div"><!-- Controls renders here --></div>
 		</div>
 
 		<!-- GAUGE -->
