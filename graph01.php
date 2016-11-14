@@ -32,17 +32,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 
-<script type="text/javascript">
-  	g3 = new Dygraph(
-    document.getElementById("graphdiv3"),
-    "data/temperatures.csv",
-    {
-      rollPeriod: 7,
-      showRoller: true
-    }
-  );
 
-  </script>
 
 
 <script type="text/javascript" async>
@@ -492,6 +482,18 @@
 	<div class="container">
 			<table class="row">
 				<div id="graphdiv3"></div>
+					<script type="text/javascript">
+					  	g3 = new Dygraph(
+					    document.getElementById("graphdiv3"),
+					    "data/temperatures.csv",
+					    {
+					      rollPeriod: 7,
+					      showRoller: true
+					    }
+					  );
+
+					  </script>
+
 				<div id="temp_gauge_div"></div>
 				<div id="chart_short_div"></div>
 			    <div id="hum_gauge_div"></div>
