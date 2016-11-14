@@ -42,7 +42,7 @@
 	function drawDashboard() {
 
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('string', 'TIME');
+		graphData.addColumn('date', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
 		graphData.addRows(
@@ -58,13 +58,13 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 10";
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 					$datenuebergabe[] = [
-								(string) $row->date_time,
+								$row->date_time,
 								(float) $row->temperature,
 								(float) $row->humidity];
 
