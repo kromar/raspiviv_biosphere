@@ -116,25 +116,25 @@
   });
 
   // Create a date range slider
-  var myDateSlider = new google.visualization.ControlWrapper({
-    controlType: 'ChartRangeFilter',
-    containerId: 'control_div',
-    options: {
-      filterColumnLabel: 'TIME',
-      ui: {
-        chartType: 'LineChart',
-        chartOptions: {
-          chartArea: {
-            width: '95%',
-            height: '100%'
-          },
-          curveType: 'function',
-        },
-        // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
-        minRangeSize: 86400000
-      }
-    },
-  });
+//   var myDateSlider = new google.visualization.ControlWrapper({
+//     controlType: 'ChartRangeFilter',
+//     containerId: 'control_div',
+//     options: {
+//       filterColumnLabel: 'TIME',
+//       ui: {
+//         chartType: 'LineChart',
+//         chartOptions: {
+//           chartArea: {
+//             width: '95%',
+//             height: '100%'
+//           },
+//           curveType: 'function',
+//         },
+//         // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
+//         minRangeSize: 86400000
+//       }
+//     },
+//   });
 
   var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
   dashboard.bind(myDateSlider,lineChart);
