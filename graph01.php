@@ -73,9 +73,9 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					$datenuebergabe[] = $row;
-
+					$datenuebergabe[] = [$row->date_time];
 					echo  json_encode($datenuebergabe);
+
 					}
 				} else {
 					echo "0 results";
