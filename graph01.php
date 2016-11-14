@@ -79,7 +79,7 @@
 					echo "0 results";
 				}
 				mysqli_close($db);
-				json_encode($datenuebergabe);
+				print json_encode($datenuebergabe);
 			?>
 		]);
 
@@ -151,7 +151,7 @@
   dashboard.draw(data);
 
 }
-	 var datenausdb = <?php print($datenuebergabe); ?>;
+	var datenausdb = ' <?php Print($datenuebergabe); ?> ';
 </script>
 
 
