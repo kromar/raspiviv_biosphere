@@ -52,7 +52,7 @@
 				$password = "datalogger";
 				$dbname = "datalogger";
 				$datenuebergabe = array();
-				$history = 10;
+				$history = 3;
 
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
@@ -64,11 +64,12 @@
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result)>0) {
-
-
-					while($list = mysqli_fetch_array($result)) {
-						$datenuebergabe[] = $list['TIME'] . "," . $list['TEMP'] . ", " . $list['HUMID'] ;
-
+					while($row = mysqli_fetch_object($result)) {
+						$datenuebergabe[] = array(
+								date_time => (string) $row['TIME'],
+								temperature => (float) $row['TEMP'],
+								humidity => (float) $row['HUMID']
+								);
 						echo json_encode($datenuebergabe);
 					}
 				} else {
