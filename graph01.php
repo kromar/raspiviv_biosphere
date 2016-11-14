@@ -70,12 +70,13 @@
 								(float) $row -> temperature,
 								(float) $row -> humidity],
 							];
+
+						echo  json_encode($datenuebergabe);
 					}
 				} else {
 					echo "0 results";
 				}
 				mysqli_close($db);
-				echo  json_encode($datenuebergabe);
 			?>
 		);
 		 var options = {
