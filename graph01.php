@@ -42,7 +42,7 @@
 
 	function drawDashboard() {
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('datetime', 'TIME');
+		graphData.addColumn('string', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUMID');
 		graphData.addRows(
@@ -67,9 +67,9 @@
 					while($row = mysqli_fetch_object($result)) {
 
 						$datenuebergabe[] = array(
-								date_time => $row['TIME'],
-								temperature => $row['TEMP'],
-								humidity => $row['HUMID']
+								(string) date_time => $row['TIME'],
+								(float) temperature => $row['TEMP'],
+								(float) humidity => $row['HUMID']
 								);
 						echo json_encode($datenuebergabe);
 					}
