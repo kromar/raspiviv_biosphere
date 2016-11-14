@@ -79,7 +79,7 @@
 			?>
 		);
 			console.log("testing js log output");
-	  }
+	  };
 
 		  var options = {
 		    height: 400,
@@ -139,7 +139,7 @@
   console.log(data);
 	//draw the dashboard
   dashboard.draw(data);
-  }
+
 </script>
 
 
