@@ -106,9 +106,13 @@
       duration: 1000,
       easing: 'out',
     }
-  }};
+  }
+
 
   data = new google.visualization.DataTable(graphData);
+
+  };
+
 
   var lineChart = new google.visualization.ChartWrapper({
     chartType: 'LineChart',
