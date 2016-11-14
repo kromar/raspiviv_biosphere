@@ -39,7 +39,7 @@
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawDashboard);
 
-	function drawChart() {
+	function drawDashboard() {
 
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('string', 'TIME');
