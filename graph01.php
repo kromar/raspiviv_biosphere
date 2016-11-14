@@ -67,7 +67,7 @@
 					while($row = mysqli_fetch_object($result)) {
 						$fdate = new Date(date_time);
 						$datenuebergabe[] = array(
-								Date($fdate),
+								$fdate,
 								temperature,
 								humidity);
 						echo json_encode($datenuebergabe);
