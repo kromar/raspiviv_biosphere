@@ -42,7 +42,7 @@
 
 	function drawDashboard() {
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('string', 'TIME');
+		graphData.addColumn('date', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUMID');
 		graphData.addRows(
@@ -66,10 +66,10 @@
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = array(
-								date_time => (string) $row['TIME'],
+								new Date(date_time) => $row['TIME'],
 								temperature => (float) $row['TEMP'],
 								humidity => (float) $row['HUMID']
-								);
+						);
 						echo json_encode($datenuebergabe);
 					}
 				} else {
@@ -78,6 +78,15 @@
 				mysqli_close($db);
 			?>
 		);
+
+
+		// Create three formatters in three styles.
+		  var format_date = new google.visualization.DateFormat({formatType: 'long'});
+
+		  // Reformat our data. (format(dataTable, columnIndex))
+		  format_date.format(graphData, 0);
+
+
 		 var options = {
 				    height: 400,
 				    pointSize: 6,
@@ -104,6 +113,7 @@
 				      easing: 'out',
 				    }
 			  };
+
 
 			data = new google.visualization.DataTable(graphData);
 			console.log("graph data",  data);
