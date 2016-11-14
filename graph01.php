@@ -76,8 +76,6 @@
 				}
 				mysqli_close($db);
 				echo  json_encode($datenuebergabe);
-				echo("<script>console.log('PHP: ".$date."');</script>");
-
 			?>
 		);
 
