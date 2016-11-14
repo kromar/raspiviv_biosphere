@@ -88,6 +88,7 @@
 				}
 				mysqli_close($db);
 				echo  json_encode($datenuebergabe);
+
 			?>
 		);
 
@@ -121,6 +122,10 @@
 	  };
 
 	data = new google.visualization.DataTable(graphData);
+
+	if (window.console) {
+		console.log('graph data',  graphData);
+	}
 
 	//create dashboard
   	var dashboard = new google.visualization.Dashboard(
