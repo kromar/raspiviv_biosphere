@@ -41,7 +41,7 @@
 	console.log("test");
 
 	function drawDashboard() {
-	  var graphData = new google.visualization.DataTable();
+	  	graphData = new google.visualization.DataTable();
 		graphData.addColumn('date', 'TIME');
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
