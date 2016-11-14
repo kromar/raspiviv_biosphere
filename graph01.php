@@ -74,10 +74,9 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 					$datenuebergabe[] = $result;
-					echo "['" . $row->date_time . "',";
-					echo " {v:" . $row->temperature . ",";
-					echo " v:" . $row->humidity . " }], ";
-
+					echo "['" . $row->date_time . "', ";
+					echo " " . $row->temperature . " ,";
+					echo " " . $row->humidity . " ],";
 					}
 				} else {
 					echo "0 results";
