@@ -84,13 +84,13 @@
 				}
 				mysqli_close($db);
 				echo  json_encode($datenuebergabe);
+				echo("<script>console.log('PHP: ".$date."');</script>");
 
 			?>
 		);
 
-		if (window.console) {
-			console.log('testing js log output');
-		}
+
+			console.log("testing js log output");
 
 	  });
 
@@ -123,9 +123,7 @@
 
 	data = new google.visualization.DataTable(graphData);
 
-	if (window.console) {
-		console.log('graph data',  graphData);
-	}
+		console.log("graph data",  graphData);
 
 	//create dashboard
   	var dashboard = new google.visualization.Dashboard(
