@@ -35,95 +35,58 @@
 
 <!-- DASHBOARD VIEW -->
 <script type="text/javascript">
-	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
-	google.setOnLoadCallback(drawDashboard);
+google.load('visualization', '1', { packages : ['controls'] } );
+google.setOnLoadCallback(createTable);
 
-	console.log("test");
+function createTable() {
+  // Create the dataset (DataTable)
+  var myData = new google.visualization.DataTable();
+  myData.addColumn('date', 'Date');
+  myData.addColumn('number', 'Hours Worked');
+  myData.addRows([
+    [new Date(2014, 6, 12), 9],
+    [new Date(2014, 6, 13), 8],
+    [new Date(2014, 6, 14), 10],
+    [new Date(2014, 6, 15), 8],
+    [new Date(2014, 6, 16), 0]
+  ]);
 
-	function drawDashboard() {
-	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('date', 'TIME');
-		graphData.addColumn('number', 'TEMP');
-		graphData.addColumn('number', 'HUMID');
-		graphData.addRows(
-			<?php
-				$servername = "localhost";
-				$username = "datalogger";
-				$password = "datalogger";
-				$dbname = "datalogger";
-				$datenuebergabe = array();
-				$history = 3;
+  // Create a dashboard.
+  var dash_container = document.getElementById('dashboard_div'),
+    myDashboard = new google.visualization.Dashboard(dash_container);
 
-				// Create connection
-				$db = mysqli_connect($servername, $username, $password, $dbname);
-				// Check connection
-				if (!$db) {
-					die("Connection failed: " . mysqli_connect_error());
-				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT $history";
-				$result = mysqli_query($db, $sql);
+  // Create a date range slider
+  var myDateSlider = new google.visualization.ControlWrapper({
+    'controlType': 'ChartRangeFilter',
+    'containerId': 'control_div',
+    'options': {
+      'filterColumnLabel': 'Date'
+    }
+  });
 
-				if (mysqli_num_rows($result)>0) {
-					while($row = mysqli_fetch_object($result)) {
-						$datenuebergabe[] = array(
-								Date(date_time),
-								temperature,
-								humidity);
-						echo json_encode($datenuebergabe);
-					}
-				} else {
-					echo "0 results";
-				}
-				mysqli_close($db);
-			?>
-		);
+  // Table visualization
+  var myTable = new google.visualization.ChartWrapper({
+    'chartType' : 'Table',
+    'containerId' : 'table_div'
+  });
 
-			// Create three formatters in three styles.
-			  var format_date = new google.visualization.DateFormat({pattern: "yyyy, MM, dd, Hk, mm, ss"});
+  // Bind myTable to the dashboard, and to the controls
+  // this will make sure our table is update when our date changes
+  myDashboard.bind(myDateSlider, myTable);
 
-			  // Reformat our data. (format(dataTable, columnIndex))
-			  format_date.format(graphData, 0);
+  // Line chart visualization
+  var myLine = new google.visualization.ChartWrapper({
+    'chartType' : 'LineChart',
+    'containerId' : 'line_div',
+  });
 
+  // Bind myLine to the dashboard, and to the controls
+  // this will make sure our line chart is update when our date changes
+  myDashboard.bind(myDateSlider, myLine );
 
-			data = new google.visualization.DataTable(graphData);
-			console.log("graph data",  data);
-
-			//create dashboard
-		  	var dashboard = new google.visualization.Dashboard(
-		  		  	document.getElementById('dashboard_div'));
-
-			  // Create a date range slider
-			  var myDateSlider = new google.visualization.ControlWrapper({
-			    controlType: 'ChartRangeFilter',
-			    containerId: 'control_div',
-			    options: {
-			    	filterColumnLabel: 'TIME'
-			    }
-			  });
-
-			  //create line chart
-			  var lineChart = new google.visualization.ChartWrapper({
-				    chartType: 'LineChart',
-				    containerId: 'linechart_div'
-
-				  });
-
-				//Establish dependencies, declaring that 'filter' drives 'lineChart',
-			  // so that the  chart will only display entries that are let through
-			  // given the chosen slider range.
-			  dashboard.bind(myDateSlider, lineChart);
-			  console.log(data);
-				//draw the dashboard
-			  dashboard.draw(data);
-
-	  };
-
-
-
-
-
+  myDashboard.draw(myData);
+}
 </script>
-
 
 
 	<!-- ============================ -->
@@ -435,25 +398,19 @@
 
 
 
-	<!-- 	DASHBOARD -->
+		<!-- 	DASHBOARD -->
 		<div id="dashboard_div">
-		  <table class="columns">
-		    <tr>
-		      <td>
-		        <div id="linechart_div" style="width: 950px; height: 250px;"></div>
-		      </td>
-		    </tr>
-		    <tr>
-		      <td>
-		        <div id="control_div" style="width: 950px; height: 50px;"></div>
-		      </td>
-		    </tr>
-		  </table>
+		  <div id="control_div"><!-- Controls renders here --></div>
+		  <div id="line_div"><!-- Line chart renders here --></div>
+		  <div id="table_div"><!-- Table renders here --></div>
 		</div>
 
+		<!-- GAUGE -->
 		<div id="temp_gauge_div"></div>
-		<div id="chart_short_div"></div>
 	    <div id="hum_gauge_div"></div>
+
+		<!-- CHARTS -->
+		<div id="chart_short_div"></div>
     	<div id="chart_long_div"></div>
 
 
