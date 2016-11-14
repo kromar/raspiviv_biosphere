@@ -65,8 +65,6 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-						$newdate = new Date($row -> date_time);
-
 						$datenuebergabe[] = [
 							//(string) $row -> date_time,		// Try this fix: new Date((dateArr2[i]).replace(/-/g, '/')). For Safari new Date("2015-12-27 23:51:21") is invalid date but new Date("2015/12/27 23:51:21") is valid
 							$mydate,
@@ -79,7 +77,6 @@
 				}
 				mysqli_close($db);
 				echo  json_encode($datenuebergabe);
-				echo json_encode($newdate);
 			?>
 		);
 
