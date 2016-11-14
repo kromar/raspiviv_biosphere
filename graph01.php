@@ -69,7 +69,7 @@
 								(string) $row->date_time,
 								(float) $row->temperature,
 								(float) $row->humidity
-						]);
+						]. ", " );
 					}
 				} else {
 					echo "0 results";
