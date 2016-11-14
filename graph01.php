@@ -42,7 +42,7 @@
     }
   );
 
-<script type="text/javascript" async>
+<script type="text/javascript">
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawChart);
 
