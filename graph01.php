@@ -74,6 +74,7 @@ function createTable() {
     options: {
         height: 200,
         width: '100%'
+    }
   });
 
   // Bind myLine to the dashboard, and to the controls
