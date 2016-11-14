@@ -65,11 +65,11 @@
 
 				if (mysqli_num_rows($result)) {
 					while($row = mysqli_fetch_object($result)) {
-						echo json_encode($datenuebergabe[] = [
+						echo json_encode($datenuebergabe[] = "[
 								(string) $row->date_time,
 								(float) $row->temperature,
 								(float) $row->humidity
-						]. ", " );
+						], " );
 					}
 				} else {
 					echo "0 results";
