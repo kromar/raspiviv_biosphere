@@ -51,46 +51,6 @@ function createTable() {
     [new Date(2014, 6, 16), 0]
   ]);
 
-  var options = {
-			animation: {
-				duration: 1000,
-				easing: 'out'
-			},
-
-			legend: {
-				position: 'top'
-			},
-			point: {
-				visible: true,
-				//fill-color: #000000,
-				},
-			pointSize: 6,
-			pointShape: 'circle',
-			curveType: 'function',
-			crosshair: {
-				trigger: 'both' ,
-				orientation: 'vertical',
-				color: 'white'},
-			backgroundColor: {
-				stroke: 'white',
-				fill: 'grey',
-				strokeSize: 1},
-	        height: 400,
-			series: {
-				0: {color: 'red', targetAxisIndex: 0},
-				1: {color: 'blue', targetAxisIndex: 1},
-		},
-
-		vAxes: {
-			// Adds titles to each axis.
-			0: {title: 'Temperature (C)'},
-			1: {title: 'Humidity (%)'},
-		},
-
-		hAxis: {
-			textPosition: 'none',
-			direction: '-1' },
-		};
 
   // Create a dashboard.
   var dash_container = document.getElementById('dashboard_div'),
@@ -98,17 +58,22 @@ function createTable() {
 
   // Create a date range slider
   var myDateSlider = new google.visualization.ControlWrapper({
-    'controlType': 'ChartRangeFilter',
-    'containerId': 'control_div',
-    'options': {
-      'filterColumnLabel': 'Date'
+    controlType: 'ChartRangeFilter',
+    containerId: 'control_div',
+    options: {
+      filterColumnLabel: 'Date'
+      height: 50,
+      width: '100%'
     }
   });
 
   // Line chart visualization
   var myLine = new google.visualization.ChartWrapper({
-    'chartType' : 'LineChart',
-    'containerId' : 'line_div',
+    chartType : 'LineChart',
+    containerId : 'line_div',
+    options: {
+        height: 200,
+        width: '100%'
   });
 
   // Bind myLine to the dashboard, and to the controls
