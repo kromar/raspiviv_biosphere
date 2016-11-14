@@ -42,7 +42,7 @@
 	function drawDashboard() {
 
 	  var graphData = new google.visualization.DataTable();
-		graphData.addColumn('string', 'TIME'); //
+		graphData.addColumn('datetime', 'TIME'); //
 		graphData.addColumn('number', 'TEMP');
 		graphData.addColumn('number', 'HUM');
 		graphData.addRows(
@@ -53,6 +53,7 @@
 				$dbname = "datalogger";
 				$datenuebergabe = array();
 				$history = 10;
+				$mydate = ("2015/12/27 23:51:21");
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
 				// Check connection
@@ -67,7 +68,8 @@
 						$newdate = new Date($row -> date_time);
 
 						$datenuebergabe[] = [
-							(string) $row -> date_time,		// Try this fix: new Date((dateArr2[i]).replace(/-/g, '/')). For Safari new Date("2015-12-27 23:51:21") is invalid date but new Date("2015/12/27 23:51:21") is valid
+							//(string) $row -> date_time,		// Try this fix: new Date((dateArr2[i]).replace(/-/g, '/')). For Safari new Date("2015-12-27 23:51:21") is invalid date but new Date("2015/12/27 23:51:21") is valid
+							$mydate,
 							(float) $row -> temperature,
 							(float) $row -> humidity,
 							];
