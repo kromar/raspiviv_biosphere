@@ -62,7 +62,7 @@ function createTable() {
     containerId: 'control_div',
     options: {
       filterColumnLabel: 'Date',
-      height: 20
+      height: 10
           }
   });
 
@@ -71,7 +71,7 @@ function createTable() {
     chartType : 'LineChart',
     containerId : 'line_div',
     options: {
-        height: 500
+        height: 400
     }
   });
 
