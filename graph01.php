@@ -66,9 +66,9 @@
 					while($row = mysqli_fetch_object($result)) {
 
 						$datenuebergabe[] = [
-							date($row -> date_time),			// "2016-11-14 14:11:04"
-							float($row -> temperature),
-							float($row -> humidity)
+							(date) $row -> date_time,			// "2016-11-14 14:11:04"
+							(float) $row -> temperature;
+							(float) $row -> humidity;
 							];
 					}
 				} else {
