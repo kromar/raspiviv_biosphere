@@ -63,14 +63,12 @@
 				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT $history";
 				$result = mysqli_query($db, $sql);
 
-				if (mysqli_num_rows($result)) {
-					while($row = mysqli_fetch_object($result)) {
+				if (mysqli_num_rows($result)>0) {
 
-						$datenuebergabe[] = array(
-								(string) date_time => $row['TIME'],
-								(float) temperature => $row['TEMP'],
-								(float) humidity => $row['HUMID']
-								);
+
+					while($list = mysqli_fetch_array($result)) {
+						$datenuebergabe[] = $list['TIME'] . "," . $list['TEMP'] . ", " . $list['HUMID'] ;
+
 						echo json_encode($datenuebergabe);
 					}
 				} else {
