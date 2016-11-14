@@ -34,11 +34,12 @@
 
 
 <!-- DASHBOARD VIEW -->
-<script type="text/javascript" async>
+<script type="text/javascript">
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawDashboard);
 
-	console.log('testing 1 js log output');
+	console.log("test");
+
 	function drawDashboard() {
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('date', 'TIME');
@@ -52,6 +53,8 @@
 				$dbname = "datalogger";
 				$datenuebergabe = array();
 				$history = 3;
+
+				$date = new Date(2015, 0, 1);
 				//(string) $row -> date_time,
 				// Try this fix: new Date((dateArr2[i]).replace(/-/g, '/')). For Safari new Date("2015-12-27 23:51:21") is invalid date but new Date("2015/12/27 23:51:21") is valid
 
@@ -67,7 +70,7 @@
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = [
-								new Date(2015, 0, 1),
+								$date,
 								5,
 								6
 
