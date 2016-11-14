@@ -67,13 +67,12 @@
 							$datenuebergabe['TIME'] = (string) $row -> date_time;
 							$datenuebergabe['TEMP'] = (float) $row -> temperature;
 							$datenuebergabe['HUM'] = (float) $row -> humidity;
-
-						//echo  json_encode($datenuebergabe);
 					}
 				} else {
 					echo "0 results";
 				}
 				mysqli_close($db);
+				echo  json_encode($datenuebergabe);
 			?>
 		);
 
