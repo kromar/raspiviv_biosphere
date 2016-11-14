@@ -39,7 +39,7 @@
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawChart);
 
-	$datenuebergabe = array();
+
 	function drawChart() {
 
 	  var graphData = new google.visualization.DataTable();
@@ -52,6 +52,7 @@
 				$username = "datalogger";
 				$password = "datalogger";
 				$dbname = "datalogger";
+				$datenuebergabe = array();
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
 				// Check connection
@@ -105,7 +106,7 @@
       duration: 1000,
       easing: 'out',
     }
-  };
+  }};
 
   data = new google.visualization.DataTable(graphData);
 
@@ -119,7 +120,6 @@
   var myDateSlider = new google.visualization.ControlWrapper({
     controlType: 'ChartRangeFilter',
     containerId: 'control_div',
-    dataTable: $datenuebergabe,
     options: {
       filterColumnLabel: 'TEMP',
       ui: {
@@ -146,7 +146,6 @@
   });
   dashboard.draw(data);
 
-}
 	var datenausdb = ' <?php Print($datenuebergabe); ?> ';
 </script>
 
