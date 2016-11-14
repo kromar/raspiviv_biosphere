@@ -66,10 +66,9 @@
 				if (mysqli_num_rows($result)>0) {
 					while($row = mysqli_fetch_object($result)) {
 						$datenuebergabe[] = array(
-								date_time => new Date($row['TIME']),
-								temperature => (float) $row['TEMP'],
-								humidity => (float) $row['HUMID']
-						);
+								new Date(date_time),
+								(float) temperature,
+								(float) humidity );
 						echo json_encode($datenuebergabe);
 					}
 				} else {
@@ -97,7 +96,7 @@
 				      },
 				      //textPosition: textPosition,
 				      textPosition: 'bottom',
-				      format: 'MMM dd',
+				     // format: 'MMM dd',
 				      slantedText: false
 				    },
 				    animation: {
