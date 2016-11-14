@@ -52,22 +52,21 @@
 				$password = "datalogger";
 				$dbname = "datalogger";
 				$datenuebergabe = array();
+				$history = 2;
 				// Create connection
 				$db = mysqli_connect($servername, $username, $password, $dbname);
 				// Check connection
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT $history";
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-						$datenuebergabe = [
-							$datenuebergabe['TIME'] = (string) $row -> date_time,
-							$datenuebergabe['TEMP'] = (float) $row -> temperature,
-							$datenuebergabe['HUM'] = (float) $row -> humidity,
-							];
+							$datenuebergabe['TIME'] = (string) $row -> date_time;
+							$datenuebergabe['TEMP'] = (float) $row -> temperature;
+							$datenuebergabe['HUM'] = (float) $row -> humidity;
 
 						echo  json_encode($datenuebergabe);
 					}
