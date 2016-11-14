@@ -38,6 +38,9 @@
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawDashboard);
 
+	if (window.console) {
+		console.log('testing 1 js log output');
+	}
 	function drawDashboard() {
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('date', 'TIME');
