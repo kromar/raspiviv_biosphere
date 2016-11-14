@@ -73,16 +73,14 @@
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					$datenuebergabe[] = $result;
-					echo "['" . $row->date_time . "', ";
-					echo " " . $row->temperature . " ,";
-					echo " " . $row->humidity . " ],";
+					$datenuebergabe[] = $row;
+
+					echo  json_encode($datenuebergabe);
 					}
 				} else {
 					echo "0 results";
 				}
 				mysqli_close($db);
-				print json_encode($datenuebergabe);
 			?>
 		);
 
