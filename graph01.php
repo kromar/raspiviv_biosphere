@@ -42,7 +42,7 @@
     }
   );
 
-<script type="text/javascript">
+<script type="text/javascript" async>
 	google.load('visualization', '1', {	  packages: ['corechart', 'controls'] });
 	google.setOnLoadCallback(drawChart);
 
@@ -79,7 +79,7 @@
 					echo "0 results";
 				}
 				mysqli_close($db);
-				print json_encode($datenuebergabe);
+				json_encode($datenuebergabe);
 			?>
 		]);
 
@@ -151,7 +151,7 @@
   dashboard.draw(data);
 
 }
-	 var datenausdb = <?php Print($datenuebergabe); ?>;
+	 var datenausdb = <?php print($datenuebergabe); ?>;
 </script>
 
 
