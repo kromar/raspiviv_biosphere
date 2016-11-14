@@ -53,8 +53,9 @@
 
 	  var graphData = new google.visualization.DataTable();
 		graphData.addColumn('string', 'TIME');
-		graphData.addColumn('number', 'VALUES');
-		graphData.addRows([
+		graphData.addColumn('number', 'TEMP');
+		graphData.addColumn('number', 'HUM');
+		graphData.addRows(
 			<?php
 				$servername = "localhost";
 				$username = "datalogger";
@@ -84,7 +85,7 @@
 				mysqli_close($db);
 				print json_encode($datenuebergabe);
 			?>
-		]);
+		);
 
 
 
