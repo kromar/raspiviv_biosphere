@@ -58,18 +58,16 @@
 				if (!$db) {
 					die("Connection failed: " . mysqli_connect_error());
 				}
-				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 10";
+				$sql = "SELECT * FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 2";
 				$result = mysqli_query($db, $sql);
 
 				if (mysqli_num_rows($result) > 0) {
 					while($row = mysqli_fetch_object($result)) {
-					$datenuebergabe = [
-								(string) $row->date_time,
-								(float) $row->temperature,
-								(float) $row->humidity]. " ,";
-
-					echo  json_encode($datenuebergabe);
-
+						$datenuebergabe[] = [
+									(string) $row -> date_time,
+									(float) $row -> temperature,
+									(float) $row -> humidity ];
+						echo  json_encode($datenuebergabe);
 					}
 				} else {
 					echo "0 results";
