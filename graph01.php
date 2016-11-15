@@ -62,7 +62,6 @@ function createTable() {
     containerId: 'control_div',
     options: {
       filterColumnLabel: 'Date',
-      height: 10
           }
   });
 
@@ -70,9 +69,6 @@ function createTable() {
   var myLine = new google.visualization.ChartWrapper({
     chartType : 'LineChart',
     containerId : 'line_div',
-    options: {
-        height: 400
-    }
   });
 
   // Bind myLine to the dashboard, and to the controls
