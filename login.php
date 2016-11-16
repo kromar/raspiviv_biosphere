@@ -24,15 +24,15 @@ if(isset($_POST['submitted']))
 	<script src="scripts/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript"></script>
 
-<!--  load CSS -->
+    <!--  load CSS -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="/css/normalize.css" rel="stylesheet"></link>
+    <link href="/css/normalize.css" rel="stylesheet">
 
-    <link href="/css/signin.css" rel="stylesheet"></link>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"></link>
-   	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css"></link>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+    <link href="/css/signin.css" rel="stylesheet">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+   	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,12 +42,12 @@ if(isset($_POST['submitted']))
     <![endif]-->
   </head>
 
-
+<body>
     <div class="container">
 <div id='fg_membersite'>
 <form class='form-signin' id='login' action='<?php echo $fgmembersite->GetSelfScript(); ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
-        <h2 class="form-signin-heading"><a href=http://www.raspiviv.com><img src=http://www.raspiviv.com/images/remote/RasPiViv.com_footer.png></a></h2>
+        <h2 class="form-signin-heading"><a href="http://www.raspiviv.com"><img src="http://www.raspiviv.com/images/remote/RasPiViv.com_footer.png"></a></h2>
 
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 

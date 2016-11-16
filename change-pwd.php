@@ -24,9 +24,9 @@ if(isset($_POST['submitted']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Change password</title>
 
-      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css"></link>
+      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
       <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
-      <link rel="STYLESHEET" type="text/css" href="style/pwdwidget.css"></link>
+      <link rel="STYLESHEET" type="text/css" href="style/pwdwidget.css">
       <script src="scripts/pwdwidget.js" type="text/javascript"></script>
 </head>
 <body>

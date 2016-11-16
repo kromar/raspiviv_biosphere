@@ -20,7 +20,7 @@ if(isset($_POST['submitted']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Reset Password Request</title>
-      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css"></link>
+      <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
       <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
 </head>
 <body>
