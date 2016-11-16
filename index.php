@@ -374,7 +374,7 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<?php include 'menu.php';?>
+				<?php include('menu.html');?>
 				<h3>Base Conditions</h3>
 				<?php include 'time.php';?>
 			</div>

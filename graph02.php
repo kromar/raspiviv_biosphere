@@ -294,7 +294,7 @@ mysqli_close($conn);
 <body>
 <div class="jumbotron">
 <div class="container">
-<?php include 'menu.php';?>
+				<?php include('menu.html');?>
 <h2>2</h2>
 
 

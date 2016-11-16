@@ -35,7 +35,7 @@
 	<body>
 		<div class="jumbotron">
 			<div class="container">
-				<?php include 'menu.php';?>
+				<?php include('menu.html');?>
 			</div>
 		</div>
 		<div class="container">
