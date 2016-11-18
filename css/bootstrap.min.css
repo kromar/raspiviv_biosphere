@@ -4527,8 +4527,8 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .navbar {
 	position: relative;
-	min-height: 50px;
-	margin-bottom: 20px;
+	min-height: 0px;
+	margin-bottom: 0px;
 	border: 1px solid transparent
 }
 
@@ -4583,7 +4583,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse
 	{
-	max-height: 340px
+	max-height: 480px
 }
 
 @media ( max-device-width :480px) and (orientation:landscape) {
@@ -4633,7 +4633,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .navbar-fixed-top {
 	top: 0;
-	border-width: 0 0 1px
+	border-width: 1px 1px 1px
 }
 
 .navbar-fixed-bottom {
@@ -4644,7 +4644,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 
 .navbar-brand {
 	float: left;
-	height: 50px;
+	height: 0px;
 	padding: 15px 15px;
 	font-size: 18px;
 	line-height: 20px

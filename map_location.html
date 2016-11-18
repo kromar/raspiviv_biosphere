@@ -1,8 +1,35 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
     <head>
-        <meta charset="ISO-8859-1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+        <!-- Custom CSS -->
+        <link href="css/sb-admin.css" rel="stylesheet">
+    
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+                                    
+        <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+        <script src="https://openlayers.org/en/v3.19.1/build/ol.js"></script>      
     </head>
+    
+    
     <body>
             <!-- MAP -->
             <div id="map" class="map"></div>
@@ -59,8 +86,8 @@
                       layers: [raster, vector],
                       target: 'map',
                       view: new ol.View({
-                        center: [-11000000, 4600000],
-                        zoom: 4
+                        center: [-10, 0],
+                        zoom: 3
                       })
                     });
                     
