@@ -99,7 +99,7 @@
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 		$count = count($output);
-							
+
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
 			if ($value) {
@@ -164,6 +164,8 @@
 		}
 	}
 
+	//Expire PHP session immediately
+	$expireAfter = 0;
 
 	readSensor(8);
 	//readSensor(9);
