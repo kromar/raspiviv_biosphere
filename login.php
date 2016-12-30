@@ -28,7 +28,6 @@ if(isset($_POST['submitted']))
     <!--  load CSS -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="/css/normalize.css" rel="stylesheet">
 
     <link href="/css/signin.css" rel="stylesheet">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
