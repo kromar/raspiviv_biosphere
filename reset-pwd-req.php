@@ -1,5 +1,5 @@
 <?PHP
-require_once("./include/membersite_config.php");
+	require_once("./assets/php/membersite_config.php");
 
 $emailsent = false;
 if(isset($_POST['submitted']))
