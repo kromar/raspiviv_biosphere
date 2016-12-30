@@ -109,7 +109,7 @@
 			 ?>
 		 </div>
 		 <!-- javascript -->
-		 <script src="buttons_script.js"></script>
+		 <script src="assets/js/buttons_script.js"></script>
 		 <div class="container">
 			 <hr>
 			 <?php include 'footer.php';?>
