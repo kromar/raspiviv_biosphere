@@ -31,7 +31,9 @@
    	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
+</head>
 
+<body>
 
 <!-- DASHBOARD VIEW -->
 <script type="text/javascript">
