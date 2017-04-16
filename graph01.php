@@ -34,52 +34,6 @@
 
 <body>
 
-<!-- DASHBOARD VIEW -->
-<script type="text/javascript">
-google.load('visualization', '1', { packages : ['controls'] } );
-google.setOnLoadCallback(createTable);
-
-function createTable() {
-  // Create the dataset (DataTable)
-  var myData = new google.visualization.DataTable();
-  myData.addColumn('date', 'Date');
-  myData.addColumn('number', 'Hours Worked');
-  myData.addRows([
-    [new Date(2014, 6, 12), 9],
-    [new Date(2014, 6, 13), 8],
-    [new Date(2014, 6, 14), 10],
-    [new Date(2014, 6, 15), 8],
-    [new Date(2014, 6, 16), 0]
-  ]);
-
-
-  // Create a dashboard.
-  var dash_container = document.getElementById('dashboard_div'),
-    myDashboard = new google.visualization.Dashboard(dash_container);
-
-  // Create a date range slider
-  var myDateSlider = new google.visualization.ControlWrapper({
-    controlType: 'ChartRangeFilter',
-    containerId: 'control_div',
-    options: {
-      filterColumnLabel: 'Date',
-          }
-  });
-
-  // Line chart visualization
-  var myLine = new google.visualization.ChartWrapper({
-    chartType : 'LineChart',
-    containerId : 'line_div',
-  });
-
-  // Bind myLine to the dashboard, and to the controls
-  // this will make sure our line chart is update when our date changes
-  myDashboard.bind(myDateSlider, myLine );
-
-  myDashboard.draw(myData);
-}
-</script>
-
 
 	<!-- ============================ -->
 	<!-- VIV 1 TEMP GAUGE -->
@@ -121,8 +75,8 @@ function createTable() {
 			]);
 
 			var options = {
-				width: 200,
-				height: 200,
+				width: 280,
+				height: 280,
 	          	yellowFrom:18.0,
 	          	yellowTo: 21.0,
 				greenFrom:21.0,
@@ -183,8 +137,8 @@ function createTable() {
 			]);
 
 			var options = {
-				width: 200,
-				height: 200,
+				width: 280,
+				height: 280,
 				yellowFrom: 65,
 				yellowTo: 75,
 				greenFrom:75,
@@ -266,7 +220,7 @@ function createTable() {
 				stroke: 'white',
 				fill: 'grey',
 				strokeSize: 1},
-	        height: 400,
+	        height: 300,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -347,7 +301,7 @@ function createTable() {
 			curveType: 'function',
 			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
 			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
-	        height: 400,
+	        height: 300,
 			series: {
 				0: {color: 'red', targetAxisIndex: 0},
 				1: {color: 'blue', targetAxisIndex: 1},
@@ -397,9 +351,13 @@ function createTable() {
 		</div>
 
 		<!-- GAUGE -->
-		<div id="temp_gauge_div"></div>
-	    <div id="hum_gauge_div"></div>
 
+        <div id="gauges">
+            <div class="container-fluid">
+		        <div id="temp_gauge_div"></div>
+		        <div id="hum_gauge_div"></div>
+            </div>
+        </div>
 		<!-- CHARTS -->
 		<div id="chart_short_div"></div>
     	<div id="chart_long_div"></div>
