@@ -23,8 +23,8 @@
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
 				$pin = dechex($pin);
-				echo "lets write some pins $pin,  $pin_mode[$pin]";
-				sleep(1);
+				echo "lets write some pins $pin,  $pin_mode[$pin]"."\n";
+				sleep(0.1);
 		 	}
 			echo date('h:i:s') . "\n";
 		 	sleep(10);
