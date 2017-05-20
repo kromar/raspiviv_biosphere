@@ -23,7 +23,6 @@
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
 				$mode = bin2hex($pin_mode[$pin]);
-				$pin = bin2hex($pin);
 				echo "pin:$pin, mode:$mode"."\n";
 				sleep(0.1);
 		 	}
