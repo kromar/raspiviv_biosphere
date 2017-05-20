@@ -11,7 +11,7 @@
 	//i2cset -y 1 0x27 0x..
 
 	$pin = array(0,1,2,3,4,5,6,7);
-	$pin_mode = array(0, 0, 0, 0, 0, 1, 0, 0);
+	$pin_mode = array(0 , 0, 0, 0, 0, 1, 0, 0);
 	$statusActive = True;
 	$PCF8574 = '0x27';
 
@@ -24,8 +24,7 @@
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
-				$mode = bin2hex($pin_mode[$pin]);
-				echo "pin:$pin, mode:" .bin2hex($mode)."\n";
+				echo "pin:".dechex($pin)."mode:" .dechex($pin_mode[$pin])."\n";
 				$mode++;
 				sleep(0.1);
 		 	}
