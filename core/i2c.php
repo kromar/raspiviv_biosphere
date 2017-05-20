@@ -18,15 +18,15 @@
 
 	while ($statusActive)
 	{
+		echo date('h:i:s') . "\n";
 		 for ($pin = 0; $pin < count($pin_mode); $pin++)
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
 				$pin = dechex($pin);
-				echo "lets write some pins $pin,  $pin_mode[$pin]"."\n";
+				echo "pin: $pin, mode: $pin_mode[$pin]"."\n";
 				sleep(0.1);
 		 	}
-			echo date('h:i:s') . "\n";
 		 	sleep(10);
 
 			//exec ("gpio read ".$pin, $status[$pin], $return );
