@@ -22,6 +22,10 @@
 		echo date('h:i:s'). " || ".$PCF8574. "\n";
 		system("i2cset -y 1 $PCF8574 0x00");
 		sleep(3);
+		system("i2cset -y 1 $PCF8574 0xF0");
+		sleep(3);
+		system("i2cset -y 1 $PCF8574 0x0F");
+		sleep(3);
 		system("i2cset -y 1 $PCF8574 0xFF");
 
 
