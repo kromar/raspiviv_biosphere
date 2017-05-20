@@ -21,17 +21,21 @@
 		$mode = 0;
 		echo date('h:i:s'). " || ".$PCF8574. "\n";
 		system("i2cset -y 1 $PCF8574 0x00");
-		sleep(1);
+		sleep(3);
+		system("i2cset -y 1 $PCF8574 0xFF");
+
+
+
 		for ($pin = 0; $pin < $io_count; $pin++)
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
 				echo "pin: 0x0".dechex($pin)."\n";
-				system("i2cset -y 1 $PCF8574 0x0".dechex($pin));
+				//system("i2cset -y 1 $PCF8574 0x0".dechex($pin));
 				$mode = $mode + 2;
 				usleep(200000);
 		 	}
-		 	sleep(10);
+		 	sleep(3);
 
 			//exec ("gpio read ".$pin, $status[$pin], $return );
 	}
