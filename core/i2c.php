@@ -10,8 +10,8 @@
 	//i2cdump -y 0x..
 	//i2cset -y 1 0x27 0x..
 
-	$pin = array(0,1,2,3,4,5,6,7);
-	$pin_mode = array(0 , 0, 0, 0, 0, 1, 0, 0);
+	$io_count = 16;
+	$pin_mode = 0;
 	$statusActive = True;
 	$PCF8574 = '0x27';
 
@@ -20,11 +20,11 @@
 
 		$mode = 0;
 		echo date('h:i:s'). " || ".$PCF8574. "\n";
-		 for ($pin = 0; $pin < count($pin_mode); $pin++)
+		 for ($pin = 0; $pin < $io_count; $pin++)
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
-				echo "pin:".dechex($pin)."mode:" .dechex($pin_mode[$pin])."\n";
+				echo "pin:".dechex($pin)."mode:" .dechex($pin_mode)."\n";
 				$mode++;
 				sleep(0.1);
 		 	}
