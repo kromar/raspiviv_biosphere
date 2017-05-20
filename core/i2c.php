@@ -24,7 +24,8 @@
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
-				echo "pin:".dechex($pin)."mode:" .dechex($pin_mode)."\n";
+				echo "pin:".dechex($pin)." mode:" .dechex($pin_mode)."\n";
+				system("i2cset -y 1 $PCF8574 0x0".$pin);
 				$mode++;
 				sleep(0.1);
 		 	}
