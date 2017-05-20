@@ -12,14 +12,11 @@
 			//i2cdump -y 0x..
 			//i2cset -y 1 0x27 0x..
 
-			$pin = array(0,1,2,3,4,5,6,7);
-			$pin_mode = array(0, 0, 0, 0, 0, 0, 0, 0);
+	$pin = array(0,1,2,3,4,5,6,7);
+	$pin_mode = array(0, 0, 0, 0, 0, 0, 0, 0);
 	$statusActive = True;
-	$moment = date("s");
-	echo date('h:i:s') . "\n";
 
-	while ($moment<=$moment )
-
+	while ($statusActive)
 	{
 		 for ($pin = 0; $pin < count($pin_mode); $pin++)
 		 {
@@ -29,6 +26,7 @@
 				echo "lets write some pins $pin,  $status[$pin]";
 				sleep(1);
 		 	}
+			echo date('h:i:s') . "\n";
 		 	sleep(10);
 
 			//exec ("gpio read ".$pin, $status[$pin], $return );
