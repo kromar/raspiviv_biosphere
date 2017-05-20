@@ -27,7 +27,7 @@
 				echo "pin:".dechex($pin)." mode:" .dechex($pin_mode)."\n";
 				system("i2cset -y 1 $PCF8574 0x0".$pin);
 				$mode++;
-				sleep(0.1);
+				sleep(1);
 		 	}
 		 	sleep(10);
 
