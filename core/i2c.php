@@ -20,13 +20,15 @@
 
 		$mode = 0;
 		echo date('h:i:s'). " || ".$PCF8574. "\n";
-		 for ($pin = 0; $pin < $io_count; $pin++)
+		system("i2cset -y 1 $PCF8574 0x00");
+		sleep(1);
+		for ($pin = 0; $pin < $io_count; $pin++)
 		 {
 				//system("gpio mode $pin out");
 				//system("gpio write $pin $status[$pin]");
-				echo "pin: 0x0".dechex($pin)." mode:" .dechex($pin_mode)."\n";
+				echo "pin: 0x0".dechex($pin)."\n";
 				system("i2cset -y 1 $PCF8574 0x0".dechex($pin));
-				$mode++;
+				$mode = $mode + 2;
 				usleep(200000);
 		 	}
 		 	sleep(10);
