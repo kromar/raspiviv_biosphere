@@ -30,8 +30,11 @@
 		global $PCF8574, $pin_io;
 		$pin = $pin;
 		//set a specific output
-		$pin_io[$pin] = $pin_enabled;
-
+		if ($pin <= count($pin_io)){
+			$pin_io[$pin] = $pin_enabled;
+		} else {
+			echo "value out of array range";
+		}
 		//convert to hex value from the binary array
 		//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
 		$binary = implode("", $pin_io);
