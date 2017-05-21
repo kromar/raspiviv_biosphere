@@ -18,12 +18,13 @@
 	$statusActive = False;
 	$PCF8574 = '0x27';
 
-	$statusActive = $argv[1];
+	$simulationActive = $argv[1];
 	$pin = $argv[2];
 	$pin_state = $argv[3];
 	$PCF8574 = $argv[4];
 	$pin_io = array(0,0,0,0,0,0,0,0);
 
+	simulate($simulationActive);
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
@@ -41,9 +42,10 @@
 		system("i2cset -y 1 $PCF8574 $hex");
 	}
 
+
 // this function simulates switching through all io pins of the ic chip
-function simulateIO($statusActive) {
-	while ($statusActive) {
+function simulateIO($simulationActive) {
+	while ($simulationActive) {
 		$mode = 0;
 		// start enabling all pins
 		if ($mode == 0) {
