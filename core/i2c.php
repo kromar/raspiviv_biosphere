@@ -12,11 +12,12 @@
 
 	$io_count = 8;
 	$pin_mode = 0;
-	$statusActive = False;
 	$PCF8574 = '0x27';
+	$statusActive = False;
 
 	$pin = $argv[1];
 	$pin_state = $argv[2];
+
 
 	convert($pin, $pin_state);
 
@@ -37,10 +38,11 @@
 		//echo our hex value from the binary array
 		$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
 		$binary_pack = pack('H*', $binary);
-		$hex = dechex(bindec($binary));
+		$hex = "0x".dechex(bindec($binary));
 
-		echo $binary."\n";
-		echo $hex."\n";
+		echo "binary: ". $binary."\n";
+		echo "hex:". $hex."\n";
+		system("i2cset -y 1 $PCF8574 $hex");
 
 	}
 
