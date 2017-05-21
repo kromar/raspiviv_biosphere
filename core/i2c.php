@@ -12,8 +12,8 @@
 
 	$io_count = 8;
 	$pin_mode = 0;
-	$PCF8574 = '0x27';
 	$statusActive = False;
+	$PCF8574 = '0x27';
 
 	$pin = $argv[1];
 	$pin_state = $argv[2];
@@ -24,6 +24,8 @@
 	function convert($pin, $pin_state)
 	{
 		$pin = $pin-1;
+
+		$PCF8574 = '0x27';
 		$pin_io = array(0,0,0,0,0,0,0,0);
 
 
