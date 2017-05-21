@@ -50,7 +50,7 @@ function simulateIO($simulationActive) {
 		// start enabling all pins
 		if ($mode == 0) {
 			for ($pin = 0; $pin < $io_count; $pin++)	 {
-				convert($pin, 1);
+				setICPins($pin, 1);
 				echo $pin;
 				$mode++;
 				usleep(200000);
@@ -60,7 +60,7 @@ function simulateIO($simulationActive) {
 			//start disabling all pins
 		elseif ($mode==$io_count) {
 			for ($pin = $io_count; $pin > 0; $pin--) {
-				convert($pin, 0);
+				setICPins($pin, 0);
 				echo $pin;
 				$mode--;
 				usleep(200000);
