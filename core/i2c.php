@@ -30,7 +30,7 @@
 		global $PCF8574, $pin_io;
 		$pin = $pin;
 		//set a specific output
-		if ($pin <= count($pin_io)){
+		if ($pin <= count($pin_io){
 			$pin_io[$pin] = $pin_enabled;
 		} else {
 			echo "value out of array range";
@@ -53,7 +53,7 @@ function simulateIO($simulationActive) {
 	while ($simulationActive) {
 		// start enabling all pins
 		if ($mode == 1) {
-			for ($pin = 0; $pin < $io_count; $pin++)	 {
+			for ($pin = 0; $pin <= $io_count; $pin++)	 {
 				setICPins($pin, 1);
 				usleep(200000);
 			 	}
@@ -62,7 +62,7 @@ function simulateIO($simulationActive) {
 			}
 			//start disabling all pins
 		if ($mode== 0) {
-			for ($pin = $io_count; $pin > 0; $pin--) {
+			for ($pin = $io_count; $pin >= 0; $pin--) {
 				setICPins($pin, 0);
 				usleep(200000);
 			 	}
