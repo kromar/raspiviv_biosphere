@@ -43,9 +43,9 @@
 
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {
+	$mode = 1;
+	$io_count = 8;
 	while ($simulationActive) {
-		$mode = 0;
-		$io_count = 8;
 		// start enabling all pins
 		if ($mode == 1) {
 			for ($pin = 1; $pin < $io_count; $pin++)	 {
