@@ -19,9 +19,9 @@
 	$PCF8574 = '0x27';
 
 	$simulationActive = $argv[1];
-	$pin = $argv[2];
-	$pin_state = $argv[3];
-	$PCF8574 = $argv[4];
+	//$pin = $argv[2];
+	//$pin_state = $argv[3];
+	//$PCF8574 = $argv[4];
 	$pin_io = array(0,0,0,0,0,0,0,0);
 
 	simulate($simulationActive);
