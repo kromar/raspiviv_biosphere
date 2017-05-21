@@ -24,7 +24,7 @@
 	//$PCF8574 = $argv[4];
 	$pin_io = array(0,0,0,0,0,0,0,0);
 
-	simulate($simulationActive);
+	simulateIO($simulationActive);
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
