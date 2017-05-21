@@ -18,7 +18,7 @@
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
-	$rainShedule = array('12:00' => 10, '18:00' => 10);
+	$rainShedule = array('12:00' => 15, '18:00' => 15);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 	global $debugMode, $override, $pumpPrimer, $climateControl;
