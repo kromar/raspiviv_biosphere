@@ -34,8 +34,8 @@
 
 		//convert to hex value from the binary array
 		$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
+		echo "binary: ". $pin_io."\n";
 		$hex = "0x".dechex(bindec($binary));
-		echo "binary: ". $binary."\n";
 		echo "hex:". $hex."\n";
 		system("i2cset -y 1 $PCF8574 $hex");
 	}
@@ -45,6 +45,7 @@
 function simulateIO($simulationActive) {
 	$mode = 1;
 	$io_count = 8;
+
 	while ($simulationActive) {
 		// start enabling all pins
 		if ($mode == 1) {
@@ -64,8 +65,6 @@ function simulateIO($simulationActive) {
 			 	$mode = 1;
 			 	sleep(3);
 			}
-
-			echo "mode: ".$mode;
 		}
 	}
 ?>
