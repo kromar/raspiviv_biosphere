@@ -30,7 +30,7 @@
 		global $PCF8574, $pin_io;
 		$pin = $pin;
 		//set a specific output
-		if ($pin <= count($pin_io){
+		if ($pin <= count($pin_io)){
 			$pin_io[$pin] = $pin_enabled;
 		} else {
 			echo "value out of array range";
