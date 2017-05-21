@@ -48,11 +48,10 @@ function simulateIO($simulationActive) {
 		$io_count = 8;
 		// start enabling all pins
 		if ($mode == 0) {
-			for ($pin = 0; $pin < $io_count; $pin++)	 {
+			for ($pin = 0; $pin < $io_count+1; $pin++)	 {
 				setICPins($pin, 1);
-				echo $pin."\n";
 				$mode++;
-				usleep(500000);
+				usleep(300000);
 			 	}
 			 	sleep(3);
 			}
@@ -60,12 +59,12 @@ function simulateIO($simulationActive) {
 		if ($mode==$io_count) {
 			for ($pin = $io_count; $pin > 0; $pin--) {
 				setICPins($pin, 0);
-				echo $pin."\n";
 				$mode--;
-				usleep(500000);
+				usleep(300000);
 			 	}
 			 	sleep(3);
 			}
+
 			echo "mode: ".$mode;
 		}
 	}
