@@ -35,8 +35,8 @@
 		}
 
 		//echo our hex value from the binary array
-		echo bin2hex($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]."\n");
-		echo ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]."\n");
+		echo bin2hex($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7])."/n";
+		echo ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7])."/n";
 	}
 
 
