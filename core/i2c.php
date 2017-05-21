@@ -18,6 +18,8 @@
 	$pin = $argv[1];
 	$pin_state = $argv[2];
 
+	convert($pin, $pin_state);
+
 	function convert($pin, $pin_state)
 	{
 		$pin = $pin-1;
