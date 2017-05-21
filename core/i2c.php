@@ -28,7 +28,7 @@
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
 		global $PCF8574, $pin_io;
-		$pin = $pin;
+		$pin = $pin-1; 	//correction for physical pin vs array position
 		//set a specific output
 		if ($pin <= count($pin_io)){
 			$pin_io[$pin] = $pin_enabled;
@@ -48,12 +48,12 @@
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {
 	$mode = 1;
-	$io_count = 7;
+	$io_count = 8;
 
 	while ($simulationActive) {
 		// start enabling all pins
 		if ($mode == 1) {
-			for ($pin = 0; $pin <= $io_count; $pin++)	 {
+			for ($pin = 1; $pin <= $io_count; $pin++)	 {
 				setICPins($pin, 1);
 				usleep(200000);
 			 	}
@@ -62,7 +62,7 @@ function simulateIO($simulationActive) {
 			}
 			//start disabling all pins
 		if ($mode== 0) {
-			for ($pin = $io_count; $pin >= 0; $pin--) {
+			for ($pin = $io_count; $pin >= 1; $pin--) {
 				setICPins($pin, 0);
 				usleep(200000);
 			 	}
