@@ -30,9 +30,7 @@
 		global $PCF8574, $pin_io;
 		$pin = $pin-1;
 		//set a specific output
-		if ($pin_enabled) {
-			$pin_io[$pin] = $pin_enabled;
-		}
+		$pin_io[$pin] = $pin_enabled;
 
 		//convert to hex value from the binary array
 		$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
