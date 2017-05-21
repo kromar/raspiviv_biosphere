@@ -14,7 +14,6 @@
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
 	global $PCF8574, $pin_io, $statusActive;
-	$io_count = 8;
 	$statusActive = False;
 	$PCF8574 = '0x27';
 
@@ -47,6 +46,7 @@
 function simulateIO($simulationActive) {
 	while ($simulationActive) {
 		$mode = 0;
+		$io_count = 8;
 		// start enabling all pins
 		if ($mode == 0) {
 			for ($pin = 0; $pin < $io_count; $pin++)	 {
