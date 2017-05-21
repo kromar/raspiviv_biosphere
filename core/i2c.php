@@ -10,10 +10,36 @@
 	//i2cdump -y 0x..
 	//i2cset -y 1 0x27 0x..
 
-	$io_count = 16;
+	$io_count = 8;
 	$pin_mode = 0;
-	$statusActive = True;
+	$statusActive = False;
 	$PCF8574 = '0x27';
+
+	$pin = $argv[1];
+	$pin_state = $argv[2];
+
+	function convert($pin, $pin_state)
+	{
+		$pin = $pin-1;
+		$pin_io = array(0,0,0,0,0,0,0,0);
+
+
+		// now we want to convert the array to a hex output to write status
+
+		//set a specific output
+		if ($pin_state)
+		{
+			$pin_io[$pin] = $pin_state;
+		}
+
+		//echo our hex value from the binary array
+		echo bin2hex($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
+	}
+
+	convert($pin_io);
+
+
+
 
 	while ($statusActive)
 	{
