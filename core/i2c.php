@@ -35,7 +35,8 @@
 		}
 
 		//echo our hex value from the binary array
-		echo bin2hex($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
+		echo bin2hex($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]."\n");
+		echo ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]."\n");
 	}
 
 
@@ -69,11 +70,5 @@
 			//exec ("gpio read ".$pin, $status[$pin], $return );
 	}
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
- <!-- javascript -->
-		 <script src="no.js"></script>
 
-
-</html>
 
