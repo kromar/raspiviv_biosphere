@@ -47,21 +47,21 @@ function simulateIO($simulationActive) {
 		$mode = 0;
 		$io_count = 8;
 		// start enabling all pins
-		if ($mode == 0) {
-			for ($pin = 0; $pin < $io_count+1; $pin++)	 {
+		if ($mode == 1) {
+			for ($pin = 1; $pin < $io_count; $pin++)	 {
 				setICPins($pin, 1);
-				$mode++;
 				usleep(300000);
 			 	}
+			 	$mode = 0;
 			 	sleep(3);
 			}
 			//start disabling all pins
-		if ($mode==$io_count) {
-			for ($pin = $io_count; $pin > 0; $pin--) {
+		if ($mode== 0) {
+			for ($pin = $io_count; $pin > 1; $pin--) {
 				setICPins($pin, 0);
-				$mode--;
 				usleep(300000);
 			 	}
+			 	$mode = 1;
 			 	sleep(3);
 			}
 
