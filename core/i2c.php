@@ -36,9 +36,12 @@
 
 		//echo our hex value from the binary array
 		$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
+		$binary_pack = pack('H*', $binary);
 
 		echo "0x".bin2hex($binary)."\n";
-		echo pack('H*', $binary)."\n";
+		echo $binary_pack."\n";
+		echo unpack($binary_pack)."\n";
+
 		echo $binary."\n";
 	}
 
