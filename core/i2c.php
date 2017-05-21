@@ -40,7 +40,7 @@
 
 		echo "0x".bin2hex($binary)."\n";
 		echo $binary_pack."\n";
-		echo unpack($binary_pack)."\n";
+		echo unpack('H*', $binary_pack)."\n";
 
 		echo $binary."\n";
 	}
