@@ -52,7 +52,7 @@ function simulateIO($simulationActive) {
 		if ($mode == 0) {
 			for ($pin = 0; $pin < $io_count; $pin++)	 {
 				setICPins($pin, 1);
-				echo $pin;
+				echo $pin."\n";
 				$mode++;
 				usleep(500000);
 			 	}
@@ -62,7 +62,7 @@ function simulateIO($simulationActive) {
 		elseif ($mode==$io_count-1) {
 			for ($pin = $io_count; $pin > 0; $pin--) {
 				setICPins($pin, 0);
-				echo $pin;
+				echo $pin."\n";
 				$mode--;
 				usleep(500000);
 			 	}
