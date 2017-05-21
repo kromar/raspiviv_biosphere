@@ -54,17 +54,17 @@ function simulateIO($simulationActive) {
 				setICPins($pin, 1);
 				echo $pin;
 				$mode++;
-				usleep(200000);
+				usleep(500000);
 			 	}
 			 	sleep(3);
 			}
 			//start disabling all pins
-		elseif ($mode==$io_count) {
+		elseif ($mode==$io_count-1) {
 			for ($pin = $io_count; $pin > 0; $pin--) {
 				setICPins($pin, 0);
 				echo $pin;
 				$mode--;
-				usleep(200000);
+				usleep(500000);
 			 	}
 			 	sleep(10);
 			}
