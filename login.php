@@ -1,5 +1,5 @@
 <?PHP
-	require_once("./assets/php/membersite_config.php");
+/* 	require_once("./assets/php/membersite_config.php");
 
 if(isset($_POST['submitted']))
 {
@@ -7,7 +7,7 @@ if(isset($_POST['submitted']))
    {
         $fgmembersite->RedirectToURL("/");
    }
-}
+} */
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
