@@ -105,21 +105,61 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6" id="graph_section">
-                    <div class="row">
-                        <div class="col-md-12"><img src="Screen Shot 11-19-16 at 12.12 AM.png" width="100%" height="250px"></div>
+    <div class="row register-form">
+        <div class="col-md-8 col-md-offset-2">
+            <form class="form-horizontal custom-form">
+                <h1>Register Form</h1>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="name-input-field">Name </label>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12"><img src="Screen Shot 11-19-16 at 12.12 AM.png" width="100%" height="250px"></div>
+                    <div class="col-sm-6 input-column">
+                        <input class="form-control" type="text">
                     </div>
                 </div>
-                <div class="col-md-6" id="map_section">
-                    <div id="map" class="map"></div>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="email-input-field">Email </label>
+                    </div>
+                    <div class="col-sm-6 input-column">
+                        <input class="form-control" type="email">
+                    </div>
                 </div>
-            </div>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="pawssword-input-field">Password </label>
+                    </div>
+                    <div class="col-sm-6 input-column">
+                        <input class="form-control" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="repeat-pawssword-input-field">Repeat Password </label>
+                    </div>
+                    <div class="col-sm-6 input-column">
+                        <input class="form-control" type="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4 label-column">
+                        <label class="control-label" for="dropdown-input-field">Dropdown </label>
+                    </div>
+                    <div class="col-sm-4 input-column">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Dropdown <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a href="#">First Item</a></li>
+                                <li role="presentation"><a href="#">Second Item</a></li>
+                                <li role="presentation"><a href="#">Third Item</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">I've read and accept the terms and conditions</label>
+                </div><a class="btn btn-default submit-button" role="button" href="home.html">Submit Form</a></form>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
