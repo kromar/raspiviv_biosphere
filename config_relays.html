@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RasPiViv_ClimateSimulation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/slate/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="assets/css/styles.min.css">
@@ -14,7 +13,7 @@
 
 <body>
     <div>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" style="font-size:18px;">
             <div class="container-fluid">
                 <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">RasPiViv </a>
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -39,36 +38,132 @@
             </div>
         </nav>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title" style="height:20px;font-size:20px;"><strong>Controllers </strong></h2></div>
-                <div class="panel-body">
-                    <button class="btn btn-primary" type="button" style="width:45%;height:72px;font-size:20px;margin:4px;"><strong>Add New</strong></button>
-                    <div></div>
-                    <button class="btn btn-default" type="button" style="width:45%;height:72px;font-size:20px;margin:4px;"><strong>m</strong>istking </button>
-                    <button class="btn btn-default" type="button" style="width:45%;height:72px;font-size:20px;margin:4px;"><strong>d</strong>aylight </button>
+    <div class="panel panel-default" style="font-size:20px;">
+        <div class="panel-heading">
+            <h2 class="panel-title" style="height:20px;font-size:16px;"><strong>Job List</strong></h2></div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="font-size:16px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>GPIO pin</th>
+                                        <th>profile </th>
+                                        <th>status </th>
+                                        <th>toggle </th>
+                                        <th>edit </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cell 3</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cell 1</td>
+                                        <td>Cell 2</td>
+                                        <td>Cell 3</td>
+                                        <td>Cell 4</td>
+                                        <td>Cell 5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <input type="range">
-            <input type="text">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox">Label</label>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title" style="height:20px;font-size:16px;"><strong>Job Assignment</strong></h2></div>
+        <div class="panel-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select style="height:72px;font-size:20px;width:100%;">
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select style="height:72px;font-size:20px;width:100%;">
+                            <optgroup label="This is a group">
+                                <option value="12" selected="">This is item 1</option>
+                                <option value="13">This is item 2</option>
+                                <option value="14">This is item 3</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="button" style="height:72px;font-size:16px;margin:0px;width:100%;"><strong>Add</strong></button>
+                    </div>
+                </div>
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox">Label</label>
-            </div>
-            <input type="date">
-            <fieldset></fieldset>
-            <input type="color">
-            <input type="number">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-        <div class="col-md-12"></div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="font-size:16px;"><strong>Profile Configuration</strong></h3></div>
+        <div class="panel-body" style="font-size:16px;">
+            <div class="input-group" style="margin:4px;">
+                <div class="input-group-addon"><span style="font-size:16px;">Name </span></div>
+                <input class="form-control" type="text">
+                <div class="input-group-addon" style="width:22px;"></div>
+            </div>
+            <div></div>
+            <ul class="list-group">
+                <li class="list-group-item"><span>Color </span>
+                    <input type="color">
+                </li>
+                <li class="list-group-item"><span>Pin </span></li>
+                <li class="list-group-item"><span>Turn On</span></li>
+                <li class="list-group-item"><span>Turn Off</span></li>
+                <li class="list-group-item"><span>Interval </span></li>
+                <li class="list-group-item"><span>Use Sensors</span></li>
+                <li class="list-group-item"><span>Humidity Sensor</span></li>
+                <li class="list-group-item"><span>Temperature Sensor</span></li>
+            </ul>
+            <div></div>
+            <div></div>
+            <input type="date" style="width:146px;margin:4px;">
+            <input type="range" style="margin:4px;">
+        </div>
+    </div>
+    <div></div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-default" type="button" style="width:10%;height:72px;font-size:20px;margin:4px;"><strong>m</strong>istking </button>
+            <button class="btn btn-default" type="button" style="width:45%;height:72px;font-size:20px;margin:4px;"><strong>d</strong>aylight </button>
+        </div>
+        <div class="col-md-12">
+            <fieldset></fieldset>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
