@@ -13,15 +13,15 @@
 	//system("gpio write $pin $status[$pin]");
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
-	global $PCF8574, $pin_io, $statusActive;
+	global $PCF8574, $pin_io, $statusActive, $simulationActive;
 	$statusActive = False;
 	$PCF8574 = '0x27';
 
-	$simulationActive = $argv[1];
+	//$simulationActive = $argv[1];
 	//get argument from ajax request
 	// TODO: you can do isset check before
 	if(isset($_POST['simulate']) && !empty($_POST['simulate'])) {
-		echo 'simulate';
+		echo $_POST['simulate'];
 		$simulationActive = $_POST['simulate'];
 	}
 
