@@ -6,14 +6,14 @@ $('#i2c_simulation').change(function() {
         $.ajax({
             url: 'core/i2c.php', 
             type: 'post',            
-            data: {action: True},
+            data: {action: 'True'},
             success: function(response) { alert(response); }
         });
     } else {
          $.ajax({
             url: 'core/i2c.php', 
             type: 'post',
-            data: {action: False},
+            data: {action: 'False'},
             success: function(msg) { alert("simulation:" + msg); }
          });
     }
