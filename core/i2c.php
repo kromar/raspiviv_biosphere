@@ -51,6 +51,8 @@
 	}
 
 
+simulateIO($_POST['action']);
+
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {
 	$mode = 1;
@@ -78,11 +80,6 @@ function simulateIO($simulationActive) {
 		}
 	}
 
-if (isset($_POST['action'])) {
-        echo simulateIO($_POST['action']);
-	} else {
-		echo "so sad its not set \n ";
-	}
 ?>
 
 
