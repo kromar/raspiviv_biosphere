@@ -1,0 +1,9 @@
+.map {
+  height:500px;
+  min-height:100px;
+  width:100%;
+  background-color:#080808;
+  border:outset 1px;
+  border-color:#780101;
+}
+
