@@ -18,6 +18,11 @@
 	$PCF8574 = '0x27';
 
 	$simulationActive = $argv[1];
+	//get argument from ajax request
+	// TODO: you can do isset check before
+	$simulationActive = $_POST['simulate'];
+	// TODO: validate // sanitize // save to db // blah blah // do something with params
+
 	//$pin = $argv[2];
 	//$pin_state = $argv[3];
 	//$PCF8574 = $argv[4];
