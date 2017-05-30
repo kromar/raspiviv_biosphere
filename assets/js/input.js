@@ -13,7 +13,7 @@ $('#i2c_simulation').change(function() {
     } else {
          $.ajax(
             method: 'post',
-            url: "core/i2c.php',
+            url: 'core/i2c.php',
             data: {simulate: 'False'},
             success: function(msg) {
                 alert("simulation:" + msg);
