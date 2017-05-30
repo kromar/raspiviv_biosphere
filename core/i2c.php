@@ -17,13 +17,7 @@
 	$statusActive = False;
 	$PCF8574 = '0x27';
 
-	//$simulationActive = $argv[1];
-	//get argument from ajax request
-	// TODO: you can do isset check before
-	if(isset($_POST['simulate']) && !empty($_POST['simulate'])) {
-		echo $_POST['simulate'];
-		$simulationActive = $_POST['simulate'];
-	}
+
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
@@ -31,8 +25,14 @@
 	//$pin_state = $argv[3];
 	//$PCF8574 = $argv[4];
 	$pin_io = array(0,0,0,0,0,0,0,0);
-
-	simulateIO($simulationActive);
+	//$simulationActive = $argv[1];
+	//get argument from ajax request
+	// TODO: you can do isset check before
+	if(isset($_POST['action']) && !empty($_POST['action'])) {
+		echo $_POST['action'];
+		$simulationActive = $_POST['action'];
+		simulateIO($simulationActive);
+	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
