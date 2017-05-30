@@ -3,21 +3,17 @@ $('#i2c_simulation').change(function() {
     if(this.checked){       
         //Do stuff
         $.ajax({
-            type: 'POST',
-            url: 'core/i2c.php',             
-            data: {simulate: 'True'},
-            success: function(msg) {
-                alert("simulation:" + msg);
-                }
+            url: 'core/i2c.php', 
+            type: 'post',            
+            data: {"simulate": "True"},
+            success: function(response) { alert(response); }
         });
     } else {
          $.ajax({
-            type: 'POST',
-            url: 'core/i2c.php',
-            data: {simulate: 'False'},
-            success: function(msg) {
-                alert("simulation:" + msg);
-                }
+            url: 'core/i2c.php', 
+            type: 'post',
+            data: {"simulate": 'False'},
+            success: function(msg) { alert("simulation:" + msg); }
          });
     }
 });
