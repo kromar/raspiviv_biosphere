@@ -28,11 +28,12 @@
 	//$simulationActive = $argv[1];
 	//get argument from ajax request
 	// TODO: you can do isset check before
-	if(isset($_POST['action']) && !empty($_POST['action'])) {
-		echo $_POST['action'];
-		$simulationActive = $_POST['action'];
-		simulateIO($simulationActive);
+	//if(isset($_POST['action']) && !empty($_POST['action'])) {
+
+	if (isset($_POST['action'])) {
+        echo simulateIO($_POST['action']);
 	}
+
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
