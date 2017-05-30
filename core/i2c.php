@@ -20,7 +20,11 @@
 	$simulationActive = $argv[1];
 	//get argument from ajax request
 	// TODO: you can do isset check before
-	$simulationActive = $_POST['simulate'];
+	if(isset($_POST['simulate']) && !empty($_POST['simulate'])) {
+		echo 'simulate';
+		$simulationActive = $_POST['simulate'];
+	}
+
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
 	//$pin = $argv[2];
