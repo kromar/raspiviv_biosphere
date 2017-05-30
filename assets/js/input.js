@@ -3,7 +3,7 @@ $('#i2c_simulation').change(function() {
     if(this.checked){       
         //Do stuff
         $.ajax(
-            method: 'post',
+            type: 'post',
             url: 'core/i2c.php',             
             data: {simulate: 'True'},
             success: function(msg) {
@@ -12,7 +12,7 @@ $('#i2c_simulation').change(function() {
         );
     } else {
          $.ajax(
-            method: 'post',
+            type: 'post',
             url: 'core/i2c.php',
             data: {simulate: 'False'},
             success: function(msg) {
