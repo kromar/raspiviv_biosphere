@@ -1,5 +1,5 @@
 <?php
-	include '/var/www/html/log.php';
+	//include '/var/www/html/log.php';
 	include '/var/www/html/core/config.php';
 
 	//dec to hex
@@ -50,9 +50,19 @@
 		system("i2cset -y 1 $PCF8574 $hex");
 	}
 
+function log_to_console($data) {
+    if(is_array($data) || is_object($data))
+	{
+		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+	} else {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+}
+
 log_to_console($_POST['action']);
-log_to_file("i2c.php", $_POST['action'], '');
+log_to_console("php file loaded");
 //$_POST['action']
+
 simulateIO(True);
 
 // this function simulates switching through all io pins of the ic chip
