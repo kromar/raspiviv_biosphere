@@ -1,4 +1,4 @@
-<script type="text/javascript" >
+
 $('#i2c_simulation').change(function() {   
     //console.log(this);
     if(this.checked){      
