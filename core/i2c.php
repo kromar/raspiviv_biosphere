@@ -47,7 +47,7 @@
 		echo "binary: ". $binary."\n";
 		$hex = "0x".dechex(bindec($binary));
 		echo "hex:". $hex."\n";
-		system("i2cset -y 1 $PCF8574 $hex");
+		exec("sudo i2cset -y 1 $PCF8574 $hex");
 	}
 
 function log_to_console($data) {
