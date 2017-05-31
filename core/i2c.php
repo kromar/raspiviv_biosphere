@@ -50,20 +50,10 @@
 		system("i2cset -y 1 $PCF8574 $hex");
 	}
 
-
-
-function debug_to_console($data) {
-    if(is_array($data) || is_object($data))
-	{
-		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
-	} else {
-		echo("<script>console.log('PHP: ".$data."');</script>");
-	}
-}
-
-debug_to_console("file gets loaded");
-
-simulateIO($_POST['action']);
+log_to_console($_POST['action']);
+log_to_file("i2c.php", $_POST['action'], '');
+//$_POST['action']
+simulateIO(True);
 
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {

@@ -32,7 +32,7 @@
 		global $debugMode, $climateControl;
 
 		if ($debugMode == true) {
-			logToFile("running climateCore",'','');
+			log_to_file("running climateCore",'','');
 		}
 
 		$servername = "localhost";
@@ -65,16 +65,16 @@
 				$minHumidity = 50;
 
 			 	if ($debugMode==true) {
-					logToFile("sensor test", $tempSensor, $humiditySensor);
+					log_to_file("sensor test", $tempSensor, $humiditySensor);
 					if ($tempSensor > $maxTemperature or $tempSensor < $minTemperature) {
-						logToFile("extreme temperature reading", $tempSensor, "");
+						log_to_file("extreme temperature reading", $tempSensor, "");
 					} else {
-						logToFile("temperature reading", $tempSensor, "");
+						log_to_file("temperature reading", $tempSensor, "");
 					}
 					if ($humiditySensor > $maxHumidity or $humiditySensor < $minHumidity) {
-						logToFile("extreme humidity reading", $humiditySensor, "");
+						log_to_file("extreme humidity reading", $humiditySensor, "");
 					} else {
-						logToFile("humidity reading", $humiditySensor, "");
+						log_to_file("humidity reading", $humiditySensor, "");
 					}
 				}
 			}
@@ -94,7 +94,7 @@
 		global $tempDay, $humidityDay;
 
 		if ($debugMode == true) {
-			logToFile("running cliamteDaytime $currentTime",$sunriseTime, $sunsetTime);
+			log_to_file("running cliamteDaytime $currentTime",$sunriseTime, $sunsetTime);
 		}
 
 		//night time climate
@@ -108,7 +108,7 @@
 
 			if ($debugMode==true) {
 
-				logToFile("night time limits", $tempThreshold, $humidityThreshold);
+				log_to_file("night time limits", $tempThreshold, $humidityThreshold);
 			}
 		}
 
@@ -123,7 +123,7 @@
 			climateHumidity($tempSensor, $humiditySensor, $day);
 
 			if ($debugMode==true) {
-				logToFile("day time limits", $tempThreshold, $humidityThreshold);
+				log_to_file("day time limits", $tempThreshold, $humidityThreshold);
 			}
 		}
 	}
@@ -136,7 +136,7 @@
 		global $currentTime, $rainShedule;
 
 		if ($debugMode == true) {
-			logToFile("running climateRainShedule",'','');
+			log_to_file("running climateRainShedule",'','');
 		}
 
 		//trigger rain shedules
@@ -157,7 +157,7 @@
 		global $highTempRain;
 
 		if ($debugMode == true) {
-			logToFile("running climateTemperature",'','');
+			log_to_file("running climateTemperature",'','');
 		}
 
 		//react to high temperatures
@@ -192,7 +192,7 @@
 		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
-			logToFile("running climateHumidity",'','');
+			log_to_file("running climateHumidity",'','');
 		}
 
 		// rain when humidity drops below specified minimum valuee
@@ -231,7 +231,7 @@
 		global $debugMode;
 
 		if ($debugMode == true) {
-			logToFile("running climateOverride",'','');
+			log_to_file("running climateOverride",'','');
 		}
 
 		//override to pressure pump
@@ -252,7 +252,7 @@
 		global $debugMode;
 
 		if ($debugMode == true) {
-			logToFile("running letItRain",'','');
+			log_to_file("running letItRain",'','');
 		}
 
 		//timerSensor($pin = 2, $time, $inverted = true, $reason);
@@ -262,12 +262,12 @@
 			exec("/usr/local/bin/gpio write $pin 0");
 			sleep($time);
 			if ($debugMode==true) {
-				logToFile("let it rain", $time."s", $reason);
+				log_to_file("let it rain", $time."s", $reason);
 			}
 			exec("/usr/local/bin/gpio write $pin 1");
 		} elseif ($time == 0) {
 			if ($debugMode==true) {
-				logToFile("let it rain", $time."s", $reason);
+				log_to_file("let it rain", $time."s", $reason);
 			}
 			exec("/usr/local/bin/gpio write $pin 1");
 		}
@@ -280,7 +280,7 @@
 		global $debugMode;
 
 		if ($debugMode == true) {
-			logToFile("running bringTheAir",'','');
+			log_to_file("running bringTheAir",'','');
 		}
 
 		$pin = 5;
@@ -290,12 +290,12 @@
 			//time till wind stops
 			sleep ($time);
 			if ($debugMode==true) {
-				logToFile("bring the air", $time."s", $reason);
+				log_to_file("bring the air", $time."s", $reason);
 			}
 			exec("/usr/local/bin/gpio write $pin 0");
 		} elseif ($time == 0) {
 			if ($debugMode==true) {
-				logToFile("bring the air", $time."s", $reason);
+				log_to_file("bring the air", $time."s", $reason);
 			}
 			exec("/usr/local/bin/gpio write $pin 0");
 		}

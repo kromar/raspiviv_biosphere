@@ -1,8 +1,8 @@
+<script type="text/javascript" >
 $('#i2c_simulation').change(function() {   
     //console.log(this);
-    if(this.checked){       
-        //Do stuff
-        alert("start simulation");
+    if(this.checked){      
+        //alert("start simulation");
         $.ajax({
             url: 'core/i2c.php', 
             type: 'post',            

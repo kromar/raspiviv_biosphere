@@ -6,7 +6,7 @@
 
 
 	if ($debugMode==true) {
-		logToFile("running sensors.php", '', '');
+		log_to_file("running sensors.php", '', '');
 	}
 
 	function filterValues($value, $i, $sensor) {
@@ -41,7 +41,7 @@
 				// todo: when within 0-100 then continue
 				if ($humiditySensor > $filterMin && $humiditySensor < $filterMax) {
 					if ($debugMode==true) {
-						logToFile("filtering value $i", $value, $i);
+						log_to_file("filtering value $i", $value, $i);
 					}
 
 					//check if sensor reading deviates by delta to the last sensor reading
@@ -50,7 +50,7 @@
 						echo $diffHumidity;
 
 						if ($debugMode==true) {
-							logToFile("humidity delta", $diffHumidity, "$humiditySensor -- $value");
+							log_to_file("humidity delta", $diffHumidity, "$humiditySensor -- $value");
 						}
 
 						if ($diffHumidity < $deltaHumidity) {
@@ -67,7 +67,7 @@
 						$diffTemperature = abs($tempSensor - $value);
 
 						if ($debugMode==true) {
-							logToFile("temperature delta", $diffTemperature, "$tempSensor -- $value");
+							log_to_file("temperature delta", $diffTemperature, "$tempSensor -- $value");
 						}
 
 						if ($diffTemperature < $deltaTemperature) {
@@ -81,7 +81,7 @@
 			}
 		} else {
     		if ($debugMode==true) {
-				logToFile("no db results", '', '');
+				log_to_file("no db results", '', '');
 				return (true);
 			}
 		}
@@ -106,7 +106,7 @@
 				//filter humidity
 				if ($i == 0) {
 					if ($debugMode==true) {
-						logToFile("get filter value humidity", $value, $i);
+						log_to_file("get filter value humidity", $value, $i);
 					}
 					 $valueInDeltaRange = filterValues($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
@@ -118,7 +118,7 @@
 				//filter temperature
 				if ($i == 1) {
 					if ($debugMode==true) {
-						logToFile("get filter value temperature", $value, $i);
+						log_to_file("get filter value temperature", $value, $i);
 					}
 					$valueInDeltaRange = filterValues($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
@@ -133,7 +133,7 @@
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
-						logToFile("both values exist", $humidity, $temperature);
+						log_to_file("both values exist", $humidity, $temperature);
 					}
 
 					$servername = "localhost";
@@ -154,13 +154,13 @@
 
 				} else {
 					if ($debugMode==true) {
-						logToFile("only one value", '', '');
+						log_to_file("only one value", '', '');
 					}
 				}
 			}
 		}
 		if ($debugMode==true) {
-			logToFile("=============================", '', '');
+			log_to_file("=============================", '', '');
 		}
 	}
 
@@ -191,10 +191,10 @@
 			exec('/usr/local/bin/gpio mode $pin out');
 			exec('/usr/local/bin/gpio write $pin $low');
 			sleep($time);
-			logToFile("sensor timer", $time."s", $reason);
+			log_to_file("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
 		} elseif ($time == 0) {
-			logToFile("sensor timer", $time."s", $reason);
+			log_to_file("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
 		}
 	}

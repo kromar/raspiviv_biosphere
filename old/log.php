@@ -1,5 +1,5 @@
 <?php
-	function logToFile($value0, $value1, $value2) {
+	function log_to_file($value0, $value1, $value2) {
 		$megabytes = 2;
 		$file = "/../../log/raspiviv.log";
 		$size = filesize(__DIR__.$file);
@@ -20,4 +20,13 @@
 			fclose($mylogfile);
 		}
 	}
+
+function log_to_console($data) {
+    if(is_array($data) || is_object($data))
+	{
+		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+	} else {
+		echo("<script>console.log('PHP: ".$data."');</script>");
+	}
+}
 ?>
