@@ -63,7 +63,7 @@ log_to_console($_POST['action']);
 log_to_console("php file loaded");
 //$_POST['action']
 
-simulateIO(True);
+simulateIO($_POST['action']);
 
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {

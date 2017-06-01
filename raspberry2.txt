@@ -18,6 +18,11 @@ i2cdump -y 1 0x..
 i2cset -y 1 0x27 0x00 0x13
 i2cget -y 1 0x27 0x00
 
+i2c add apache user group rights
+==========
+sudo chgrp -R www-data /dev/i2c-1
+sudo chmod g+rw /dev/i2c-1
+
 vnc server
 ==========
 sudo apt-get install tightvncserver
@@ -172,6 +177,9 @@ sudo find /var/www/html -type d -exec chmod g+s {} +
 4_(optional) security cleanup if other users should not see files
 =======================
 sudo chmod -R o-rwx /var/www/html/
+
+
+
 
 
 
