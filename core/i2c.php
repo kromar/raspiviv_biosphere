@@ -44,10 +44,11 @@
 		//convert to hex value from the binary array
 		//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
 		$binary = implode("", $pin_io);
-		echo "binary: ". $binary."\n";
+		//echo "binary: ". $binary."\n";
 		$hex = "0x".dechex(bindec($binary));
-		echo "hex:". $hex."\n";
-		exec("i2cset -y 1 $PCF8574 $hex");
+		//echo "hex:". $hex."\n";
+		echo "i2cset -y 1 $PCF8574 $hex";
+		//exec("i2cset -y 1 $PCF8574 $hex");
 	}
 
 function log_to_console($data) {
