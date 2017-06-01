@@ -1,0 +1,178 @@
+raspberry
+============
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo reboot
+sudo raspi-config
+
+#screen resolution
+sudo nano /boot/config.txt
+	hdmi_mode=87
+	hdmi_cvt=1024 600 60 1 0 0 0
+
+i2c
+==========
+i2cdetect -y 1
+i2cdump -y 1 0x..
+i2cset -y 1 0x27 0x00 0x13
+i2cget -y 1 0x27 0x00
+
+vnc server
+==========
+sudo apt-get install tightvncserver
+sudo vncserver :1
+sudo nano /etc/rc.local
+	before the exit 0 line.
+	su - pi -c '/usr/bin/tightvncserver :1'
+sudo reboot
+
+
+static ip
+==========
+sudo nano /etc/dhcpcd.conf
+	bottom of file
+interface eth0
+static ip_address=192.168.0.21/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+
+interface wlan0
+static ip_address=192.168.21.1/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+
+
+open ssh terminal
+==========
+sudo raspi-config 
+	enable ssh
+sudo reboot
+sudo ssh ip@192.168.1.21
+
+install web stuff
+=============
+sudo apt-get install apache2
+sudo apt-get install mysql-server
+sudo apt-get install php5-mysql
+sudo apt-get install libapache2-mod-php5
+
+install wiringpi
+=============
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build
+
+git clone https://github.com/technion/lol_dht22
+cd lol_dht22
+./configure
+sudo make install
+
+install database
+==============
+wget http://www.raspiviv.com/databases/datalogger.sql
+mysql -u root -p < datalogger.sql
+mysql -u root -p
+CREATE USER 'datalogger'@'localhost' IDENTIFIED BY 'datalogger';
+GRANT ALL PRIVILEGES ON datalogger . * TO 'datalogger'@'localhost';
+ 
+install web page
+==============
+cd /var/www/html
+sudo rm -rf index.html
+sudo git clone https://github.com/kromar/raspiviv_community .
+
+
+setup cronjob
+===========
+sudo crontab -e
+* * * * *       php /var/www/html/sensor.php
+59 23 * * *     php /var/www/html/history.php
+
+
+
+
+lcd calibration
+=============
+
+sudo xinput_calibrator
+sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
+
+sudo nano /etc/lightdm/lightdm.conf
+ [SeatDefaults]
+ xserver-command=X -s 0 -dpms
+
+sudo apt-get install matchbox-keyboard
+
+#longpress right click
+sudo nano /etc/X11/xorg.conf
+
+
+autostart
+====================
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+
+
+
+
+mysql 
+=============
+mysql -u root -p
+--get size of database
+select count(*) from 'datalogger'
+select * from information_schema.TABLES where table_name = 'datalogger'\G
+
+gpio
+=======================
+gpio readall
+gpio write <pin> <value>
+gpio mode <pin> <value>
+gpio read <pin>
+
+
+raspiviv
+=======================
+watch -n 1 tail /var/log/raspiviv.log
+
+
+
+apache2
+=======================
+/etc/php5/apache2/php.ini
+watch -n 10 tail /var/log/apache2/error.log
+
+
+
+logrotate
+=======================
+logrotate -vf /etc/logrotate.d		//manual logrotate
+
+
+1_Allow apache access to the folders and files
+=======================
+sudo chgrp -R www-data /var/www/html
+sudo find /var/www/html -type d -exec chmod g+rx {} +
+sudo find /var/www/html -type f -exec chmod g+r {} +
+
+extra server write access: 
+sudo chmod g+w /var/www/html/PATH
+removing other permissions:
+sudo chmod o-rwx /var/www/html/FILEPATH
+
+2_giving your owner read/write access
+=======================
+sudo chown -R pi /var/www/html/
+sudo find /var/www/html -type d -exec chmod u+rwx {} +
+sudo find /var/www/html -type f -exec chmod u+rw {} +
+
+3_(optional) check new file permission
+=======================
+sudo find /var/www/html -type d -exec chmod g+s {} +
+
+4_(optional) security cleanup if other users should not see files
+=======================
+sudo chmod -R o-rwx /var/www/html/
+
+
+
+
