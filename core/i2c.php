@@ -1,5 +1,5 @@
 <?php
-	//include '/var/www/html/log.php';
+	include '/var/www/html/log.php';
 	include '/var/www/html/core/config.php';
 
 	//dec to hex
@@ -13,8 +13,8 @@
 	//system("gpio write $pin $status[$pin]");
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
-	global $PCF8574, $pin_io, $statusActive, $simulationActive;
-	$statusActive = False;
+	global $PCF8574, $pin_io, $simulationActive;
+	$simulationActive = False;
 	$PCF8574 = '0x27';
 
 
@@ -50,20 +50,11 @@
 		exec("i2cset -y 1 $PCF8574 $hex");
 	}
 
-function log_to_console($data) {
-    if(is_array($data) || is_object($data))
-	{
-		echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
-	} else {
-		echo("<script>console.log('PHP: ".$data."');</script>");
-	}
-}
 
-log_to_console($_POST['action']);
-log_to_console("php file loaded");
-//$_POST['action']
+$simulationActive = $_POST['action'];
+log_to_file($simulationActive, 0, 0);
 
-simulateIO($_POST['action']);
+simulateIO($simulationActive);
 
 // this function simulates switching through all io pins of the ic chip
 function simulateIO($simulationActive) {
@@ -80,7 +71,7 @@ function simulateIO($simulationActive) {
 			 	$mode = 0;
 			 	sleep(1);
 			}
-			//start disabling all pins
+		//start disabling all pins
 		if ($mode== 0) {
 			for ($pin = $io_count; $pin >= 1; $pin--) {
 				setICPins($pin, 0);
