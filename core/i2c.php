@@ -16,7 +16,7 @@
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
 	$PCF8574 = '0x27';
-	global $PCF8574, $simulationActive;
+	global $PCF8574;
 	$simulationActive = False;
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
@@ -64,38 +64,42 @@
 		}
 	}
 
-	$simulationActive = $_POST['action'];
 
 
 	// since the count is always from pin 0, all the pins get reset at first.
 	// so figure out why pins get reset, this means our array gets reset, lets keep it!
 
-	simulateIO($simulationActive);
+	simulateIO();
+
 	// this function simulates switching through all io pins of the ic chip
-	function simulateIO($simulationActive) {
-		$direction = 1;		 //1=up; 0=down
-		$io_count = 8;
+	function simulateIO() {
+		$simulationActive = $_POST['action'];
 		log_to_file($simulationActive);
-		//while ($simulationActive == True) {
+		$direction = 'up';		 //1=up; 0=down
+		$io_count = 8;
+
+		while ($simulationActive == True) {
+
 			// start enabling all pins
-			if ($direction == 1) {
+			if ($direction == 'up') {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					setICPins($pin, 1);
-					exec(usleep(200000));
+					exec("usleep(200000)");
 			 	}
-			 	$direction = 0;
+			 	$direction = 'down';
 			 	exec(sleep(1));
 			}
+
 			//start disabling all pins
-			elseif ($direction== 0) {
+			if ($direction== 'down') {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
 					exec(usleep(200000));
 			 	}
-			 	$direction = 1;
+			 	$direction = 'up';
 			 	exec(sleep(3));
 			}
-		//}
+		}
 	}
 
 
