@@ -12,12 +12,11 @@
 				//fwrite($logfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
 				//fclose($logfile);
 				  if(is_array($data) || is_object($data)) {
-						fwrite($logfile, "<b> $curentTime  .json_encode($data) </b> \n");
-						fclose($logfile);
+						fwrite($logfile, "<b> $curentTime  json_encode($data) </b> \n");
 				  } else {
-						fwrite($logfile, "<b> $curentTime  . $data</b> \n");
-						fclose($logfile);
+						fwrite($logfile, "<b> $curentTime  $data</b> \n");
 				  }
+					fclose($logfile);
 
 			} catch (Exception $e) {
 				echo 'Caught exception: ',  $e->getMessage(), "\n";

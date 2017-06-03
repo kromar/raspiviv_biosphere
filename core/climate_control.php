@@ -32,7 +32,7 @@
 		global $debugMode, $climateControl;
 
 		if ($debugMode == true) {
-			log_to_file("running climateCore",'','');
+			log_to_file("running climateCore");
 		}
 
 		$servername = "localhost";

@@ -31,14 +31,16 @@
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
+
 		log_to_file("running function setICPins");
+
 		global $PCF8574, $pin_io;
 		$pin = $pin-1; 	//correction for physical pin vs array position
 		//set a specific output
 		if ($pin <= count($pin_io)){
 			$pin_io[$pin] = $pin_enabled;
 		} else {
-			log_to_file("value out of array range",0,0);
+			log_to_file("value out of array range");
 		}
 		//convert to hex value from the binary array
 		//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
@@ -51,12 +53,14 @@
 
 
 	$simulationActive = $_POST['action'];
+	log_to_file($simulationActive);
 
+	//simulateIO($simulationActive);
 	// this function simulates switching through all io pins of the ic chip
 	function simulateIO($simulationActive) {
 		$mode = 1;
 		$io_count = 8;
-		log_to_file($simulationActive, 0, 0);
+		log_to_file($simulationActive);
 
 
 		while ($simulationActive) {
@@ -81,7 +85,6 @@
 		}
 	}
 
-simulateIO($simulationActive);
 
 ?>
 
