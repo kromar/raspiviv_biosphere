@@ -67,7 +67,7 @@
 			// start enabling all pins
 			if ($mode == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
-					setICPins($pin, 0);
+					setICPins($pin, 1);
 					exec(usleep(200000));
 			 	}
 			 	$mode = 0;
@@ -76,7 +76,7 @@
 			//start disabling all pins
 			elseif ($mode== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
-					setICPins($pin, 1);
+					setICPins($pin, 0);
 					exec(usleep(200000));
 			 	}
 			 	$mode = 1;
