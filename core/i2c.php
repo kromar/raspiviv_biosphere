@@ -84,7 +84,8 @@
 			if ($direction == 'up') {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					setICPins($pin, 1);
-					exec("usleep(200000)");
+					//exec(usleep(200000));
+		 			exec(sleep(1));
 			 	}
 			 	$direction = 'down';
 			 	exec(sleep(1));
@@ -94,7 +95,8 @@
 			if ($direction== 'down') {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
-					exec(usleep(200000));
+					//exec(usleep(200000));
+			 		exec(sleep(1));
 			 	}
 			 	$direction = 'up';
 			 	exec(sleep(3));
