@@ -50,7 +50,7 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		exec("sudo i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed"));
+		exec("i2cset -y 1 $PCF8574 $hex"); //or die(log_to_file("i2c failed"));
 	}
 
 
