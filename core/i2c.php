@@ -31,6 +31,7 @@
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_enabled) {
+		log_to_file("running function setICPins");
 		global $PCF8574, $pin_io;
 		$pin = $pin-1; 	//correction for physical pin vs array position
 		//set a specific output
