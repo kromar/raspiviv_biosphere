@@ -50,14 +50,14 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		log_to_file("i2cset -y 1 $PCF8574 $hex");
+		log_to_file("mylog i2cset -y 1 $PCF8574 $hex");
 		exec("i2cset -y 1 '0x27' $hex") or die(log_to_file("i2c failed"));
 	}
 
 
 	$simulationActive = $_POST['action'];
 
-	simulateIO($simulationActive);
+	//simulateIO($simulationActive);
 	// this function simulates switching through all io pins of the ic chip
 	function simulateIO($simulationActive) {
 		$mode = 1;
@@ -74,8 +74,6 @@
 			 	}
 			 	$mode = 0;
 			 	exec(sleep(1));
-			 	;
-
 			}
 			//start disabling all pins
 			elseif ($mode== 0) {
