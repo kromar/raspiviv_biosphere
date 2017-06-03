@@ -81,19 +81,19 @@
 			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					setICPins($pin, 1);
-					exec(usleep(200000));
+					exec("usleep(200000)");
 			 	}
 			 	$direction = 0;
-			 	exec(sleep(1));
+			 	exec("sleep(1)");
 			}
 			//start disabling all pins
 			elseif ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
-					exec(usleep(200000));
+					exec("usleep(200000)");
 			 	}
 			 	$direction = 1;
-			 	exec(sleep(3));
+			 	exec("sleep(3)");
 			}
 		//}
 	}
