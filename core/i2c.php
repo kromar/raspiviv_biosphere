@@ -51,7 +51,7 @@
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
 		log_to_file("mylog i2cset -y 1 $PCF8574 $hex");
-		exec("i2cset -y 1 '0x27' $hex") or die(log_to_file("i2c failed"));
+		exec("i2cset -y 1 '0x27' $hex"); //or die(log_to_file("i2c failed"));
 	}
 
 
