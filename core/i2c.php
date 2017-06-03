@@ -2,6 +2,8 @@
 	include '/var/www/html/log.php';
 	include '/var/www/html/core/config.php';
 
+	log_to_file("i2c executing");
+
 	//dec to hex
 		//dechex(x)
 	//hex to dec
@@ -48,7 +50,7 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		exec("i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed", $value1, $value2));
+		//exec("i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed", $value1, $value2));
 	}
 
 
@@ -67,7 +69,7 @@
 			// start enabling all pins
 			if ($mode == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
-					//setICPins($pin, 1);
+					setICPins($pin, 1);
 					usleep(200000);
 			 	}
 			 	$mode = 0;
@@ -76,7 +78,7 @@
 			//start disabling all pins
 			if ($mode== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
-					//setICPins($pin, 0);
+					setICPins($pin, 0);
 					usleep(200000);
 			 	}
 			 	$mode = 1;
