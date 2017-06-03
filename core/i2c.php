@@ -78,7 +78,7 @@
 		$direction = 'up';		 //1=up; 0=down
 		$io_count = 8;
 
-		while ($simulationActive == True) {
+		// while ($simulationActive == True) {
 
 			// start enabling all pins
 			if ($direction == 'up') {
@@ -101,7 +101,7 @@
 			 	$direction = 'up';
 			 	exec(sleep(3));
 			}
-		}
+		//}
 	}
 
 
