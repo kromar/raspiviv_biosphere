@@ -17,7 +17,7 @@
 
 	global $PCF8574, $pin_io, $simulationActive;
 	$simulationActive = False;
-	$PCF8574 = '0x27';
+	$PCF8574 = 0x27;
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
@@ -50,7 +50,7 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		exec("i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed", $value1, $value2));
+		exec("i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed"));
 	}
 
 
