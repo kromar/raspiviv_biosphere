@@ -22,6 +22,7 @@
 				echo 'Caught exception: ',  $e->getMessage(), "\n";
 			}
 		} else {
+			$logfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
 			fwrite($logfile, $curentTime . " reset file size \n");
 			fclose($logfile);
 		}
