@@ -17,7 +17,7 @@
 
 	global $PCF8574, $pin_io, $simulationActive;
 	$simulationActive = False;
-	$PCF8574 = 0x27;
+	$PCF8574 = '0x27';
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
@@ -56,7 +56,6 @@
 
 
 	$simulationActive = $_POST['action'];
-	log_to_file($simulationActive);
 
 	simulateIO($simulationActive);
 	// this function simulates switching through all io pins of the ic chip
@@ -66,24 +65,25 @@
 		log_to_file($simulationActive);
 
 
-		while ($simulationActive) {
+		while ($simulationActive == True) {
 			// start enabling all pins
 			if ($mode == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					setICPins($pin, 1);
-					exec("usleep(200000)");
+					exec(usleep(200000));
 			 	}
 			 	$mode = 0;
-			 	exec("sleep(1)");
+			 	exec(sleep(1));
+
 			}
 			//start disabling all pins
-			if ($mode== 0) {
+			elseif ($mode== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
-					exec("usleep(200000)");
+					exec(usleep(200000));
 			 	}
 			 	$mode = 1;
-			 	exec("sleep(3)");
+			 	exec(sleep(3));
 			}
 		}
 	}
