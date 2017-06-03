@@ -2,7 +2,7 @@
 	function log_to_file($value0, $value1, $value2) {
 		$megabytes = 2;
 		//$file = "/../../log/raspiviv.log";
-		$file = "/logs/raspiviv.log";
+		$file = "/logs/raspiviv.txt";
 		$logfile = fopen(__DIR__.$file, "w+") or die("Unable to open file!");
 		$size = filesize($logfile);
 		$curentTime = date('H:i:s');
