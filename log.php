@@ -3,7 +3,7 @@
 		$megabytes = 2;
 		$file = "/logs/raspiviv.txt";
 		$logfile = fopen(__DIR__.$file, "a+") or die("Unable to open file!");
-		$size = filesize($logfile);
+		$size = filesize(__DIR__.$file) or die("Unable to get file size!");
 		$curentTime = date('H:i:s');
 
 		if ($size < $megabytes * 1024 * 1000) {
