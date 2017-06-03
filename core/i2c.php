@@ -15,9 +15,9 @@
 	//system("gpio write $pin $status[$pin]");
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
+	$PCF8574 = '0x27';
 	global $PCF8574, $pin_io, $simulationActive;
 	$simulationActive = False;
-	$PCF8574 = '0x27';
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
@@ -51,7 +51,7 @@
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
 		log_to_file("i2cset -y 1 $PCF8574 $hex");
-		exec("i2cset -y 1 $PCF8574 $hex"); //or die(log_to_file("i2c failed"));
+		exec("i2cset -y 1 '0x27' $hex") or die(log_to_file("i2c failed"));
 	}
 
 
@@ -65,7 +65,7 @@
 		log_to_file($simulationActive);
 
 
-		while ($simulationActive == True) {
+		//while ($simulationActive == True) {
 			// start enabling all pins
 			if ($mode == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
@@ -74,6 +74,7 @@
 			 	}
 			 	$mode = 0;
 			 	exec(sleep(1));
+			 	;
 
 			}
 			//start disabling all pins
@@ -85,7 +86,7 @@
 			 	$mode = 1;
 			 	exec(sleep(3));
 			}
-		}
+		//}
 	}
 
 
