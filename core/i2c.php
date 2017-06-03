@@ -88,7 +88,7 @@
 		 			exec(sleep(1));
 			 	}
 			 	$direction = 'down';
-			 	exec(sleep(1));
+			 	exec(sleep(3));
 			}
 
 			//start disabling all pins
