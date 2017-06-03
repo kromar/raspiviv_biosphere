@@ -1,7 +1,7 @@
 <?php
 	function log_to_file($value0, $value1, $value2) {
 		$megabytes = 2;
-		$file = "/../../log/raspiviv.log";
+		$file = "../../log/raspiviv.log";
 		$size = filesize(__DIR__.$file);
 		$curentTime = date('H:i:s');
 		if ($size < $megabytes * 1024 * 1000) {
