@@ -3,7 +3,7 @@
 		$megabytes = 2;
 		$file = "/../../log/raspiviv.log";
 		$mode = 0777;
-		chmod($file, $mode);
+		chmod(__DIR__.$file, $mode);
 		$logfile = fopen(__DIR__.$file, "w+") or die("Unable to open file!");
 		$size = filesize($logfile);
 		$curentTime = date('H:i:s');
