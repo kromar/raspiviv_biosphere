@@ -1,17 +1,23 @@
 <?php
-	function log_to_file($value0, $value1, $value2) {
+	function log_to_file($data) {
 		$megabytes = 2;
-		//$file = "/../../log/raspiviv.log";
 		$file = "/logs/raspiviv.txt";
-		$logfile = fopen(__DIR__.$file, "w+") or die("Unable to open file!");
+		$logfile = fopen(__DIR__.$file, "a+") or die("Unable to open file!");
 		$size = filesize($logfile);
 		$curentTime = date('H:i:s');
 
 		if ($size < $megabytes * 1024 * 1000) {
 			try {
 				//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
-				fwrite($logfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
-				fclose($logfile);
+				//fwrite($logfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
+				//fclose($logfile);
+				  if(is_array($data) || is_object($data)) {
+						fwrite($logfile, "<b> $curentTime  .json_encode($data) </b> \n");
+						fclose($logfile);
+				  } else {
+						fwrite($logfile, "<b> $curentTime  . $data</b> \n");
+						fclose($logfile);
+				  }
 
 			} catch (Exception $e) {
 				echo 'Caught exception: ',  $e->getMessage(), "\n";

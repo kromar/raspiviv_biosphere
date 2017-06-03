@@ -17,8 +17,6 @@
 	$simulationActive = False;
 	$PCF8574 = '0x27';
 
-
-
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
 
 	//$pin = $argv[2];
