@@ -57,14 +57,12 @@
 
 	$simulationActive = $_POST['action'];
 
-	//simulateIO($simulationActive);
+	simulateIO($simulationActive);
 	// this function simulates switching through all io pins of the ic chip
 	function simulateIO($simulationActive) {
 		$mode = 1;
 		$io_count = 8;
 		log_to_file($simulationActive);
-
-
 		//while ($simulationActive == True) {
 			// start enabling all pins
 			if ($mode == 1) {
