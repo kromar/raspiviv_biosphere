@@ -50,7 +50,7 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		log_to_file("$pin : i2cset -y 1 $PCF8574 $hex");
+		log_to_file("$pin i2cset -y 1 $PCF8574 $hex");
 		exec("i2cset -y 1 '0x27' $hex"); //or die(log_to_file("i2c failed"));
 	}
 
@@ -65,21 +65,21 @@
 		log_to_file($simulationActive);
 		//while ($simulationActive == True) {
 			// start enabling all pins
-			if ($mode == 0) {
+			if ($mode == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
-					setICPins($pin, 1);
-					exec(usleep(200000));
-			 	}
-			 	$mode = 1;
-			 	exec(sleep(1));
-			}
-			//start disabling all pins
-			elseif ($mode== 1) {
-				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
 					exec(usleep(200000));
 			 	}
 			 	$mode = 0;
+			 	exec(sleep(1));
+			}
+			//start disabling all pins
+			elseif ($mode== 0) {
+				for ($pin = $io_count; $pin >= 1; $pin--) {
+					setICPins($pin, 1);
+					exec(usleep(200000));
+			 	}
+			 	$mode = 1;
 			 	exec(sleep(3));
 			}
 		//}
