@@ -39,7 +39,7 @@
 		if ($pin <= count($pin_io)){
 			$pin_io[$pin] = $pin_enabled;
 		} else {
-			log_to_console("value out of array range");
+			log_to_file("value out of array range",0,0);
 		}
 		//convert to hex value from the binary array
 		//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
@@ -47,41 +47,42 @@
 		$hex = "0x".dechex(bindec($binary));
 		//echo "binary: ". $binary."\n";
 		//echo "hex:". $hex."\n";
-		exec("i2cset -y 1 $PCF8574 $hex");
+		exec("i2cset -y 1 $PCF8574 $hex") or die(log_to_file("i2c failed", $value1, $value2));
 	}
 
 
-$simulationActive = $_POST['action'];
-log_to_file($simulationActive, 0, 0);
+	$simulationActive = $_POST['action'];
 
-simulateIO($simulationActive);
+	// this function simulates switching through all io pins of the ic chip
+	function simulateIO($simulationActive) {
+		$mode = 1;
+		$io_count = 8;
+		log_to_file($simulationActive, 0, 0);
 
-// this function simulates switching through all io pins of the ic chip
-function simulateIO($simulationActive) {
-	$mode = 1;
-	$io_count = 8;
 
-	while ($simulationActive) {
-		// start enabling all pins
-		if ($mode == 1) {
-			for ($pin = 1; $pin <= $io_count; $pin++)	 {
-				setICPins($pin, 1);
-				usleep(200000);
+		while ($simulationActive) {
+			// start enabling all pins
+			if ($mode == 1) {
+				for ($pin = 1; $pin <= $io_count; $pin++)	 {
+					//setICPins($pin, 1);
+					usleep(200000);
 			 	}
 			 	$mode = 0;
 			 	sleep(1);
 			}
-		//start disabling all pins
-		if ($mode== 0) {
-			for ($pin = $io_count; $pin >= 1; $pin--) {
-				setICPins($pin, 0);
-				usleep(200000);
+			//start disabling all pins
+			if ($mode== 0) {
+				for ($pin = $io_count; $pin >= 1; $pin--) {
+					//setICPins($pin, 0);
+					usleep(200000);
 			 	}
 			 	$mode = 1;
 			 	sleep(3);
 			}
 		}
 	}
+
+simulateIO($simulationActive);
 
 ?>
 
