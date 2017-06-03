@@ -16,7 +16,7 @@
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
 	$PCF8574 = '0x27';
-	global $PCF8574, $pin_io, $simulationActive;
+	global $PCF8574, $simulationActive;
 	$simulationActive = False;
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
@@ -24,19 +24,27 @@
 	//$pin = $argv[2];
 	//$pin_state = $argv[3];
 	//$PCF8574 = $argv[4];
-	$pin_io = array(0,0,0,0,0,0,0,0);
 	//$simulationActive = $argv[1];
 	//get argument from ajax request
 	// TODO: you can do isset check before
 	//if(isset($_POST['action']) && !empty($_POST['action'])) {
 
+	function reset_IO_Pins() {
+		//only create if it doesnt exist, otherwise only modify
+		if (!isset($pin_io)) {
+			$pin_io = array(0,0,0,0,0,0,0,0);
+		}
+		else {
+			$pin_io;
+		}
+		return $pin_io;
 
+	}
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_status) {
-
+		global $PCF8574;
+		$pin_io = reset_IO_Pins();
 		log_to_file("running function setICPins");
-
-		global $PCF8574, $pin_io;
 		log_to_file($pin);
 		$pin = $pin-1; 	//correction for physical pin vs array position
 
@@ -57,6 +65,10 @@
 	}
 
 	$simulationActive = $_POST['action'];
+
+
+	// since the count is always from pin 0, all the pins get reset at first.
+	// so figure out why pins get reset, this means our array gets reset, lets keep it!
 
 	simulateIO($simulationActive);
 	// this function simulates switching through all io pins of the ic chip
