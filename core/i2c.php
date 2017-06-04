@@ -40,15 +40,15 @@
 			log_to_file("keeping array:". implode("",$pin_io));
 		}
 		return $pin_io;
-
-		get_IO_Pins();
-		function get_IO_Pins() {
-			exec("i2cget -y 1 $PCF8574", $return);
-			$array = explode("," , $return);
-			log_to_file("return: $return array: $array");
-		}
-
 	}
+
+	get_IO_Pins();
+	function get_IO_Pins() {
+		exec("i2cget -y 1 $PCF8574", $return);
+		$array = explode("," , $return);
+		log_to_file("return: $return array: $array");
+	}
+
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_status) {
 		global $PCF8574, $pin_io;
