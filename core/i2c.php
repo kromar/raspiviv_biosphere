@@ -73,7 +73,7 @@
 			$hex = "0x".dechex(bindec($binary));
 			log_to_file("SET $hex $binary");
 			log_to_file("i2cset -y 1 $PCF8574 $hex \n");
-			//exec("i2cset -y 1 $PCF8574 $hex");
+			exec("i2cset -y 1 $PCF8574 $hex");
 			//do we need to get the new io_array here and set as global?
 		} else {
 			log_to_file("value out of array range");
