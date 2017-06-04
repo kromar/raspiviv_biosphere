@@ -79,10 +79,11 @@
 		$direction = 'up';		 //1=up; 0=down
 		$io_count = 8;
 
-		// while ($simulationActive == True) {
+		// while ($simulationActive == true) {
 
 			// start enabling all pins
 			if ($direction == 'up') {
+				log_to_file("counting up: $pin");
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					setICPins($pin, 1);
 					//exec(usleep(200000));
@@ -94,6 +95,7 @@
 
 			//start disabling all pins
 			if ($direction== 'down') {
+				log_to_file("counting down: $pin");
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					setICPins($pin, 0);
 					//exec(usleep(200000));
