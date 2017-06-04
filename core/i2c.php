@@ -2,15 +2,6 @@
 	include '/var/www/html/log.php';
 	include '/var/www/html/core/config.php';
 
-	log_to_file("i2c executing");
-
-	//dec to hex
-		//dechex(x)
-	//hex to dec
-		//shexdex(x)
-	//i2cdetect -y 1
-	//i2cdump -y 0x..
-	//i2cset -y 1 0x27 0x..
 	//system("gpio mode $pin out");
 	//system("gpio write $pin $status[$pin]");
 	//exec ("gpio read ".$pin, $status[$pin], $return );
@@ -25,22 +16,17 @@
 	//$pin_state = $argv[3];
 	//$PCF8574 = $argv[4];
 	//$simulationActive = $argv[1];
-	//get argument from ajax request
-	// TODO: you can do isset check before
-	//if(isset($_POST['action']) && !empty($_POST['action'])) {
 
-	//reset_IO_Pins();
-	function reset_IO_Pins() {
+	//set all pins to high or low
+	function reset_IO_Pins($state) {
 		global $io_array;
 		//only create if it doesnt exist, otherwise only modify
-		if (!$io_array) {
+		if ($state == 'high') {
+			$io_array = array(1,1,1,1,1,1,1,1);
+		} elseif ($state == 'low') {
 			$io_array = array(0,0,0,0,0,0,0,0);
-			log_to_file("RESET array:". implode("",$io_array));
-		} else {
-			$io_array=$io_array;
-			log_to_file("keeping array:". implode("",$io_array));
 		}
-		return $io_array;
+			log_to_file("RESET array:". implode("",$io_array));
 	}
 
 
@@ -85,6 +71,9 @@
 	// since the count is always from pin 0, all the pins get reset at first.
 	// so figure out why pins get reset, this means our array gets reset, lets keep it!
 
+
+	//if(isset($_POST['action']) && !empty($_POST['action'])) {
+
 	simulateIO();
 
 	// this function simulates switching through all io pins of the ic chip
@@ -98,20 +87,19 @@
 
 		global $io_array;
 		$temp_array = $io_array;
-		$sim_array = str_split(00000000);
+		$sim_array = reset_IO_Pins('low');
 		$io_array = $sim_array;
-		// while ($simulationActive == true) {
 
+		while ($simulationActive == true) {
 			// start enabling all pins
 			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					set_IO_Pins($pin, 1);
-					usleep(500000);
+					usleep(200000);
 			 	}
 			 	$direction = 0;
 			 	sleep(3);
 			}
-
 			//start disabling all pins
 			elseif ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
@@ -121,8 +109,11 @@
 			 	$direction = 1;
 			 	sleep(3);
 			}
-		//}
-
+			sleep(5);
+			if ($simulationActive == false) {
+				break;
+			}
+		}
 			//TODO: make a copy of the original array and restore its state once simualation is finished
 
 		//restor original IO state after running simulation
