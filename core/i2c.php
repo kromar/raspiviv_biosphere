@@ -106,22 +106,20 @@
 			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
 					set_IO_Pins($pin, 1);
-					//exec(usleep(200000));
-		 			//exec(sleep(1));
+					usleep(500000);
 			 	}
 			 	$direction = 0;
-			 	//exec(sleep(3));
+			 	sleep(3);
 			}
 
 			//start disabling all pins
 			elseif ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					set_IO_Pins($pin, 0);
-					//exec(usleep(200000));
-			 		//exec(sleep(1));
+					usleep(200000);
 			 	}
 			 	$direction = 1;
-			 	//exec(sleep(3));
+			 	sleep(3);
 			}
 		//}
 
