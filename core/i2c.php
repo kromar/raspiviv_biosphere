@@ -45,14 +45,12 @@
 
 	get_IO_Pins();
 	function get_IO_Pins() {
-		global $PCF8574;
-		$return = exec("i2cget -y 1 $PCF8574");
-		//$output = implode(" ", $output);
-		$result_array=implode(' ',$return);
-		$return = ltrim($return, "0x");
-		$binary = decbin(hexdec($return));
-		$returned_array = explode(',', $binary);
-		log_to_file("GET $return $binary\n");
+		global $PCF8574, $pin_io;
+		$output = exec("i2cget -y 1 $PCF8574");
+		$hex = ltrim($output, "0x");
+		$binary = decbin(hexdec($hex));
+		$new_array = str_split($binary);
+		log_to_file("GET $hex $binary $new_array\n");
 
 		//remove 0x from $return and convert to binary array
 
