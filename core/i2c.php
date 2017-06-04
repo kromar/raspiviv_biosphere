@@ -16,7 +16,7 @@
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
 	$PCF8574 = '0x27';
-	global $PCF8574, $pin_io;
+	global $PCF8574, $io_array;
 	$simulationActive = False;
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
@@ -29,47 +29,50 @@
 	// TODO: you can do isset check before
 	//if(isset($_POST['action']) && !empty($_POST['action'])) {
 
-	reset_IO_Pins();
+	//reset_IO_Pins();
 	function reset_IO_Pins() {
-		global $pin_io;
+		global $io_array;
 		//only create if it doesnt exist, otherwise only modify
-		if (!$pin_io) {
-			$pin_io = array(0,0,0,0,0,0,0,0);
-			log_to_file("RESET array:". implode("",$pin_io));
+		if (!$io_array) {
+			$io_array = array(0,0,0,0,0,0,0,0);
+			log_to_file("RESET array:". implode("",$io_array));
 		} else {
-			$pin_io=$pin_io;
-			log_to_file("keeping array:". implode("",$pin_io));
+			$io_array=$io_array;
+			log_to_file("keeping array:". implode("",$io_array));
 		}
-		return $pin_io;
+		return $io_array;
 	}
 
 	get_IO_Pins();
 	function get_IO_Pins() {
-		global $PCF8574, $pin_io;
+		global $PCF8574, $io_array;
 		$output = exec("i2cget -y 1 $PCF8574");
 		//remove 0x from $return and convert to binary array
 		$hex = ltrim($output, "0x");
 		$binary = decbin(hexdec($hex));
-		$new_array = str_split($binary);
-		$test = implode(" ",$new_array);
+		$io_array = str_split($binary);
+		$test = implode("",$io_array);
 		log_to_file("GET $hex $binary \n");
 		log_to_file("GET $test \n");
+
+		return $io_array;
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_status) {
-		global $PCF8574, $pin_io;
+		get_IO_Pins();
+		global $PCF8574, $io_array;
 
 		log_to_file("running function setICPins");
 		log_to_file($pin);
 		$pin = $pin-1; 	//correction for physical pin vs array position
 
 		//set a specific output
-		if ($pin <= count($pin_io)){
-			$pin_io[$pin] = $pin_status;
+		if ($pin <= count($io_array)){
+			$io_array[$pin] = $pin_status;
 			//convert to hex value from the binary array
-			//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
-			$binary = implode("", $pin_io);
+			//$binary = ($io_array[0].$io_array[1].$io_array[2].$io_array[3].$io_array[4].$io_array[5].$io_array[6].$io_array[7]);
+			$binary = implode("", $io_array);
 			log_to_file("implode binary $binary");
 			$hex = "0x".dechex(bindec($binary));
 			//echo "binary: ". $binary."\n";
