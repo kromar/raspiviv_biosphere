@@ -45,7 +45,7 @@
 	get_IO_Pins();
 	function get_IO_Pins() {
 		exec("i2cget -y 1 $PCF8574", $return);
-		$array = explode("," , $return);
+		$array = implode("," , $return);
 		log_to_file("return: $return array: $array");
 	}
 
