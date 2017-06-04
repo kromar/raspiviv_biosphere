@@ -90,26 +90,32 @@
 		$io_array = $sim_array;
 
 		while ($simulationActive) {
+			$simulationActive = $simulationActive;
 			log_to_file(var_dump($simulationActive));
-			// start enabling all pins
-			if ($direction == 1) {
-				for ($pin = 1; $pin <= $io_count; $pin++)	 {
-					set_IO_Pins($pin, 1);
-					usleep(200000);
-			 	}
-			 	$direction = 0;
-			 	sleep(3);
+			if (!$simulationActive) {
+				break;
+			} else {
+				// start enabling all pins
+				if ($direction == 1) {
+					for ($pin = 1; $pin <= $io_count; $pin++)	 {
+						set_IO_Pins($pin, 1);
+						usleep(200000);
+				 	}
+				 	$direction = 0;
+				 	sleep(3);
+				}
+				//start disabling all pins
+				if ($direction== 0) {
+					for ($pin = $io_count; $pin >= 1; $pin--) {
+						set_IO_Pins($pin, 0);
+						usleep(200000);
+				 	}
+				 	$direction = 1;
+				 	sleep(3);
+				}
+				sleep(5);
 			}
-			//start disabling all pins
-			if ($direction== 0) {
-				for ($pin = $io_count; $pin >= 1; $pin--) {
-					set_IO_Pins($pin, 0);
-					usleep(200000);
-			 	}
-			 	$direction = 1;
-			 	sleep(3);
-			}
-			sleep(5);
+		}
 		}
 			//TODO: make a copy of the original array and restore its state once simualation is finished
 
