@@ -16,7 +16,7 @@
 	//exec ("gpio read ".$pin, $status[$pin], $return );
 
 	$PCF8574 = '0x27';
-	global $PCF8574;
+	global $PCF8574, $pin_io;
 	$simulationActive = False;
 
 	// TODO: validate // sanitize // save to db // blah blah // do something with params
@@ -29,6 +29,7 @@
 	// TODO: you can do isset check before
 	//if(isset($_POST['action']) && !empty($_POST['action'])) {
 
+	reset_IO_Pins();
 	function reset_IO_Pins() {
 		//only create if it doesnt exist, otherwise only modify
 		if (!isset($pin_io)) {
@@ -44,8 +45,7 @@
 	}
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_status) {
-		global $PCF8574;
-		$pin_io = reset_IO_Pins();
+		global $PCF8574, $pin_io;
 
 		log_to_file("running function setICPins");
 		log_to_file($pin);
