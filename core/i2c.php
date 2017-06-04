@@ -47,13 +47,12 @@
 	function get_IO_Pins() {
 		global $PCF8574, $pin_io;
 		$output = exec("i2cget -y 1 $PCF8574");
+		//remove 0x from $return and convert to binary array
 		$hex = ltrim($output, "0x");
 		$binary = decbin(hexdec($hex));
 		$new_array = str_split($binary);
-		log_to_file("GET $hex $binary $new_array\n");
 
-		//remove 0x from $return and convert to binary array
-
+		log_to_file("GET $hex $binary implode('',$new_array) \n");
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
