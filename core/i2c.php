@@ -54,6 +54,7 @@
 			//convert to hex value from the binary array
 			//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
 			$binary = implode("", $pin_io);
+			log_to_file($binary);
 			$hex = "0x".dechex(bindec($binary));
 			//echo "binary: ". $binary."\n";
 			//echo "hex:". $hex."\n";
@@ -102,6 +103,9 @@
 			 	exec(sleep(3));
 			}
 		//}
+
+			//TODO: make a copy of the original array and restore its state once simualation is finished
+
 	}
 
 
