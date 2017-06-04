@@ -51,8 +51,9 @@
 		$hex = ltrim($output, "0x");
 		$binary = decbin(hexdec($hex));
 		$new_array = str_split($binary);
-
-		log_to_file("GET $hex $binary implode('',$new_array) \n");
+		$test = implode(" ",$new_array);
+		log_to_file("GET $hex $binary \n");
+		log_to_file("GET $test \n");
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
