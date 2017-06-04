@@ -33,9 +33,11 @@
 		//only create if it doesnt exist, otherwise only modify
 		if (!isset($pin_io)) {
 			$pin_io = array(0,0,0,0,0,0,0,0);
+			log_to_file("reset array: $pin_io");
 		}
 		else {
 			$pin_io;
+			log_to_file("keeping array: $pin_io");
 		}
 		return $pin_io;
 
@@ -76,32 +78,32 @@
 	function simulateIO() {
 		$simulationActive = $_POST['action'];
 		log_to_file($simulationActive);
-		$direction = 'up';		 //1=up; 0=down
+		$direction = 1;		 //1=up; 0=down
 		$io_count = 8;
 
 		// while ($simulationActive == true) {
 
 			// start enabling all pins
-			if ($direction == 'up') {
-				log_to_file("counting up: $pin");
+			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
+					log_to_file("counting up: $pin");
 					setICPins($pin, 1);
 					//exec(usleep(200000));
 		 			exec(sleep(1));
 			 	}
-			 	$direction = 'down';
+			 	$direction = 0;
 			 	exec(sleep(3));
 			}
 
 			//start disabling all pins
-			if ($direction== 'down') {
-				log_to_file("counting down: $pin");
+			elseif ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
+				log_to_file("counting down: $pin");
 					setICPins($pin, 0);
 					//exec(usleep(200000));
 			 		exec(sleep(1));
 			 	}
-			 	$direction = 'up';
+			 	$direction = 1;
 			 	exec(sleep(3));
 			}
 		//}
