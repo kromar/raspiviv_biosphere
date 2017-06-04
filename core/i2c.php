@@ -43,42 +43,40 @@
 		return $io_array;
 	}
 
-	get_IO_Pins();
+
 	function get_IO_Pins() {
 		global $PCF8574, $io_array;
 		$output = exec("i2cget -y 1 $PCF8574");
-		//remove 0x from $return and convert to binary array
+		//remove 0x from $output and convert to binary array
 		$hex = ltrim($output, "0x");
 		$binary = decbin(hexdec($hex));
+		//set return as our array
 		$io_array = str_split($binary);
-		$test = implode("",$io_array);
 		log_to_file("GET $hex $binary \n");
-		log_to_file("GET $test \n");
-
 		return $io_array;
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
-	function setICPins($pin, $pin_status) {
+	function set_IO_Pins($pin, $pin_status) {
 		get_IO_Pins();
 		global $PCF8574, $io_array;
 
-		log_to_file("running function setICPins");
-		log_to_file($pin);
-		$pin = $pin-1; 	//correction for physical pin vs array position
+		//correction for physical pin vs array position
+		$pin = $pin-1;
+
+		log_to_file("set_IO_Pins for pin: $pin");
 
 		//set a specific output
 		if ($pin <= count($io_array)){
 			$io_array[$pin] = $pin_status;
 			//convert to hex value from the binary array
-			//$binary = ($io_array[0].$io_array[1].$io_array[2].$io_array[3].$io_array[4].$io_array[5].$io_array[6].$io_array[7]);
 			$binary = implode("", $io_array);
-			log_to_file("implode binary $binary");
+			log_to_file("$hex $binary");
 			$hex = "0x".dechex(bindec($binary));
-			//echo "binary: ". $binary."\n";
-			//echo "hex:". $hex."\n";
-			log_to_file("$pin i2cset -y 1 $PCF8574 $hex");
+			log_to_file("$hex $binary");
+			log_to_file("$pin i2cset -y 1 $PCF8574 $hex \n");
 			exec("i2cset -y 1 '0x27' $hex");
+			//do we need to get the new io_array here and set as global?
 		} else {
 			log_to_file("value out of array range");
 		}
@@ -95,16 +93,20 @@
 	function simulateIO() {
 		$simulationActive = $_POST['action'];
 		log_to_file($simulationActive);
+
 		$direction = 1;		 //1=up; 0=down
 		$io_count = 8;
 
+		global $io_array;
+		$temp_array = $io_array;
+		$sim_array = str_split(00000000);
+		$io_array = $sim_array;
 		// while ($simulationActive == true) {
 
 			// start enabling all pins
 			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
-					log_to_file("counting up: $pin");
-					setICPins($pin, 1);
+					set_IO_Pins($pin, 1);
 					//exec(usleep(200000));
 		 			exec(sleep(1));
 			 	}
@@ -115,8 +117,7 @@
 			//start disabling all pins
 			elseif ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
-				log_to_file("counting down: $pin");
-					setICPins($pin, 0);
+					set_IO_Pins($pin, 0);
 					//exec(usleep(200000));
 			 		exec(sleep(1));
 			 	}
@@ -127,6 +128,8 @@
 
 			//TODO: make a copy of the original array and restore its state once simualation is finished
 
+		//restor original IO state after running simulation
+		$io_array = $temp_array;
 	}
 
 
