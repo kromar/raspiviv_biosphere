@@ -113,9 +113,8 @@
 				 	$direction = 1;
 				 	sleep(3);
 				}
-				sleep(5);
 			}
-		}
+			sleep(5);
 		}
 			//TODO: make a copy of the original array and restore its state once simualation is finished
 
