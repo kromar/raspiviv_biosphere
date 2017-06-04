@@ -71,7 +71,6 @@
 			$io_array[$pin] = $pin_status;
 			//convert to hex value from the binary array
 			$binary = implode("", $io_array);
-			log_to_file("$hex $binary");
 			$hex = "0x".dechex(bindec($binary));
 			log_to_file("$hex $binary");
 			log_to_file("$pin i2cset -y 1 $PCF8574 $hex \n");
