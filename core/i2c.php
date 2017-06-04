@@ -71,9 +71,9 @@
 			//convert to hex value from the binary array
 			$binary = implode("", $io_array);
 			$hex = "0x".dechex(bindec($binary));
-			log_to_file("$hex $binary");
+			log_to_file("SET $hex $binary");
 			log_to_file("i2cset -y 1 $PCF8574 $hex \n");
-			exec("i2cset -y 1 $PCF8574 $hex");
+			//exec("i2cset -y 1 $PCF8574 $hex");
 			//do we need to get the new io_array here and set as global?
 		} else {
 			log_to_file("value out of array range");
@@ -89,6 +89,7 @@
 
 	// this function simulates switching through all io pins of the ic chip
 	function simulateIO() {
+		log_to_file("------starting IO simulation---------");
 		$simulationActive = $_POST['action'];
 		log_to_file($simulationActive);
 
