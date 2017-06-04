@@ -31,6 +31,7 @@
 
 	reset_IO_Pins();
 	function reset_IO_Pins() {
+		global $pin_io;
 		//only create if it doesnt exist, otherwise only modify
 		if (!$pin_io) {
 			$pin_io = array(0,0,0,0,0,0,0,0);
@@ -44,6 +45,7 @@
 
 	get_IO_Pins();
 	function get_IO_Pins() {
+		global $PCF8574;
 		$return = exec("i2cget -y 1 $PCF8574");
 		//$output = implode(" ", $output);
 		$result_array=explode(' ',$return);
