@@ -86,7 +86,8 @@
 
 		global $io_array;
 		$temp_array = $io_array;
-		$sim_array = reset_IO_Pins('low');
+		//$sim_array = reset_IO_Pins('low');
+		$sim_array = $io_array;
 		$io_array = $sim_array;
 
 		while ($simulationActive) {
