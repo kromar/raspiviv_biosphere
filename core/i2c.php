@@ -52,19 +52,18 @@
 		$binary = decbin(hexdec($hex));
 		//set return as our array
 		$io_array = str_split($binary);
-		log_to_file("GET $hex $binary \n");
+		log_to_file("GET $hex $binary");
 		return $io_array;
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
 	function set_IO_Pins($pin, $pin_status) {
+		log_to_file("set_IO_Pins for pin: $pin");
 		get_IO_Pins();
 		global $PCF8574, $io_array;
 
 		//correction for physical pin vs array position
 		$pin = $pin-1;
-
-		log_to_file("set_IO_Pins for pin: $pin");
 
 		//set a specific output
 		if ($pin <= count($io_array)){
@@ -73,8 +72,8 @@
 			$binary = implode("", $io_array);
 			$hex = "0x".dechex(bindec($binary));
 			log_to_file("$hex $binary");
-			log_to_file("$pin i2cset -y 1 $PCF8574 $hex \n");
-			exec("i2cset -y 1 '0x27' $hex");
+			log_to_file("i2cset -y 1 $PCF8574 $hex \n");
+			exec("i2cset -y 1 $PCF8574 $hex");
 			//do we need to get the new io_array here and set as global?
 		} else {
 			log_to_file("value out of array range");
