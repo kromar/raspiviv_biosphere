@@ -32,12 +32,11 @@
 	reset_IO_Pins();
 	function reset_IO_Pins() {
 		//only create if it doesnt exist, otherwise only modify
-		if (!isset($pin_io)) {
+		if (!$pin_io) {
 			$pin_io = array(0,0,0,0,0,0,0,0);
 			log_to_file("reset array:". implode("",$pin_io));
-		}
-		else {
-			$pin_io;
+		} else {
+			$pin_io=$pin_io;
 			log_to_file("keeping array:". implode("",$pin_io));
 		}
 		return $pin_io;
@@ -62,7 +61,7 @@
 			//echo "binary: ". $binary."\n";
 			//echo "hex:". $hex."\n";
 			log_to_file("$pin i2cset -y 1 $PCF8574 $hex");
-			exec("i2cset -y 1 '0x27' $hex"); //or die(log_to_file("i2c failed"));
+			exec("i2cset -y 1 '0x27' $hex");
 		} else {
 			log_to_file("value out of array range");
 		}
