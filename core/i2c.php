@@ -47,7 +47,7 @@
 		$return = exec("i2cget -y 1 $PCF8574");
 		//$output = implode(" ", $output);
 		$result_array=explode(' ',$return);
-		log_to_file("GET". var_dump($return), $result_array ."\n");
+		log_to_file("GET". var_dump($return), $return ."\n");
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
