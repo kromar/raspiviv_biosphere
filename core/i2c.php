@@ -34,7 +34,7 @@
 		//only create if it doesnt exist, otherwise only modify
 		if (!$pin_io) {
 			$pin_io = array(0,0,0,0,0,0,0,0);
-			log_to_file("reset array:". implode("",$pin_io));
+			log_to_file("RESET array:". implode("",$pin_io));
 		} else {
 			$pin_io=$pin_io;
 			log_to_file("keeping array:". implode("",$pin_io));
@@ -45,8 +45,8 @@
 	get_IO_Pins();
 	function get_IO_Pins() {
 		exec("i2cget -y 1 $PCF8574", $return);
-		$array = implode("," , $return);
-		log_to_file("return: $return array: $array");
+		//$pin_io = implode("" , $return);
+		log_to_file("GET $return \n");
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
