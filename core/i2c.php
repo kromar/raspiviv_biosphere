@@ -44,8 +44,8 @@
 
 	get_IO_Pins();
 	function get_IO_Pins() {
-		exec("i2cget -y 1 $PCF8574 2>&1", $output, $return_var);
-		//$return = implode(" ", $return);
+		exec("i2cget -y 1 $PCF8574", $output, $return_var);
+		$output = implode(" ", $output);
 		log_to_file("GET $return_var $output \n");
 	}
 
