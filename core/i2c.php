@@ -41,6 +41,13 @@
 		}
 		return $pin_io;
 
+		get_IO_Pins();
+		function get_IO_Pins() {
+			exec("i2cget -y 1 $PCF8574", $return);
+			$array = explode("," , $return);
+			log_to_file("return: $return array: $array");
+		}
+
 	}
 	//this fucntion sets the pins of the ic to 1 or 0
 	function setICPins($pin, $pin_status) {
@@ -56,7 +63,7 @@
 			//convert to hex value from the binary array
 			//$binary = ($pin_io[0].$pin_io[1].$pin_io[2].$pin_io[3].$pin_io[4].$pin_io[5].$pin_io[6].$pin_io[7]);
 			$binary = implode("", $pin_io);
-			log_to_file($binary);
+			log_to_file("implode binary $binary");
 			$hex = "0x".dechex(bindec($binary));
 			//echo "binary: ". $binary."\n";
 			//echo "hex:". $hex."\n";
