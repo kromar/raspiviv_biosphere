@@ -72,14 +72,13 @@
 	// so figure out why pins get reset, this means our array gets reset, lets keep it!
 
 
-	//if(isset($_POST['action']) && !empty($_POST['action'])) {
-
-	simulateIO();
+	if(isset($_POST['action']) && !empty($_POST['action'])) {
+		simulateIO($_POST['action']);
+	}
 
 	// this function simulates switching through all io pins of the ic chip
-	function simulateIO() {
+	function simulateIO($simulationActive) {
 		log_to_file("------starting IO simulation---------");
-		$simulationActive = $_POST['action'];
 		log_to_file($simulationActive);
 
 		$direction = 1;		 //1=up; 0=down
@@ -90,7 +89,8 @@
 		$sim_array = reset_IO_Pins('low');
 		$io_array = $sim_array;
 
-		while ($simulationActive == true) {
+		while ($simulationActive) {
+			log_to_file(var_dump($simulationActive));
 			// start enabling all pins
 			if ($direction == 1) {
 				for ($pin = 1; $pin <= $io_count; $pin++)	 {
@@ -101,7 +101,7 @@
 			 	sleep(3);
 			}
 			//start disabling all pins
-			elseif ($direction== 0) {
+			if ($direction== 0) {
 				for ($pin = $io_count; $pin >= 1; $pin--) {
 					set_IO_Pins($pin, 0);
 					usleep(200000);
@@ -110,9 +110,6 @@
 			 	sleep(3);
 			}
 			sleep(5);
-			if ($simulationActive == false) {
-				break;
-			}
 		}
 			//TODO: make a copy of the original array and restore its state once simualation is finished
 
