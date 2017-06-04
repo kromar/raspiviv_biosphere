@@ -44,9 +44,10 @@
 
 	get_IO_Pins();
 	function get_IO_Pins() {
-		exec("i2cget -y 1 $PCF8574", $output, $return_var);
+		$return = exec("i2cget -y 1 $PCF8574");
 		//$output = implode(" ", $output);
-		log_to_file("GET $return_var $output[0] \n");
+		$result_array=explode(' ',$return);
+		log_to_file("GET var_dump($return) \n");
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
