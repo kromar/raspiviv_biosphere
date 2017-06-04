@@ -49,7 +49,13 @@
 		$return = exec("i2cget -y 1 $PCF8574");
 		//$output = implode(" ", $output);
 		$result_array=implode(' ',$return);
-		log_to_file("GET $return $result_array \n");
+		$return = ltrim($return, "0x");
+		$binary = decbin(hexdec($return));
+		$returned_array = explode(',', $binary);
+		log_to_file("GET $return $binary\n");
+
+		//remove 0x from $return and convert to binary array
+
 	}
 
 	//this fucntion sets the pins of the ic to 1 or 0
