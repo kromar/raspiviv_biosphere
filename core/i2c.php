@@ -33,11 +33,11 @@
 		//only create if it doesnt exist, otherwise only modify
 		if (!isset($pin_io)) {
 			$pin_io = array(0,0,0,0,0,0,0,0);
-			log_to_file("reset array: $pin_io");
+			log_to_file("reset array:". implode("",$pin_io));
 		}
 		else {
 			$pin_io;
-			log_to_file("keeping array: $pin_io");
+			log_to_file("keeping array:". implode("",$pin_io));
 		}
 		return $pin_io;
 
@@ -46,6 +46,7 @@
 	function setICPins($pin, $pin_status) {
 		global $PCF8574;
 		$pin_io = reset_IO_Pins();
+
 		log_to_file("running function setICPins");
 		log_to_file($pin);
 		$pin = $pin-1; 	//correction for physical pin vs array position
