@@ -95,9 +95,10 @@
 		$time = date('H:i:s');
 		$output = array();
 		global $debugMode;
+		$maxtries = 10;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
-		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
+		exec("sudo loldht $sensor $maxtries | grep -o [0-9][0-9].[0-9][0-9]", $output);
 		$count = count($output);
 
 		for ($i = 0; $i < $count; $i++) {
