@@ -12,6 +12,7 @@
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;
 	$highTempRain = false;
+	$lowHumRain = false;
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
@@ -195,19 +196,20 @@
 			logToFile("running climateHumidity",'','');
 		}
 
-		// rain when humidity drops below specified minimum valuee
-		//if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
-		if ($humiditySensor < $humidityMin && $day == true) {
+		// rain when humidity drops below specified minimum value and its daaytime
+		if ($lowHumRain == true) {
+			if ($humiditySensor < $humidityMin && $day == true) {
 
-			//react to low humidity
-			$humidityDelta = ($humidityMin - $humiditySensor);
-			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
-				$humidityDelta = $rainTime;
-				$reason = "low humidity: ".$humiditySensor;
-				letItRain($rainTime, $reason);
-			} else {
-				$reason = "low humidity: ".$humiditySensor;
-				letItRain($rainTime, $reason);
+				//react to low humidity
+				$humidityDelta = ($humidityMin - $humiditySensor);
+				if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
+					$humidityDelta = $rainTime;
+					$reason = "low humidity: ".$humiditySensor;
+					letItRain($rainTime, $reason);
+				} else {
+					$reason = "low humidity: ".$humiditySensor;
+					letItRain($rainTime, $reason);
+				}
 			}
 		}
 
