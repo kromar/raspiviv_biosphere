@@ -88,7 +88,27 @@
 		mysqli_close($db);
 	}
 
+function lowPassFilter($value, $i, $sensor) {
 
+		$average = 0.0;        // the running average
+		$filterWeight = 0.9;   // weight of the current reading in the average
+		$numReadings = 10; // number of readings per average
+
+		function loop() {
+		  $sensorReading;
+
+		  // take ten readings to get a reasonably good sample size
+		  // before printing:
+		  for ( $i = 0; $i < $numReadings; $i++) {
+		    $sensorReading = analogRead(A0);
+		    $average = $filterWeight * ($sensorReading) + (1 - $filterWeight ) * $average;
+		  }
+		  // print the result:
+		  //Serial.println(sensorReading);
+		  //  Serial.print(",");
+		 // Serial.println(average);
+		}
+}
 
 
 	function readSensor($sensor) {
