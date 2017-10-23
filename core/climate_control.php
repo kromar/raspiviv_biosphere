@@ -25,7 +25,7 @@
 	global $debugMode, $override, $pumpPrimer, $climateControl;
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = false;
+	$debugMode = true;
 	$climateControl = true;	//toggle climate control
 
 
@@ -193,7 +193,7 @@
 		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
-			logToFile("running climateHumidity",'','');
+			logToFile("running climateHumidity",'$lowHumRain','');
 		}
 
 		// rain when humidity drops below specified minimum value and its daaytime
