@@ -193,7 +193,7 @@
 		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
-			logToFile("running climateHumidity",'$lowHumRain','');
+			logToFile("running climateHumidity",'$lowHumRain',$lowHumRain);
 		}
 
 		// rain when humidity drops below specified minimum value and its daaytime
