@@ -19,6 +19,7 @@
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
+	// different ways of shedule input (fixed time, intervals with exceptions (night), dynamic(sensor based))
 	$rainShedule = array('12:00' => 15, '18:00' => 15);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
