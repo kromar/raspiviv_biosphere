@@ -12,19 +12,21 @@
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;
 	$highTempRain = false;
+	$lowHumRain = false;
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
 	$sunsetTime = ('22:00');
 	//fixed rain trigger times (time => seconds)
 	global $rainShedule, $rainTime, $windTime;
-	$rainShedule = array('12:00' => 15, '18:00' => 15);
+	// different ways of shedule input (fixed time, intervals with exceptions (night), dynamic(sensor based))
+	$rainShedule = array('12:00' => 30, '18:00' => 15);
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
 	global $debugMode, $override, $pumpPrimer, $climateControl;
 	$override = false;		// override temperature and rain every minute
 	$pumpPrimer = false; 	// set this to true to build up rain system pressure
-	$debugMode = false;
+	$debugMode = true;
 	$climateControl = true;	//toggle climate control
 
 
@@ -192,22 +194,23 @@
 		global $windTime, $rainTime;
 
 		if ($debugMode == true) {
-			log_to_file("running climateHumidity",'','');
+			log_to_file("running climateHumidity",'$lowHumRain',$lowHumRain);
 		}
 
-		// rain when humidity drops below specified minimum valuee
-		//if ($humiditySensor > 0 and $humiditySensor < $humidityMin) {
-		if ($humiditySensor < $humidityMin && $day == true) {
+		// rain when humidity drops below specified minimum value and its daaytime
+		if ($lowHumRain == true) {
+			if ($humiditySensor < $humidityMin && $day == true) {
 
-			//react to low humidity
-			$humidityDelta = ($humidityMin - $humiditySensor);
-			if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
-				$humidityDelta = $rainTime;
-				$reason = "low humidity: ".$humiditySensor;
-				letItRain($rainTime, $reason);
-			} else {
-				$reason = "low humidity: ".$humiditySensor;
-				letItRain($rainTime, $reason);
+				//react to low humidity
+				$humidityDelta = ($humidityMin - $humiditySensor);
+				if (($humidityDelta > 0) and ($humidityDelta < 10)) { //filter spike values
+					$humidityDelta = $rainTime;
+					$reason = "low humidity: ".$humiditySensor;
+					letItRain($rainTime, $reason);
+				} else {
+					$reason = "low humidity: ".$humiditySensor;
+					letItRain($rainTime, $reason);
+				}
 			}
 		}
 
