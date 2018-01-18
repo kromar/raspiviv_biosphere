@@ -22,7 +22,7 @@
 
 	// different ways of shedule input (fixed time, intervals with exceptions (night), dynamic(sensor based))
 	//$rainShedule = array('12:00' => 20, '18:00' => 10);
-	$rainShedule = array('12:00' => 10, '14:00' => 5, '16:00' => 7, '18:00' => 5);
+	$rainShedule = array('12:00' => 10, '16:00' => 5);
 
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
