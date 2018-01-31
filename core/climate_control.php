@@ -8,7 +8,7 @@
 	$tempNight = 24.5;  	// 24.5
 	$tempDay = 30.0;		// 26.5
 	$humidityNight = 85.0;
-	$humidityDay = 90.0;
+	$humidityDay = 80.0;
 	global $highTempRain, $humidityMin;
 	$humidityMin = 65.0;
 	$highTempRain = false;
@@ -22,7 +22,7 @@
 
 	// different ways of shedule input (fixed time, intervals with exceptions (night), dynamic(sensor based))
 	//$rainShedule = array('12:00' => 20, '18:00' => 10);
-	$rainShedule = array('12:00' => 10, '16:00' => 5);
+	$rainShedule = array('12:00' => 15, '16:00' => 5);
 
 	$rainTime = 1; 			// time in seconds to rain
 	$windTime = 10;			// time to vent in seconds
