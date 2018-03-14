@@ -10,7 +10,7 @@
 	$humidityNight = 85.0;
 	$humidityDay = 80.0;
 	global $highTempRain, $humidityMin;
-	$humidityMin = 55.0;
+	$humidityMin = 65.0;
 	$highTempRain = false;
 	$lowHumRain = true;
 	global $currentTime, $sunriseTime, $sunsetTime;
