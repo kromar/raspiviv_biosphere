@@ -10,9 +10,9 @@
 	$humidityNight = 85.0;
 	$humidityDay = 80.0;
 	global $highTempRain, $humidityMin;
-	$humidityMin = 65.0;
+	$humidityMin = 55.0;
 	$highTempRain = false;
-	$lowHumRain = false;
+	$lowHumRain = true;
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');
