@@ -9,7 +9,7 @@
 	$tempDay = 30.0;		// 26.5
 	$humidityNight = 85.0;
 	$humidityDay = 80.0;
-	global $highTempRain, $humidityMin;
+	global $highTempRain, $humidityMin,$lowHumRain;
 	$humidityMin = 65.0;
 	$highTempRain = false;
 	$lowHumRain = true;
@@ -195,9 +195,10 @@
 		global $tempThresold;
 		global $humidityThreshold, $humidityMin;
 		global $windTime, $rainTime;
+		global $lowHumRain;
 
 		if ($debugMode == true) {
-			logToFile("running climateHumidity",'$lowHumRain',$lowHumRain);
+			logToFile("running climateHumidity: ",'',$lowHumRain);
 		}
 
 		// rain when humidity drops below specified minimum value and its daaytime
