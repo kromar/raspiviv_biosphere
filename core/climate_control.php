@@ -162,7 +162,7 @@
 		global $highTempRain;
 
 		if ($debugMode == true) {
-			logToFile("running climateTemperature",'','');
+			logToFile("running climateTemperature", $tempSensor, '');
 		}
 
 		//react to high temperatures
@@ -198,7 +198,7 @@
 		global $lowHumRain;
 
 		if ($debugMode == true) {
-			logToFile("running climateHumidity: ",'',$lowHumRain);
+			logToFile("running climateHumidity:", $humiditySensor, $lowHumRain);
 		}
 
 		// rain when humidity drops below specified minimum value and its daaytime
