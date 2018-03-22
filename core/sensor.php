@@ -36,17 +36,6 @@
 						logToFile("get filter humidity", $value, $i);
 						logToFile("filtered humidity", $filteredValue, '<<<<<<<<');
 					}
-
-
-					 //apply delta filter
-					 //*
-					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
-					 if ($valueInDeltaRange == true) {
-					 	$humidity = $value;
-					 } else {
-					 	$humidity  = null;
-					 }
-					 //**/
 				}
 
 				//filter temperature
@@ -57,16 +46,6 @@
 						logToFile("get filter temperature", $value, $i);
 						logToFile("filtered temperature", $filteredValue, '<<<<<<<<');
 					}
-
-					//apply delta filter
-					//*
-					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
-					 if ($valueInDeltaRange == true) {
-					 	$temperature = $value;
-					 } else {
-					 	$temperature  = null;
-					 }
-					 //**/
 				}
 
 
@@ -92,7 +71,7 @@
 					$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
 					mysqli_query($db, $q);
 					mysqli_close($db);
-					return;
+					//continue;
 
 				} else {
 					if ($debugMode==true) {

@@ -28,7 +28,7 @@
 		}
 	}
 
-	function kalmanFilter($z=0, $u=0) {
+	function kalmanFilter($z=0, $u=0, ) {
 		global $debugMode;
 
 
@@ -37,20 +37,17 @@
 		$A = 1.1;
 		$B = 0;
 		$C = 1;
-		logToFile("TEST1: ", $z, $u);
+		logToFile("TEST1: ", $z, '>>>>>>>>');
 
 		$R = $R; 	// noise power desirable
 		$Q = $Q;   // noise power estimated
 		$B = $B;
-		$cov = null;
-		$x = null; 	 // estimated signal without noise
-
-		logToFile("TEST1 INPUT VALUES: ", $R, $Q);
+		$cov = $cov;
+		$x = $x; 	 // estimated signal without noise
 
 		if ($x == null) {
 			$x = (1 / $C) * $z;
      		$cov = (1 / $C) * $Q * (1 / $C);
-			logToFile("TEST2 OUTPUT: ", $x, $cov);
 		} else {
 			logToFile("TEST3: ", $z, $u);
 		    // Compute prediction
@@ -67,8 +64,7 @@
 		     $cov = $predCov - ($K * $C * $predCov);
 		     logToFile("TEST CORRECTION: ", $x, $cov);
 			}
-
-			logToFile("TEST RETURN: ", $x, '');
+			logToFile("RETURN FILTERED: ", $x, '<<<<<<<<');
 		    return $x;
 
 		//predict next value
