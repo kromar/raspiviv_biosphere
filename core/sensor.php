@@ -1,13 +1,13 @@
 <?php
 	include_once '/var/www/html/log.php';
-	include './datafilter.php';
+	include 'datafilter.php';
 	global $temperature, $humidity, $debugMode;
 	global $deltaTemperature, $deltaHumidity;
 	$debugMode = true;
 
 
 	if ($debugMode==true) {
-		logToFile("running sensors.php", '', '################');
+		logToFile("running sensors.php", '', '<<<<<<<<');
 	}
 
 
@@ -17,7 +17,7 @@
 		global $debugMode;
 
 		if ($debugMode==true) {
-			logToFile("running sensors.php", 'readSensor', '');
+			logToFile("running sensors.php", "readSensor", '');
 		}
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
@@ -25,7 +25,7 @@
 		$count = count($output);
 
 		for ($i = 0; $i < $count; $i++) {
-			$value = float($output[$i]);
+			$value = floatval($output[$i]);
 
 			if ($value) {
 				//filter humidity
@@ -66,7 +66,7 @@
 					 } else {
 					 	$temperature  = null;
 					 }
-					 */
+					 **/
 				}
 
 
@@ -104,7 +104,7 @@
 						logToFile("mysql value missing", '', '');
 					}
 			}
-			*/
+			**/
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');

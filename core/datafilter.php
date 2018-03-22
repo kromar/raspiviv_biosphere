@@ -3,12 +3,8 @@
 		global $temperature, $humidity, $debugMode;
 		$debugMode = true;
 
-
-
-
-
 	function lowPassFilter($value, $iterations, $sensor) {
-
+		global $debugMode;
 		$average = 0.0;        // the running average
 		$filterWeight = 0.9;   // weight of the current reading in the average
 		$numReadings = 10; // number of readings per average
@@ -33,6 +29,9 @@
 	}
 
 	function kalmanFilter($z=0, $u=0) {
+		global $debugMode;
+
+
 		$R = 0.01;
 		$Q = 20;
 		$A = 1.1;
