@@ -3,6 +3,10 @@
 		global $temperature, $humidity, $debugMode;
 		$debugMode = true;
 
+
+
+
+
 	function lowPassFilter($value, $iterations, $sensor) {
 
 		$average = 0.0;        // the running average
@@ -13,13 +17,13 @@
 
 
 		function loop() {
-		  $sensorReading;
+		  	$sensorReading;
 
-		  // take ten readings to get a reasonably good sample size
-		  // before printing:
-		  for ( $iterations = 0; $iterations < $numReadings; $iterations++) {
-		    $sensorReading = analogRead(A0);
-		    $average = $filterWeight * ($sensorReading) + (1 - $filterWeight ) * $average;
+			  // take ten readings to get a reasonably good sample size
+			  // before printing:
+			  for ( $iterations = 0; $iterations < $numReadings; $iterations++) {
+			  		$sensorReading = analogRead(A0);
+			    	$average = $filterWeight * ($sensorReading) + (1 - $filterWeight ) * $average;
 		  }
 		  // print the result:
 		  //Serial.println(sensorReading);
@@ -27,6 +31,71 @@
 		 // Serial.println(average);
 		}
 	}
+
+
+	class kalmanFilter {
+		public $R = 1;
+		public $Q = 1;
+		public $A = 1;
+		public $B = 0;
+		public $C = 1;
+
+		// Filter a new value
+		function filter($z, $u=0) {
+
+			$this->R = $R; 	// noise power desirable
+			$this->Q = $Q;   // noise power estimated
+			$this->B = $B;
+			$this->cov = false;
+			$this->x = false; 	 // estimated signal without noise
+
+			if ($this->x == false) {
+      			$this->x = (1 / $this->C) * $this->z;
+     			$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+			} else {
+			      // Compute prediction
+			      $predX = $this->predict($u);
+			      $predCov = $this->uncertainty();
+
+			      // Kalman gain
+			      $K = $predCov * $this->C * (1 / (($this->C * $predCov * $this->C) + $this->Q));
+
+			      // Correction
+			      $this->x = $predX + $K * ($z - ($this->C * $predX));
+			      $this->cov = $predCov - ($K * $this->C * $predCov);
+			    }
+
+			    return $this->x;
+			}
+
+			//predict next value
+			function  predict($u = 0) {
+    			return ($this->A * $this->x) + ($this->B * $u);
+			}
+
+			 //  Return uncertainty of filter
+			 function uncertainty() {
+			    return (($this->A * $this->cov) * $this->A) + $this->R;
+			  }
+
+			//  Return the last filtered measurement
+ 			function lastMeasurement() {
+    			return $this->x;
+  			}
+
+  			// Set measurement noise Q
+  			function setMeasurementNoise($noise) {
+    			$this->Q = $noise;
+  			}
+
+  			// Set the process noise R
+	 		function setProcessNoise($noise) {
+    			$this->R = $noise;
+	 		}
+	}
+
+
+
 
 
 	function deltaFilter($value, $iterations, $sensor) {
@@ -107,5 +176,4 @@
 		}
 		mysqli_close($db);
 	}
-
 ?>
