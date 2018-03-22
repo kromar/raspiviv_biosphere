@@ -1,12 +1,12 @@
 <?php
 		include_once '/var/www/html/log.php';
-		global $temperature, $humidity, $debugMode;
+		global $temperature, $humidity, $debugMode, $x;
 		$debugMode = true;
 
 	function kalmanFilter($z=0, $u=0) {
-		global $debugMode;
-		$R = 0.01;
-		$Q = 20;
+		global $debugMode, $x;
+		$R = 0.01; 	 // noise power desirable
+		$Q = 20;  	// noise power estimated
 		$A = 1.1;
 		$B = 0;
 		$C = 1;
@@ -14,8 +14,8 @@
 			logToFile("TEST1: ", $z, '>>>>>>>>');
 		}
 
-		$R = $R; 	// noise power desirable
-		$Q = $Q;   // noise power estimated
+		$R = $R;
+		$Q = $Q;
 		$B = $B;
 		$cov = $cov;
 		$x = $x; 	 // estimated signal without noise
@@ -23,6 +23,9 @@
 		if ($x == null) {
 			$x = (1 / $C) * $z;
      		$cov = (1 / $C) * $Q * (1 / $C);
+			if ($debugMode==true) {
+				logToFile("initializing X: ", $x, '');
+			}
 		} else {
 			if ($debugMode==true) {
 				logToFile("TEST3: ", $z, $u);

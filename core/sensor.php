@@ -14,10 +14,6 @@
 		$output = array();
 		global $debugMode;
 
-		if ($debugMode==true) {
-			logToFile("running sensors.php", "readSensor", '');
-		}
-
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 		$count = count($output);
