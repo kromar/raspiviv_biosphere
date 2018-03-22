@@ -5,7 +5,7 @@
 	global $deltaTemperature, $deltaHumidity;
 	$debugMode = true;
 	if ($debugMode==true) {
-		logToFile("running sensors.php", '', '<<<<<<<<');
+		logToFile("running sensors.php", '', '');
 	}
 
 
@@ -29,41 +29,33 @@
 					//Apply kalman filter
 					$temperature = kalmanFilter($value);
 				}
-
-
-				//only if we get both values we write to the database
-				if ($temperature && $humidity) {
-					if ($debugMode==true) {
-						logToFile("all values exist", $humidity, $temperature);
-					}
-
-					$servername = "localhost";
-					$username = "datalogger";
-					$password = "datalogger";
-					$dbname = "datalogger";
-
-					// Create connection
-					$db = mysqli_connect($servername, $username, $password, $dbname);
-					// Check connection
-					if (!$db) { die("Connection failed: " . mysqli_connect_error()); }
-
-					mysqli_select_db($db, "datalogger");
-					$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
-					mysqli_query($db, $q);
-					mysqli_close($db);
-					continue;
-
-				$debugMode = false;
-				} else {
-					if ($debugMode==true) {
-						logToFile("only one value", '', '');
-					}
-				}
 			} else {
+				break;
 				if ($debugMode==true) {
 						logToFile("mysql value missing", '', '');
 					}
 			}
+
+			//only if we get both values we write to the database
+			//if ($temperature && $humidity) {
+			if ($debugMode==true) {
+				logToFile("all values exist", $humidity, $temperature);
+			}
+			$servername = "localhost";
+			$username = "datalogger";
+			$password = "datalogger";
+			$dbname = "datalogger";
+
+			// Create connection
+			$db = mysqli_connect($servername, $username, $password, $dbname);
+			// Check connection
+			if (!$db) { die("Connection failed: " . mysqli_connect_error()); }
+
+			mysqli_select_db($db, "datalogger");
+			$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
+			mysqli_query($db, $q);
+			mysqli_close($db);
+			//continue;
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');
