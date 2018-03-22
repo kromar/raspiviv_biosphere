@@ -6,14 +6,16 @@
 	$debugMode = true;
 
 
-	if ($debugMode==true) {
-		logToFile("running sensors.php", '', '');
-	}
+
 
 	function readSensor($sensor) {
 		$time = date('H:i:s');
 		$output = array();
 		global $debugMode;
+
+		if ($debugMode==true) {
+			logToFile("running sensors.php", 'readSensor', '');
+		}
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -26,7 +28,7 @@
 				if ($i == 0) {
 
 					//Apply kalman filter
-					$filteredValue = kalmanFilter($humidity);
+					$filteredValue = kalmanFilter($value);
 
 
 					if ($debugMode==true) {
