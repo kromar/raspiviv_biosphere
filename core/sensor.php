@@ -6,6 +6,9 @@
 	$debugMode = true;
 
 
+	if ($debugMode==true) {
+		logToFile("running sensors.php", '', '################');
+	}
 
 
 	function readSensor($sensor) {
@@ -22,44 +25,53 @@
 		$count = count($output);
 
 		for ($i = 0; $i < $count; $i++) {
-			$value = floatval($output[$i]);
+			$value = float($output[$i]);
+
 			if ($value) {
 				//filter humidity
-				if ($i == 0) {
-
+				if ($i == 0) { 			//humidity sensor
 					//Apply kalman filter
 					$filteredValue = kalmanFilter($value);
-
-
 					if ($debugMode==true) {
 						logToFile("get filter humidity", $value, $i);
 						logToFile("filtered humidity", $filteredValue, '<<<<<<<<');
-
 					}
-					 $valueInDeltaRange = deltaFilter($value, $i, $sensor);
 
 
+					 //apply delta filter
+					 /*
+					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$humidity = $value;
 					 } else {
 					 	$humidity  = null;
 					 }
+					 */
 				}
+
 				//filter temperature
-				if ($i == 1) {
+				if ($i == 1) {  		// temp sensor
+					//Apply kalman filter
+					$filteredValue = kalmanFilter($value);
 					if ($debugMode==true) {
-						logToFile("get filter value temperature", $value, $i);
+						logToFile("get filter temperature", $value, $i);
+						logToFile("filtered temperature", $filteredValue, '<<<<<<<<');
 					}
+
+					//apply delta filter
+					/*
 					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$temperature = $value;
 					 } else {
 					 	$temperature  = null;
 					 }
+					 */
 				}
 
 
 				//only if we get both values we write to the database
+				/*
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
@@ -87,7 +99,12 @@
 						logToFile("only one value", '', '');
 					}
 				}
+			} else {
+				if ($debugMode==true) {
+						logToFile("mysql value missing", '', '');
+					}
 			}
+			*/
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');
