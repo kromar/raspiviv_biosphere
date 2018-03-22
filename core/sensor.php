@@ -35,7 +35,7 @@
 
 					if ($debugMode==true) {
 						logToFile("get filter humidity", $value, $i);
-						logToFile("filtered humidity", $filteredValue, $i);
+						logToFile("filtered humidity", $filteredValue, '<<<<<<<<');
 
 					}
 					 $valueInDeltaRange = deltaFilter($value, $i, $sensor);

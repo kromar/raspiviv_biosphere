@@ -130,7 +130,7 @@
 				// todo: when within 0-100 then continue
 				if ($humiditySensor > $filterMin && $humiditySensor < $filterMax) {
 					if ($debugMode==true) {
-						logToFile("filtering value $iterations", $value, $iterations);
+						logToFile("delta filtering value $iterations", $value, $iterations);
 					}
 
 					//check if sensor reading deviates by delta to the last sensor reading
