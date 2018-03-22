@@ -41,21 +41,22 @@
 		public $B = 0;
 		public $C = 1;
 
+			const R = $R; 	// noise power desirable
+			const Q = $Q;   // noise power estimated
+			const B = $B;
+			const cov = null;
+			const x = null; 	 // estimated signal without noise
+
 		// Filter a new value
 		function filter($z, $u=0) {
 
 			logToFile("TEST1: ", $z, $u);
 
-			$this->R = $R; 	// noise power desirable
-			$this->Q = $Q;   // noise power estimated
-			$this->B = $B;
-			$this->cov = null;
-			$this->x = null; 	 // estimated signal without noise
 
 			if ($x == null) {
 				logToFile("TEST2: ", $z, $u);
-      			$x = (1 / $C) * $z;
-     			$cov = (1 / $C) * $Q * (1 / $C);
+      			$x = (1 / $this->C) * $z;
+     			$cov = (1 / $this->C) * $this->Q * (1 / $thiss->C);
 				logToFile("TEST2 OUTPUT: ", $x, $cov);
 
 			} else {
