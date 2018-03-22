@@ -1,5 +1,5 @@
 <?PHP
-require_once("./include/fg_membersite.php");
+require_once("./fg_membersite.php");
 
 $fgmembersite = new FGMembersite();
 
