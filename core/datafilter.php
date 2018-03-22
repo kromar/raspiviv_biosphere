@@ -53,26 +53,32 @@
 			$this->x = null; 	 // estimated signal without noise
 
 			if ($this->x == null) {
+				logToFile("TEST2: ", $z, $u);
       			$this->x = (1 / $this->C) * $this->z;
      			$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 			} else {
-			      // Compute prediction
-			      $predX = $this->predict($u);
-			      $predCov = $this->uncertainty();
+				logToFile("TEST3: ", $z, $u);
+			    // Compute prediction
+			    $predX = $this->predict($u);
+			    $predCov = $this->uncertainty();
 
-			      // Kalman gain
-			      $K = $predCov * $this->C * (1 / (($this->C * $predCov * $this->C) + $this->Q));
+			    // Kalman gain
+			    $K = $predCov * $this->C * (1 / (($this->C * $predCov * $this->C) + $this->Q));
+				logToFile("TEST GAIN: ", $K, '');
 
-			      // Correction
-			      $this->x = $predX + $K * ($z - ($this->C * $predX));
-			      $this->cov = $predCov - ($K * $this->C * $predCov);
-			    }
+			     // Correction
+			     $this->x = $predX + $K * ($z - ($this->C * $predX));
+			     $this->cov = $predCov - ($K * $this->C * $predCov);
+			     logToFile("TEST CORRECTION: ", $this->x, $this->cov);
+				}
 
+				logToFile("TEST REETURN: ", $this->x, '');
 			    return $this->x;
 			}
 
 			//predict next value
 			function  predict($u = 0) {
+				logToFile("TEST PREDICT: ", $u, $u);
     			return ($this->A * $this->x) + ($this->B * $u);
 			}
 
