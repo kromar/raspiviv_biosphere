@@ -37,28 +37,29 @@
 			}
 		}
 		//only if we get both values we write to the database
-		//if ($temperature && $humidity) {
-		if ($debugMode==true) {
-			logToFile("all values exist", $humidity, $temperature);
+		if ($temperature && $humidity) {
+			if ($debugMode==true) {
+				logToFile("all values exist", $humidity, $temperature);
+			}
+			$servername = "localhost";
+			$username = "datalogger";
+			$password = "datalogger";
+			$dbname = "datalogger";
+
+			// Create connection
+			$db = mysqli_connect($servername, $username, $password, $dbname);
+			// Check connection
+			if (!$db) { die("Connection failed: " . mysqli_connect_error()); }
+
+			mysqli_select_db($db, "datalogger");
+			$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
+			mysqli_query($db, $q);
+			mysqli_close($db);
+			//continue;
 		}
-		$servername = "localhost";
-		$username = "datalogger";
-		$password = "datalogger";
-		$dbname = "datalogger";
-
-		// Create connection
-		$db = mysqli_connect($servername, $username, $password, $dbname);
-		// Check connection
-		if (!$db) { die("Connection failed: " . mysqli_connect_error()); }
-
-		mysqli_select_db($db, "datalogger");
-		$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
-		mysqli_query($db, $q);
-		mysqli_close($db);
-		//continue;
-	}
-	if ($debugMode==true) {
-		logToFile("=============================", '', '');
+		if ($debugMode==true) {
+			logToFile("=============================", '', '');
+		}
 	}
 
 
