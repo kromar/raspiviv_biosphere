@@ -26,8 +26,11 @@
 				if ($i == 0) {
 
 					//Apply kalman filter
-					$kalmanFilter = new KalmanFilter();
-					$filteredValue = kalmanFilter.filter($value);
+					$kF = new KalmanFilter();
+					$kF->R = 0.01;
+					$kF->Q = 20;
+					$kF->A = 1.1;
+					$filteredValue =  $kF->filter($value, 0);
 
 
 					if ($debugMode==true) {

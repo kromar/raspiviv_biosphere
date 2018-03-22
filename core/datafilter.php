@@ -46,10 +46,10 @@
 			$this->R = $R; 	// noise power desirable
 			$this->Q = $Q;   // noise power estimated
 			$this->B = $B;
-			$this->cov = false;
-			$this->x = false; 	 // estimated signal without noise
+			$this->cov = null;
+			$this->x = null; 	 // estimated signal without noise
 
-			if ($this->x == false) {
+			if ($this->x == null) {
       			$this->x = (1 / $this->C) * $this->z;
      			$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 			} else {
