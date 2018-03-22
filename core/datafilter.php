@@ -1,10 +1,13 @@
 <?php
 		include_once '/var/www/html/log.php';
-		$debugMode = true;
 
 		global $temperature, $humidity, $debugMode;
 		global $debugMode, $x,$B,$A,$R,$C,$cov,$Q;
+		$debugMode = true;
+
 		function kalmanFilter($z=0, $u=0) {
+			global $debugMode;
+
 			$R = 0.01; 	 // noise power desirable
 			$Q = 20;  	// noise power estimated
 			$A = 1.1;
