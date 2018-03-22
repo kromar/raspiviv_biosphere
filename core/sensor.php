@@ -39,14 +39,14 @@
 
 
 					 //apply delta filter
-					 /*
+					 //*
 					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$humidity = $value;
 					 } else {
 					 	$humidity  = null;
 					 }
-					 */
+					 //**/
 				}
 
 				//filter temperature
@@ -59,19 +59,19 @@
 					}
 
 					//apply delta filter
-					/*
+					//*
 					$valueInDeltaRange = deltaFilter($value, $i, $sensor);
 					 if ($valueInDeltaRange == true) {
 					 	$temperature = $value;
 					 } else {
 					 	$temperature  = null;
 					 }
-					 **/
+					 //**/
 				}
 
 
 				//only if we get both values we write to the database
-				/*
+				//*
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
@@ -104,7 +104,7 @@
 						logToFile("mysql value missing", '', '');
 					}
 			}
-			**/
+			//**/
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');
