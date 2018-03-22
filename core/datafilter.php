@@ -40,8 +40,6 @@
 		public $A = 1;
 		public $B = 0;
 		public $C = 1;
-		public $cov = NULL;
-		public $x = NULL;
 
 		// Filter a new value
 		function filter($z, $u=0) {
@@ -51,13 +49,15 @@
 			$this->R = $R; 	// noise power desirable
 			$this->Q = $Q;   // noise power estimated
 			$this->B = $B;
-			$this->cov = $cov;
-			$this->x = $x; 	 // estimated signal without noise
+			$this->cov = null;
+			$this->x = null; 	 // estimated signal without noise
 
 			if ($this->x == null) {
 				logToFile("TEST2: ", $z, $u);
       			$this->x = (1 / $this->C) * $this->z;
      			$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+				logToFile("TEST2 OUTPUT: ", $x, $cov);
+
 			} else {
 				logToFile("TEST3: ", $z, $u);
 			    // Compute prediction
