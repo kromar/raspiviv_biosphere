@@ -34,7 +34,6 @@
 					$filteredValue = kalmanFilter($value);
 					if ($debugMode==true) {
 						logToFile("get filter humidity", $value, $i);
-						logToFile("filtered humidity", $filteredValue, '<<<<<<<<');
 					}
 				}
 
@@ -51,6 +50,7 @@
 
 				//only if we get both values we write to the database
 				//*
+				$debugMode = false;
 				if ($temperature && $humidity) {
 					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {

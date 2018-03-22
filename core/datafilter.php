@@ -28,7 +28,7 @@
 		}
 	}
 
-	function kalmanFilter($z=0, $u=0, ) {
+	function kalmanFilter($z=0, $u=0) {
 		global $debugMode;
 
 
