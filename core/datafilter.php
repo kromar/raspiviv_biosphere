@@ -63,6 +63,7 @@
 			    // Compute prediction
 			    $predX = $this->predict($u);
 			    $predCov = $this->uncertainty();
+				logToFile("TEST PREDICTIONS: ", $predX, $predCov);
 
 			    // Kalman gain
 			    $K = $predCov * $this->C * (1 / (($this->C * $predCov * $this->C) + $this->Q));
