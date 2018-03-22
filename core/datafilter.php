@@ -34,6 +34,7 @@
 
 
 	class kalmanFilter {
+
 		public $R = 1;
 		public $Q = 1;
 		public $A = 1;
@@ -42,6 +43,8 @@
 
 		// Filter a new value
 		function filter($z, $u=0) {
+
+			logToFile("TEST1: ", $z, $u);
 
 			$this->R = $R; 	// noise power desirable
 			$this->Q = $Q;   // noise power estimated
