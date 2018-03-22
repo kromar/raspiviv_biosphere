@@ -4,8 +4,6 @@
 	global $temperature, $humidity, $debugMode;
 	global $deltaTemperature, $deltaHumidity;
 	$debugMode = true;
-
-
 	if ($debugMode==true) {
 		logToFile("running sensors.php", '', '<<<<<<<<');
 	}
