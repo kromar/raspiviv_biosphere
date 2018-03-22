@@ -1,18 +1,23 @@
 <?php
 		include_once '/var/www/html/log.php';
 
-		global $temperature, $humidity, $debugMode;
-		global $debugMode, $x,$B,$A,$R,$C,$cov,$Q;
+		global $debugMode;
+		global $R,$Q,$A,$B,$C,$cov,$x;
 		$debugMode = true;
+
+		$x = null;
+		$cov = null;
+		$R = 0.01; 	 // noise power desirable
+		$Q = 20;  	// noise power estimated
+		$A = 1.1;
+		$B = 0;
+		$C = 1;
 
 		function kalmanFilter($z=0, $u=0) {
 			global $debugMode;
+			global $R,$Q,$A,$B,$C,$cov,$x;
 
-			$R = 0.01; 	 // noise power desirable
-			$Q = 20;  	// noise power estimated
-			$A = 1.1;
-			$B = 0;
-			$C = 1;
+
 			if ($debugMode==true) {
 				logToFile("TEST1: ", $z, '>>>>>>>>');
 			}
