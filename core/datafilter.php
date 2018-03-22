@@ -52,10 +52,10 @@
 			$this->cov = null;
 			$this->x = null; 	 // estimated signal without noise
 
-			if ($this->x == null) {
+			if ($x == null) {
 				logToFile("TEST2: ", $z, $u);
-      			$x = (1 / $this->C) * $this->z;
-     			$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+      			$x = (1 / $C) * $z;
+     			$cov = (1 / $C) * $Q * (1 / $C);
 				logToFile("TEST2 OUTPUT: ", $x, $cov);
 
 			} else {
