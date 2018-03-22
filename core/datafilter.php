@@ -54,8 +54,8 @@
 
 			if ($this->x == null) {
 				logToFile("TEST2: ", $z, $u);
-      			$this->x = (1 / $this->C) * $this->z;
-     			$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+      			$x = (1 / $this->C) * $this->z;
+     			$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 				logToFile("TEST2 OUTPUT: ", $x, $cov);
 
 			} else {
@@ -70,8 +70,8 @@
 				logToFile("TEST GAIN: ", $K, '');
 
 			     // Correction
-			     $this->x = $predX + $K * ($z - ($this->C * $predX));
-			     $this->cov = $predCov - ($K * $this->C * $predCov);
+			     $x = $predX + $K * ($z - ($this->C * $predX));
+			     $cov = $predCov - ($K * $this->C * $predCov);
 			     logToFile("TEST CORRECTION: ", $this->x, $this->cov);
 				}
 
