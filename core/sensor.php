@@ -2,8 +2,8 @@
 	include_once '/var/www/html/log.php';
 	include 'datafilter.php';
 	global $temperature, $humidity, $debugMode;
-	global $deltaTemperature, $deltaHumidity;
 	$debugMode = true;
+
 	if ($debugMode==true) {
 		logToFile("running sensors.php", '', '');
 	}
@@ -12,7 +12,9 @@
 	function readSensor($sensor) {
 		$time = date('H:i:s');
 		$output = array();
-		global $debugMode;
+		global $temperature, $humidity, $debugMode;
+		$temperature = null;
+		$humidity = null;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
