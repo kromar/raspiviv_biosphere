@@ -26,11 +26,7 @@
 				if ($i == 0) {
 
 					//Apply kalman filter
-					$kF = new KalmanFilter();
-					$kF->R = 0.01;
-					$kF->Q = 20;
-					$kF->A = 1.1;
-					$filteredValue =  $kF->filter($value, 0);
+					$filteredValue = kalmanFilter($humidity);
 
 
 					if ($debugMode==true) {

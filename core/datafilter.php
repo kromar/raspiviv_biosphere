@@ -32,83 +32,72 @@
 		}
 	}
 
+	function kalmanFilter($z=0, $u=0) {
+		$R = 0.01;
+		$Q = 20;
+		$A = 1.1;
+		$B = 0;
+		$C = 1;
+		logToFile("TEST1: ", $z, $u);
 
-	class kalmanFilter {
+		$R = $R; 	// noise power desirable
+		$Q = $Q;   // noise power estimated
+		$B = $B;
+		$cov = null;
+		$x = null; 	 // estimated signal without noise
 
-		public $R = 1;
-		public $Q = 1;
-		public $A = 1;
-		public $B = 0;
-		public $C = 1;
+		logToFile("TEST1 INPUT VALUES: ", $R, $Q);
 
-		// Filter a new value
-		function filter($z, $u=0) {
+		if ($x == null) {
+			$x = (1 / $C) * $z;
+     		$cov = (1 / $C) * $Q * (1 / $C);
+			logToFile("TEST2 OUTPUT: ", $x, $cov);
+		} else {
+			logToFile("TEST3: ", $z, $u);
+		    // Compute prediction
+		    $predX = $predict($u);
+		    $predCov = $uncertainty();
+			logToFile("TEST PREDICTIONS: ", $predX, $predCov);
 
-			logToFile("TEST1: ", $z, $u);
+		    // Kalman gain
+		    $K = $predCov * $C * (1 / (($C * $predCov * $C) + $Q));
+			logToFile("TEST GAIN: ", $K, '');
 
-			$this->R = $R; 	// noise power desirable
-			$this->Q = $Q;   // noise power estimated
-			$this->B = $B;
-			$this->cov = null;
-			$this->x = null; 	 // estimated signal without noise
-
-			logToFile("TEST1 INPUT VALUES: ", $R, $Q);
-
-			if ($x == null) {
-				logToFile("TEST2: ", $z, $u);
-      			$x = (1 / $this->C) * $z;
-     			$cov = (1 / $this->C) * $this->Q * (1 / $thiss->C);
-				logToFile("TEST2 OUTPUT: ", $x, $cov);
-
-			} else {
-				logToFile("TEST3: ", $z, $u);
-			    // Compute prediction
-			    $predX = $this->predict($u);
-			    $predCov = $this->uncertainty();
-				logToFile("TEST PREDICTIONS: ", $predX, $predCov);
-
-			    // Kalman gain
-			    $K = $predCov * $this->C * (1 / (($this->C * $predCov * $this->C) + $this->Q));
-				logToFile("TEST GAIN: ", $K, '');
-
-			     // Correction
-			     $x = $predX + $K * ($z - ($this->C * $predX));
-			     $cov = $predCov - ($K * $this->C * $predCov);
-			     logToFile("TEST CORRECTION: ", $this->x, $this->cov);
-				}
-
-				logToFile("TEST RETURN: ", $this->x, '');
-			    return $this->x;
+		     // Correction
+		     $x = $predX + $K * ($z - ($C * $predX));
+		     $cov = $predCov - ($K * $C * $predCov);
+		     logToFile("TEST CORRECTION: ", $x, $cov);
 			}
 
-			//predict next value
-			function  predict($u = 0) {
-				logToFile("TEST PREDICT: ", $u, $u);
-    			return ($this->A * $this->x) + ($this->B * $u);
-			}
+			logToFile("TEST RETURN: ", $x, '');
+		    return $x;
 
-			 //  Return uncertainty of filter
-			 function uncertainty() {
-			    return (($this->A * $this->cov) * $this->A) + $this->R;
-			  }
+		//predict next value
+		function  predict($u = 0) {
+			logToFile("TEST PREDICT: ", $u, $u);
+   			return ($A * $x) + ($B * $u);
+		}
 
-			//  Return the last filtered measurement
- 			function lastMeasurement() {
-    			return $this->x;
-  			}
+		//  Return uncertainty of filter
+		function uncertainty() {
+			return (($A * $cov) * $A) + $R;
+		 }
 
-  			// Set measurement noise Q
-  			function setMeasurementNoise($noise) {
-    			$this->Q = $noise;
-  			}
+		//  Return the last filtered measurement
+ 		function lastMeasurement() {
+    		return $x;
+  		}
 
-  			// Set the process noise R
-	 		function setProcessNoise($noise) {
-    			$this->R = $noise;
-	 		}
+  		// Set measurement noise Q
+  		function setMeasurementNoise($noise) {
+    		$Q = $noise;
+  		}
+
+  		// Set the process noise R
+	 	function setProcessNoise($noise) {
+    		$R = $noise;
+	 	}
 	}
-
-
 
 
 
