@@ -6,7 +6,7 @@
 		$debugMode = true;
 
 		function kalmanFilter($z=0, $u=0) {
-			global $debugMode, $x, $cov;
+			global $debugMode;
 
 			$R = 0.01; 	 // noise power desirable
 			$Q = 20;  	// noise power estimated
