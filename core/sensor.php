@@ -26,35 +26,21 @@
 
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
-
 			if ($value) {
-				//filter humidity
 				if ($i == 0) { 			//humidity sensor
 					//Apply kalman filter
-					$filteredValue = kalmanFilter($value);
-					if ($debugMode==true) {
-						logToFile("get filter humidity", $value, $i);
-					}
+					$humidity = kalmanFilter($value);
 				}
-
-				//filter temperature
 				if ($i == 1) {  		// temp sensor
 					//Apply kalman filter
-					$filteredValue = kalmanFilter($value);
-					if ($debugMode==true) {
-						logToFile("get filter temperature", $value, $i);
-						logToFile("filtered temperature", $filteredValue, '<<<<<<<<');
-					}
+					$temperature = kalmanFilter($value);
 				}
 
 
 				//only if we get both values we write to the database
-				//*
-				$debugMode = false;
 				if ($temperature && $humidity) {
-					// TODO: here we need to check for deltas and only write if within
 					if ($debugMode==true) {
-						logToFile("both values exist", $humidity, $temperature);
+						logToFile("all values exist", $humidity, $temperature);
 					}
 
 					$servername = "localhost";
@@ -71,8 +57,9 @@
 					$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
 					mysqli_query($db, $q);
 					mysqli_close($db);
-					//continue;
+					continue;
 
+				$debugMode = false;
 				} else {
 					if ($debugMode==true) {
 						logToFile("only one value", '', '');
@@ -83,7 +70,6 @@
 						logToFile("mysql value missing", '', '');
 					}
 			}
-			//**/
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');
