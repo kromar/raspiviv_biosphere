@@ -88,27 +88,7 @@
 		mysqli_close($db);
 	}
 
-function lowPassFilter($value, $i, $sensor) {
 
-		$average = 0.0;        // the running average
-		$filterWeight = 0.9;   // weight of the current reading in the average
-		$numReadings = 10; // number of readings per average
-
-		function loop() {
-		  $sensorReading;
-
-		  // take ten readings to get a reasonably good sample size
-		  // before printing:
-		  for ( $i = 0; $i < $numReadings; $i++) {
-		    $sensorReading = analogRead(A0);
-		    $average = $filterWeight * ($sensorReading) + (1 - $filterWeight ) * $average;
-		  }
-		  // print the result:
-		  //Serial.println(sensorReading);
-		  //  Serial.print(",");
-		 // Serial.println(average);
-		}
-}
 
 
 	function readSensor($sensor) {
@@ -190,34 +170,5 @@ function lowPassFilter($value, $i, $sensor) {
 	readSensor(8);
 	//readSensor(9);
 
-
-	//change pull for a given amount of time and then switch back to previous pull state
-	/*
-	function timerSensor($pin, $time, $inverted, $reason) {
-		include_once 'log.php';
-		$inverted;
-		$high;
-		$low;
-
-		if ($inverted == true) {
-			$high = 1;
-			$low = 0;
-		} else {
-			$high = 0;
-			$low = 1;
-		}
-
-		if ($time > 0) {
-			exec('/usr/local/bin/gpio mode $pin out');
-			exec('/usr/local/bin/gpio write $pin $low');
-			sleep($time);
-			logToFile("sensor timer", $time."s", $reason);
-			exec('/usr/local/bin/gpio write $pin $high');
-		} elseif ($time == 0) {
-			logToFile("sensor timer", $time."s", $reason);
-			exec('/usr/local/bin/gpio write $pin $high');
-		}
-	}
-	//*/
 ?>
 
