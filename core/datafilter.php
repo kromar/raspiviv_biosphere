@@ -17,8 +17,8 @@
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x === null) {
-					$this->x = (1 / $this->C) * $z;
-		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+					$x = (1 / $this->C) * $z;
+		     		$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
 						logToFile("initializing X: ", $this->x, '');
 					}
