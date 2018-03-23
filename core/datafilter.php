@@ -18,8 +18,9 @@
 				$this->C = $C;
 				$this->Q = $Q;
 				$this->R = $R;
-				//$this->cov = $cov;
-				//$this->x = $x;
+				$this->cov = $cov;
+				$this->x = $x;
+				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x == NULL) {
 					$this->x = (1 / $this->C) * $z;
@@ -35,23 +36,23 @@
 				    $this->predX = $this->predict($u);
 				    $this->predCov = $this->uncertainty();
 					if ($debugMode==true) {
-						logToFile("TEST PREDICTIONS: ", $this->predX, $this->predCov);
+						logToFile("kalman predictions: ", $this->predX, $this->predCov);
 					}
 
 				    // Kalman gain
 				    $this->K = $this->predCov * $this->C * (1 / (($this->C * $this->predCov * $this->C) + $this->Q));
 					if ($debugMode==true) {
-						logToFile("TEST GAIN: ", $this->K, '');
+						logToFile("kalman gain: ", $this->K, '');
 					}
 
 				     // Correction
 				     $this->x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
 				     $this->cov = $this->predCov - ($this->K * $this->C * $this->predCov);
 					if ($debugMode==true) {
-				     	logToFile("TEST CORRECTION: ", $this->x, $this->cov);
+				     	logToFile("kalman correction: ", $this->x, $this->cov);
 					}
 				}
-				logToFile("RETURN FILTERED: ", $this->x, '<<<<<<<<');
+				logToFile("kalman output: ", $this->x, '>>>>>>>');
 			    return $this->x;
 			}
 
