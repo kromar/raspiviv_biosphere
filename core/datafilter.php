@@ -40,14 +40,14 @@
 					}
 
 				     // Correction
-				     $this->x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
-				     $this->cov = $this->predCov - ($this->K * $this->C * $this->predCov);
+				     $x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
+				     $cov = $this->predCov - ($this->K * $this->C * $this->predCov);
 					if ($debugMode==true) {
-				     	logToFile("kalman correction: ", $this->x, $this->cov);
+				     	logToFile("kalman correction: ", $x, $cov);
 					}
 				}
-				logToFile("kalman output: ", $this->x.$x, '>>>>>>>');
-			    return $this->x;
+				logToFile("kalman output: ", $x, '>>>>>>>');
+			    return $x;
 			}
 
 			//predict next value
@@ -57,7 +57,7 @@
 
 			//  Return uncertainty of filter
 			public function uncertainty() {
-				return (($this->A * $this->cov) * $this->A) + $this->R;
+				return (($this->A * $cov) * $this->A) + $this->R;
 			 }
 		}
 
