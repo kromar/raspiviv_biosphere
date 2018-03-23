@@ -9,14 +9,14 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
-			var $x;
-			var $cov;
+			private $x = null;
+			private $cov = null;
 
 			public function filter($z, $u=0) {
 				global $debugMode;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
-				if ($this->x == NULL) {
+				if ($this->x === null) {
 					$this->x = (1 / $this->C) * $z;
 		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
