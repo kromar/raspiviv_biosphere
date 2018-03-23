@@ -20,7 +20,7 @@
 					$x = (1 / $this->C) * $z;
 		     		$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
-						logToFile("initializing X: ", $this->x, '');
+						logToFile("initializing X: ", $this->x, $x);
 					}
 				} else {
 					if ($debugMode==true) {
