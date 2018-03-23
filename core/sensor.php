@@ -23,9 +23,10 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
+					logToFile("HUMIDITY", $value, '');
 					$humidity = new kalmanFilter();
 					$hum= $humidity->filter(50);
-					logToFile("RETURN HUMIDITY", $humidity, $hum);
+					logToFile("RETURN HUMIDITY", $value, $hum);
 
 				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
