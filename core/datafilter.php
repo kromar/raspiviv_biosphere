@@ -16,7 +16,7 @@
 		function kalmanFilter($z=0, $u=0) {
 			global $debugMode;
 			global $R,$Q,$A,$B,$C,$cov,$x;
-
+			$x = null;
 
 			if ($debugMode==true) {
 				logToFile("TEST1: ", $z, '>>>>>>>>');
@@ -62,7 +62,7 @@
 		    return $x;
 
 			//predict next value
-			function  predict($u) {
+			function  predict($u, $x=0) {
 				global $A, $x,$B;
 	   			return ($A * $x) + ($B * $u);
 			}
