@@ -1,75 +1,69 @@
 <?php
 		include_once '/var/www/html/log.php';
-
 		global $debugMode;
-		global $R,$Q,$A,$B,$C,$cov,$x;
 		$debugMode = true;
 
-		$x = null;
-		$cov = null;
-		$R = 0.01; 	 // noise power desirable
-		$Q = 20;  	// noise power estimated
-		$A = 1.1;
-		$B = 0;
-		$C = 1;
+		class kalmanFilter {
+			var $A = 1.1;
+			var $B = 0;
+			var $C = 1;
+			var $R = 0.01;
+			var $Q = 20;
+			private $x = NULL;
+			private $cov = NULL;
 
-		function kalmanFilter($z=0, $u=0) {
-			global $debugMode;
-			global $R,$Q,$A,$B,$C,$cov,$x;
-			$x = null;
+			public function kalmanFilter($z, $u=0) {
+				$this->A = $A;
+				$this->B = $B;
+				$this->C = $C;
+				$this->Q = $Q;
+				$this->R = $R;
+				$this->cov = $cov;
+				$this->x = $x;
 
-			if ($debugMode==true) {
-				logToFile("TEST1: ", $z, '>>>>>>>>');
+				if ($this->x == NULL) {
+					$this->x = (1 / $this->C) * $z;
+		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+					if ($debugMode==true) {
+						logToFile("initializing X: ", $this->x, '');
+					}
+				} else {
+					if ($debugMode==true) {
+						logToFile("TEST3: ", $z, $u);
+					}
+				    // Compute prediction
+				    $this->predX = $this->predict($u);
+				    $this->predCov = $this->uncertainty();
+					if ($debugMode==true) {
+						logToFile("TEST PREDICTIONS: ", $this->predX, $this->predCov);
+					}
+
+				    // Kalman gain
+				    $this->K = $this->predCov * $this->C * (1 / (($this->C * $this->predCov * $this->C) + $this->Q));
+					if ($debugMode==true) {
+						logToFile("TEST GAIN: ", $this->K, '');
+					}
+
+				     // Correction
+				     $this->x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
+				     $this->cov = $this->predCov - ($this->K * $this->C * $this->predCov);
+					if ($debugMode==true) {
+				     	logToFile("TEST CORRECTION: ", $this->x, $this->cov);
+					}
+				}
+				logToFile("RETURN FILTERED: ", $this->x, '<<<<<<<<');
+			    return $this->x;
 			}
-
-			$R = $R;
-			$Q = $Q;
-			$B = $B;
-			$cov = $cov;
-			$x = $x; 	 // estimated signal without noise
-
-			if ($x == null) {
-				$x = (1 / $C) * $z;
-	     		$cov = (1 / $C) * $Q * (1 / $C);
-				if ($debugMode==true) {
-					logToFile("initializing X: ", $x, '');
-				}
-			} else {
-				if ($debugMode==true) {
-					logToFile("TEST3: ", $z, $u);
-				}
-			    // Compute prediction
-			    $predX = predict($u);
-			    $predCov = uncertainty();
-				if ($debugMode==true) {
-					logToFile("TEST PREDICTIONS: ", $predX, $predCov);
-				}
-
-			    // Kalman gain
-			    $K = $predCov * $C * (1 / (($C * $predCov * $C) + $Q));
-				if ($debugMode==true) {
-					logToFile("TEST GAIN: ", $K, '');
-				}
-
-			     // Correction
-			     $x = $predX + $K * ($z - ($C * $predX));
-			     $cov = $predCov - ($K * $C * $predCov);
-				if ($debugMode==true) {
-			     	logToFile("TEST CORRECTION: ", $x, $cov);
-				}
-			}
-			logToFile("RETURN FILTERED: ", $x, '<<<<<<<<');
-		    return $x;
 
 			//predict next value
-			function  predict($u, $x=0) {
-				global $A, $x,$B;
-	   			return ($A * $x) + ($B * $u);
+			public function  predict($u, $x=0) {
+	   			return ($this->A * $x) + ($this->B * $u);
 			}
 
 			//  Return uncertainty of filter
-			function uncertainty() {
-				global $A, $cov,$A,$R;
-				return (($A * $cov) * $A) + $R;
+			public function uncertainty() {
+				return (($this->A * $this->cov) * $this->A) + $this->R;
 			 }
 		}
+
+

@@ -1,10 +1,9 @@
 <?php
 	include_once '/var/www/html/log.php';
 	include 'datafilter.php';
+
 	global $temperature, $humidity, $debugMode;
 	$debugMode = true;
-	$temperature = null;
-	$humidity = null;
 
 	if ($debugMode==true) {
 		logToFile("running sensors.php", '', '');
@@ -14,7 +13,6 @@
 	function readSensor($sensor) {
 		$time = date('H:i:s');
 		$output = array();
-		global $temperature, $humidity, $debugMode;
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -23,13 +21,14 @@
 		for ($i = 0; $i < $count; $i++) {
 			$value = floatval($output[$i]);
 			if ($value) {
-				if ($i == 0) { 			//humidity sensor
+				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
-					$humidity = kalmanFilter($value);
-				}
-				if ($i == 1) {  		// temp sensor
+					$humidity = new kalmanFilter();
+					$humidity->kalmanFilter($value);
+				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
-					$temperature = kalmanFilter($value);
+					$temperature = new kalmanFilter();
+					$temperature->kalmanFilter($value);
 				}
 			} else {
 				break;
