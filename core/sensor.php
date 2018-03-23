@@ -14,6 +14,9 @@
 		$time = date('H:i:s');
 		$output = array();
 
+		$hum = new kalmanFilter();
+		$temp = new kalmanFilter();
+
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
 		$count = count($output);
@@ -23,13 +26,11 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
-					$humidity = new kalmanFilter();
-					$hum= $humidity->filter($value);
+					$humidity= $hum->filter($value);
 
 				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
-					$temperature = new kalmanFilter();
-					$temp = $temperature->filter($value);
+					$temperature = $temp->filter($value);
 				}
 			} else {
 				break;

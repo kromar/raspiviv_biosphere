@@ -10,7 +10,7 @@
 			var $R = 0.01;
 			var $Q = 20;
 
-			public function filter($z, $u=0) {
+			function filter($z, $u=0) {
 				global $debugMode;
 				static $x = null;
 				static $cov = null;
@@ -46,7 +46,7 @@
 				     	logToFile("kalman correction: ", $this->x, $this->cov);
 					}
 				}
-				logToFile("kalman output: ", $this->x, '>>>>>>>');
+				logToFile("kalman output: ", $this->x.$x, '>>>>>>>');
 			    return $this->x;
 			}
 
