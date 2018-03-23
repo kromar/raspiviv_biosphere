@@ -9,18 +9,18 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
-			private $x = null;
-			private $cov = null;
+			private static $x = null;
+			private static $cov = null;
 
 			public function filter($z, $u=0) {
 				global $debugMode;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
-				if ($this->x === null) {
-					$this->x = (1 / $this->C) * $z;
-		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+				if (self::$x === null) {
+					self::$x = (1 / $this->C) * $z;
+		     		self::$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
-						logToFile("initializing X: ", $this->x,'');
+						logToFile("initializing X: ", self::$x,'');
 					}
 				} else {
 					if ($debugMode==true) {
@@ -47,7 +47,7 @@
 					}
 				}
 				logToFile("kalman output: ", $this->x, '>>>>>>>');
-			    return $this->x;
+			    return self::$x;
 			}
 
 			//predict next value
