@@ -9,18 +9,18 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
+			private $x = null;
+			private $cov = null;
 
-			function filter($z, $u=0) {
+			public function filter($z, $u=0) {
 				global $debugMode;
-				static $x = null;
-				static $cov = null;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x === null) {
-					$x = (1 / $this->C) * $z;
-		     		$cov = (1 / $this->C) * $this->Q * (1 / $this->C);
+					$this->x = (1 / $this->C) * $z;
+		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
-						logToFile("initializing X: ", $this->x, $x);
+						logToFile("initializing X: ", $this->x,'');
 					}
 				} else {
 					if ($debugMode==true) {
@@ -40,24 +40,24 @@
 					}
 
 				     // Correction
-				     $x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
-				     $cov = $this->predCov - ($this->K * $this->C * $this->predCov);
+				     $this->x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
+				     $this->cov = $this->predCov - ($this->K * $this->C * $this->predCov);
 					if ($debugMode==true) {
-				     	logToFile("kalman correction: ", $x, $cov);
+				     	logToFile("kalman correction: ", $this->x, $this->cov);
 					}
 				}
-				logToFile("kalman output: ", $x, '>>>>>>>');
-			    return $x;
+				logToFile("kalman output: ", $this->x, '>>>>>>>');
+			    return $this->x;
 			}
 
 			//predict next value
-			public function  predict($u, $x=0) {
-	   			return ($this->A * $x) + ($this->B * $u);
+			public function  predict($u) {
+	   			return ($this->A * $this->x) + ($this->B * $u);
 			}
 
 			//  Return uncertainty of filter
 			public function uncertainty() {
-				return (($this->A * $cov) * $this->A) + $this->R;
+				return (($this->A * $this->cov) * $this->A) + $this->R;
 			 }
 		}
 
