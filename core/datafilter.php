@@ -9,6 +9,8 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
+			var $x = NULL;
+			var $cov = NULL;
 
 			public function filter($z, $u=0) {
 				$this->A = $A;
@@ -16,8 +18,6 @@
 				$this->C = $C;
 				$this->Q = $Q;
 				$this->R = $R;
-				$this->cov = NULL;
-				$this->x = NULL;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 				logToFile("TEST1: ", $this->x, $this->cov);
 
