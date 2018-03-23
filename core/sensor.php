@@ -24,13 +24,13 @@
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
 					$humidity = new kalmanFilter();
-					$humidity->kalmanFilter(50);
-					logToFile("RETURN HUMIDITY", $humidity, '');
+					$hum= $humidity->filter(50);
+					logToFile("RETURN HUMIDITY", $humidity, $hum);
 
 				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
 					$temperature = new kalmanFilter();
-					$temperature->kalmanFilter($value);
+					$temp = $temperature->filter($value);
 				}
 			} else {
 				break;

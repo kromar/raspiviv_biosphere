@@ -12,7 +12,7 @@
 			private $x = NULL;
 			private $cov = NULL;
 
-			public function kalmanFilter($z, $u=0) {
+			public function filter($z, $u=0) {
 				$this->A = $A;
 				$this->B = $B;
 				$this->C = $C;
