@@ -53,7 +53,7 @@
 					}
 				}
 				logToFile("kalman output: ", $this->x, '>>>>>>>');
-			    return $this->x;
+			    return 50 //$this->x;
 			}
 
 			//predict next value
