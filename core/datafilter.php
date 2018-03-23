@@ -9,11 +9,11 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
-			static $x = null;
-			static $cov = null;
 
 			public function filter($z, $u=0) {
 				global $debugMode;
+				static $x = null;
+				static $cov = null;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x === null) {
