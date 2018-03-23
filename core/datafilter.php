@@ -9,8 +9,8 @@
 			var $C = 1;
 			var $R = 0.01;
 			var $Q = 20;
-			private $x = null;
-			private $cov = null;
+			static $x = null;
+			static $cov = null;
 
 			public function filter($z, $u=0) {
 				global $debugMode;
