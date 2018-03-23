@@ -11,6 +11,7 @@
 
 
 	function readSensor($sensor) {
+		global $temperature, $humidity, $debugMode;
 		$time = date('H:i:s');
 		$output = array();
 
