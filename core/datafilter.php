@@ -21,7 +21,7 @@
 				//$this->cov = $cov;
 				//$this->x = $x;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
-				logToFile("TEST1: ", $x,  '');
+				logToFile("TEST1: ", $this->x, $this->cov);
 
 				if ($this->x == NULL) {
 					$this->x = (1 / $this->C) * $z;
