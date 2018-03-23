@@ -13,10 +13,11 @@
 			var $cov = NULL;
 
 			public function filter($z, $u=0) {
+				global $debugMode;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x == NULL) {
-					logToFile("TEST1: ", $C, $this->C);
+					logToFile("TEST1: ", $this->C, $this->Q);
 
 					$this->x = (1 / $this->C) * $z;
 		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
