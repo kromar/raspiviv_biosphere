@@ -6,7 +6,7 @@
 	//$interval = $argv[1];
 	global $tempDay, $tempNight, $humidityDay, $humidityNight;
 	$tempNight = 24.5;  	// 24.5
-	$tempDay = 30.0;		// 26.5
+	$tempDay = 35.0;		// 26.5
 	$humidityNight = 85.0;
 	$humidityDay = 80.0;
 	global $highTempRain, $humidityMin,$lowHumRain;

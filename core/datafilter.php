@@ -3,6 +3,26 @@
 		global $debugMode;
 		$debugMode = true;
 
+		class deltaFilter {
+			// we combpare the current mesured value with the lasst one and
+			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
+
+			static $last;	//our last recorded value
+
+
+			public function filter($value, $d=10) {
+				//lets calculate the delta between measurred points
+				if (self::$last === null) {
+					self::$last = $value;
+					return $value;
+				} else {
+					$this->$delta = ($d/sqrt($value^2 - self::$last^2));
+					self::$last = $value;
+					return $this->delta;
+				}
+			}
+		}
+
 		class kalmanFilter {
 			var $A = 1.1;
 			var $B = 0;
