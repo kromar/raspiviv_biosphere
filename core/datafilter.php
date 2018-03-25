@@ -6,7 +6,7 @@
 		class deltaFilter {
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
-
+			var $delta;
 			static $last;	//our last recorded value
 
 
@@ -16,8 +16,9 @@
 					self::$last = $value;
 					return $value;
 				} else {
-					$this->$delta = ($d/sqrt($value^2 - self::$last^2));
+					$this->delta = abs($d/sqrt(pow($value,2) - pow(self::$last,2)));
 					self::$last = $value;
+					echo $value;
 					return $this->delta;
 				}
 			}
