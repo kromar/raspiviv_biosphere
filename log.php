@@ -1,7 +1,6 @@
 <?php
 	function logToFile($value0, $value1, $value2) {
 		$megabytes = 2;
-		//$file = "/../../log/raspiviv.log";
 		$path ='/var/log/raspiviv/';
 		$file = "raspiviv.log";
 
@@ -20,13 +19,13 @@
 				} catch (Exception $e) {
 					echo 'Caught exception: ',  $e->getMessage(), "\n";
 				}
-			}
-
-		} else {
+			} else {
 				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
-				mkdir($path, 0777, true);
 				fwrite($mylogfile, $curentTime . " reset file size \n");
 				fclose($mylogfile);
 			}
+		} else {
+				mkdir($path, 0777, true);
+		}
 	}
 ?>
