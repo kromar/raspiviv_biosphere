@@ -39,6 +39,7 @@
 
 			public function filter($z, $u=0) {
 				global $debugMode;
+				$debugMode = false;
 				logToFile("kalman input: ", $z,  '<<<<<<<<');
 
 				if ($this->x === null) {
