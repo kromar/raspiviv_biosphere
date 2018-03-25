@@ -12,16 +12,16 @@
 			static $test;
 
 			function __construct() {
-				$this->test = 0;
 				$this->delta = null;
 				$this->last = null;
+				self::$test = 0;
 
 			}
 
 			public function filter($value, $d=10) {
 				global $debugMode;
-				$this->test++;
-				logToFile("deltafilter test ", $this->test, '----------------');
+				self::$test++;
+				logToFile("deltafilter test ", self::$test, '----------------');
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
 					$this->last = $value;
