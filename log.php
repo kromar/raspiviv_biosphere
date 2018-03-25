@@ -2,7 +2,8 @@
 	function logToFile($value0, $value1, $value2) {
 		$megabytes = 2;
 		//$file = "/../../log/raspiviv.log";
-		$file = "/var/log/raspiviv/raspiviv.log";
+		$path ='/var/log/raspiviv/';
+		$file = $path."raspiviv.log";
 		$size = filesize(__DIR__.$file);
 		$curentTime = date('H:i:s');
 
@@ -18,8 +19,7 @@
 			}
 		} else {
 			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
-			wp_mkdir_p( $file );
-			//mkdir('/var/log/raspiviv', 0777, true);
+			mkdir($path, 0777, true);
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
 		}
