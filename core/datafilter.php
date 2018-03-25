@@ -20,6 +20,7 @@
 
 			public function filter($value, $d=10) {
 				global $debugMode;
+				$path ='/var/log/raspiviv/';
 				$file = 'deltaFilter.log';
 				createFile($file);
 

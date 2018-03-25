@@ -1,6 +1,7 @@
 <?php
 	function logToFile($value) {
 		$megabytes = 2;
+		$path ='/var/log/raspiviv/';
 		$file = "raspiviv.log";
 		$size = filesize($path.$file);
 		$curentTime = date('H:i:s');
