@@ -25,8 +25,9 @@
 			$value = floatval($output[$i]);
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
-					$delta = $delta_test->filter($value);
-						logToFile("delta return", $delta, '<<<<<<<<<');
+					//$delta = $delta_test->filter($value);
+ 					$delta = deltaFilter::createPersistent( 'humidity' );
+					logToFile("delta return", $delta, '<<<<<<<<<');
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor
