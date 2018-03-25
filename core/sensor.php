@@ -26,7 +26,7 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					$delta = $delta_test->filter($value);
-						logToFile("delta return" . $delta . '<<<<<<<<<');
+						logToFile("delta return: " . $delta . '<<<<<<<<<');
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor

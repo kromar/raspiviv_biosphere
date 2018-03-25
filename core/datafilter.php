@@ -20,8 +20,12 @@
 
 			public function filter($value, $d=10) {
 				global $debugMode;
+				$file = 'deltaFilter.log';
+				createFile($file);
+
 				self::$test = self::$test+1;
 				logToFile("deltafilter test " . self::$test . '----------------');
+
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
 					$this->last = $value;
