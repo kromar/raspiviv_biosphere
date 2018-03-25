@@ -28,12 +28,14 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
-					$humidity= $hum->filter($value);
+					//$humidity= $hum->filter($value);
 					$delta = $delta_test->filter($value);
+					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
-					$temperature = $temp->filter($value);
+					//$temperature = $temp->filter($value);
+					$temperature = $value;
 				}
 			} else {
 				break;
