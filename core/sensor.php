@@ -17,7 +17,7 @@
 
 		$hum = new kalmanFilter();
 		$temp = new kalmanFilter();
-		$deltatest = new deltaFilter();
+		$delta_test = new deltaFilter();
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -29,7 +29,7 @@
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
 					$humidity= $hum->filter($value);
-					$delta = $deltatest->filter($value);
+					$delta = $delta_est->filter($value);
 					logToFile("deltatest, $delta, '++++++++++');
 
 				} if ($i == 1) {  	// temp sensor
