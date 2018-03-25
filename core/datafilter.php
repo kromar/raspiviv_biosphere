@@ -6,13 +6,12 @@
 		class deltaFilter {
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
-			var $delta = null;
-			static $last =null;	//our last recorded value
+			private $delta = null;
+			private static $last =null;	//our last recorded value
 
 
 			public function filter($value, $d=10) {
 				global $debugMode;
-				$this->delta = $delta;
 				//lets calculate the delta between measurred points
 				if (self::$last === null) {
 					self::$last = $value;
