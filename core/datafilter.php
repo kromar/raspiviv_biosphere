@@ -7,11 +7,13 @@
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
 			private $delta = null;
-			private $last = null;	//our last recorded value
+			private $last = null;		//our last recorded value
+			private $test = 0;
 
 
 			public function filter($value, $d=10) {
 				global $debugMode;
+				$this->test++;
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
 					$this->last = $value;
@@ -25,6 +27,17 @@
 					return $this->delta;
 				}
 			}
+		}
+
+		class Bar
+		{
+		    private $test = 0;
+
+		    public function call()
+		    {
+		        $this->test++;
+		        echo $this->test . PHP_EOL;
+		    }
 		}
 
 		class kalmanFilter {
