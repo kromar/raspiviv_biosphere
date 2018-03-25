@@ -9,7 +9,7 @@
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
 			private $delta;
 			private $last;		//our last recorded value
-			private $test;
+			static $test;
 
 			function __construct() {
 				$this->test = 0;
@@ -20,7 +20,7 @@
 
 			public function filter($value, $d=10) {
 				global $debugMode;
-				static $this->test++;
+				$this->test++;
 				logToFile("deltafilter test ", $this->test, '----------------');
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
