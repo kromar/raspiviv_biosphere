@@ -2,8 +2,10 @@
 	function logToFile($value0, $value1, $value2) {
 		$megabytes = 2;
 		//$file = "/../../log/raspiviv.log";
-		$path ='/var/log/raspiviv/';
+		$path ='/../../log/raspiviv/';
 		$file = $path."raspiviv.log";
+
+		//this crashes when file is not present....
 		$size = filesize(__DIR__.$file);
 		$curentTime = date('H:i:s');
 
