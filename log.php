@@ -3,10 +3,9 @@
 		$megabytes = 2;
 		//$file = "/../../log/raspiviv.log";
 		$path ='/var/log/raspiviv/';
-		$file = $path."raspiviv.log";
+		$file = "raspiviv.log";
 
-		if (file_exists($file)) {
-			//TODO: this crashes when file is not present.... we first neeed to create the log files and folder before we can use them
+		if (file_exists($path.$file)) {
 			$size = filesize($path.$file);
 			$curentTime = date('H:i:s');
 
@@ -24,7 +23,7 @@
 			}
 
 		} else {
-				$mylogfile = fopen($path . $file, "w") or die("Unable to open file!");
+				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
 				mkdir($path, 0777, true);
 				fwrite($mylogfile, $curentTime . " reset file size \n");
 				fclose($mylogfile);
