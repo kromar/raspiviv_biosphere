@@ -10,22 +10,26 @@
 
 			//reset file size if it grows to big
 			if ($size < $megabytes * 1024 * 1000) {
-				$mylogfile = fopen($path.$file, "a") or die("Unable to open file!");
+				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
 				try {
-					//fwrite($mylogfile, $curentTime . " size: " . $size ." file: " . __DIR__ . $file ."\n");
 					fwrite($mylogfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
 					fclose($mylogfile);
 
 				} catch (Exception $e) {
 					echo 'Caught exception: ',  $e->getMessage(), "\n";
+					fwrite($mylogfile, $curentTime . " reset file size \n");
+					fclose($mylogfile);
 				}
-			} else {
+			}
+		} else {
+			try {
+				mkdir($path, 0777, true);
+			} catch (Exception $e) {
+				echo 'Caught exception: ',  $e->getMessage(), "\n";
 				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
 				fwrite($mylogfile, $curentTime . " reset file size \n");
 				fclose($mylogfile);
 			}
-		} else {
-				mkdir($path, 0777, true);
 		}
 	}
 ?>
