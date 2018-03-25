@@ -15,8 +15,7 @@
 		$time = date('H:i:s');
 		$output = array();
 
-		//$delta_test = new deltaFilter();
-		$delta_test = deltaFilter::createPersistent( 'humidity' );
+		$delta_test = new deltaFilter();
 
 		//$escaped_command = escapeshellcmd("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]");
 		exec("sudo loldht $sensor | grep -o [0-9][0-9].[0-9][0-9]", $output);
@@ -27,7 +26,7 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					$delta = $delta_test->filter($value);
-					logToFile("delta return", $delta, '<<<<<<<<<');
+						logToFile("delta return", $delta, '<<<<<<<<<');
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor

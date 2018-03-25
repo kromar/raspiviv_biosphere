@@ -4,80 +4,6 @@
 		$debugMode = true;
 
 
-
-
-
-	/*
- * 	This is my persistent php object base class
- *  -------------------------------------------
- *
- *  how to use it:
- *  1. derive a class via "extends" (see example)
- *  2. call $obj = MyObject::createPersistent( 'abcd' );
- *  3. use the $obj as you want it is now stored automatically!
- *  4. don't belive it? try it!
- *
- */
- class SessionObject{
-
- 	var $storageName;
- 	var $className;
-
-	function __construct(){
-	}
-
-
-	// save this or derived objects on destruction
- 	function __destruct(){
- 		$this->store();
- 	}
-
- 	/*
- 	 * 	a call to this static function searches in the session
- 	 *  for the desired object or alternatively creates a new object
- 	 *  of this kind
- 	 */
-	static function createPersistent( $objectID ){
-		$class = get_called_class();
-		$storageName = $class.'_ID_'.$objectID;
-
-
-		if (array_key_exists($storageName, $_SESSION)){
-			echo 'Restored '.$storageName.'';
-			return $_SESSION[$storageName];
-		} else {
-			echo 'create '.$class.' with ID '.$objectID.'';
-			$temp = new $class();
-			$temp->storageName=$storageName;
-			$temp->className=$class;
-			return $temp;
-		}
-	 }
-
-	// internal store function
- 	function store(){
-		$_SESSION[$this->storageName] = $this;
-		echo "Stored ".$this->storageName.'';
- 	}
-
-
- }
-//Now an persistent object could be as simple as this
-
- /*
-  *  my demo object
-  */
- class MyObject extends SessionObject{
-
- 	var $test;
-
- 	function __construct(){
- 		$this->test = 10;
- 	}
-
- }
-
-
 		class deltaFilter extends SessionObject {
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
@@ -110,11 +36,6 @@
 				}
 			}
 		}
-
-//and the creation call of the object is here
-
- // here is the magic : create the object
- //$obj = MyObject::createPersistent( 'abcd' );
 
 
 
