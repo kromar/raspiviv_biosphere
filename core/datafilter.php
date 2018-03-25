@@ -4,7 +4,7 @@
 		$debugMode = true;
 
 
-		class deltaFilter extends SessionObject {
+		class deltaFilter {
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
 			private $delta;
