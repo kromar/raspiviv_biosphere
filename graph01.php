@@ -27,7 +27,7 @@
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-   	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css">
+<!--    	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css"> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 </head>
