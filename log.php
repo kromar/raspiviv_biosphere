@@ -15,14 +15,14 @@
 					try {
 						fwrite($mylogfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
 						fclose($mylogfile);
-
 					} catch (Exception $e) {
 						echo 'Caught exception: ',  $e->getMessage(), "\n";
 					}
 				}
 			} else {
-					fwrite($mylogfile, $curentTime . " reset file size \n");
-					fclose($mylogfile);
+				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
+				fwrite($mylogfile, $curentTime . " reset file size \n");
+				fclose($mylogfile);
 			}
 		} else {
 			mkdir($path, 0777, true);
