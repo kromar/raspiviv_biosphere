@@ -18,6 +18,8 @@
 			}
 		} else {
 			$mylogfile = fopen(__DIR__ . $file, "w") or die("Unable to open file!");
+			wp_mkdir_p( $file );
+			//mkdir('/var/log/raspiviv', 0777, true);
 			fwrite($mylogfile, $curentTime . " reset file size \n");
 			fclose($mylogfile);
 		}
