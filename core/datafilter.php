@@ -14,10 +14,11 @@
 			public function filter($value, $d=10) {
 				global $debugMode;
 				$this->test++;
+				logToFile("deltafilter test ", $this->test, '----------------');
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
 					$this->last = $value;
-					logToFile("deltafilter initializing last ", $this->last.$value,  '----------------');
+					logToFile("deltafilter initializing last ", $this->last.' '.$value,  '----------------');
 					return $this->last;
 				} else {
 					$this->delta = abs($d/sqrt(pow($value,2) - pow($this->last,2)));
