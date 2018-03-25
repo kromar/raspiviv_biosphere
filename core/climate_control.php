@@ -12,7 +12,7 @@
 	global $highTempRain, $humidityMin,$lowHumRain;
 	$humidityMin = 65.0;
 	$highTempRain = false;
-	$lowHumRain = true;
+	$lowHumRain = false;
 	global $currentTime, $sunriseTime, $sunsetTime;
 	$currentTime = date('H:i');
 	$sunriseTime = ('10:00');

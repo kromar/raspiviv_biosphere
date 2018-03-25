@@ -20,7 +20,7 @@
 
 			public function filter($value, $d=10) {
 				global $debugMode;
-				$this->test++;
+				static $this->test++;
 				logToFile("deltafilter test ", $this->test, '----------------');
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
