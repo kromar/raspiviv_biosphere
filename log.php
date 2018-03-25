@@ -1,5 +1,5 @@
 <?php
-	function logToFile($value0, $value1, $value2) {
+	function logToFile($value) {
 		$megabytes = 2;
 		$path ='/var/log/raspiviv/';
 		$file = "raspiviv.log";
@@ -8,16 +8,11 @@
 			if (file_exists($path.$file)) {
 				$size = filesize($path.$file);
 				$curentTime = date('H:i:s');
-
 				//reset file size if it grows to big
 				if ($size < $megabytes * 1024 * 1000) {
 					$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
-					try {
-						fwrite($mylogfile, "<b> $curentTime  $value0  $value1  $value2 </b> \n");
-						fclose($mylogfile);
-					} catch (Exception $e) {
-						echo 'Caught exception: ',  $e->getMessage(), "\n";
-					}
+					fwrite($mylogfile, "<b> $curentTime  $value</b> \n");
+					fclose($mylogfile);
 				}
 			} else {
 				$mylogfile = fopen($path.$file, "w") or die("Unable to open file!");
