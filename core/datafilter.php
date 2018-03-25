@@ -20,15 +20,15 @@
 
 			public function filter($value, $d=10) {
 				global $debugMode;
-				self::$test++;
+				self::$test = self::$test+1;
 				logToFile("deltafilter test ", self::$test, '----------------');
 				//lets calculate the delta between measurred points
 				if ($this->last === null) {
 					$this->last = $value;
-					logToFile("deltafilter initializing last ", $this->last.' '.$value,  '----------------');
+					logToFile("deltafilter initializing last ", $this->last,  '----------------');
 					return $this->last;
 				} else {
-					$this->delta = abs($d/sqrt(pow($value,2) - pow($this->last,2)));
+					$this->delta = abs($d / sqrt(pow($value, 2) - pow($this->last, 2)));
 					logToFile("new delta ", $this->delta,  '+++++++++++');
 					$this->last = $value;
 					logToFile("deltafilter updating last ", $this->last,  '+++++++++++');
