@@ -7,21 +7,21 @@
 			// we combpare the current mesured value with the lasst one and
 			// 	see how big the delta value is to decide wether we got a vaalid measurement or not
 			private $delta = null;
-			private static $last =null;	//our last recorded value
+			private $last = null;	//our last recorded value
 
 
 			public function filter($value, $d=10) {
 				global $debugMode;
 				//lets calculate the delta between measurred points
-				if (self::$last === null) {
-					self::$last = $value;
-					logToFile("initializing last ", self::$last,  '----------------');
-					return self::$last;
+				if ($this->last === null) {
+					$this->last = $value;
+					logToFile("deltafilter initializing last ", $this->last.$value,  '----------------');
+					return $this->last;
 				} else {
-					$this->delta = abs($d/sqrt(pow($value,2) - pow(self::$last,2)));
+					$this->delta = abs($d/sqrt(pow($value,2) - pow($this->last,2)));
 					logToFile("new delta ", $this->delta,  '+++++++++++');
-					self::$last = $value;
-					logToFile("updating last ", self::$last,  '+++++++++++');
+					$this->last = $value;
+					logToFile("deltafilter updating last ", $this->last,  '+++++++++++');
 					return $this->delta;
 				}
 			}
