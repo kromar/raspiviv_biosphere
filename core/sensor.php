@@ -29,8 +29,7 @@
 				if ($i == 0) {		//humidity sensor
 					//Apply kalman filter
 					$humidity= $hum->filter($value);
-					$delta = $delta_est->filter($value);
-					logToFile("deltatest, $delta, '++++++++++');
+					$delta = $delta_test->filter($value);
 
 				} if ($i == 1) {  	// temp sensor
 					//Apply kalman filter
