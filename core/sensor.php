@@ -26,7 +26,7 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					$delta = $delta_test->filter($value);
-						logToFile("delta return: " . $sensor . $delta . '<<-----');
+						logToFile ( "delta return: " . $sensor . " " . $delta . " " . '<<-----' );
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor
@@ -42,7 +42,7 @@
 		//only if we get both values we write to the database
 		if ($temperature && $humidity) {
 			if ($debugMode==true) {
-				logToFile("all values exist". $sensor . $humidity . $temperature);
+				logToFile("all values exist: " . $sensor . " " . $humidity . " " . $temperature);
 			}
 			$servername = "localhost";
 			$username = "datalogger";
