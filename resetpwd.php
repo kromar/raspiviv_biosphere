@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Reset Password</title>
       <link rel="STYLESHEET" type="text/css" href="style/fg_membersite.css">
-      <script type='text/javascript' src='scripts/gen_validatorv31.js'></script>
+      <script type='text/javascript' src='scripts/gen_validatorv4.js'></script>
 </head>
 <body>
 <div id='fg_membersite_content'>
