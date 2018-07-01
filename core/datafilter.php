@@ -89,7 +89,7 @@
 				     	logToFile("kalman correction: " . $this->x . $this->cov);
 					}
 				}
-				logToFile("kalman output: " . $this->x  '----->>');
+				logToFile("kalman output: " . $this->x .  '----->>');
 			    return $this->x;
 			}
 
