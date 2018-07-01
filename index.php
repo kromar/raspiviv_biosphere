@@ -28,7 +28,7 @@
     <!--    	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css"/> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
-</head>
+
 
 	<!-- ROOM TEMP GAUGE -->
 	<script type="text/javascript">
@@ -103,7 +103,7 @@
 							die("Connection failed: " . mysqli_connect_error());
 						}
 
-						$sql = "SELECT humidity FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
+						$sql = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
 						$result = mysqli_query($conn, $sql);
 
 						if (mysqli_num_rows($result) > 0) {
@@ -257,7 +257,7 @@
 					die("Connection failed: " . mysqli_connect_error());
 				}
 				$q = "select * from $dbname ";
-				$q = $q . "where sensor = 9 ";
+				$q = $q . "where sensor = 8 ";
 				$q = $q . "order by date_time desc ";
 				$q = $q . "limit 4320";
 				$result = mysqli_query ($db, $q );
