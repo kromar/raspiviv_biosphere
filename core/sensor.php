@@ -1,6 +1,6 @@
 <?php
 	include_once '../log.php';
-	include './datafilter.php';
+	include 'datafilter.php';
 
 	global $temperature, $humidity, $debugMode;
 	$debugMode = true;
