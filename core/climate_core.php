@@ -13,22 +13,22 @@
 			}
 			else {
 				if ($debugMode==true) {
-					logToFile("shell exec failed",'','');
+					logToFile("shell exec failed");
 				}
 			}
 			$coreActive = true;
 			if ($debugMode==true) {
-				logToFile("core initialized", $interval, $coreActive);
+				logToFile("core initialized". $interval . $coreActive);
 			}
 
 		} else {
 			//for ($i = 0; $i < $max_clients; $i++)
 			//$escaped_command = escapeshellcmd("php /home/pi/sensor.php");
-			//logToFile("escapecommand", $escaped_command,'');
+			//logToFile("escapecommand" . $escaped_command);
 			//exec("php /home/pi/sensor.php");
 			//exec("php cliamte_control.php $interval");	//use ajax so the user wont know the file is loaded
 			if ($debugMode == true) {
-				logToFile("core interval", $interval, $coreActive);
+				logToFile("core interval" . $interval . $coreActive);
 			}
 			sleep($interval);
 		}

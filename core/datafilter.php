@@ -1,5 +1,5 @@
 <?php
-		include_once '/var/www/html/log.php';
+		include_once '../log.php';
 		global $debugMode;
 		$debugMode = true;
 
@@ -57,39 +57,39 @@
 			public function filter($z, $u=0) {
 				global $debugMode;
 				$debugMode = false;
-				logToFile("kalman input: ", $z,  '<<<<<<<<');
+				logToFile("kalman input: " . $z .  '<<-----');
 
 				if ($this->x === null) {
 					$this->x = (1 / $this->C) * $z;
 		     		$this->cov = (1 / $this->C) * $this->Q * (1 / $this->C);
 					if ($debugMode==true) {
-						logToFile("initializing X: ", $this->x,'');
+						logToFile("initializing X: " . $this->x);
 					}
 				} else {
 					if ($debugMode==true) {
-						logToFile("TEST3: ", $z, $u);
+						logToFile("TEST3: " . $z . $u);
 					}
 				    // Compute prediction
 				    $this->predX = $this->predict($u);
 				    $this->predCov = $this->uncertainty();
 					if ($debugMode==true) {
-						logToFile("kalman predictions: ", $this->predX, $this->predCov);
+						logToFile("kalman predictions: " . $this->predX . $this->predCov);
 					}
 
 				    // Kalman gain
 				    $this->K = $this->predCov * $this->C * (1 / (($this->C * $this->predCov * $this->C) + $this->Q));
 					if ($debugMode==true) {
-						logToFile("kalman gain: ", $this->K, '');
+						logToFile("kalman gain: " . $this->K);
 					}
 
 				     // Correction
 				     $this->x = $this->predX + $this->K * ($this->z - ($this->C * $this->predX));
 				     $this->cov = $this->predCov - ($this->K * $this->C * $this->predCov);
 					if ($debugMode==true) {
-				     	logToFile("kalman correction: ", $this->x, $this->cov);
+				     	logToFile("kalman correction: " . $this->x . $this->cov);
 					}
 				}
-				logToFile("kalman output: ", $this->x, '>>>>>>>');
+				logToFile("kalman output: " . $this->x  '----->>');
 			    return $this->x;
 			}
 

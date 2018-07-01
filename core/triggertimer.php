@@ -1,11 +1,12 @@
 <?php
-		include_once '/var/www/html/log.php';
-		global $temperature, $humidity, $debugMode;
-		$debugMode = true;
+	include_once '../log.php';
+	global $temperature, $humidity, $debugMode;
+	global $debugMode;
+	$debugMode = true;
 
 	//change pull for a given amount of time and then switch back to previous pull state
 	function timerSensor($pin, $time, $inverted, $reason) {
-		include_once 'log.php';
+		global $debugMode;
 		$inverted;
 		$high;
 		$low;
@@ -22,11 +23,12 @@
 			exec('/usr/local/bin/gpio mode $pin out');
 			exec('/usr/local/bin/gpio write $pin $low');
 			sleep($time);
-			logToFile("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
 		} elseif ($time == 0) {
-			logToFile("sensor timer", $time."s", $reason);
 			exec('/usr/local/bin/gpio write $pin $high');
+		}
+		if ($debugMode == ture){
+			logToFile("sensor timer" . $time."s" . $reason);
 		}
 	}
 

@@ -52,7 +52,7 @@
 				 for ($pin = 0; $pin < count($status); $pin++) {
 				 	if ($init == true) {
 				 		//switch after reboot
-				 		logToFile("init ".$init);
+				 		logToFile ( "init " . $init );
 						if (in_array($pin, $pinmode)) {
 							system("gpio mode $pin out");
 							system("gpio write $pin 1");
@@ -63,7 +63,7 @@
 				 		$init = false;
 				 	} else {
 				 		//do normal switching
-				 		logToFile("init ".$init);
+				 		logToFile ( "init " . $init );
 						system("gpio mode $pin out");
 						system("gpio write $pin $status[$pin]");
 				 	}
@@ -72,7 +72,7 @@
 
 					// if off
 					if ($status[$pin][0] == 0 ) {
-				 		logToFile("if off ".$pin.' '.$status[$pin][0]);
+				 		logToFile ( "if off " . $pin . ' ' . $status [$pin] [0] );
 						//echo ("<img id='button_".$pin."' src='data/img/off/off_".$pin.".png' alt='off'/><br>");
 						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/light_off.png' alt='off'/><br>");
@@ -89,7 +89,7 @@
 					}
 					//if on
 					if ($status[$pin][0] == 1 ) {
-				 		logToFile("if on ".$pin.' '.$status[$pin][0]);
+				 		logToFile ( "if on " . $pin . ' ' . $status [$pin] [0] );
 						//echo ("<img id='button_".$pin."' src='data/img/on/on_".$pin.".png' alt='on'/><br>");
 						if ($pin == 0 or $pin == 1) {
 							echo ("<img id='button_".$pin."' src='data/img/light_on.png' alt='on'/><br>");
@@ -110,7 +110,7 @@
 		 <!-- javascript -->
 		 <script src="../assets/js/buttons_script.js"></script>
 		 <div class="container">
-			 <hr>
+			 <hr/>
 			 <?php include 'footer.php';?>
 		</div>
 	</body>

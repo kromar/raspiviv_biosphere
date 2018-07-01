@@ -1,6 +1,6 @@
 <?php
-	include_once '/var/www/html/log.php';
-	include 'datafilter.php';
+	include_once '../log.php';
+	include './datafilter.php';
 
 	global $temperature, $humidity, $debugMode;
 	$debugMode = true;
@@ -26,7 +26,7 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					$delta = $delta_test->filter($value);
-						logToFile("delta return: " . $delta . '<<<<<<<<<');
+						logToFile("delta return: " . $sensor . $delta . '<<-----');
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor
@@ -42,7 +42,7 @@
 		//only if we get both values we write to the database
 		if ($temperature && $humidity) {
 			if ($debugMode==true) {
-				logToFile("all values exist", $humidity, $temperature);
+				logToFile("all values exist". $sensor . $humidity . $temperature);
 			}
 			$servername = "localhost";
 			$username = "datalogger";
@@ -60,7 +60,7 @@
 			mysqli_close($db);
 		}
 		if ($debugMode==true) {
-			logToFile("=============================", '', '');
+			logToFile("============ end ===========");
 		}
 	}
 
