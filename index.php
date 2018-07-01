@@ -428,7 +428,7 @@
 
 
 		<div class="container">
-			<?php include 'footer.php';?>
+			<!--  <?php include 'footer.php';?> -->
 		</div>
 	</BODY>
 </HTML>
