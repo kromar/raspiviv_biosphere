@@ -1,5 +1,5 @@
 <?php
-	function delOld(){
+	function delOldHistory(){
 		$servername = "localhost";
 		$username = "datalogger";
 		$password = "datalogger";
@@ -18,7 +18,7 @@
 		return 0;
 	}
 
-	function hist($sensor){
+	function sensorHistory($sensor){
 		$servername = "localhost";
 		$username = "datalogger";
 		$password = "datalogger";
@@ -45,8 +45,9 @@
 		mysqli_close($db);
 		return 0;
 	}
-	hist(8);
-	hist(9);
-	delOld();
+	sensorHistory(8);
+	sensorHistory(9);
+	sensorHistory(7);
+	delOldHistory();
 ?>
 

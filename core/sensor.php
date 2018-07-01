@@ -58,7 +58,7 @@
 			$q = "INSERT INTO datalogger VALUES (now(), '$sensor', '$temperature', '$humidity', 0)";
 			mysqli_query($db, $q);
 			mysqli_close($db);
-			//continue;
+			continue;
 		}
 		if ($debugMode==true) {
 			logToFile("=============================", '', '');

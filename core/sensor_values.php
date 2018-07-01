@@ -1,5 +1,7 @@
 <?php
 
+// take apart the sensor values to do some work
+
 	function readSensor($sensor) {
 		while (true) {
 			$time = date('H:i:s');
@@ -13,7 +15,7 @@
 			for ($i = 0; $i < $count; $i++) {
 				$value = floatval($output[$i]);
 				if ($value > 100) {
-					echo "$time  $sensor $i " .$value."\n";				
+					echo "$time  $sensor $i " .$value."\n";
 					//echo "humid: " .gettype($output[1])."\n";
 					//echo "temp: " .$output[2]."\n";
 					//sleep(1);
@@ -21,7 +23,7 @@
 			}
 			//echo "\n";
 		}
-	
+
 	}
 
 	readSensor(8);
