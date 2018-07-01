@@ -1,5 +1,5 @@
 <?php
-	include ('../log.php');
+	include ('log.php');
 	include('datafilter.php');
 
 	global $temperature, $humidity, $debugMode;
