@@ -6,7 +6,7 @@
 	$debugMode = true;
 
 	if ($debugMode==true) {
-		logToFile("running sensors.php", '', '');
+		logToFile("running sensors.php");
 	}
 
 
@@ -26,7 +26,7 @@
 			if ($value) {
 				if ($i == 0) {		//humidity sensor
 					$delta = $delta_test->filter($value);
-						logToFile("delta return", $delta, '<<<<<<<<<');
+						logToFile("delta return: " . $delta . '<<<<<<<<<');
 					$humidity = $value;
 
 				} if ($i == 1) {  	// temp sensor
@@ -35,7 +35,7 @@
 			} else {
 				break;
 				if ($debugMode==true) {
-						logToFile("mysql value missing", '', '');
+						logToFile("mysql value missing");
 					}
 			}
 		}
