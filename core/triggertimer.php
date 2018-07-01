@@ -1,5 +1,5 @@
 <?php
-	include_once '../log.php';
+	include_once ('/var/www/html/log.php');
 	global $temperature, $humidity, $debugMode;
 	global $debugMode;
 	$debugMode = true;
