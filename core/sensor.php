@@ -69,8 +69,13 @@
 	//Expire PHP session immediately
 	$expireAfter = 0;
 
+	// terrarium sensor 1
 	readSensor(8);
-	//readSensor(9);
+	//test sensor 1 (am2320b /sht21?))
+	readSensor(9);
+	//test sensor 2 (dht22)
+	readSensor(7);
+
 
 ?>
 
