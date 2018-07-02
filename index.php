@@ -379,8 +379,10 @@
 			</div>
 		</div>
 
+		<hr/>
+
 		 <div class="container-fluid">
-	    <div class="roww">
+	    <div class="row">
 	        <div class="col-md-12">
 	           <a href="/" title="BASE" alt="BASE">
                    <span class="fa-stack fa-2x">
@@ -390,7 +392,7 @@
                </a>
 	        </div>
 	    </div>
-	    <div class="roww">
+	    <div class="row">
 	        <div class="col-md-4">
                     <div id="roomtemp_div" style="width: auto; height: auto;"></div>
                     <div id="roomhum_div" style="width: auto; height: auto;"></div>
@@ -402,7 +404,7 @@
 	    </div>
     </div>
 
-    <hr></hr>
+    <hr/>
 
 
         <div class="container-fluid">
@@ -426,7 +428,7 @@
             </div>
         </div>
 
-    <hr></hr>
+    <hr/>
 
 
 
@@ -448,7 +450,7 @@
             </div>
         </div>
 
-    <hr></hr>
+    <hr/>
 
 
 
