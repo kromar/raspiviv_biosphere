@@ -379,56 +379,82 @@
 			</div>
 		</div>
 
-		<div class="container-fluid">
-					<a href="/" title="BASE" alt="BASE">
-						<span class="fa-stack fa-2x">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<strong class="fa-stack-1x fa-stack-text fa-inverse">B</strong>
-						</span>
-					</a>
+		 <div class="container-fluid">
+	    <div class="roww">
+	        <div class="col-md-12">
+	           <a href="/" title="BASE" alt="BASE">
+                   <span class="fa-stack fa-2x">
+                       <i class="fa fa-circle fa-stack-2x"></i>
+                       <strong class="fa-stack-1x fa-stack-text fa-inverse">A</strong>
+                   </span>
+               </a>
+	        </div>
+	    </div>
+	    <div class="roww">
+	        <div class="col-md-4">
+                    <div id="roomtemp_div" style="width: auto; height: auto;"></div>
+                    <div id="roomhum_div" style="width: auto; height: auto;"></div>
+	        </div>
+
+	        <div class="col-md-8">
+                     <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
+	        </div>
+	    </div>
+    </div>
+
+    <hr></hr>
 
 
-			<div class="row">
-				<div class="col-md-4">
-					<div id="roomtemp_div" style="width: auto; height: auto;"></div>
-					<div id="roomhum_div" style="width: auto; height: auto;"></div>
-				</div>
-
-				<div class="col-md-8">
-					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
-				</div>
-			</div>
-		</div>
-
-		<hr/>
+        <div class="container-fluid">
+                    <a href="/" title="BASE" alt="BASE">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <strong class="fa-stack-1x fa-stack-text fa-inverse">B</strong>
+                        </span>
+                    </a>
 
 
-		<div class="container">
-			<a href="/graph01.php" title="VIV 1" alt="VIV 1">
-				<span class="fa-stack fa-2x">
-				  <i class="fa fa-circle fa-stack-2x"></i>
-				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
-				</span>
-			</a>
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="roomtemp_div" style="width: auto; height: auto;"></div>
+                    <div id="roomhum_div" style="width: auto; height: auto;"></div>
+                </div>
 
-			<div class="row">
-				<div class="col-md-4">
-					<div id="viv1temp_div"></div>
-					<div id="viv1hum_div"></div>
-				</div>
-				<div class="col-md-8"">
-					<div id="graph_tank1_history_div"></div>
-				</div>
-			</div>
-		</div>
+                <div class="col-md-8">
+                     <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
+                </div>
+            </div>
+        </div>
 
-		<hr/>
+    <hr></hr>
 
 
 
-		<div class="container">
-			<!--  <?php include 'footer.php';?> -->
-		</div>
-	</body>
+        <div class="container-fluid">
+            <a href="/graph01.php" title="VIV 1" alt="VIV 1">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
+                </span>
+            </a>
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="viv1temp_div"></div>
+                    <div id="viv1hum_div"></div>
+                </div>
+                <div class="col-md-8">
+                    <div id="graph_tank1_history_div"></div>
+                </div>
+            </div>
+        </div>
+
+    <hr></hr>
+
+
+
+        <div class="container">
+            <!--  <?php include 'footer.php';?> -->
+        </div>
+    </body>
 </html>
 
