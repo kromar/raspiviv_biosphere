@@ -69,8 +69,6 @@
 			]);
 
 			var options = {
-				width: 200,
-				height: 200,
 				minorTicks: 5
 			};
 
@@ -120,7 +118,6 @@
 			]);
 
 			var options = {
-				width: 200, height: 200,
 				minorTicks: 5
 			};
 
@@ -171,7 +168,6 @@
 			]);
 
 			var options = {
-				width: 200, height: 200,
 				greenFrom:20, greenTo: 26,
 				minorTicks: 5
 			};
@@ -223,7 +219,6 @@
 			]);
 
 			var options = {
-			  width: 200, height: 200,
 			  greenFrom:70, greenTo: 90,
 			  minorTicks: 5
 			};
@@ -395,11 +390,11 @@
 	    <div class="row">
 	        <div class="col-md-4">
                     <div id="roomtemp_div"></div>
-                    <div id="roomhum_div"></div>
+                    <div id="roomhum_div" style="width: auto; height: auto;"></div>
 	        </div>
 
 	        <div class="col-md-8">
-                     <div id="graph_room_history_div"></div>
+                     <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
 	        </div>
 	    </div>
     </div>
