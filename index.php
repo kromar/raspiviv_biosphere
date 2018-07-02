@@ -11,8 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<title>RasPiViv.com - Home</title>
 
@@ -380,25 +379,25 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container-fluid">
 					<a href="/" title="BASE" alt="BASE">
 						<span class="fa-stack fa-2x">
 							<i class="fa fa-circle fa-stack-2x"></i>
 							<strong class="fa-stack-1x fa-stack-text fa-inverse">B</strong>
 						</span>
 					</a>
-			<div class="row">
 
-				<div class="col-xs-4">
+
+			<div class="row">
+				<div class="col-md-4">
 					<div id="roomtemp_div" style="width: auto; height: auto;"></div>
 					<div id="roomhum_div" style="width: auto; height: auto;"></div>
 				</div>
 
-				<div class="col-xs-6"">
+				<div class="col-md-8">
 					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
 				</div>
 			</div>
-
 		</div>
 
 		<hr/>
@@ -413,11 +412,11 @@
 			</a>
 
 			<div class="row">
-				<div class="col-xs-4">
+				<div class="col-md-4">
 					<div id="viv1temp_div"></div>
 					<div id="viv1hum_div"></div>
 				</div>
-				<div class="col-xs-6"">
+				<div class="col-md-8"">
 					<div id="graph_tank1_history_div"></div>
 				</div>
 			</div>
