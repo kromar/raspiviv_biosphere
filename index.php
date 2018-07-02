@@ -394,12 +394,12 @@
 	    </div>
 	    <div class="row">
 	        <div class="col-md-4">
-                    <div id="roomtemp_div" style="width: auto; height: auto;"></div>
-                    <div id="roomhum_div" style="width: auto; height: auto;"></div>
+                    <div id="roomtemp_div"></div>
+                    <div id="roomhum_div"></div>
 	        </div>
 
 	        <div class="col-md-8">
-                     <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
+                     <div id="graph_room_history_div"></div>
 	        </div>
 	    </div>
     </div>
