@@ -1,5 +1,5 @@
 <?php 
-$humthreshold = 90.0; 
+$humthreshold = 85.0; 
 
 
 $db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
