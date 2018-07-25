@@ -1,573 +1,434 @@
-<HTML>
 <?PHP
-require_once("./include/membersite_config.php");
+	require_once("./assets/php/membersite_config.php");
 
-if(!$fgmembersite->CheckLogin())
-{
-    $fgmembersite->RedirectToURL("login.php");
-    exit;
-}
+	if(!$fgmembersite->CheckLogin())
+	{
+	    $fgmembersite->RedirectToURL("login.php");
+	    exit;
+	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
-<title>RasPiViv.com - Home</title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- ROOM TEMP GAUGE -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<title>RasPiViv.com - Home</title>
+
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+
+<!--  load CSS -->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+   	<link rel="stylesheet" href="http://getbootstrap.com/examples/cover/cover.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+
+	<!-- ROOM TEMP GAUGE -->
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				['BASE TMP',
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
+
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
+
+						$sql = "SELECT temperature FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
+
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["temperature"];
+							}
+						} else {
+							echo "0 results";
+						}
+
+						mysqli_close($conn);
+					?>
+				],
+			]);
+
+			var options = {
+				width: 200,
+				height: 200,
+				minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('roomtemp_div'));
+			chart.draw(data, options);
+		}
+	</script>
+
+	<!-- ROOM HUM GAUGE -->
+
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['BASE TMP', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				['BASE HUM',
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
 
-$sql = "SELECT temperature FROM datalogger where sensor = 7 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
+						$sql = "SELECT humidity FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["temperature"];
-    }
-} else {
-    echo "0 results";
-}
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["humidity"];
+							}
+						} else {
+							echo "0 results";
+						}
 
-mysqli_close($conn);
-?> 
+						mysqli_close($conn);
+					?>
+				],
+			]);
 
-],
+			var options = {
+				width: 200, height: 200,
+				minorTicks: 5
+			};
 
-        ]);
+			var chart = new google.visualization.Gauge(document.getElementById('roomhum_div'));
 
-        var options = {
-          width: 200, height: 200,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('roomtemp_div'));
-
-        chart.draw(data, options);
-
-
-      }
-    </script>
-
-<!-- ROOM HUM GAUGE -->
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['BASE HUM', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT humidity FROM datalogger where sensor = 7 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["humidity"];
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?> ],
-
-        ]);
-
-        var options = {
-          width: 200, height: 200,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('roomhum_div'));
-
-        chart.draw(data, options);
-
-
-      }
+			chart.draw(data, options);
+		}
     </script>
 
 <!-- VIV 1 TEMP GAUGE -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['1 TMP', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				['1 TMP',
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
 
-$sql = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
+						$sql = "SELECT temperature FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["temperature"];
-    }
-} else {
-    echo "0 results";
-}
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["temperature"];
+							}
+						} else {
+							echo "0 results";
+						}
 
-mysqli_close($conn);
-?> 
+						mysqli_close($conn);
+					?>
+				],
 
-],
+			]);
 
-        ]);
+			var options = {
+				width: 200, height: 200,
+				greenFrom:20, greenTo: 26,
+				minorTicks: 5
+			};
 
-        var options = {
-          width: 400, height: 200,
-          redFrom: 26.6, redTo: 100,
-          yellowFrom:20, yellowTo: 25.5,
-          minorTicks: 5
-        };
+			var chart = new google.visualization.Gauge(document.getElementById('viv1temp_div'));
 
-        var chart = new google.visualization.Gauge(document.getElementById('viv1temp_div'));
-
-        chart.draw(data, options);
-
-
-      }
-    </script>
-
-<!-- VIV 1 HUM GAUGE -->
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['1 HUM', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT humidity FROM datalogger where sensor = 8 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["humidity"];
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?> ],
-
-        ]);
-
-        var options = {
-          width: 200, height: 200,
-          redFrom: 0, redTo: 80,
-          yellowFrom:80, yellowTo: 100,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('viv1hum_div'));
-
-        chart.draw(data, options);
-
-
-      }
-    </script>
-<!-- VIV 2 TEMP GAUGE -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['2 TMP', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT temperature FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["temperature"];
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?> 
-
-],
-
-        ]);
-
-        var options = {
-          width: 400, height: 200,
-          redFrom: 26.6, redTo: 100,
-          yellowFrom:20, yellowTo: 25.5,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('viv2temp_div'));
-
-        chart.draw(data, options);
-
-
-      }
-    </script>
-
-<!-- VIV 2 HUM GAUGE -->
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["gauge"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['2 HUM', <?php
-$servername = "localhost";
-$username = "datalogger";
-$password = "datalogger";
-$dbname = "datalogger";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT humidity FROM datalogger where sensor = 9 ORDER BY date_time DESC LIMIT 1";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo $row["humidity"];
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?> ],
-
-        ]);
-
-        var options = {
-          width: 200, height: 200,
-          redFrom: 0, redTo: 80,
-          yellowFrom:80, yellowTo: 100,
-          minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('viv2hum_div'));
-
-        chart.draw(data, options);
-
-
-      }
+			chart.draw(data, options);
+		}
     </script>
 
 
-<!-- TANK 1 HISTORY HUM GRAPH -->
-
+	<!-- VIV 1 HUM GAUGE -->
     <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['TIME', 'HUMIDITY', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+		google.load("visualization", "1", {packages:["gauge"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
 
-$q=   "select * from history "; 
-$q=$q."where sensor = 8 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 24"; 
-$ds=mysql_query($q);  
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				['1 HUM',
+					<?php
+						$servername = "localhost";
+						$username = "datalogger";
+						$password = "datalogger";
+						$dbname = "datalogger";
 
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->humidity." ],"; 
+						// Create connection
+						$conn = mysqli_connect($servername, $username, $password, $dbname);
+						// Check connection
+						if (!$conn) {
+							die("Connection failed: " . mysqli_connect_error());
+						}
 
-} 
-?> 
-        ]);
+						$sql = "SELECT humidity FROM $dbname where sensor = 8 ORDER BY date_time DESC LIMIT 1";
+						$result = mysqli_query($conn, $sql);
 
-	var options = {
-	title: 'HUMIDITY (%) 24 HR',
-	curveType: 'function',
-	legend: { position: 'none' },
-	hAxis: { textPosition: 'none', direction: '-1' },
-        };
+						if (mysqli_num_rows($result) > 0) {
+							// output data of each row
+							while($row = mysqli_fetch_assoc($result)) {
+								echo $row["humidity"];
+							}
+						} else {
+							echo "0 results";
+						}
 
-        var chart = new google.visualization.LineChart(document.getElementById('tank1humgraph_div'));
+						mysqli_close($conn);
+					?>
+				],
+			]);
 
-        chart.draw(data, options);
-options['pagingSymbols'] = {prev: 'prev', next: 'next'}; options['pagingButtonsConfiguration'] = 'auto';
-      }
+			var options = {
+			  width: 200, height: 200,
+			  greenFrom:70, greenTo: 90,
+			  minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('viv1hum_div'));
+
+			chart.draw(data, options);
+		}
     </script>
 
-<!-- TANK 1 HISTORY TEMP GRAPH -->
 
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['TIME', 'TEMP', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+	<!-- BASE HISTORY GRAPH -->
 
-$q=   "select * from history "; 
-$q=$q."where sensor = 8 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 24"; 
-$ds=mysql_query($q); 
+	<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$servername = "localhost";
+				$username = "datalogger";
+				$password = "datalogger";
+				$dbname = "datalogger";
 
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->temperature." ],"; 
+				// Create connection
+				$db = mysqli_connect($servername, $username, $password, $dbname);
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+				$q = "select * from $dbname ";
+				$q = $q . "where sensor = 9 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 4320";
+				$result = mysqli_query ($db, $q );
 
-} 
-?> 
-        ]);
+				if (mysqli_num_rows($result) > 0) {
+					while ( $r = mysqli_fetch_object ( $result ) ) {
+						echo "['" . $r->date_time . "', ";
+						echo " " . $r->temperature . " ,";
+						echo " " . $r->humidity . " ],";
+					}
+				} else {
+					echo "0 results";
+				}
+				mysqli_close($db);
+			?>
+		]);
 
-	var options = {
-	title: 'TEMP (C) 24 HR',
-	curveType: 'function',
-	legend: { position: 'none' },
-	hAxis: { textPosition: 'none', direction: '-1' },
-        };
+		var options = {
+			legend: { position: 'none' },
+			curveType: 'function',
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
 
-        var chart = new google.visualization.LineChart(document.getElementById('tank1tempgraph_div'));
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
 
-        chart.draw(data, options);
-      }
-    </script>
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
 
-<!-- TANK 2 HISTORY HUM GRAPH -->
+		var chart = new google.visualization.LineChart(document.getElementById('graph_room_history_div'));
 
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['TIME', 'HUMIDITY', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+		chart.draw(data, options);
+		}
+	</script>
 
-$q=   "select * from history "; 
-$q=$q."where sensor = 9 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 24"; 
-$ds=mysql_query($q);  
+<!-- TANK 1 HISTORY GRAPH -->
 
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->humidity." ],"; 
+	<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+		  	['TIME', 'TEMP', 'HUMIDITY' ],
+			<?php
+				$servername = "localhost";
+				$username = "datalogger";
+				$password = "datalogger";
+				$dbname = "datalogger";
 
-} 
-?> 
-        ]);
+				// Create connection
+				$db = mysqli_connect($servername, $username, $password, $dbname);
+				// Check connection
+				if (!$db) {
+					die("Connection failed: " . mysqli_connect_error());
+				}
+				$q = "select * from $dbname ";
+				$q = $q . "where sensor = 8 ";
+				$q = $q . "order by date_time desc ";
+				$q = $q . "limit 4320";
+				$result = mysqli_query ($db, $q );
 
-	var options = {
-	title: 'HUMIDITY (%) 24 HR',
-	curveType: 'function',
-	legend: { position: 'none' },
-	hAxis: { textPosition: 'none', direction: '-1' },
-        };
+				if (mysqli_num_rows($result) > 0) {
+					while ( $r = mysqli_fetch_object ( $result ) ) {
+						echo "['" . $r->date_time . "', ";
+						echo " " . $r->temperature . " ,";
+						echo " " . $r->humidity . " ],";
+						}
+				} else {
+		    		echo "0 results";
+				}
+				mysqli_close($db);
+			?>
+		]);
 
-        var chart = new google.visualization.LineChart(document.getElementById('tank2humgraph_div'));
+		var options = {
+			legend: { position: 'none' },
+			curveType: 'function',
+			crosshair: {trigger: 'both' , orientation: 'vertical', color: 'grey'},
+			backgroundColor: {stroke: 'black', fill: 'white', strokeSize: 1},
+	        height: 400,
+			series: {
+				0: {color: 'red', targetAxisIndex: 0},
+				1: {color: 'blue', targetAxisIndex: 1},
+		},
 
-        chart.draw(data, options);
-      }
-    </script>
+		vAxes: {
+			// Adds titles to each axis.
+			0: {title: 'Temperature (C)'},
+			1: {title: 'Humidity (%)'},
+		},
 
-<!-- TANK 2 HISTORY TEMP GRAPH -->
+		hAxis: {
+			textPosition: 'none',
+			direction: '-1' },
+		};
 
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['TIME', 'TEMP', ],
-<?php 
-$db = mysql_connect("localhost","datalogger","datalogger") or die("DB Connect error"); 
-mysql_select_db("datalogger"); 
+		var chart = new google.visualization.LineChart(document.getElementById('graph_tank1_history_div'));
 
-$q=   "select * from history "; 
-$q=$q."where sensor = 9 "; 
-$q=$q."order by date_time desc "; 
-$q=$q."limit 24"; 
-$ds=mysql_query($q); 
-
-while($r = mysql_fetch_object($ds)) 
-{ 
-	echo "['".$r->date_time."', "; 
-	echo " ".$r->temperature." ],"; 
-
-} 
-?> 
-        ]);
-
-	var options = {
-	title: 'TEMP (C) 24 HR',
-	curveType: 'function',
-	legend: { position: 'none' },
-	hAxis: { textPosition: 'none', direction: '-1' },
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('tank2tempgraph_div'));
-
-        chart.draw(data, options);
-      }
-    </script>
-
+		chart.draw(data, options);
+		}
+	</script>
 </head>
-<body>
-<div class="jumbotron">
-<div class="container">
-<?php include 'menu.php';?>
-</div>
-</div>
-<div class="container">
-<h3>CURRENT CONDITIONS</h3>
-<?php include 'time.php';?><hr>
-  <div class="row">
-    <div class="col-sm-3">
-<a href="/" title="BASE" alt="BASE">
-<span class="fa-stack fa-3x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <strong class="fa-stack-1x fa-stack-text fa-inverse">B</strong>
-</span>
-</a>
-    <div id="roomtemp_div""></div>
-    <div id="roomhum_div""></div>
-</div>
-    <div class="col-sm-3">
-<a href="/1.php" title="VIV 1" alt="VIV 1">
-<span class="fa-stack fa-3x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
-</span>
-</a>
-    <div id="viv1temp_div"></div>
-    <div id="viv1hum_div"></div>
-    </div>
-    <div class="col-sm-3">
-<a href="/2.php" title="VIV 2" alt="VIV 2">
-<span class="fa-stack fa-3x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <strong class="fa-stack-1x fa-stack-text fa-inverse">2</strong>
-</span>
-</a>
-    <div id="viv2temp_div"></div>
-    <div id="viv2hum_div"></div>
-    </div>
-    </div>
 
-<hr>
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<?php include('menu.html');?>
+				<h3>Base Conditions</h3>
+				<?php include 'time.php';?>
+			</div>
+		</div>
 
-<div class="container">
-<a href="/1.php" title="VIV 1" alt="VIV 1">
-<span class="fa-stack fa-3x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
-</span>
-</a>
-    <div id="tank1tempgraph_div" style="width: auto; height: 500px;"></div>
-    <div id="tank1humgraph_div" style="width: auto; height: 500px;"></div>
-</div>
-<div class="container">
-<a href="/2.php" title="VIV 2" alt="VIV 2">
-<span class="fa-stack fa-3x">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <strong class="fa-stack-1x fa-stack-text fa-inverse">2</strong>
-</span>
-</a>
-    <div id="tank2tempgraph_div" style="width: auto; height: 500px;"></div>
-    <div id="tank2humgraph_div" style="width: auto; height: 500px;"></div>
-</div>
-<div class="container"><hr>
-<?php include 'footer.php';?></div>
-</BODY> 
+		<div class="container">
+					<a href="/" title="BASE" alt="BASE">
+						<span class="fa-stack fa-2x">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<strong class="fa-stack-1x fa-stack-text fa-inverse">B</strong>
+						</span>
+					</a>
+			<div class="row">
+
+				<div class="col-xs-4">
+					<div id="roomtemp_div" style="width: auto; height: auto;"></div>
+					<div id="roomhum_div" style="width: auto; height: auto;"></div>
+				</div>
+
+				<div class="col-xs-8"">
+					 <div id="graph_room_history_div" style="width: auto; height: auto;"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<hr>
+
+
+		<div class="container">
+			<a href="/graph01.php" title="VIV 1" alt="VIV 1">
+				<span class="fa-stack fa-2x">
+				  <i class="fa fa-circle fa-stack-2x"></i>
+				  <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
+				</span>
+			</a>
+
+			<div class="row">
+				<div class="col-xs-4">
+					<div id="viv1temp_div"></div>
+					<div id="viv1hum_div"></div>
+				</div>
+				<div class="col-xs-8"">
+					<div id="graph_tank1_history_div"></div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+
+
+		<div class="container">
+			<?php include 'footer.php';?>
+		</div>
+	</BODY>
 </HTML>
 

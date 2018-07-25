@@ -1,0 +1,6 @@
+/.externalToolBuilders
+/.settings
+/*.project
+/*.buildpath
+*.pydevproject
+.idea/
